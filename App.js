@@ -2,7 +2,8 @@ import React from 'react';
 import {persistor, store} from './store';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
-import {TabNavigator} from './src/navigation/TabNavigator'
+import { TabNavigator } from './src/navigation/TabNavigator'
+import { createAppContainer } from 'react-navigation';
 
 const AppContainer = createAppContainer(TabNavigator);
 

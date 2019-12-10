@@ -1,5 +1,5 @@
 import {createStackNavigator} from 'react-navigation-stack';
-import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import FontAwesomeIcon from 'font-awesome'
 
 import SearchPharmacistsContainer from '../containers/SearchPharmacistsContainer'
@@ -7,6 +7,8 @@ import UserInfoContainer from '../containers/UserInfoContainer'
 import ChatPageContainer from '../containers/ChatPageContainer'
 import BlogPageContainer from '../containers/BlogPageContainer'
 import AuthPageContainer from '../containers/AuthPageContainer'
+import React from "react";
+import * as colors from "react-native";
 
 
 const UserInfoNavigator = createStackNavigator(
@@ -26,7 +28,7 @@ const UserInfoNavigator = createStackNavigator(
     {
       initialRouteName: 'SearchPharmacists',
     }
-  ); 
+  );
 
   const BlogNavigator = createStackNavigator(
     {
@@ -44,9 +46,9 @@ const UserInfoNavigator = createStackNavigator(
     {
       initialRouteName: 'ChatPage',
     }
-  ); 
+  );
 
-  const TabNavigator = createBottomTabNavigator(
+  export const TabNavigator = createBottomTabNavigator(
     {
       SearchPharmacists: {
         screen: SearchPharmacistsNavigator,
@@ -87,6 +89,3 @@ const UserInfoNavigator = createStackNavigator(
       initialRouteName: 'SearchPharmacists',
     },
   );
-
-
-  export default TabNavigator;

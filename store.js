@@ -1,4 +1,10 @@
-import {applyMiddleware, createStore, compose} from 'redux';
+import { createStore } from "redux";
+import reducers from "./src/reducers";
+
+const store = createStore(reducers);
+
+export default store;
+/*import {applyMiddleware, createStore, compose} from 'redux';
 import Thunk from 'redux-thunk';
 import {createNetworkMiddleware} from 'react-native-offline';
 import {persistStore, persistReducer} from 'redux-persist';
@@ -22,5 +28,4 @@ export const store = createStore(
 );
 
 export const persistor = persistStore(store);
-
-//export default store;
+*/

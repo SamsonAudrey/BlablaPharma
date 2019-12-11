@@ -6,35 +6,26 @@ import CButton from "../components/Button";
 
 const Form = t.form.Form;
 const User = t.struct({
-    email: t.String,
-    firstName: t.String,
-    lastName: t.String,
-    password: t.String,
-    confirmPassword: t.String,
-    birth: t.String, //TODO
-})
+    profession: t.String,
+    ID: t.String,
+    postalCode: t.String,
+    city: t.String,
+    address: t.String,
+    buildingName: t.String, //TODO
+});
 
-
-class RegisterPatient extends Component {
+class RegisterPharmacist extends Component {
 
     handleSubmit = () => {
         const value = this._form.getValue();
         console.log('value: ', value);
-        const { navigation } = this.props;
-
-        if (navigation.getParam('userKind') === 'pharmacist') {
-            const { navigate } = this.props.navigation;
-            navigate('RegisterPage_Pharmacist')
-        }
-    }
+    };
 
     constructor(){
         super();
     }
 
     render() {
-        const { navigation } = this.props;
-
         return (
             <View style={styles.container}>
                 <Form
@@ -43,8 +34,8 @@ class RegisterPatient extends Component {
                     options={options}
                 />
                 <CButton
-                    title={navigation.getParam('userKind') === 'patient' ? "S'inscrire" : "Suivant"}
-                    style={navigation.getParam('userKind') === 'patient' ? 'green' : 'grey'}
+                    title={"S'inscrire"}
+                    style={'green'}
                     onPress={this.handleSubmit}/>
             </View>
         );
@@ -74,26 +65,26 @@ const styles = StyleSheet.create({
 
 const options = {
     fields: {
-        name: {
-            stylesheet: styles // overriding the style of the textbox
+        profession: {
+            placeholder: 'Profession',
+            factory: t.form.Select,
+            options: [{value:'1', text:'Pharmacien'},{value:'2', text:'Etudiant'}, {value:'3', text:'Blabla Pharmacien'}],
+            //nullOption: {value: '1', text: 'Pharmacien'}
         },
-        email: {
-            placeholder: 'Email',
+        ID: {
+            placeholder: 'Identifiant professionnel'
         },
-        firstName: {
-            placeholder: 'Prénom'
+        city: {
+            placeholder: 'Ville'
         },
-        lastName: {
-            placeholder: 'Nom'
+        postalCode: {
+            placeholder: 'Code postal'
         },
-        password: {
-            placeholder: 'Mot de passe'
+        address: {
+            placeholder: 'Adresse'
         },
-        confirmPassword: {
-            placeholder: 'Confirmation mot de passe'
-        },
-        birth: {
-            placeholder: 'Date de naissance'
+        buildingName: {
+            placeholder: 'Nom établissement'
         }
     },
     auto: 'placeholders',
@@ -105,4 +96,4 @@ let tt = require('tcomb-form-native/lib');
 tt.form.Form.stylesheet = styles;
 
 
-export default RegisterPatient
+export default RegisterPharmacist

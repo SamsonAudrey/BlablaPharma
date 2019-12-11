@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, View, Text } from 'react-native';
+import { Button } from 'react-native';
 
 export default class UserInfoPage extends React.Component {
     constructor(props){
@@ -10,12 +10,20 @@ export default class UserInfoPage extends React.Component {
     render () {
         const {navigate} = this.props.navigation;
         return (
-            <Button
-            title="Connexion"
-            onPress={() =>  {
-                /*Navigate to the authentication page*/
-                navigate('AuthPage')
-            }}/>
+            <>
+                <Button
+                title="Connexion"
+                onPress={() =>  {
+                    /*Navigate to the authentication page*/
+                    navigate('AuthPage')
+                }}/>
+                <Button
+                title="Inscription"
+                onPress={() =>  {
+                    /*Navigate to the register page*/
+                    navigate('RegisterPage')
+                }}/>
+            </>
         )
     }
 

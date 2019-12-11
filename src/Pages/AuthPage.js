@@ -69,7 +69,7 @@ class Login extends Component {
   render() {
 
     return (
-      <View style={styles.container}>
+      /*<View style={styles.container}>
         <Text style={styles.heading}>
           Native on Rails
         </Text>
@@ -94,7 +94,8 @@ class Login extends Component {
         </Text>
 
         <ActivityIndicatorIOS animating={this.state.showProgress} size="large" style={styles.loader} />
-      </View>
+      </View>*/
+      <Text>login</Text>
     );
   }
 }
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'white',
     padding: 10,
     paddingTop: 80
   },

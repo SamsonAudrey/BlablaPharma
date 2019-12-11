@@ -1,9 +1,9 @@
 import { createStore } from "redux";
 import reducers from "./src/reducers";
 
-const store = createStore(reducers);
+export const store = createStore(reducers);
 
-export default store;
+//export default store;
 /*import {applyMiddleware, createStore, compose} from 'redux';
 import Thunk from 'redux-thunk';
 import { createNetworkMiddleware } from 'react-native-offline';

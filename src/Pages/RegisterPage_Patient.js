@@ -59,6 +59,7 @@ class RegisterPatient extends Component {
 const _ = require('lodash');
 const s = _.cloneDeep(t.form.Form.stylesheet)
 s.textbox.normal.minWidth = '70%';
+s.textbox.error.minWidth = '70%';
 s.textbox.normal.borderColor = '#707070';
 s.textbox.normal.color = '#707070';
 s.textbox.normal.borderRadius = 5;

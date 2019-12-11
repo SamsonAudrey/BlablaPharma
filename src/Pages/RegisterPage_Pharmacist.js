@@ -46,6 +46,7 @@ class RegisterPharmacist extends Component {
 const _ = require('lodash');
 const s2 = _.cloneDeep(t.form.Form.stylesheet)
 s2.textbox.normal.minWidth = '70%';
+s2.textbox.error.minWidth = '70%';
 s2.textbox.normal.borderColor = '#707070';
 s2.textbox.normal.color = '#707070';
 s2.textbox.normal.borderRadius = 5;

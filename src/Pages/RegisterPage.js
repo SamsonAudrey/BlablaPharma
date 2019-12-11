@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 
 
-class ListChat extends Component {
+class Register extends Component {
 
     render() {
         return (
             <View style={styles.container}>
-                <Text>Chat</Text>
+                <Text>Register</Text>
             </View>
         );
     }
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ListChat
+export default Register

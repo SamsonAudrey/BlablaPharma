@@ -1,17 +1,28 @@
-import React from "react";
-import { Button, View, Text } from "react-native";
+'use strict';
+import React, { Component } from 'react';
+import {View, StyleSheet, Text} from 'react-native';
 
-export default class BlogPage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
-  render() {
-    const { navigate } = this.props.navigation;
-    return (
-      <View>
-        <Text> Pharmacist </Text>
-      </View>
-    );
-  }
+class Blog extends Component {
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <Text>Blog</Text>
+            </View>
+        );
+    }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        backgroundColor: '#F5FCFF',
+        padding: 10,
+        paddingTop: 80
+    },
+});
+
+export default Blog

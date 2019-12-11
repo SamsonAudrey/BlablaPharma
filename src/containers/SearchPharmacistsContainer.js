@@ -1,17 +1,23 @@
-import { connect } from "react-redux";
-import SearchPharmacistsPage from "../Pages/SearchPharmacistsPage";
+import {connect} from 'react-redux';
+import SearchPharmacistsPage from '../Pages/SearchPharmacistsPage'
+import React from "react";
 
 const mapStateToProps = state => {
-  return state;
-};
+  return { test : "t"}
+}
 
 const mapDispatchToProps = dispatch => {
-  return {};
-};
+  return {
+    // dispatching plain actions
+    increment: () => dispatch({ type: 'INCREMENT' }),
+    decrement: () => dispatch({ type: 'DECREMENT' }),
+    reset: () => dispatch({ type: 'RESET' })
+  }
+}
 
-const SearchPharmacist = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SearchPharmacistsPage);
+const SearchPharmacists = connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(SearchPharmacistsPage);
 
-export default SearchPharmacist;
+export default SearchPharmacists;

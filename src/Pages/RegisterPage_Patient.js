@@ -5,14 +5,18 @@ import t from 'tcomb-form-native';
 import CButton from "../components/Button";
 
 const Form = t.form.Form;
+const Email = t.refinement(t.String, email => {
+    const reg = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/; //or any other regexp
+    return reg.test(email);
+});
 const User = t.struct({
-    email: t.String,
+    email: Email,
     firstName: t.String,
     lastName: t.String,
     password: t.String,
     confirmPassword: t.String,
     birth: t.String, //TODO
-})
+});
 
 
 class RegisterPatient extends Component {
@@ -22,7 +26,7 @@ class RegisterPatient extends Component {
         console.log('value: ', value);
         const { navigation } = this.props;
 
-        if (navigation.getParam('userKind') === 'pharmacist') {
+        if (navigation.getParam('userKind') === 'pharmacist' && value !== null) {
             const { navigate } = this.props.navigation;
             navigate('RegisterPage_Pharmacist')
         }
@@ -51,6 +55,15 @@ class RegisterPatient extends Component {
     }
 }
 
+// Custom Stylesheet
+const _ = require('lodash');
+const s = _.cloneDeep(t.form.Form.stylesheet)
+s.textbox.normal.minWidth = '70%';
+s.textbox.normal.borderColor = '#707070';
+s.textbox.normal.color = '#707070';
+s.textbox.normal.borderRadius = 5;
+
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -61,48 +74,47 @@ const styles = StyleSheet.create({
         paddingTop: 80
     },
     formGroup: {
-        height: 40,
-        width: '80%',
-        marginTop: 10,
-        padding: 4,
-        fontSize: 18,
-        borderWidth: 1,
-        borderColor: 'red',
-        borderRadius: 5
+            height: 40,
+            width: '80% !important',
+            marginTop: 10,
+            padding: 4,
+            fontSize: 18,
+            borderWidth: 1,
+            borderColor: 'red',
+            borderRadius: 5
     },
 });
 
 const options = {
     fields: {
-        name: {
-            stylesheet: styles // overriding the style of the textbox
-        },
         email: {
             placeholder: 'Email',
+            placeholderTextColor: '#707070'
         },
         firstName: {
-            placeholder: 'Prénom'
+            placeholder: 'Prénom',
+            placeholderTextColor: '#707070'
         },
         lastName: {
-            placeholder: 'Nom'
+            placeholder: 'Nom',
+            placeholderTextColor: '#707070'
         },
         password: {
-            placeholder: 'Mot de passe'
+            placeholder: 'Mot de passe',
+            placeholderTextColor: '#707070'
         },
         confirmPassword: {
-            placeholder: 'Confirmation mot de passe'
+            placeholder: 'Confirmation mot de passe',
+            placeholderTextColor: '#707070'
         },
         birth: {
-            placeholder: 'Date de naissance'
+            placeholder: 'Date de naissance',
+            placeholderTextColor: '#707070'
         }
     },
     auto: 'placeholders',
+    stylesheet: s
 };
-
-let tt = require('tcomb-form-native/lib');
-
-// override globally the default stylesheet
-tt.form.Form.stylesheet = styles;
 
 
 export default RegisterPatient

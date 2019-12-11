@@ -42,6 +42,17 @@ class RegisterPharmacist extends Component {
     }
 }
 
+// Custom Stylesheet
+const _ = require('lodash');
+const s2 = _.cloneDeep(t.form.Form.stylesheet)
+s2.textbox.normal.minWidth = '70%';
+s2.textbox.normal.borderColor = '#707070';
+s2.textbox.normal.color = '#707070';
+s2.textbox.normal.borderRadius = 5;
+s2.select.normal.borderRadius = 5;
+s2.select.normal.color = '#707070';
+s2.select.normal.borderColor = '#707070';
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -72,28 +83,29 @@ const options = {
             //nullOption: {value: '1', text: 'Pharmacien'}
         },
         ID: {
-            placeholder: 'Identifiant professionnel'
+            placeholder: 'Identifiant professionnel',
+            placeholderTextColor: '#707070'
         },
         city: {
-            placeholder: 'Ville'
+            placeholder: 'Ville',
+            placeholderTextColor: '#707070'
         },
         postalCode: {
-            placeholder: 'Code postal'
+            placeholder: 'Code postal',
+            placeholderTextColor: '#707070'
         },
         address: {
-            placeholder: 'Adresse'
+            placeholder: 'Adresse',
+            placeholderTextColor: '#707070'
         },
         buildingName: {
-            placeholder: 'Nom établissement'
+            placeholder: 'Nom établissement',
+            placeholderTextColor: '#707070'
         }
     },
     auto: 'placeholders',
+    stylesheet: s2
 };
-
-let tt = require('tcomb-form-native/lib');
-
-// override globally the default stylesheet
-tt.form.Form.stylesheet = styles;
 
 
 export default RegisterPharmacist

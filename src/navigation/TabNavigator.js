@@ -9,6 +9,7 @@ import React from "react";
 import * as colors from "react-native";
 import {Text} from "react-native";
 import RegisterPageContainer from "../containers/RegisterPageContainer";
+import RegisterPatientContainer from "../containers/RegisterPatientContainer";
 
 
 const UserInfoNavigator = createStackNavigator(
@@ -16,6 +17,7 @@ const UserInfoNavigator = createStackNavigator(
         UserInfo: UserInfoContainer,
         AuthPage:AuthPageContainer,
         RegisterPage: RegisterPageContainer,
+        RegisterPage_Patient: RegisterPatientContainer
     },
     {
       initialRouteName: 'UserInfo',

@@ -1,28 +1,22 @@
 'use strict';
 import React, { Component } from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-
+import { View } from 'react-native';
+import CButton from "../components/Button";
 
 class Register extends Component {
+    constructor(){
+        super();
+    }
 
     render() {
+        const {navigate} = this.props.navigation;
         return (
-            <View style={styles.container}>
-                <Text>Register</Text>
+            <View>
+                <CButton title={"Patient"} style={'green'} onPress={() => navigate('RegisterPage_Patient', {userKind:'patient'})}/>
+                <CButton title={"Pharmacien"} style={'grey'} onPress={() => navigate('RegisterPage_Patient', {userKind:'pharmacist'})}/>
             </View>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        backgroundColor: 'white',
-        padding: 10,
-        paddingTop: 80
-    },
-});
 
 export default Register

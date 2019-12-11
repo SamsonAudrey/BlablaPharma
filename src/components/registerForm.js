@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import t from 'tcomb-form-native'; // 0.6.9
 
 const Form = t.form.Form;
@@ -16,7 +16,7 @@ export default class Test extends Component {
             <>
                 <h2>ttt</h2>
                 <View style={styles.container}>
-                    <Form type={User} /> {/* Notice the addition of the Form component */}
+                    <Form type={User} /> {/* Notice the addition of the Form component */ /*}
                 </View>
             </>
         );
@@ -31,3 +31,4 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
     },
 });
+*/

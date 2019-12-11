@@ -1,14 +1,6 @@
 'use strict';
-import React, {
-  Component,
-  StyleSheet,
-  TextInput,
-  TouchableHighlight,
-  ActivityIndicatorIOS,
-  AsyncStorage,
-  Text,
-  View
-} from 'react-native';
+import React, { Component, ActivityIndicatorIOS } from 'react';
+import { View , StyleSheet, TextInput, TouchableHighlight, AsyncStorage, Text } from 'react-native';
 
 const ACCESS_TOKEN = 'access_token';
 

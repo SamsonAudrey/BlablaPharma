@@ -1,19 +1,25 @@
+import {REGISTER_FAILURE, REGISTER_PATIENT, REGISTER_PHARMACIST} from "../actions/actionType";
+
 function register(state = [], action) {
     switch (action.type) {
-        case 'REGISTER_PATIENT':
+        case REGISTER_PATIENT:
             return [
                 ...state,
                 {
-                    text: action.text,
-                    completed: false
+                    test: 'TEST_REGISTER_PAT',
                 }
             ];
-        case 'REGISTER_PHARMACIST':
+        case REGISTER_PHARMACIST:
             return [
                 ...state,
                 {
-                    text: action.text,
-                    completed: false
+                    text: 'TEST_REGISTER_PHARMA',
+                }
+            ];
+        case REGISTER_FAILURE:
+            return [
+                {
+                    error: action.payload.error
                 }
             ];
         default:
@@ -22,3 +28,4 @@ function register(state = [], action) {
 }
 
 export default register
+

@@ -11,7 +11,7 @@ const User = t.struct({
     postalCode: t.String,
     city: t.String,
     address: t.String,
-    buildingName: t.String, //TODO
+    institutionName: t.String, //TODO
 });
 
 class RegisterPharmacist extends Component {
@@ -19,6 +19,20 @@ class RegisterPharmacist extends Component {
     handleSubmit = () => {
         const value = this._form.getValue();
         console.log('value: ', value);
+        if (value !== null) {
+            // REGISTER PATIENT USER
+            console.log('try register pharma');
+            const { navigation } = this.props;
+            const user = navigation.getParam('infoUser');
+            //console.log('info user');
+            //console.log(user);
+            try {
+                this.props.onRegisterPharmacist(user.firstName,user.lastName,user.birth, "male", user.email,user.password,
+                    value.ID, value.profession, value.institutionName, value.address, value.postalCode, value.city);
+            } catch (error) {
+                alert(error.message);
+            }
+        }
     };
 
     constructor(){
@@ -97,7 +111,7 @@ const options = {
             placeholder: 'Adresse',
             placeholderTextColor: '#707070'
         },
-        buildingName: {
+        institutionName: {
             placeholder: 'Nom établissement',
             placeholderTextColor: '#707070'
         }

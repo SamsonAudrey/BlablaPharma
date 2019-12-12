@@ -15,7 +15,7 @@ const User = t.struct({
     lastName: t.String,
     password: t.String,
     confirmPassword: t.String,
-    birth: t.String, //TODO
+    birth: t.String, //TODO,
 });
 
 
@@ -23,7 +23,6 @@ class RegisterPatient extends Component {
 
     constructor(props) {
         super(props);
-        this.state = this.props;
     }
 
     handleSubmit = () => {
@@ -33,16 +32,16 @@ class RegisterPatient extends Component {
 
         if (navigation.getParam('userKind') === 'pharmacist' && value !== null) {
             const { navigate } = this.props.navigation;
-            navigate('RegisterPage_Pharmacist')
+            navigate('RegisterPage_Pharmacist', {infoUser: value})
         } else {
-            // REGISTER PATIENT USER
-            console.log('try register ');
-
-            const value = this._form.getValue();
-            try {
-                this.props.onUserAuth(value.firstName,value.lastName,value.birth, value.email,value.password);
-            } catch (error) {
-                alert(error.message);
+            if (value !== null) {
+                // REGISTER PATIENT USER
+                console.log('try register ');
+                try {
+                    this.props.onRegisterPatient(value.firstName,value.lastName,value.birth, "male", value.email,value.password);
+                } catch (error) {
+                    alert(error.message);
+                }
             }
         }
     };
@@ -101,7 +100,8 @@ const options = {
     fields: {
         email: {
             placeholder: 'Email',
-            placeholderTextColor: '#707070'
+            placeholderTextColor: '#707070',
+            error: "L'email est incorrect"
         },
         firstName: {
             placeholder: 'Prénom',

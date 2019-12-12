@@ -1,18 +1,19 @@
 import {connect} from 'react-redux';
 import RegisterPage_Patient from '../Pages/RegisterPage_Patient'
+import {registerPatient} from "../actions/registerAction";
 
 const mapStateToProps = state => {
-    return { test : 'tt'}
+    return state
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        // dispatching plain actions
-        increment: () => dispatch({ type: 'INCREMENT' }),
-        decrement: () => dispatch({ type: 'DECREMENT' }),
-        reset: () => dispatch({ type: 'RESET' })
-    }
-}
+        onRegisterPatient: (firstName, lastName, birthDate, gender, email, password) => {
+            dispatch(registerPatient(firstName, lastName, birthDate, gender, email, password));
+        }
+    };
+};
+
 
 const RegisterPatient = connect(
     mapStateToProps,

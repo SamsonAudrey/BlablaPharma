@@ -34,8 +34,7 @@
     "redux": "^4.0.4",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
-    "tcomb-form-native": "^0.6.20",
-    "react-native-dotenv": "latest"
+    "tcomb-form-native": "^0.6.20"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
@@ -44,7 +43,8 @@
     "babel-jest": "^24.9.0",
     "eslint": "^6.5.1",
     "jest": "^24.9.0",
-    "metro-react-native-babel-preset": "^0.56.0",
+    "metro-react-native-babel-preset": "^0.56.3",
+    "react-native-dotenv": "^0.2.0",
     "react-test-renderer": "16.9.0"
   },
   "jest": {

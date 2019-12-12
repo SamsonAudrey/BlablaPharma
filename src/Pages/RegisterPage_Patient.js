@@ -21,6 +21,11 @@ const User = t.struct({
 
 class RegisterPatient extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = this.props;
+    }
+
     handleSubmit = () => {
         const value = this._form.getValue();
         console.log('value: ', value);
@@ -29,12 +34,18 @@ class RegisterPatient extends Component {
         if (navigation.getParam('userKind') === 'pharmacist' && value !== null) {
             const { navigate } = this.props.navigation;
             navigate('RegisterPage_Pharmacist')
-        }
-    }
+        } else {
+            // REGISTER PATIENT USER
+            console.log('try register ');
 
-    constructor(){
-        super();
-    }
+            const value = this._form.getValue();
+            try {
+                this.props.onUserAuth(value.firstName,value.lastName,value.birth, value.email,value.password);
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+    };
 
     render() {
         const { navigation } = this.props;

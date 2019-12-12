@@ -1,4 +1,4 @@
-import {REGISTER_FAILURE, REGISTER_PATIENT, REGISTER_PHARMACIST} from "../actions/actionType";
+import {REGISTER_FAILURE, REGISTER_PATIENT, REGISTER_PHARMACIST} from "../actions/actionTypes";
 
 function register(state = [], action) {
     switch (action.type) {

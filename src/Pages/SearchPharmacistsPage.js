@@ -1,28 +1,26 @@
-'use strict';
-import React, { Component } from 'react';
-import { View , StyleSheet, Text } from 'react-native';
-
+"use strict";
+import React, { Component } from "react";
+import { View, StyleSheet, Text } from "react-native";
 
 class ListPharmacists extends Component {
-
-    render() {
-        return (
-            <View style={styles.container}>
-                <Text>ListPharmacists</Text>
-            </View>
-        );
-    }
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>ListPharmacists</Text>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        backgroundColor: 'white',
-        padding: 10,
-        paddingTop: 80
-    },
+  container: {
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF",
+    padding: 10,
+    paddingTop: 80
+  }
 });
 
-export default ListPharmacists
+export default ListPharmacists;

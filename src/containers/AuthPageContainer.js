@@ -1,22 +1,23 @@
 import { connect } from "react-redux";
 import AuthPage from "../Pages/AuthPage";
+import { userAuth } from "../actions/userAction";
 
 const mapStateToProps = state => {
-  return { test : 'tt'}
-}
+  console.log(state);
+  return state;
+};
 
 const mapDispatchToProps = dispatch => {
   return {
-    // dispatching plain actions
-    increment: () => dispatch({ type: 'INCREMENT' }),
-    decrement: () => dispatch({ type: 'DECREMENT' }),
-    reset: () => dispatch({ type: 'RESET' })
-  }
-}
+    onUserAuth: (email, password) => {
+      dispatch(userAuth(email, password));
+    }
+  };
+};
 
 const Auth = connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(AuthPage);
+  mapStateToProps,
+  mapDispatchToProps
+)(AuthPage);
 
-  export default Auth;
+export default Auth;

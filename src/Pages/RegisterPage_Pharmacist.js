@@ -51,8 +51,6 @@ s2.textbox.normal.borderColor = '#707070';
 s2.textbox.normal.color = '#707070';
 s2.textbox.normal.borderRadius = 5;
 s2.select.normal.borderRadius = 5;
-s2.select.normal.color = '#707070';
-s2.select.normal.borderColor = '#707070';
 
 const styles = StyleSheet.create({
     container: {
@@ -81,7 +79,7 @@ const options = {
             placeholder: 'Profession',
             factory: t.form.Select,
             options: [{value:'1', text:'Pharmacien'},{value:'2', text:'Etudiant'}, {value:'3', text:'Blabla Pharmacien'}],
-            //nullOption: {value: '1', text: 'Pharmacien'}
+            //nullOption: {value: '1', text: 'Pharmacien'},
         },
         ID: {
             placeholder: 'Identifiant professionnel',

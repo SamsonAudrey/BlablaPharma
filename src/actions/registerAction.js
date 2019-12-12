@@ -12,17 +12,17 @@ export const registerPatient = (firstName, lastName, userBirthDate, userGender, 
                 Accept: "application/json",
                 "Content-Type": "application/json"
             },
-            body: {
-                "firstName": "Jeanee",
-                "lastName": "Dupontee",
+            body: JSON.stringify({
+                "firstName": firstName,
+                "lastName": lastName,
                 "birthDayDate": "2000-12-31",
-                "gender": "male",
-                "email": "mytest2@email.com",
+                "gender": userGender,
+                "email": userEmail,
                 "password": "Pa$$Ex@mple1234"
-            }
+            })
         })
             .then(response => {
-                console.log("response ", response.data);
+                console.log("response ", response);
                 dispatch(registerSuccess(response));
             })
             .catch(error => {
@@ -37,21 +37,37 @@ export const registerPharmacist = (firstName, lastName, userBirthDate, userGende
                                    professionalId, professionLabel,institutionName, address, postalCode, city) => {
     console.log("TRY TO REGISTER PHARMACIST");
     console.log(`http://localhost:1337/register/pharmacist`);
-    return fetch(`http://localhost:1337/register/basic`, {
-        method: "GET",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-        }
-    })
-        .then(response => {
-            console.log("response ", response);
-            // store.dispatch(registerSuccess(response.data));
+    return dispatch => {
+        return fetch(`http://localhost:1337/register/pharmacist`, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "firstName": firstName,
+                "lastName": lastName,
+                "birthDayDate": "2000-12-31",
+                "gender": userGender,
+                "email": userEmail,
+                "password": "Pa$$Ex@mple1234",
+                "professionalId": "123456789"+professionalId,
+                "professionLabel": professionLabel,
+                "institutionName": institutionName,
+                "address": address,
+                "postalCode": postalCode,
+                "city": city
+            })
         })
-        .catch(error => {
-            console.log("error " + error);
-            store.dispatch(registerFailure(error));
-        });
+            .then(response => {
+                console.log("response ", response);
+                // store.dispatch(registerSuccess(response.data));
+            })
+            .catch(error => {
+                console.log("error " + error);
+                dispatch(registerFailure(error));
+            });
+    }
 };
 
 export const registerSuccess = (test) => {

@@ -92,7 +92,7 @@ const options = {
         profession: {
             placeholder: 'Profession',
             factory: t.form.Select,
-            options: [{value:'1', text:'Pharmacien'},{value:'2', text:'Etudiant'}, {value:'3', text:'Blabla Pharmacien'}],
+            options: [{value:'pharmacist', text:'Pharmacien'},{value:'student', text:'Etudiant'}, {value:'blabla_pharmacist', text:'Blabla Pharmacien'}],
             //nullOption: {value: '1', text: 'Pharmacien'},
         },
         ID: {

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Text, Button } from "react-native";
+import { checkToken } from "../utils/auth";
 
 import t from "tcomb-form-native";
 
@@ -17,7 +18,9 @@ const options = {
       error: "L'email est incorrect"
     },
     password: {
-      error: "Le mot de passe est incorrect"
+      error: "Le mot de passe est incorrect",
+      secureTextEntry: true,
+      password: true
     },
     remind: {
       label: "Rester connecté"
@@ -27,7 +30,18 @@ const options = {
 export default class Auth extends Component {
   constructor(props) {
     super(props);
-    this.state = this.props;
+  }
+
+  componentDidMount() {
+    console.log("component did mount");
+    checkToken().then(
+      () => {
+        console.log("T'es connectéééé ");
+      },
+      () => {
+        console.log("T'es pas connecté");
+      }
+    );
   }
 
   handleSubmit = () => {
@@ -42,7 +56,7 @@ export default class Auth extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text> Refresh rfdToken : {this.state.refreshToken} </Text>
+        <Text> Refresh rfdToken : {this.props.refreshToken} </Text>
         <Form ref={c => (this._form = c)} type={User} options={options} />
         <Button title="Se Connecter" onPress={this.handleSubmit} />
       </View>

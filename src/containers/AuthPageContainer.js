@@ -1,16 +1,23 @@
 import { connect } from "react-redux";
 import AuthPage from "../Pages/AuthPage";
-import { userAuth } from "../actions/userAction";
+import { userAuth, refreshToken } from "../actions/userAction";
+import AuthUtils from "../utils/auth";
 
 const mapStateToProps = state => {
   console.log(state);
-  return state;
+  return {
+    error: state.error,
+    accessToken: state.accessToken
+  };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, state) => {
   return {
     onUserAuth: (email, password) => {
       dispatch(userAuth(email, password));
+    },
+    onTokenRefresh: () => {
+      dispatch(refreshToken(state.refreshToken));
     }
   };
 };
@@ -18,6 +25,6 @@ const mapDispatchToProps = dispatch => {
 const Auth = connect(
   mapStateToProps,
   mapDispatchToProps
-)(AuthPage);
+)(AuthPage, AuthUtils);
 
 export default Auth;

@@ -6,6 +6,14 @@ export default class UserInfoPage extends React.Component {
     super(props);
   }
 
+  handleSubmitLogout = () => {
+    try {
+      this.props.onUserLogout();
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -22,6 +30,13 @@ export default class UserInfoPage extends React.Component {
           onPress={() => {
             /*Navigate to the register page*/
             navigate("RegisterPage");
+          }}
+        />
+        <Button
+          title="Logout"
+          onPress={() => {
+            /*Navigate to the authentication page*/
+            this.handleSubmitLogout();
           }}
         />
       </>

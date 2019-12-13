@@ -10,7 +10,7 @@ const Form = t.form.Form;
 const gender_props = [
     {label: 'Homme   ', value: 0 },
     {label: 'Femme   ', value: 1 },
-    {label: 'Autre', value: 1 },
+    {label: 'Autre', value: 2 },
 ];
 
 class RegisterPatient extends Component {
@@ -27,8 +27,8 @@ class RegisterPatient extends Component {
             return reg.test(email);
         });
         this.Password = t.refinement(t.String, pwd => { // TODO
-            //const reg = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[*@!#%&()[\\]^~\\\\|='\"{}\/_-]).{8,}$/;
-            return pwd.length >= 6 ; //&& reg.test(pwd); // minimum password length should be 6 symbols
+            const reg = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[*@!#%&()[\]^~\\|?='"{}/_-]).{8,}$/;
+            return pwd.length >= 8 && reg.test(pwd); // minimum password length should be 8 symbols
         });
         this.EqualPassword = t.refinement(t.String, (s) => {
             return s === this.state.user.password;
@@ -61,6 +61,11 @@ class RegisterPatient extends Component {
                     const birthday = moment(value.birth).format('YYYY-MM-DD');
                     this.props.onRegisterPatient(value.firstName,value.lastName,birthday,
                         gender, value.email,value.password);
+
+                    alert('Inscription faite')
+                    const { navigate } = this.props.navigation;
+                    navigate('AuthPage');
+
                 } catch (error) { // TODO
                     alert(error.message);
                 }
@@ -119,7 +124,7 @@ s.dateValue.error.borderWidth = 1;
 s.dateValue.error.color = '#707070';
 s.dateValue.error.borderColor = '#a94442';
 s.dateValue.error.borderRadius = 5;
-
+s.errorBlock.fontSize= 15;
 
 const styles = StyleSheet.create({
     container: {
@@ -155,7 +160,7 @@ const options = {
             placeholderTextColor: '#707070',
             password: true,
             secureTextEntry: true,
-            error: "Doit contenir au moins 6 caractères"
+            error: "Doit contenir une majuscule, une minuscule, un symbole et minimum 8 caractères"
         },
         confirmPassword: {
             placeholder: 'Confirmation mot de passe',

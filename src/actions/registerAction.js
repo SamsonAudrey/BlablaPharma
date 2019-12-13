@@ -3,8 +3,6 @@ import { API_URL } from "react-native-dotenv";
 import {store} from "../../store";
 
 export const registerPatient = (firstName, lastName, userBirthDate, userGender, userEmail, userPassword) => {
-    console.log("TRY TO REGISTER PATIENT");
-    console.log(`http://localhost:1337/register/basic`);
     return dispatch => {
         return fetch(`http://localhost:1337/register/basic`, {
             method: "POST",
@@ -18,11 +16,15 @@ export const registerPatient = (firstName, lastName, userBirthDate, userGender, 
                 "birthDayDate": userBirthDate,
                 "gender": userGender,
                 "email": userEmail,
-                "password": "Pa$$Ex@mple1234"
+                "password": userPassword
             })
         })
             .then(response => {
-                console.log("response ", response);
+                if (response.ok) {
+                    console.log('REGISTERED')
+                } else {
+                    console.log("response ", response);
+                }
                 // dispatch(registerSuccess(response));
             })
             .catch(error => {
@@ -35,8 +37,6 @@ export const registerPatient = (firstName, lastName, userBirthDate, userGender, 
 
 export const registerPharmacist = (firstName, lastName, userBirthDate, userGender, userEmail, userPassword,
                                    professionalId, professionLabel,institutionName, address, postalCode, city) => {
-    console.log("TRY TO REGISTER PHARMACIST");
-    console.log(`http://localhost:1337/register/pharmacist`);
     return dispatch => {
         return fetch(`http://localhost:1337/register/pharmacist`, {
             method: "POST",
@@ -47,11 +47,11 @@ export const registerPharmacist = (firstName, lastName, userBirthDate, userGende
             body: JSON.stringify({
                 "firstName": firstName,
                 "lastName": lastName,
-                "birthDayDate": "2000-12-31",
+                "birthDayDate": userBirthDate,
                 "gender": userGender,
                 "email": userEmail,
-                "password": "Pa$$Ex@mple1234",
-                "professionalId": "123456789"+professionalId,
+                "password": userPassword,
+                "professionalId": professionalId,
                 "professionLabel": professionLabel,
                 "institutionName": institutionName,
                 "address": address,
@@ -60,7 +60,11 @@ export const registerPharmacist = (firstName, lastName, userBirthDate, userGende
             })
         })
             .then(response => {
-                console.log("response ", response);
+                if (response.ok) {
+                    console.log('REGISTERED')
+                } else {
+                    console.log("response ", response);
+                }
                 // store.dispatch(registerSuccess(response.data));
             })
             .catch(error => {

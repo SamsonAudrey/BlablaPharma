@@ -5,29 +5,42 @@ import t from 'tcomb-form-native';
 import CButton from "../components/Button";
 
 const Form = t.form.Form;
-const User = t.struct({
-    profession: t.String,
-    ID: t.String,
-    postalCode: t.String,
-    city: t.String,
-    address: t.String,
-    institutionName: t.String, //TODO
-});
 
 class RegisterPharmacist extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            user: {},
+        };
+
+        this.CodePostal = t.refinement(t.String, (str) => {
+            const reg = /[0-9]{5}/;
+            return str.length === 5 && reg.test(str);
+        });
+        this.User = t.struct({
+            profession: t.String,
+            ID: t.String,
+            postalCode: this.CodePostal,
+            city: t.Number,
+            address: t.String,
+            institutionName: t.String,
+        });
+    }
+
     handleSubmit = () => {
         const value = this._form.getValue();
-        console.log('value: ', value);
+        const { navigation } = this.props;
+        console.log('user: ', navigation.getParam('infoUser'));
+        console.log('user: ', navigation.getParam('gender'));
         if (value !== null) {
             // REGISTER PATIENT USER
             console.log('try register pharma');
             const { navigation } = this.props;
             const user = navigation.getParam('infoUser');
-            //console.log('info user');
-            //console.log(user);
             try {
-                this.props.onRegisterPharmacist(user.firstName,user.lastName,user.birth, "male", user.email,user.password,
+                this.props.onRegisterPharmacist(user.firstName,user.lastName,user.birth, navigation.getParam('gender'), user.email,user.password,
                     value.ID, value.profession, value.institutionName, value.address, value.postalCode, value.city);
             } catch (error) {
                 alert(error.message);
@@ -35,8 +48,8 @@ class RegisterPharmacist extends Component {
         }
     };
 
-    constructor(){
-        super();
+    onChange(value) {
+        this.state.user = value;
     }
 
     render() {
@@ -44,13 +57,16 @@ class RegisterPharmacist extends Component {
             <View style={styles.container}>
                 <Form
                     ref={c => this._form = c}
-                    type={User}
+                    type={this.User}
                     options={options}
+                    onChange={v => this.onChange(v)}
                 />
-                <CButton
-                    title={"S'inscrire"}
-                    buttonStyle={'green'}
-                    onPress={this.handleSubmit}/>
+                <View style={styles.submitButton}>
+                    <CButton
+                        title={"S'inscrire"}
+                        buttonStyle={'green'}
+                        onPress={this.handleSubmit}/>
+                </View>
             </View>
         );
     }
@@ -64,7 +80,6 @@ s2.textbox.error.minWidth = '70%';
 s2.textbox.normal.borderColor = '#707070';
 s2.textbox.normal.color = '#707070';
 s2.textbox.normal.borderRadius = 5;
-s2.select.normal.borderRadius = 5;
 
 const styles = StyleSheet.create({
     container: {
@@ -75,21 +90,14 @@ const styles = StyleSheet.create({
         padding: 10,
         paddingTop: 80
     },
-    formGroup: {
-        height: 40,
-        width: '80%',
-        marginTop: 10,
-        padding: 4,
-        fontSize: 18,
-        borderWidth: 1,
-        borderColor: 'red',
-        borderRadius: 5
-    },
+    submitButton: {
+        margin: 30
+    }
 });
 
 const options = {
     fields: {
-        profession: {
+        profession: { // TODO format
             placeholder: 'Profession',
             factory: t.form.Select,
             options: [{value:'pharmacist', text:'Pharmacien'},{value:'student', text:'Etudiant'}, {value:'blabla_pharmacist', text:'Blabla Pharmacien'}],
@@ -105,7 +113,9 @@ const options = {
         },
         postalCode: {
             placeholder: 'Code postal',
-            placeholderTextColor: '#707070'
+            placeholderTextColor: '#707070',
+            keyboardType:'numeric',
+            error: "Code Postal incorrect"
         },
         address: {
             placeholder: 'Adresse',

@@ -15,7 +15,7 @@ export const registerPatient = (firstName, lastName, userBirthDate, userGender, 
             body: JSON.stringify({
                 "firstName": firstName,
                 "lastName": lastName,
-                "birthDayDate": "2000-12-31",
+                "birthDayDate": userBirthDate,
                 "gender": userGender,
                 "email": userEmail,
                 "password": "Pa$$Ex@mple1234"

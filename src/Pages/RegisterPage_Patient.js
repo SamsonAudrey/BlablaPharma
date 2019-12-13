@@ -26,8 +26,9 @@ class RegisterPatient extends Component {
             const reg = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
             return reg.test(email);
         });
-        this.Password = t.refinement(t.String, (str) => {
-            return str.length >= 6; // minimum password length should be 6 symbols
+        this.Password = t.refinement(t.String, pwd => { // TODO
+            //const reg = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[*@!#%&()[\\]^~\\\\|='\"{}\/_-]).{8,}$/;
+            return pwd.length >= 6 ; //&& reg.test(pwd); // minimum password length should be 6 symbols
         });
         this.EqualPassword = t.refinement(t.String, (s) => {
             return s === this.state.user.password;
@@ -49,18 +50,18 @@ class RegisterPatient extends Component {
     handleSubmit = () => {
         const value = this._form.getValue();
         const { navigation } = this.props;
-
         if (navigation.getParam('userKind') === 'pharmacist' && value !== null) {
             const { navigate } = this.props.navigation;
-            navigate('RegisterPage_Pharmacist', {infoUser: value})
+            navigate('RegisterPage_Pharmacist', {infoUser: value, gender : this.state.gender})
         } else {
             if (value !== null) {
                 // REGISTER PATIENT USER
                 try {
                     const gender = this.state.gender === 0 ? 'male' : this.state.gender === 1 ? 'female' : 'another';
-                    this.props.onRegisterPatient(value.firstName,value.lastName,value.birth,
+                    const birthday = moment(value.birth).format('YYYY-MM-DD');
+                    this.props.onRegisterPatient(value.firstName,value.lastName,birthday,
                         gender, value.email,value.password);
-                } catch (error) {
+                } catch (error) { // TODO
                     alert(error.message);
                 }
             }
@@ -172,7 +173,7 @@ const options = {
                     if (date) {
                         return moment(date).format('YYYY-MM-DD');
                     }
-                    return new Date();
+                    return moment(new Date()).format('YYYY-MM-DD');
                 },
                 defaultValueText: 'Date de naissance',
             },

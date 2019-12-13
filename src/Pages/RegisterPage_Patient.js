@@ -1,33 +1,47 @@
 'use strict';
-import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, {Component} from 'react';
+import {StyleSheet, View} from 'react-native';
 import t from 'tcomb-form-native';
 import CButton from "../components/Button";
+import moment from 'moment';
 
 const Form = t.form.Form;
-const Email = t.refinement(t.String, email => {
-    const reg = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/; //or any other regexp
-    return reg.test(email);
-});
-const User = t.struct({
-    email: Email,
-    firstName: t.String,
-    lastName: t.String,
-    password: t.String,
-    confirmPassword: t.String,
-    birth: t.String, //TODO,
-});
-
 
 class RegisterPatient extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            user: {}
+        };
+
+        this.Email = t.refinement(t.String, email => {
+            const reg = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+            return reg.test(email);
+        });
+        this.Password = t.refinement(t.String, (str) => {
+            return str.length >= 6; // minimum password length should be 6 symbols
+        });
+        this.EqualPassword = t.refinement(t.String, (s) => {
+            return s === this.state.user.password;
+        });
+        this.User = t.struct({
+            email: this.Email,
+            firstName: t.String,
+            lastName: t.String,
+            password: this.Password,
+            confirmPassword: this.EqualPassword,
+            birth: t.Date, //TODO,
+        });
+    }
+
+    onChange(value) {
+        this.state.user = value;
+        console.log(this.state.user)
     }
 
     handleSubmit = () => {
         const value = this._form.getValue();
-        console.log('value: ', value);
         const { navigation } = this.props;
 
         if (navigation.getParam('userKind') === 'pharmacist' && value !== null) {
@@ -36,7 +50,6 @@ class RegisterPatient extends Component {
         } else {
             if (value !== null) {
                 // REGISTER PATIENT USER
-                console.log('try register ');
                 try {
                     this.props.onRegisterPatient(value.firstName,value.lastName,value.birth, "male", value.email,value.password);
                 } catch (error) {
@@ -46,6 +59,7 @@ class RegisterPatient extends Component {
         }
     };
 
+
     render() {
         const { navigation } = this.props;
 
@@ -53,8 +67,9 @@ class RegisterPatient extends Component {
             <View style={styles.container}>
                 <Form
                     ref={c => this._form = c}
-                    type={User}
+                    type={this.User}
                     options={options}
+                    onChange={v => this.onChange(v)}
                 />
                 <CButton
                     title={navigation.getParam('userKind') === 'patient' ? "S'inscrire" : "Suivant"}
@@ -68,11 +83,19 @@ class RegisterPatient extends Component {
 // Custom Stylesheet
 const _ = require('lodash');
 const s = _.cloneDeep(t.form.Form.stylesheet)
-s.textbox.normal.minWidth = '70%';
-s.textbox.error.minWidth = '70%';
+s.textbox.normal.minWidth = '80%';
+s.textbox.error.minWidth = '80%';
 s.textbox.normal.borderColor = '#707070';
 s.textbox.normal.color = '#707070';
 s.textbox.normal.borderRadius = 5;
+s.dateValue.normal.color = '#707070';
+s.dateValue.normal.borderWidth = 1;
+s.dateValue.normal.borderColor = '#707070';
+s.dateValue.normal.borderRadius = 5;
+s.dateValue.error.borderWidth = 1;
+s.dateValue.error.color = '#707070';
+s.dateValue.error.borderColor = '#a94442';
+s.dateValue.error.borderRadius = 5;
 
 
 const styles = StyleSheet.create({
@@ -113,15 +136,32 @@ const options = {
         },
         password: {
             placeholder: 'Mot de passe',
-            placeholderTextColor: '#707070'
+            placeholderTextColor: '#707070',
+            password: true,
+            secureTextEntry: true,
+            error: "Doit contenir au moins 6 caractères"
         },
         confirmPassword: {
             placeholder: 'Confirmation mot de passe',
-            placeholderTextColor: '#707070'
+            placeholderTextColor: '#707070',
+            password: true,
+            secureTextEntry: true,
+            error: "Les mots de passe sont différents"
         },
         birth: {
             placeholder: 'Date de naissance',
-            placeholderTextColor: '#707070'
+            placeholderTextColor: '#707070',
+            mode: 'date', // display the Date field as a DatePickerAndroid
+            config: {
+                format: (date) => {
+                    if (date) {
+                        return moment(date).format('YYYY-MM-DD');
+                    }
+                    return new Date();
+                },
+                defaultValueText: 'Date de naissance',
+            },
+
         }
     },
     auto: 'placeholders',

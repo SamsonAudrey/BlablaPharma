@@ -23,7 +23,7 @@ export const registerPatient = (firstName, lastName, userBirthDate, userGender, 
         })
             .then(response => {
                 console.log("response ", response);
-                dispatch(registerSuccess(response));
+                // dispatch(registerSuccess(response));
             })
             .catch(error => {
                 console.log("error " + error);

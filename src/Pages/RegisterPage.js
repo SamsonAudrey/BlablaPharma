@@ -12,8 +12,8 @@ class Register extends Component {
         const {navigate} = this.props.navigation;
         return (
             <View>
-                <CButton title={"Patient"} style={'green'} onPress={() => navigate('RegisterPage_Patient', {userKind:'patient'})}/>
-                <CButton title={"Pharmacien"} style={'grey'} onPress={() => navigate('RegisterPage_Patient', {userKind:'pharmacist'})}/>
+                <CButton title={"Patient"} buttonStyle={'green'} onPress={() => navigate('RegisterPage_Patient', {userKind:'patient'})}/>
+                <CButton title={"Pharmacien"} buttonStyle={'grey'} onPress={() => navigate('RegisterPage_Patient', {userKind:'pharmacist'})}/>
             </View>
         );
     }

@@ -4,15 +4,22 @@ import {StyleSheet, View} from 'react-native';
 import t from 'tcomb-form-native';
 import CButton from "../components/Button";
 import moment from 'moment';
+import RadioForm from 'react-native-simple-radio-button';
 
 const Form = t.form.Form;
+const gender_props = [
+    {label: 'Homme   ', value: 0 },
+    {label: 'Femme   ', value: 1 },
+    {label: 'Autre', value: 1 },
+];
 
 class RegisterPatient extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            user: {}
+            user: {},
+            gender: 0
         };
 
         this.Email = t.refinement(t.String, email => {
@@ -31,13 +38,12 @@ class RegisterPatient extends Component {
             lastName: t.String,
             password: this.Password,
             confirmPassword: this.EqualPassword,
-            birth: t.Date, //TODO,
+            birth: t.Date
         });
     }
 
     onChange(value) {
         this.state.user = value;
-        console.log(this.state.user)
     }
 
     handleSubmit = () => {
@@ -51,7 +57,9 @@ class RegisterPatient extends Component {
             if (value !== null) {
                 // REGISTER PATIENT USER
                 try {
-                    this.props.onRegisterPatient(value.firstName,value.lastName,value.birth, "male", value.email,value.password);
+                    const gender = this.state.gender === 0 ? 'male' : this.state.gender === 1 ? 'female' : 'another';
+                    this.props.onRegisterPatient(value.firstName,value.lastName,value.birth,
+                        gender, value.email,value.password);
                 } catch (error) {
                     alert(error.message);
                 }
@@ -71,10 +79,24 @@ class RegisterPatient extends Component {
                     options={options}
                     onChange={v => this.onChange(v)}
                 />
-                <CButton
-                    title={navigation.getParam('userKind') === 'patient' ? "S'inscrire" : "Suivant"}
-                    style={navigation.getParam('userKind') === 'patient' ? 'green' : 'grey'}
-                    onPress={this.handleSubmit}/>
+                <RadioForm
+                    radio_props={gender_props}
+                    initial={0}
+                    onPress={(value) => {this.state.gender = value;}}
+                    formHorizontal={true}
+                    buttonColor={'#868788'}
+                    labelColor={'#868788'}
+                    selectedButtonColor={'#868788'}
+                    buttonSize={10}
+                    buttonWrapStyle={{marginLeft: 20}}
+                />
+                <View style={styles.submitButton}>
+                    <CButton
+                        title={navigation.getParam('userKind') === 'patient' ? "S'inscrire" : "Suivant"}
+                        buttonStyle={navigation.getParam('userKind') === 'patient' ? 'green' : 'grey'}
+                        onPress={this.handleSubmit}
+                    />
+                </View>
             </View>
         );
     }
@@ -107,16 +129,9 @@ const styles = StyleSheet.create({
         padding: 10,
         paddingTop: 80
     },
-    formGroup: {
-            height: 40,
-            width: '80% !important',
-            marginTop: 10,
-            padding: 4,
-            fontSize: 18,
-            borderWidth: 1,
-            borderColor: 'red',
-            borderRadius: 5
-    },
+    submitButton: {
+        margin: 30
+    }
 });
 
 const options = {

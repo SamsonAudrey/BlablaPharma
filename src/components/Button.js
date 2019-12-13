@@ -6,9 +6,9 @@ class CButton extends Component {
         return (
             <TouchableHighlight
                 onPress={this.props.onPress}
-                style={[styles.button, this.props.style === 'green' ? styles.buttonGreen : styles.buttonGrey]}>
+                style={[styles.button, this.props.buttonStyle === 'green' ? styles.buttonGreen : styles.buttonGrey]}>
                 <Text
-                    style={[styles.buttonText, this.props.style === 'green' ? styles.buttonTextGreen : styles.buttonTextGrey]}>
+                    style={[styles.buttonText, this.props.buttonStyle === 'green' ? styles.buttonTextGreen : styles.buttonTextGrey]}>
                     { this.props.title }
                 </Text>
             </TouchableHighlight>
@@ -41,6 +41,6 @@ const styles = StyleSheet.create({
     buttonTextGrey: {
         color: 'white',
     },
-})
+});
 
 export default CButton

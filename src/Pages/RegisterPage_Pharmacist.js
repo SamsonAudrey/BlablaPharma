@@ -49,7 +49,7 @@ class RegisterPharmacist extends Component {
                 />
                 <CButton
                     title={"S'inscrire"}
-                    style={'green'}
+                    buttonStyle={'green'}
                     onPress={this.handleSubmit}/>
             </View>
         );

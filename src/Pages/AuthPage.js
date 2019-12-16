@@ -36,7 +36,16 @@ export default class Auth extends Component {
   checkConnexion = () => {
     if (this.props.isConnected) {
       console.log("T'es connectéé");
-      this.props.navigation.navigate("Tab");
+      try {
+        this.props.navigation.navigate("Tab");
+      } catch (e) {
+        try {
+          const {navigate } = this.props.navigation
+          navigate('SearchPharmacists')
+        } catch (e) {
+          console.log('error : ', e)
+        }
+      }
     } else {
       console.log("T'es pas connecté Auth Page");
     }
@@ -48,7 +57,16 @@ export default class Auth extends Component {
     const value = this._form.getValue();
     try {
       this.props.onUserAuth(value.email, value.password);
-      this.props.navigation.navigate('Tab');
+      try {
+        this.props.navigation.navigate("Tab");
+      } catch (e) {
+        try {
+          const { navigate } = this.props.navigation
+          navigate('SearchPharmacists')
+        } catch (e) {
+          console.log('error : ', e)
+        }
+      }
     } catch (error) {
       console.log(error.message);
       this.props.onUserAuth(value.email, value.password);
@@ -98,16 +116,14 @@ export default class Auth extends Component {
           <View style={styles.linkText1}>
             <HyperLinkText
                 text={'Mot de passe oublié ?'}
-                nav={'AuthPage'}
-                onPress={() => navigate('AuthPage')}
+                onPress={() => null}
                 style={{color: '#BED469', marginLeft: 10, fontSize: 16}}/>
 
             <View style={styles.linkText2}>
               <Text style={{color: '#868788', marginLeft: 10,fontSize: 16}}>Pas encore inscrit ?</Text>
                 <HyperLinkText
                   text={'S\'inscrire'}
-                  nav={'RegisterPage'}
-                  onPress={() => navigate('RegisterPage')}
+                  onPress={() => this.props.navigation.navigate('Register')}
                   style={{color: '#BED469', marginLeft: 10, fontSize: 16}}/>
             </View>
           </View>

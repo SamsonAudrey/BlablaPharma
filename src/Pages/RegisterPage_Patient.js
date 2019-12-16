@@ -23,6 +23,8 @@ class RegisterPatient extends Component {
             user: {},
             gender: 0
         };
+        console.log(this.props.navigation.getParam('userKind','patient'))
+
 
         this.Email = t.refinement(t.String, email => {
             const reg = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
@@ -67,7 +69,6 @@ class RegisterPatient extends Component {
                     alert('Inscription faite')
                     const { navigate } = this.props.navigation;
                     navigate('AuthPage');
-
                 } catch (error) { // TODO
                     alert(error.message);
                 }

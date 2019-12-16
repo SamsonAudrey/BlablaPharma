@@ -5,16 +5,31 @@ import {createStackNavigator} from "react-navigation-stack";
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import Register from "../Pages/RegisterPage";
 import AuthPageContainer from "../containers/AuthPageContainer";
+import RegisterPageContainer from "../containers/RegisterPageContainer";
+import RegisterPatientContainer from "../containers/RegisterPatientContainer";
+import RegisterPharmacistContainer from "../containers/RegisterPharmacistContainer";
 
 const AuthScreenStack = createStackNavigator({
-    AuthStack: {
+    HomeStack: {
         screen: HomePage,
     }
 });
 
 const RegisterScreenStack = createStackNavigator({
-    AuthStack: {
-        screen: Register,
+    RegiStack: {
+        screen: RegisterPageContainer,
+    }
+});
+
+const RegisterPatientScreenStack = createStackNavigator({
+    RegiPatStack: {
+        screen: RegisterPatientContainer,
+    }
+});
+
+const RegisterPharmaScreenStack = createStackNavigator({
+    RegiPhaStack: {
+        screen: RegisterPharmacistContainer,
     }
 });
 
@@ -24,12 +39,15 @@ const CoScreenStack = createStackNavigator({
     }
 });
 
+
 export const MainStack = createSwitchNavigator(
     {
         Tab: TabNavigator,
         Home: AuthScreenStack,
+        Connection: CoScreenStack,
         Register: RegisterScreenStack,
-        Connection: CoScreenStack
+        RegisterPatient: RegisterPatientScreenStack,
+        RegisterPharmacist: RegisterPharmaScreenStack,
     },
     {
         initialRouteName: 'Home'

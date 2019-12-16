@@ -33,7 +33,7 @@ class Home extends Component {
                     <HyperLinkText
                         text={'Inscription'}
                         onPress={() => this.props.navigation.navigate('Register')}
-                        style={{color: '#868788',fontSize: 16}}
+                        style={{color: '#868788', marginTop: 30,fontSize: 16}}
                     />
                     <HyperLinkText
                         text={'Connexion'}
@@ -54,9 +54,11 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: "#fff",
         padding: 10,
+        paddingTop: 80
     },
     imageView: {
-        marginTop: '50%',
+        marginTop: 130,
+        marginBottom: 30,
         height: '60%',
     },
     buttonView: {

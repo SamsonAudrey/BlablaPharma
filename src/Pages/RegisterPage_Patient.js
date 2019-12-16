@@ -1,12 +1,12 @@
-'use strict';
-import React, {Component} from 'react';
-import {ImageBackground, StyleSheet, View, ScrollView} from 'react-native';
-import t from 'tcomb-form-native';
+
+"use strict";
+import React, { Component } from "react";
+import { ImageBackground, StyleSheet, View,Text } from "react-native";
+import t from "tcomb-form-native";
 import CButton from "../components/Button";
 import moment from "moment";
 import RadioForm from "react-native-simple-radio-button";
 import ButtonTitle from "../components/ButtonTitle";
-import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 
 
 const Form = t.form.Form;
@@ -96,21 +96,17 @@ class RegisterPatient extends Component {
         const { navigation } = this.props;
 
         return (
-            <View style={{flex:1}}>
-            <KeyboardAwareScrollView automaticallyAdjustContentInsets={false}
-                                     resetScrollToCoords={{x: 0, y: 0}}
-                                     enableOnAndroid={true} >
+            <View>
                 <View style={styles.imageView}>
                     <ImageBackground
                         source={navigation.getParam('userKind') === 'patient' ? require('../assets/sign-in_cut.jpg') : require('../assets/sign-in-pharmacist_cut.png')}
-                        style={{width: '100%',  height: 170, opacity: 1}}>
+                        style={{width: '100%',  height: '100%', opacity: 1}}>
                         <View style={styles.title}>
                             <ButtonTitle title={navigation.getParam('userKind') === 'patient' ?  'Je suis patient' : 'Je suis pharmacien'} role={navigation.getParam('userKind')}></ButtonTitle>
                         </View>
                     </ImageBackground>
                 </View>
-
-                    <View style={styles.container}>
+                <View style={styles.container}>
 
                     <Form
                         ref={c => this._form = c}
@@ -136,8 +132,7 @@ class RegisterPatient extends Component {
                             onPress={this.handleSubmit}
                         />
                     </View>
-                    </View>
-                </KeyboardAwareScrollView>
+                </View>
             </View>
         );
     
@@ -169,7 +164,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'white',
         padding: 10,
-        paddingTop: '10%'
+        paddingTop: 60
     },
     submitButton: {
         margin: 30
@@ -181,7 +176,8 @@ const styles = StyleSheet.create({
         backgroundColor:'rgba(255,255,255,0.4)'
     },
     imageView: {
-        height: '25%'
+        marginTop: 0,
+        height: '40%'
     }
 });
 

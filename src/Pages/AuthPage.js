@@ -81,10 +81,7 @@ export default class Auth extends Component {
         : (error = <Text></Text>);
     const { navigate } = this.props.navigation;
     return (
-        <View style={{flex:1}}>
-          <KeyboardAwareScrollView automaticallyAdjustContentInsets={false}
-                                   resetScrollToCoords={{x: 0, y: 0}}
-                                   enableOnAndroid={true} >
+        <View>
           <View style={styles.titleView}>
               <Text style={styles.title}>Connexion</Text>
 
@@ -127,7 +124,6 @@ export default class Auth extends Component {
                   style={{color: '#BED469', marginLeft: 10, fontSize: 16}}/>
             </View>
           </View>
-          </KeyboardAwareScrollView>
         </View>
     );
   }
@@ -178,32 +174,32 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 60,
+    marginTop: '10%',
   },
   title: {
     color: '#BED469',
     fontSize: 24
   },
   container: {
-    height: '60%',
-    marginTop: 20
+    height: '50%',
+    marginTop: '5%'
   },
   buttonView: {
-    marginTop: 20
+    marginTop: '8%'
   },
   form: {
-    paddingTop: 70,
-    padding: 20,
+    paddingTop: '12%',
+    padding: '5%',
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor:'rgba(255,255,255,0.4)'
   },
   linkText2: {
-    marginTop: 20,
+    marginTop: '5%',
     flexDirection: 'row'
   },
   linkText1: {
-    marginTop: 20
+    marginTop: '5%'
   }
 });

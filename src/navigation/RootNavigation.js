@@ -4,7 +4,6 @@ import {TabNavigator} from "./TabNavigator";
 import {createStackNavigator} from "react-navigation-stack";
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import Register from "../Pages/RegisterPage";
-import AuthPage from "../Pages/AuthPage";
 import AuthPageContainer from "../containers/AuthPageContainer";
 
 const AuthScreenStack = createStackNavigator({

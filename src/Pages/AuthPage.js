@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Text, Button } from "react-native";
-import { checkToken } from "../utils/auth";
+import { View, StyleSheet, Text, Button, Alert } from "react-native";
+import { store } from "../../store";
 
 import t from "tcomb-form-native";
 
@@ -27,22 +27,30 @@ const options = {
     }
   }
 };
+
 export default class Auth extends Component {
   constructor(props) {
     super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    //this.checkConnexion = this.checkConnexion.bind(this);
   }
 
   componentDidMount() {
     console.log("component did mount");
-    checkToken().then(
-      () => {
-        console.log("T'es connectéééé ");
-      },
-      () => {
-        console.log("T'es pas connecté");
-      }
-    );
+    this.unsubscribe = store.subscribe(this.checkConnexion);
+    this.checkConnexion();
   }
+
+  checkConnexion = () => {
+    if (this.props.isConnected) {
+      console.log("T'es connectéééé ");
+      const { navigate } = this.props.navigation;
+      navigate("SearchPharmacists");
+      this.unsubscribe();
+    } else {
+      console.log("T'es pas connecté");
+    }
+  };
 
   handleSubmit = () => {
     const value = this._form.getValue();
@@ -54,9 +62,13 @@ export default class Auth extends Component {
   };
 
   render() {
+    let error;
+    this.props.error
+      ? (error = <Text>Les identifiants donnés sont invalides</Text>)
+      : (error = null);
     return (
       <View style={styles.container}>
-        <Text> Refresh rfdToken : {this.props.refreshToken} </Text>
+        {error}
         <Form ref={c => (this._form = c)} type={User} options={options} />
         <Button title="Se Connecter" onPress={this.handleSubmit} />
       </View>

@@ -6,8 +6,9 @@ import AuthUtils from "../utils/auth";
 const mapStateToProps = state => {
   console.log(state);
   return {
-    error: state.error,
-    accessToken: state.accessToken
+    error: state.user.error,
+    accessToken: state.user.accessToken,
+    isConnected: state.connection.isConnected
   };
 };
 

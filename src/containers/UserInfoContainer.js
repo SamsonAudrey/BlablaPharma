@@ -3,7 +3,10 @@ import UserInfoPage from "../Pages/UserInfoPage";
 import { logout } from "../actions/userAction"
 
 const mapStateToProps = state => {
-  return { test: "tt" };
+  console.log(state);
+  return {
+    isConnected: state.connection.isConnected
+  };
 };
 
 const mapDispatchToProps = dispatch => {

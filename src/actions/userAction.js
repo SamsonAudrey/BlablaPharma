@@ -10,11 +10,12 @@ import { API_URL } from "react-native-dotenv";
 import axios from "axios";
 
 export const userAuth = (userEmail, userPassword) => {
+  console.log(`${API_URL}/loginff`);
   function thunk(dispatch) {
     return axios
       .post(`${API_URL}/login`, null, {
         params: {
-          email: "nathan.traneau@wanadoo.fr",
+          email: "nathan.traineau@wanadoo.fr",
           password: "Blabla97!"
         }
       })

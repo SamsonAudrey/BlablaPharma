@@ -1,9 +1,16 @@
 import React from "react";
 import { Button } from "react-native";
+import { checkToken } from "../utils/auth";
+import { store } from "../../store";
 
 export default class UserInfoPage extends React.Component {
   constructor(props) {
     super(props);
+    this._renderOnline = this._renderOnline.bind(this);
+  }
+
+  componentDidMount() {
+    store.subscribe(this.render);
   }
 
   handleSubmitLogout = () => {
@@ -14,8 +21,21 @@ export default class UserInfoPage extends React.Component {
     }
   };
 
-  render() {
-    const { navigate } = this.props.navigation;
+  _renderOnline = navigate => {
+    return (
+      <>
+        <Button
+          title="Logout"
+          onPress={() => {
+            /*Navigate to the authentication page*/
+            this.handleSubmitLogout();
+          }}
+        />
+      </>
+    );
+  };
+
+  _renderOffline = navigate => {
     return (
       <>
         <Button
@@ -32,14 +52,55 @@ export default class UserInfoPage extends React.Component {
             navigate("RegisterPage");
           }}
         />
-        <Button
-          title="Logout"
-          onPress={() => {
-            /*Navigate to the authentication page*/
-            this.handleSubmitLogout();
-          }}
-        />
       </>
     );
+  };
+
+  checkConnexion = () => {
+    if (this.props.isConnected) {
+      console.log("T'es connectéééé ");
+    } else {
+      console.log("T'es pas connecté");
+    }
+  };
+
+  render() {
+    let page;
+    const { navigate } = this.props.navigation;
+    if (this.props.isConnected) {
+      console.log("T'es connectéééé ");
+      page = (
+        <>
+          <Button
+            title="Logout"
+            onPress={() => {
+              /*Navigate to the authentication page*/
+              this.handleSubmitLogout();
+            }}
+          />
+        </>
+      );
+    } else {
+      console.log("T'es pas connecté");
+      page = (
+        <>
+          <Button
+            title="Connexion"
+            onPress={() => {
+              /*Navigate to the authentication page*/
+              navigate("AuthPage");
+            }}
+          />
+          <Button
+            title="Inscription"
+            onPress={() => {
+              /*Navigate to the register page*/
+              navigate("RegisterPage");
+            }}
+          />
+        </>
+      );
+    }
+    return <>{page}</>;
   }
 }

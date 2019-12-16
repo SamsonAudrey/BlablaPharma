@@ -4,7 +4,7 @@ import SearchPharmacistsContainer from "../containers/SearchPharmacistsContainer
 import UserInfoContainer from "../containers/UserInfoContainer";
 import ChatPageContainer from "../containers/ChatPageContainer";
 import BlogPageContainer from "../containers/BlogPageContainer";
-import AuthPageContainer from '../containers/AuthPageContainer';
+import AuthPageContainer from "../containers/AuthPageContainer";
 import React from "react";
 import * as colors from "react-native";
 import { Text } from "react-native";
@@ -22,17 +22,18 @@ const SearchPharmacistsNavigator = createStackNavigator(
 );
 
 const UserInfoNavigator = createStackNavigator(
-    {
-        UserInfo: UserInfoContainer,
-        AuthPage:AuthPageContainer,
-        RegisterPage: RegisterPageContainer,
-        RegisterPage_Patient: RegisterPatientContainer,
-        RegisterPage_Pharmacist: RegisterPharmacistContainer
-    },
-    {
-      initialRouteName: 'UserInfo',
-    }
-  );
+  {
+    UserInfo: UserInfoContainer,
+    AuthPage: AuthPageContainer,
+    RegisterPage: RegisterPageContainer,
+    RegisterPage_Patient: RegisterPatientContainer,
+    RegisterPage_Pharmacist: RegisterPharmacistContainer,
+    SearchPharmacists: SearchPharmacistsContainer
+  },
+  {
+    initialRouteName: "UserInfo"
+  }
+);
 
 const ChatNavigator = createStackNavigator(
   {
@@ -44,12 +45,12 @@ const ChatNavigator = createStackNavigator(
 );
 
 const BlogNavigator = createStackNavigator(
-    {
-        BlogPage: BlogPageContainer
-    },
-    {
-        initialRouteName: "BlogPage"
-    }
+  {
+    BlogPage: BlogPageContainer
+  },
+  {
+    initialRouteName: "BlogPage"
+  }
 );
 
 export const TabNavigator = createBottomTabNavigator(
@@ -58,7 +59,7 @@ export const TabNavigator = createBottomTabNavigator(
       screen: BlogNavigator,
       navigationOptions: () => ({
         tabBarIcon: () => (
-          <Text>0</Text>
+          <Text>Blog</Text>
           //<FontAwesomeIcon icon="coffee" name="user" size={24} />
         )
       })
@@ -67,7 +68,7 @@ export const TabNavigator = createBottomTabNavigator(
       screen: SearchPharmacistsNavigator,
       navigationOptions: () => ({
         tabBarIcon: () => (
-          <Text>1</Text>
+          <Text>Pharmaciens</Text>
           // <FontAwesomeIcon  icon="coffee" name ="search" size={24}/>
         )
       })
@@ -76,7 +77,7 @@ export const TabNavigator = createBottomTabNavigator(
       screen: ChatNavigator,
       navigationOptions: () => ({
         tabBarIcon: () => (
-          <Text>2</Text>
+          <Text>Messagerie</Text>
           //<FontAwesomeIcon icon="coffee" name="comment-medical" size={24} />
         )
       })
@@ -85,7 +86,7 @@ export const TabNavigator = createBottomTabNavigator(
       screen: UserInfoNavigator,
       navigationOptions: () => ({
         tabBarIcon: () => (
-          <Text>3</Text>
+          <Text>Informations Utilisateurs</Text>
           //<FontAwesomeIcon icon="coffee" name="user" size={24} />
         )
       })

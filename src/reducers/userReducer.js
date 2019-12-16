@@ -6,11 +6,11 @@ import {
   LOGOUT
 } from "../actions/actionTypes";
 
-export default function useReducer(state = {}, action) {
+export default function user(state = {}, action) {
   switch (action.type) {
     case CONNECT_USER:
       return {
-        accessToken: action.payload.accesstoken + 5,
+        accessToken: action.payload.accesstoken,
         refreshToken: action.payload.refreshToken,
         account: action.payload.account
       };
@@ -38,7 +38,8 @@ export default function useReducer(state = {}, action) {
       return {
         accessToken: undefined,
         refreshToken: undefined,
-        account: undefined
+        account: undefined,
+        error: undefined
       };
     default:
       return state;

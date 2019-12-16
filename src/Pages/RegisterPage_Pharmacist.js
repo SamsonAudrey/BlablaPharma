@@ -1,9 +1,10 @@
 'use strict';
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import {View, StyleSheet, ImageBackground} from 'react-native';
 import t from 'tcomb-form-native';
 import CButton from "../components/Button";
 import moment from 'moment';
+import ButtonTitle from "../components/ButtonTitle";
 
 
 const Form = t.form.Form;
@@ -64,18 +65,29 @@ class RegisterPharmacist extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <Form
-                    ref={c => this._form = c}
-                    type={this.User}
-                    options={options}
-                    onChange={v => this.onChange(v)}
-                />
-                <View style={styles.submitButton}>
-                    <CButton
-                        title={"S'inscrire"}
-                        buttonStyle={'green'}
-                        onPress={this.handleSubmit}/>
+            <View>
+                <View style={styles.imageView}>
+                    <ImageBackground
+                        source={require('../assets/sign-in-pharmacist_cut.png')}
+                        style={{width: '100%',  height: '100%', opacity: 1}}>
+                        <View style={styles.title}>
+                            <ButtonTitle title={'Je suis pharmacien'} role={'pharmacist'}></ButtonTitle>
+                        </View>
+                    </ImageBackground>
+                </View>
+                <View style={styles.container}>
+                    <Form
+                        ref={c => this._form = c}
+                        type={this.User}
+                        options={options}
+                        onChange={v => this.onChange(v)}
+                    />
+                    <View style={styles.submitButton}>
+                        <CButton
+                            title={"S'inscrire"}
+                            buttonStyle={'green'}
+                            onPress={this.handleSubmit}/>
+                    </View>
                 </View>
             </View>
         );
@@ -105,10 +117,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'white',
         padding: 10,
-        paddingTop: 80
+        paddingTop: 60
     },
     submitButton: {
         margin: 30
+    },
+    title: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor:'rgba(255,255,255,0.4)'
+    },
+    imageView: {
+        marginTop: 0,
+        height: '40%'
     }
 });
 

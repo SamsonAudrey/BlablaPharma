@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { TouchableHighlight, Text, StyleSheet } from 'react-native';
 
-class CButton extends Component {
+class ButtonTitle extends Component {
     render() {
         return (
             <TouchableHighlight
-                onPress={this.props.onPress}
-                style={[styles.button, this.props.buttonStyle === 'green' ? styles.buttonGreen : styles.buttonGrey]}>
+                style={[styles.button, this.props.role === 'patient' ? styles.buttonGreen : styles.buttonGrey]}>
                 <Text
-                    style={[styles.buttonText, this.props.buttonStyle === 'green' ? styles.buttonTextGreen : styles.buttonTextGrey]}>
+                    style={[styles.buttonText, this.props.role === 'patient' ? styles.buttonTextGreen : styles.buttonTextGrey]}>
                     { this.props.title }
                 </Text>
             </TouchableHighlight>
@@ -19,7 +18,7 @@ class CButton extends Component {
 const styles = StyleSheet.create({
     button: {
         height: 40,
-        width: 150,
+        width: 210,
         borderRadius: 5,
         margin: 5,
         padding: 5,
@@ -27,13 +26,13 @@ const styles = StyleSheet.create({
         opacity: 1
     },
     buttonGreen: {
-        backgroundColor: '#BED469'
+        backgroundColor: '#ffffff'
     },
     buttonGrey: {
         backgroundColor: '#868788'
     },
     buttonText: {
-        fontSize: 16,
+        fontSize: 20,
         alignSelf: 'center'
     },
     buttonTextGreen: {
@@ -44,4 +43,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CButton
+export default ButtonTitle

@@ -46,7 +46,7 @@ class Register extends Component {
                         text={'Se connecter'}
                         nav={'AuthPage'}
                         onPress={() => navigate('AuthPage')}
-                        style={{color: '#b4ca65', marginLeft: 10}}/>
+                        style={{color: '#BED469', marginLeft: 10}}/>
                 </View>
             </View>
         );
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         fontSize: 24
     },
     view: {
-        marginTop: 10,
+        marginTop: 20,
         marginBottom: 30,
         height: '30%',
     },

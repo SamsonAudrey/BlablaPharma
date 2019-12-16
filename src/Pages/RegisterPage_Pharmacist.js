@@ -6,6 +6,7 @@ import t from 'tcomb-form-native';
 import CButton from "../components/Button";
 import moment from 'moment';
 import ButtonTitle from "../components/ButtonTitle";
+import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 
 
 const Form = t.form.Form;
@@ -73,10 +74,13 @@ class RegisterPharmacist extends Component {
       }
     }
   };
-   
+
     render() {
         return (
-            <View>
+            <View style={{flex:1}}>
+                <KeyboardAwareScrollView automaticallyAdjustContentInsets={false}
+                                         resetScrollToCoords={{x: 0, y: 0}}
+                                         enableOnAndroid={true} >
                 <View style={styles.imageView}>
                     <ImageBackground
                         source={require('../assets/sign-in-pharmacist_cut.png')}
@@ -100,10 +104,11 @@ class RegisterPharmacist extends Component {
                             onPress={this.handleSubmit}/>
                     </View>
                 </View>
+                </KeyboardAwareScrollView>
             </View>
       )};
 
-        
+
 
   onChange(value) {
     this.state.user = value;

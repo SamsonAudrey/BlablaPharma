@@ -94,7 +94,8 @@ export default class UserInfoPage extends React.Component {
             title="Inscription"
             onPress={() => {
               /*Navigate to the register page*/
-              navigate("RegisterPage");
+              this.props.navigation.navigate("Register");
+
             }}
           />
         </>

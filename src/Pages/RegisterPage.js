@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {View, ImageBackground, Text, StyleSheet} from 'react-native';
 import CButton from "../components/Button";
 import HyperLinkText from "../components/HyperLinkText";
+import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 
 class Register extends Component {
     constructor(){
@@ -12,7 +13,10 @@ class Register extends Component {
     render() {
         const {navigate} = this.props.navigation;
         return (
-            <View >
+            <View style={{flex:1}}>
+                <KeyboardAwareScrollView automaticallyAdjustContentInsets={false}
+                                         resetScrollToCoords={{x: 0, y: 0}}
+                                         enableOnAndroid={true} >
                 <View style={styles.titleView}>
                     <Text style={styles.title}>Inscription</Text>
                 </View>
@@ -48,6 +52,7 @@ class Register extends Component {
                         onPress={() => this.props.navigation.navigate('Connection')}
                         style={{color: '#BED469', marginLeft: 10, fontSize: 16}}/>
                 </View>
+                </KeyboardAwareScrollView>
             </View>
         );
     }
@@ -69,7 +74,7 @@ const styles = StyleSheet.create({
     view: {
         marginTop: 20,
         marginBottom: 30,
-        height: '30%',
+        height: '50%',
     },
     buttonView: {
         flex: 1,

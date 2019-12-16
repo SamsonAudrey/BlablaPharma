@@ -20,8 +20,6 @@ const User = t.struct({
   password: t.String
 });
 
-
-
 export default class Auth extends Component {
   constructor(props) {
     super(props);
@@ -53,6 +51,7 @@ export default class Auth extends Component {
       this.props.navigation.navigate('Tab');
     } catch (error) {
       console.log(error.message);
+      this.props.onUserAuth(value.email, value.password);
       this.props.navigation.navigate('Tab');
     }
   };

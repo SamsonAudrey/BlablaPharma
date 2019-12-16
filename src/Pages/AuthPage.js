@@ -41,12 +41,7 @@ export default class Auth extends Component {
       try {
         this.props.navigation.navigate("Tab");
       } catch (e) {
-        try {
-          const {navigate } = this.props.navigation
-          navigate('SearchPharmacists')
-        } catch (e) {
           console.log('error : ', e)
-        }
       }
     } else {
       console.log("T'es pas connecté Auth Page");
@@ -59,16 +54,7 @@ export default class Auth extends Component {
     const value = this._form.getValue();
     try {
       this.props.onUserAuth(value.email, value.password);
-      try {
-        this.props.navigation.navigate("Tab");
-      } catch (e) {
-        try {
-          const { navigate } = this.props.navigation
-          navigate('SearchPharmacists')
-        } catch (e) {
-          console.log('error : ', e)
-        }
-      }
+        //this.props.navigation.navigate("Tab");
     } catch (error) {
       console.log(error.message);
     }
@@ -87,7 +73,7 @@ export default class Auth extends Component {
 
           </View>
           <View style={styles.container}>
-
+            {error}
             <ImageBackground
                 source={require('../assets/engagement.jpg')}
                 style={{width: '100%',  height: '100%'}}>

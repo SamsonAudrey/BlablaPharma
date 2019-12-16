@@ -1,9 +1,12 @@
-"use strict";
-import React, { Component } from "react";
-import { View, StyleSheet } from "react-native";
-import t from "tcomb-form-native";
+
+'use strict';
+import React, { Component } from 'react';
+import {View, StyleSheet, ImageBackground} from 'react-native';
+import t from 'tcomb-form-native';
 import CButton from "../components/Button";
-import moment from "moment";
+import moment from 'moment';
+import ButtonTitle from "../components/ButtonTitle";
+
 
 const Form = t.form.Form;
 
@@ -61,9 +64,7 @@ class RegisterPharmacist extends Component {
           value.institutionName,
           value.address,
           value.postalCode,
-          value.city
-        );
-
+          value.city);
         alert("Demande d'inscription faite");
         const { navigate } = this.props.navigation;
         navigate("AuthPage");
@@ -72,31 +73,42 @@ class RegisterPharmacist extends Component {
       }
     }
   };
+   
+    render() {
+        return (
+            <View>
+                <View style={styles.imageView}>
+                    <ImageBackground
+                        source={require('../assets/sign-in-pharmacist_cut.png')}
+                        style={{width: '100%',  height: '100%', opacity: 1}}>
+                        <View style={styles.title}>
+                            <ButtonTitle title={'Je suis pharmacien'} role={'pharmacist'}></ButtonTitle>
+                        </View>
+                    </ImageBackground>
+                </View>
+                <View style={styles.container}>
+                    <Form
+                        ref={c => this._form = c}
+                        type={this.User}
+                        options={options}
+                        onChange={v => this.onChange(v)}
+                    />
+                    <View style={styles.submitButton}>
+                        <CButton
+                            title={"S'inscrire"}
+                            buttonStyle={'green'}
+                            onPress={this.handleSubmit}/>
+                    </View>
+                </View>
+            </View>
+      )};
+
+        
 
   onChange(value) {
     this.state.user = value;
   }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Form
-          ref={c => (this._form = c)}
-          type={this.User}
-          options={options}
-          onChange={v => this.onChange(v)}
-        />
-        <View style={styles.submitButton}>
-          <CButton
-            title={"S'inscrire"}
-            buttonStyle={"green"}
-            onPress={this.handleSubmit}
-          />
-        </View>
-      </View>
-    );
-  }
-}
 
 // Custom Stylesheet
 const _ = require("lodash");
@@ -114,17 +126,27 @@ s2.pickerTouchable.normal.color = "#707070";
 s2.pickerValue.normal.color = "#707070";
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
-    backgroundColor: "white",
-    padding: 10,
-    paddingTop: 80
-  },
-  submitButton: {
-    margin: 30
-  }
+    container: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        backgroundColor: 'white',
+        padding: 10,
+        paddingTop: 60
+    },
+    submitButton: {
+        margin: 30
+    },
+    title: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor:'rgba(255,255,255,0.4)'
+    },
+    imageView: {
+        marginTop: 0,
+        height: '40%'
+    }
 });
 
 const options = {

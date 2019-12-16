@@ -1,10 +1,13 @@
+
 "use strict";
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
+import { ImageBackground, StyleSheet, View,Text } from "react-native";
 import t from "tcomb-form-native";
 import CButton from "../components/Button";
 import moment from "moment";
 import RadioForm from "react-native-simple-radio-button";
+import ButtonTitle from "../components/ButtonTitle";
+
 
 const Form = t.form.Form;
 const gender_props = [
@@ -20,6 +23,7 @@ class RegisterPatient extends Component {
       user: {},
       gender: 0
     };
+
 
     this.Email = t.refinement(t.String, email => {
       const reg = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
@@ -84,50 +88,55 @@ class RegisterPatient extends Component {
           alert(error.message);
         }
       }
-    }
+
+
+    render() {
+        const { navigation } = this.props;
+
+        return (
+            <View>
+                <View style={styles.imageView}>
+                    <ImageBackground
+                        source={navigation.getParam('userKind') === 'patient' ? require('../assets/sign-in_cut.jpg') : require('../assets/sign-in-pharmacist_cut.png')}
+                        style={{width: '100%',  height: '100%', opacity: 1}}>
+                        <View style={styles.title}>
+                            <ButtonTitle title={navigation.getParam('userKind') === 'patient' ?  'Je suis patient' : 'Je suis pharmacien'} role={navigation.getParam('userKind')}></ButtonTitle>
+                        </View>
+                    </ImageBackground>
+                </View>
+                <View style={styles.container}>
+
+                    <Form
+                        ref={c => this._form = c}
+                        type={this.User}
+                        options={options}
+                        onChange={v => this.onChange(v)}
+                    />
+                    <RadioForm
+                        radio_props={gender_props}
+                        initial={0}
+                        onPress={(value) => {this.state.gender = value;}}
+                        formHorizontal={true}
+                        buttonColor={'#868788'}
+                        labelColor={'#868788'}
+                        selectedButtonColor={'#868788'}
+                        buttonSize={10}
+                        buttonWrapStyle={{marginLeft: 20}}
+                    />
+                    <View style={styles.submitButton}>
+                        <CButton
+                            title={navigation.getParam('userKind') === 'patient' ? "S'inscrire" : "Suivant"}
+                            buttonStyle={navigation.getParam('userKind') === 'patient' ? 'green' : 'grey'}
+                            onPress={this.handleSubmit}
+                        />
+                    </View>
+                </View>
+            </View>
+        );
+    
   };
 
-  render() {
-    const { navigation } = this.props;
-
-    return (
-      <View style={styles.container}>
-        <Form
-          ref={c => (this._form = c)}
-          type={this.User}
-          options={options}
-          onChange={v => this.onChange(v)}
-        />
-        <RadioForm
-          radio_props={gender_props}
-          initial={0}
-          onPress={value => {
-            this.state.gender = value;
-          }}
-          formHorizontal={true}
-          buttonColor={"#868788"}
-          labelColor={"#868788"}
-          selectedButtonColor={"#868788"}
-          buttonSize={10}
-          buttonWrapStyle={{ marginLeft: 20 }}
-        />
-        <View style={styles.submitButton}>
-          <CButton
-            title={
-              navigation.getParam("userKind") === "patient"
-                ? "S'inscrire"
-                : "Suivant"
-            }
-            buttonStyle={
-              navigation.getParam("userKind") === "patient" ? "green" : "grey"
-            }
-            onPress={this.handleSubmit}
-          />
-        </View>
-      </View>
-    );
-  }
-}
+  
 
 // Custom Stylesheet
 const _ = require("lodash");
@@ -148,66 +157,77 @@ s.dateValue.error.borderRadius = 5;
 s.errorBlock.fontSize = 15;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
-    backgroundColor: "white",
-    padding: 10,
-    paddingTop: 80
-  },
-  submitButton: {
-    margin: 30
-  }
+    container: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        backgroundColor: 'white',
+        padding: 10,
+        paddingTop: 60
+    },
+    submitButton: {
+        margin: 30
+    },
+    title: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor:'rgba(255,255,255,0.4)'
+    },
+    imageView: {
+        marginTop: 0,
+        height: '40%'
+    }
 });
 
 const options = {
-  fields: {
-    email: {
-      placeholder: "Email",
-      placeholderTextColor: "#707070",
-      error: "L'email est incorrect"
-    },
-    firstName: {
-      placeholder: "Prénom",
-      placeholderTextColor: "#707070"
-    },
-    lastName: {
-      placeholder: "Nom",
-      placeholderTextColor: "#707070"
-    },
-    password: {
-      placeholder: "Mot de passe",
-      placeholderTextColor: "#707070",
-      password: true,
-      secureTextEntry: true,
-      error:
-        "Doit contenir une majuscule, une minuscule, un symbole et minimum 8 caractères"
-    },
-    confirmPassword: {
-      placeholder: "Confirmation mot de passe",
-      placeholderTextColor: "#707070",
-      password: true,
-      secureTextEntry: true,
-      error: "Les mots de passe sont différents"
-    },
-    birth: {
-      placeholder: "Date de naissance",
-      placeholderTextColor: "#707070",
-      mode: "date", // display the Date field as a DatePickerAndroid
-      config: {
-        format: date => {
-          if (date) {
-            return moment(date).format("YYYY-MM-DD");
-          }
-          return moment(new Date()).format("YYYY-MM-DD");
+    fields: {
+        email: {
+            placeholder: 'Email',
+            placeholderTextColor: '#707070',
+            error: "L'email est incorrect"
+            placeholder: "Email",
+            placeholderTextColor: "#707070",
         },
-        defaultValueText: "Date de naissance"
-      }
-    }
-  },
-  auto: "placeholders",
-  stylesheet: s
+        firstName: {
+            placeholder: 'Prénom',
+            placeholderTextColor: '#707070'
+        },
+        lastName: {
+            placeholder: 'Nom',
+            placeholderTextColor: '#707070'
+        },
+        password: {
+            placeholder: 'Mot de passe',
+            placeholderTextColor: '#707070',
+            password: true,
+            secureTextEntry: true,
+            error: "Doit contenir une majuscule, une minuscule, un symbole et minimum 8 caractères"
+        },
+        confirmPassword: {
+            placeholder: 'Confirmation mot de passe',
+            placeholderTextColor: '#707070',
+            password: true,
+            secureTextEntry: true,
+            error: "Les mots de passe sont différents"
+        },
+        birth: {
+            placeholder: 'Date de naissance',
+            placeholderTextColor: '#707070',
+            mode: 'date', // display the Date field as a DatePickerAndroid
+            config: {
+                format: (date) => {
+                    if (date) {
+                        return moment(date).format('YYYY-MM-DD');
+                    }
+                    return moment(new Date()).format('YYYY-MM-DD');
+                },
+                defaultValueText: 'Date de naissance',
+            },
+
+        },
+        auto: 'placeholders',
+        stylesheet: s
 };
 
 export default RegisterPatient;

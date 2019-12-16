@@ -13,7 +13,7 @@ export const userAuth = (userEmail, userPassword) => {
   console.log(`${API_URL}/loginff`);
   function thunk(dispatch) {
     return axios
-      .post(`${API_URL}/login`, null, {
+      .post(`http://localhost:1337/login`, null, {
         params: {
           email: "nathan.traineau@wanadoo.fr",
           password: "Blabla97!"
@@ -56,7 +56,7 @@ export const userAuthFailure = error => {
 export const refreshToken = refreshTokenValue => {
   function thunk(dispatch) {
     return axios
-      .post(`${API_URL}/auth/token`, null, {
+      .post(`http://localhost:1337/auth/token`, null, {
         params: {
           refreshToken: refreshTokenValue
         }

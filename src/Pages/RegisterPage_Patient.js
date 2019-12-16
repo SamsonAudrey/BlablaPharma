@@ -1,10 +1,11 @@
 'use strict';
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {ImageBackground, StyleSheet, View, Text} from 'react-native';
 import t from 'tcomb-form-native';
 import CButton from "../components/Button";
 import moment from 'moment';
 import RadioForm from 'react-native-simple-radio-button';
+import ButtonTitle from "../components/ButtonTitle";
 
 const Form = t.form.Form;
 const gender_props = [
@@ -78,30 +79,42 @@ class RegisterPatient extends Component {
         const { navigation } = this.props;
 
         return (
-            <View style={styles.container}>
-                <Form
-                    ref={c => this._form = c}
-                    type={this.User}
-                    options={options}
-                    onChange={v => this.onChange(v)}
-                />
-                <RadioForm
-                    radio_props={gender_props}
-                    initial={0}
-                    onPress={(value) => {this.state.gender = value;}}
-                    formHorizontal={true}
-                    buttonColor={'#868788'}
-                    labelColor={'#868788'}
-                    selectedButtonColor={'#868788'}
-                    buttonSize={10}
-                    buttonWrapStyle={{marginLeft: 20}}
-                />
-                <View style={styles.submitButton}>
-                    <CButton
-                        title={navigation.getParam('userKind') === 'patient' ? "S'inscrire" : "Suivant"}
-                        buttonStyle={navigation.getParam('userKind') === 'patient' ? 'green' : 'grey'}
-                        onPress={this.handleSubmit}
+            <View>
+                <View style={styles.imageView}>
+                    <ImageBackground
+                        source={navigation.getParam('userKind') === 'patient' ? require('../assets/sign-in_cut.jpg') : require('../assets/sign-in-pharmacist_cut.png')}
+                        style={{width: '100%',  height: '100%', opacity: 1}}>
+                        <View style={styles.title}>
+                            <ButtonTitle title={navigation.getParam('userKind') === 'patient' ?  'Je suis patient' : 'Je suis pharmacien'} role={navigation.getParam('userKind')}></ButtonTitle>
+                        </View>
+                    </ImageBackground>
+                </View>
+                <View style={styles.container}>
+
+                    <Form
+                        ref={c => this._form = c}
+                        type={this.User}
+                        options={options}
+                        onChange={v => this.onChange(v)}
                     />
+                    <RadioForm
+                        radio_props={gender_props}
+                        initial={0}
+                        onPress={(value) => {this.state.gender = value;}}
+                        formHorizontal={true}
+                        buttonColor={'#868788'}
+                        labelColor={'#868788'}
+                        selectedButtonColor={'#868788'}
+                        buttonSize={10}
+                        buttonWrapStyle={{marginLeft: 20}}
+                    />
+                    <View style={styles.submitButton}>
+                        <CButton
+                            title={navigation.getParam('userKind') === 'patient' ? "S'inscrire" : "Suivant"}
+                            buttonStyle={navigation.getParam('userKind') === 'patient' ? 'green' : 'grey'}
+                            onPress={this.handleSubmit}
+                        />
+                    </View>
                 </View>
             </View>
         );
@@ -133,10 +146,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'white',
         padding: 10,
-        paddingTop: 80
+        paddingTop: 60
     },
     submitButton: {
         margin: 30
+    },
+    title: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor:'rgba(255,255,255,0.4)'
+    },
+    imageView: {
+        marginTop: 0,
+        height: '40%'
     }
 });
 
@@ -183,7 +206,7 @@ const options = {
                 defaultValueText: 'Date de naissance',
             },
 
-        }
+        },
     },
     auto: 'placeholders',
     stylesheet: s

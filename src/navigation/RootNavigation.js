@@ -8,6 +8,7 @@ import AuthPageContainer from "../containers/AuthPageContainer";
 import RegisterPageContainer from "../containers/RegisterPageContainer";
 import RegisterPatientContainer from "../containers/RegisterPatientContainer";
 import RegisterPharmacistContainer from "../containers/RegisterPharmacistContainer";
+import { Image , TouchableHighlight} from 'react-native';
 
 const AuthScreenStack = createStackNavigator({
     HomeStack: {
@@ -18,24 +19,36 @@ const AuthScreenStack = createStackNavigator({
 const RegisterScreenStack = createStackNavigator({
     RegiStack: {
         screen: RegisterPageContainer,
+        navigationOptions: {
+            headerTitle: <Image source={require('../assets/logo-navbar.png')} style={{width: 300, height: 41 }}/>,
+        }
     }
 });
 
 const RegisterPatientScreenStack = createStackNavigator({
     RegiPatStack: {
         screen: RegisterPatientContainer,
+        navigationOptions: {
+            headerTitle: <Image source={require('../assets/logo-navbar.png')} style={{width: 300, height: 41 }}/>,
+        }
     }
 });
 
 const RegisterPharmaScreenStack = createStackNavigator({
     RegiPhaStack: {
         screen: RegisterPharmacistContainer,
+        navigationOptions: {
+            headerTitle: <Image source={require('../assets/logo-navbar.png')} style={{width: 300, height: 41 }}/>,
+        }
     }
 });
 
 const CoScreenStack = createStackNavigator({
     AuthStack: {
         screen: AuthPageContainer,
+        navigationOptions: {
+            headerTitle: <Image source={require('../assets/logo-navbar.png')} style={{width: 300, height: 41 }}/>,
+        }
     }
 });
 
@@ -50,6 +63,6 @@ export const MainStack = createSwitchNavigator(
         RegisterPharmacist: RegisterPharmaScreenStack,
     },
     {
-        initialRouteName: 'Home'
+        initialRouteName: 'Home',
     }
 );

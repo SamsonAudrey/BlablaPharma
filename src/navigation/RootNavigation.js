@@ -19,36 +19,44 @@ const AuthScreenStack = createStackNavigator({
 const RegisterScreenStack = createStackNavigator({
     RegiStack: {
         screen: RegisterPageContainer,
-        navigationOptions: {
-            headerTitle: <Image source={require('../assets/logo-navbar.png')} style={{width: 300, height: 41 }}/>,
-        }
+        navigationOptions: ({ navigation, screenProps }) => ({
+            headerTitle: <TouchableHighlight onPress={(nav) => navigation.navigate('Home')}>
+                <Image source={require('../assets/logo-navbar.png')} style={{width: 300, height: 41 }}/>
+            </TouchableHighlight>,
+        })
     }
 });
 
 const RegisterPatientScreenStack = createStackNavigator({
     RegiPatStack: {
         screen: RegisterPatientContainer,
-        navigationOptions: {
-            headerTitle: <Image source={require('../assets/logo-navbar.png')} style={{width: 300, height: 41 }}/>,
-        }
+        navigationOptions: ({ navigation, screenProps }) => ({
+            headerTitle: <TouchableHighlight onPress={(nav) => navigation.navigate('Home')}>
+                <Image source={require('../assets/logo-navbar.png')} style={{width: 300, height: 41 }}/>
+            </TouchableHighlight>,
+        })
     }
 });
 
 const RegisterPharmaScreenStack = createStackNavigator({
     RegiPhaStack: {
         screen: RegisterPharmacistContainer,
-        navigationOptions: {
-            headerTitle: <Image source={require('../assets/logo-navbar.png')} style={{width: 300, height: 41 }}/>,
-        }
+        navigationOptions: ({ navigation, screenProps }) => ({
+            headerTitle: <TouchableHighlight onPress={(nav) => navigation.navigate('Home')}>
+                <Image source={require('../assets/logo-navbar.png')} style={{width: 300, height: 41 }}/>
+            </TouchableHighlight>,
+        })
     }
 });
 
 const CoScreenStack = createStackNavigator({
     AuthStack: {
         screen: AuthPageContainer,
-        navigationOptions: {
-            headerTitle: <Image source={require('../assets/logo-navbar.png')} style={{width: 300, height: 41 }}/>,
-        }
+        navigationOptions: ({ navigation, screenProps }) => ({
+            headerTitle: <TouchableHighlight onPress={(nav) => navigation.navigate('Home')}>
+                <Image source={require('../assets/logo-navbar.png')} style={{width: 300, height: 41 }}/>
+            </TouchableHighlight>,
+        })
     }
 });
 

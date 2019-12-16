@@ -135,7 +135,7 @@ class RegisterPatient extends Component {
                 </View>
             </View>
         );
-    
+
   };
 }
 
@@ -184,8 +184,6 @@ const styles = StyleSheet.create({
 const options = {
     fields: {
         email: {
-            placeholder: 'Email',
-            placeholderTextColor: '#707070',
             error: "L'email est incorrect",
             placeholder: "Email",
             placeholderTextColor: "#707070",

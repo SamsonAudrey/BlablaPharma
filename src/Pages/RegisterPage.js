@@ -41,12 +41,12 @@ class Register extends Component {
                     </ImageBackground>
                 </View>
                 <View style={styles.linkText}>
-                    <Text style={{color: '#868788', marginLeft: 10}}>Déjà inscrit ?</Text>
+                    <Text style={{color: '#868788', marginLeft: 10, fontSize: 16}}>Déjà inscrit ?</Text>
                     <HyperLinkText
                         text={'Se connecter'}
                         nav={'AuthPage'}
                         onPress={() => navigate('AuthPage')}
-                        style={{color: '#BED469', marginLeft: 10}}/>
+                        style={{color: '#BED469', marginLeft: 10, fontSize: 16}}/>
                 </View>
             </View>
         );

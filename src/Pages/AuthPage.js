@@ -78,15 +78,15 @@ export default class Auth extends Component {
                 text={'Mot de passe oublié ?'}
                 nav={'AuthPage'}
                 onPress={() => navigate('AuthPage')}
-                style={{color: '#BED469', marginLeft: 10}}/>
+                style={{color: '#BED469', marginLeft: 10, fontSize: 16}}/>
 
             <View style={styles.linkText2}>
-              <Text style={{color: '#868788', marginLeft: 10}}>Pas encore inscrit ?</Text>
+              <Text style={{color: '#868788', marginLeft: 10,fontSize: 16}}>Pas encore inscrit ?</Text>
                 <HyperLinkText
                   text={'S\'inscrire'}
                   nav={'RegisterPage'}
                   onPress={() => navigate('RegisterPage')}
-                  style={{color: '#BED469', marginLeft: 10}}/>
+                  style={{color: '#BED469', marginLeft: 10, fontSize: 16}}/>
             </View>
           </View>
         </View>
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   form: {
-    paddingTop: 60,
+    paddingTop: 70,
     padding: 20,
     flex: 1,
     justifyContent: 'flex-start',
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     backgroundColor:'rgba(255,255,255,0.4)'
   },
   linkText2: {
-    marginTop: 10,
+    marginTop: 20,
     flexDirection: 'row'
   },
   linkText1: {

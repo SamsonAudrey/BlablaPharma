@@ -3,12 +3,7 @@ import { Text, View } from 'react-native';
 
 
 class HyperLinkText extends Component {
-
-    handlePress= () => {
-        const {navigate} = this.props.navigation;
-        navigate(this.props.nav)
-    };
-
+    
     render() {
         return (
             <View>

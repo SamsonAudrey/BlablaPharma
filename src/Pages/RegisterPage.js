@@ -59,8 +59,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 60,
-        marginBottom: 20,
+        marginTop: '10%',
 
     },
     title: {
@@ -68,8 +67,7 @@ const styles = StyleSheet.create({
         fontSize: 24
     },
     view: {
-        marginTop: 20,
-        marginBottom: 30,
+        marginBottom: '10%',
         height: '30%',
     },
     buttonView: {

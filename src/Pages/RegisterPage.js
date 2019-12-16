@@ -13,10 +13,7 @@ class Register extends Component {
     render() {
         const {navigate} = this.props.navigation;
         return (
-            <View style={{flex:1}}>
-                <KeyboardAwareScrollView automaticallyAdjustContentInsets={false}
-                                         resetScrollToCoords={{x: 0, y: 0}}
-                                         enableOnAndroid={true} >
+            <View>
                 <View style={styles.titleView}>
                     <Text style={styles.title}>Inscription</Text>
                 </View>
@@ -52,7 +49,6 @@ class Register extends Component {
                         onPress={() => this.props.navigation.navigate('Connection')}
                         style={{color: '#BED469', marginLeft: 10, fontSize: 16}}/>
                 </View>
-                </KeyboardAwareScrollView>
             </View>
         );
     }
@@ -74,7 +70,7 @@ const styles = StyleSheet.create({
     view: {
         marginTop: 20,
         marginBottom: 30,
-        height: '50%',
+        height: '30%',
     },
     buttonView: {
         flex: 1,

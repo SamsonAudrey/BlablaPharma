@@ -1,4 +1,4 @@
-import user from "./userReducer";
+import user from "./user";
 import { combineReducers } from "redux";
 import registerReducer from "./registerReducer";
 

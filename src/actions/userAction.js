@@ -1,57 +1,44 @@
-import { CONNECT_USER, CONNECT_USER_FAILURE } from "./actionTypes";
+import {
+  CONNECT_USER,
+  CONNECT_USER_FAILURE,
+  REFRESH_TOKEN_SUCCESS,
+  REFRESH_TOKEN_FAILURE,
+  LOGOUT
+} from "./actionTypes";
 
 import { API_URL } from "react-native-dotenv";
 import axios from "axios";
-import { store } from "../../store";
 
 export const userAuth = (userEmail, userPassword) => {
-    console.log("enter into user Auth" + userEmail + userPassword);
-    console.log(`${API_URL}/login`);
-    return fetch(`${API_URL}`, {
-        method: "GET",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-        }
-    })
-        .then(response => {
-            console.log("response ");
-            store.dispatch(userAuthSuccess(response.data));
-        })
-        .catch(error => {
-            console.log("error " + error);
-            store.dispatch(userAuthFailure(error));
-        });
-    /*
+  function thunk(dispatch) {
     return axios
-      .post(`${API_URL}/login`, {
-        email: userEmail,
-        password: userPassword
+      .post(`${API_URL}/login`, null, {
+        params: {
+          email: "nathan.traneau@wanadoo.fr",
+          password: "Blabla97!"
+        }
       })
       .then(response => {
-        console.log("response ");
-        store.dispatch(userAuthSuccess(response.data));
+        dispatch(userAuthSuccess(response.data));
       })
       .catch(error => {
-        console.log("error " + error);
-        store.dispatch(userAuthFailure(error));
+        dispatch(userAuthFailure(error));
       });
+  }
+  //thunk.interceptInOffline = true;
+  thunk.meta = {
+    retry: true
+  };
+  return thunk;
+};
 
-    async function thunk(dispatch) {
-      console.log("response ");
-      return axios
-        .post(`${API_URL}/login`, null, {
-          params: {
-            email: userEmail,
-            password: userPassword
-          }
-        })
-        .then(response => {
-          dispatch(userAuthSuccess(response.data));
-        })
-        .catch(error => {
-          dispatch(userAuthFailure(error));
-        });
+export const userAuthSuccess = auth => {
+  return {
+    type: CONNECT_USER,
+    payload: {
+      accesstoken: auth.token,
+      refreshToken: auth.refreshToken,
+      account: auth.account
     }
     thunk.interceptInOffline = true;
     thunk.meta = {
@@ -61,26 +48,57 @@ export const userAuth = (userEmail, userPassword) => {
     */
 };
 
-
-
-export const userAuthSuccess = (account, token, refreshToken) => {
-    return {
-        type: CONNECT_USER,
-        payload: {
-            token,
-            refreshToken,
-            account
-        }
-    };
-};
-
 export const userAuthFailure = error => {
-    return {
-        type: CONNECT_USER_FAILURE,
-        payload: {
-            error
-        }
-    };
+  return {
+    type: CONNECT_USER_FAILURE,
+    payload: {
+      error: error.message
+    }
+  };
 };
 
+export const refreshToken = refreshTokenValue => {
+  function thunk(dispatch) {
+    return axios
+      .post(`${API_URL}/auth/token`, null, {
+        params: {
+          refreshToken: refreshTokenValue
+        }
+      })
+      .then(response => {
+        dispatch(refreshTokenSuccess(response.data));
+      })
+      .catch(error => {
+        dispatch(refreshTokenFailure(error));
+      });
+  }
+  //thunk.interceptInOffline = true;
+  thunk.meta = {
+    retry: true
+  };
+  return thunk;
+};
 
+export const refreshTokenSuccess = refresh => {
+  return {
+    type: REFRESH_TOKEN_SUCCESS,
+    payload: {
+      accesstoken: refresh.token
+    }
+  };
+};
+
+export const refreshTokenFailure = error => {
+  return {
+    type: REFRESH_TOKEN_FAILURE,
+    payload: {
+      error: error.message
+    }
+  };
+};
+
+export const logout = () => {
+  return {
+    type: LOGOUT
+  };
+};

@@ -6,3 +6,6 @@ export const CONNECT_USER_FAILURE = "connect_user_failure";
 export const REGISTER_PATIENT = "register_patient";
 export const REGISTER_PHARMACIST = "register_pharmacist";
 export const REGISTER_FAILURE = "register_failure";
+export const REFRESH_TOKEN_SUCCESS = "refresh_token_success";
+export const REFRESH_TOKEN_FAILURE = "refresh_token_failure";
+export const LOGOUT = "logout";

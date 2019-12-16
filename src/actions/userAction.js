@@ -12,10 +12,10 @@ import axios from "axios";
 export const userAuth = (userEmail, userPassword) => {
   function thunk(dispatch) {
     return axios
-      .post(`${API_URL}/login`, null, {
+      .post(`http://localhost:1337/login`, null, {
         params: {
-          email: "nathan.traneau@wanadoo.fr",
-          password: "Blabla97!"
+          email: userEmail,
+          password: userPassword
         }
       })
       .then(response => {
@@ -40,12 +40,13 @@ export const userAuthSuccess = auth => {
       refreshToken: auth.refreshToken,
       account: auth.account
     }
-    thunk.interceptInOffline = true;
+    /*thunk.interceptInOffline = true;
     thunk.meta = {
       retry: true
     };
     return thunk;
     */
+  };
 };
 
 export const userAuthFailure = error => {
@@ -60,7 +61,7 @@ export const userAuthFailure = error => {
 export const refreshToken = refreshTokenValue => {
   function thunk(dispatch) {
     return axios
-      .post(`${API_URL}/auth/token`, null, {
+      .post(`http://localhost:1337/auth/token`, null, {
         params: {
           refreshToken: refreshTokenValue
         }

@@ -19,7 +19,7 @@ export function checkToken() {
     // If there is no account it means that the user is not connected
     state.user.account.id
       ? axios
-          .get(`${API_URL}/accounts/${state.user.account.id}`) // This line is meant to hit the API
+          .get(`http://localhost:1337/accounts/${state.user.account.id}`) // This line is meant to hit the API
           .then(() => {
             resolve();
           })

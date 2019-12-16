@@ -6,7 +6,7 @@ import {
   LOGOUT
 } from "../actions/actionTypes";
 
-export default function useReducer(state = {}, action) {
+export default function user(state = {}, action) {
   switch (action.type) {
     case CONNECT_USER:
       return {

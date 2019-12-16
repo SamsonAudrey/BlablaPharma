@@ -6,4 +6,3 @@ export default combineReducers({
   user,
   registerReducer
 });
-    

@@ -4,7 +4,7 @@ import SearchPharmacistsContainer from "../containers/SearchPharmacistsContainer
 import UserInfoContainer from "../containers/UserInfoContainer";
 import ChatPageContainer from "../containers/ChatPageContainer";
 import BlogPageContainer from "../containers/BlogPageContainer";
-import AuthPageContainer from "../containers/AuthPageContainer";
+import AuthPageContainer from '../containers/AuthPageContainer';
 import React from "react";
 import * as colors from "react-native";
 import { Text } from "react-native";
@@ -41,6 +41,15 @@ const ChatNavigator = createStackNavigator(
   {
     initialRouteName: "ChatPage"
   }
+);
+
+const BlogNavigator = createStackNavigator(
+    {
+        BlogPage: BlogPageContainer
+    },
+    {
+        initialRouteName: "BlogPage"
+    }
 );
 
 export const TabNavigator = createBottomTabNavigator(

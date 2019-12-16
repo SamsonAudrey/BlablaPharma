@@ -10,7 +10,7 @@ export default class AuthPage extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View>
-        <Text> Pharmacist </Text>
+        <Text> Login </Text>
       </View>
     );
   }

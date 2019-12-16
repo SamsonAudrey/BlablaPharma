@@ -23,7 +23,7 @@ export const userAuth = (userEmail, userPassword) => {
         dispatch(userAuthSuccess(response.data));
       })
       .catch(error => {
-        //dispatch(userAuthFailure(error));
+        dispatch(userAuthFailure(error));
       });
   }
   //thunk.interceptInOffline = true;
@@ -79,7 +79,7 @@ export const refreshTokenSuccess = refresh => {
   return {
     type: REFRESH_TOKEN_SUCCESS,
     payload: {
-      accesstoken: refresh.token
+      accesstoken: refresh.token,
     }
   };
 };

@@ -3,7 +3,10 @@ import RegisterPage_Patient from '../Pages/RegisterPage_Patient'
 import {registerPatient} from "../actions/registerAction";
 
 const mapStateToProps = state => {
-    return state
+    return {
+        state,
+        navigation: this.props.navigation,
+    }
 }
 
 const mapDispatchToProps = dispatch => {

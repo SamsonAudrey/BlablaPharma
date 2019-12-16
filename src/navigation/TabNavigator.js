@@ -24,10 +24,6 @@ const SearchPharmacistsNavigator = createStackNavigator(
 const UserInfoNavigator = createStackNavigator(
   {
     UserInfo: UserInfoContainer,
-    AuthPage: AuthPageContainer,
-    RegisterPage: RegisterPageContainer,
-    RegisterPage_Patient: RegisterPatientContainer,
-    RegisterPage_Pharmacist: RegisterPharmacistContainer,
     SearchPharmacists: SearchPharmacistsContainer
   },
   {

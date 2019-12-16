@@ -24,7 +24,7 @@ class Register extends Component {
                             <CButton
                                 title={"Pharmacien"}
                                 buttonStyle={'grey'}
-                                onPress={() => navigate('RegisterPage_Patient', {userKind:'pharmacist'})}/>
+                                onPress={() => this.props.navigation.navigate('RegisterPatient', {userKind:'pharmacist'})}/>
                         </View>
                     </ImageBackground>
                 </View>
@@ -36,7 +36,7 @@ class Register extends Component {
                             <CButton
                                 title={"Patient"}
                                 buttonStyle={'green'}
-                                onPress={() => navigate('RegisterPage_Patient', {userKind:'patient'})}/>
+                                onPress={() => this.props.navigation.navigate('RegisterPatient', {userKind:'patient'})}/>
                         </View>
                     </ImageBackground>
                 </View>
@@ -45,7 +45,7 @@ class Register extends Component {
                     <HyperLinkText
                         text={'Se connecter'}
                         nav={'AuthPage'}
-                        onPress={() => navigate('AuthPage')}
+                        onPress={() => this.props.navigation.navigate('Connection')}
                         style={{color: '#BED469', marginLeft: 10, fontSize: 16}}/>
                 </View>
             </View>

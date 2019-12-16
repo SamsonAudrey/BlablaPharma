@@ -24,7 +24,6 @@ export function checkToken() {
             resolve();
           })
           .catch(() => {
-            
             RefreshToken()
               .then(response => {
                 if (response.success) {
@@ -55,7 +54,6 @@ export function RefreshToken() {
               resolve({ success: true });
             },
             err => {
-              console.log("yo"+err)
               reject(err);
             }
           )

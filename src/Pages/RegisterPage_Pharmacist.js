@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'white',
         padding: 10,
-        paddingTop: 60
+        paddingTop: '10%'
     },
     submitButton: {
         margin: 30

@@ -19,21 +19,6 @@ const User = t.struct({
   password: t.String
 });
 
-const options = {
-  fields: {
-    email: {
-      error: "L'email est incorrect"
-    },
-    password: {
-      error: "Le mot de passe est incorrect",
-      secureTextEntry: true,
-      password: true
-    },
-    remind: {
-      label: "Rester connecté"
-    }
-  }
-};
 
 
 export default class Auth extends Component {
@@ -65,7 +50,7 @@ export default class Auth extends Component {
     try {
       this.props.onUserAuth(value.email, value.password);
     } catch (error) {
-      alert(error.message);
+      console.log(error.message);
     }
   };
 

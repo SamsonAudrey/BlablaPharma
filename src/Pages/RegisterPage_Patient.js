@@ -88,6 +88,8 @@ class RegisterPatient extends Component {
           alert(error.message);
         }
       }
+    }
+  }
 
 
     render() {
@@ -135,8 +137,7 @@ class RegisterPatient extends Component {
         );
     
   };
-
-  
+}
 
 // Custom Stylesheet
 const _ = require("lodash");
@@ -185,7 +186,7 @@ const options = {
         email: {
             placeholder: 'Email',
             placeholderTextColor: '#707070',
-            error: "L'email est incorrect"
+            error: "L'email est incorrect",
             placeholder: "Email",
             placeholderTextColor: "#707070",
         },
@@ -228,6 +229,7 @@ const options = {
         },
         auto: 'placeholders',
         stylesheet: s
-};
+  }
+}
 
 export default RegisterPatient;

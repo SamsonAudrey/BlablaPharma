@@ -108,7 +108,7 @@ class RegisterPharmacist extends Component {
   onChange(value) {
     this.state.user = value;
   }
-
+}
 
 // Custom Stylesheet
 const _ = require("lodash");

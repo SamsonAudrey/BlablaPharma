@@ -38,14 +38,15 @@ export default class Auth extends Component {
     if (this.props.isConnected) {
       console.log("T'es connectéééé ");
       const { navigate } = this.props.navigation;
-      navigate("SearchPharmacists");
+      //navigate("Tab");
       this.unsubscribe();
     } else {
-      console.log("T'es pas connecté");
+      console.log("T'es pas connectééééé");
     }
   };
 
   handleSubmit = () => {
+    console.log("presssss")
     const value = this._form.getValue();
     try {
       this.props.onUserAuth(value.email, value.password);

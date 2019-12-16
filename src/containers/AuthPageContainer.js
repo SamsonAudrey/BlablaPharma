@@ -4,10 +4,9 @@ import { userAuth, refreshToken } from "../actions/userAction";
 import AuthUtils from "../utils/auth";
 
 const mapStateToProps = state => {
-  console.log(state);
+  console.log("yooo"+JSON.stringify(state));
   return {
     error: state.user.error,
-    accessToken: state.user.accessToken,
     isConnected: state.connection.isConnected
   };
 };

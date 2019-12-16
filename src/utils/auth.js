@@ -11,7 +11,7 @@ export function checkToken() {
   const state = store.getState();
 
   return new Promise((resolve, reject) => {
-    console.log("rrr" + JSON.stringify(state));
+    console.log("rxcvvcvcxvxcxrr" + JSON.stringify(state));
     // In case it is the connection and accessToken has not been added to the header
     state.user.accessToken
       ? (axios.defaults.headers.Authorization =
@@ -20,7 +20,7 @@ export function checkToken() {
     // If there is no account it means that the user is not connected
     state.user.account.id
       ? axios
-          .get(`http://localhost:1337/accounts/${state.user.account.id}`) // This line is meant to hit the API
+          .get(`${API_URL}/accounts/${state.user.account.id}`) // This line is meant to hit the API
           .then(() => {
             resolve();
           })

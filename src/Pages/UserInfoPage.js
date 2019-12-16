@@ -17,7 +17,7 @@ export default class UserInfoPage extends React.Component {
     try {
       this.props.onUserLogout();
     } catch (error) {
-      alert(error.message);
+      console.log(error.message);
     }
   };
 
@@ -96,6 +96,13 @@ export default class UserInfoPage extends React.Component {
             onPress={() => {
               /*Navigate to the register page*/
               navigate("RegisterPage");
+            }}
+          />
+          <Button
+            title="Logout"
+            onPress={() => {
+              /*Navigate to the authentication page*/
+              this.handleSubmitLogout();
             }}
           />
         </>

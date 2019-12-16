@@ -16,7 +16,7 @@ export default function user(state = {}, action) {
       };
     case CONNECT_USER_FAILURE:
       return {
-        accessToken: state.accesstoken,
+        accessToken: state.accessToken,
         refreshToken: state.refreshToken,
         account: state.account,
         error: action.payload.error
@@ -29,7 +29,7 @@ export default function user(state = {}, action) {
       };
     case REFRESH_TOKEN_FAILURE:
       return {
-        accessToken: state.accesstoken,
+        accessToken: state.accessToken,
         refreshToken: state.refreshToken,
         account: state.account,
         error: action.payload.error

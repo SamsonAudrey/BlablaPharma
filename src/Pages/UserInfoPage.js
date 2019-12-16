@@ -58,9 +58,9 @@ export default class UserInfoPage extends React.Component {
 
   checkConnexion = () => {
     if (this.props.isConnected) {
-      console.log("T'es connectéééé ");
+      console.log("T'es connectéééé User Info");
     } else {
-      console.log("T'es pas connecté");
+      console.log("T'es pas connecté User Info");
     }
   };
 
@@ -68,7 +68,6 @@ export default class UserInfoPage extends React.Component {
     let page;
     const { navigate } = this.props.navigation;
     if (this.props.isConnected) {
-      console.log("T'es connectéééé ");
       page = (
         <>
           <Button
@@ -81,7 +80,6 @@ export default class UserInfoPage extends React.Component {
         </>
       );
     } else {
-      console.log("T'es pas connecté");
       page = (
         <>
           <Button

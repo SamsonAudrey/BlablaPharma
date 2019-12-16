@@ -23,7 +23,7 @@ export const userAuth = (userEmail, userPassword) => {
         dispatch(userAuthSuccess(response.data));
       })
       .catch(error => {
-        dispatch(userAuthFailure(error));
+        //dispatch(userAuthFailure(error));
       });
   }
   //thunk.interceptInOffline = true;

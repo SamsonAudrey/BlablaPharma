@@ -40,7 +40,7 @@ export default class Auth extends Component {
       console.log("T'es connectéé");
       this.props.navigation.navigate("Tab");
     } else {
-      console.log("T'es pas connecté");
+      console.log("T'es pas connecté Auth Page");
     }
   };
 

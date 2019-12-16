@@ -10,7 +10,7 @@ export default class UserInfoPage extends React.Component {
   }
 
   componentDidMount() {
-    store.subscribe(this.render);
+    //store.subscribe(this.render);
   }
 
   handleSubmitLogout = () => {
@@ -96,13 +96,6 @@ export default class UserInfoPage extends React.Component {
             onPress={() => {
               /*Navigate to the register page*/
               navigate("RegisterPage");
-            }}
-          />
-          <Button
-            title="Logout"
-            onPress={() => {
-              /*Navigate to the authentication page*/
-              this.handleSubmitLogout();
             }}
           />
         </>

@@ -4,20 +4,24 @@ import {
   REGISTER_PHARMACIST
 } from "../actions/actionTypes";
 
-function register(state = [], action) {
+function register(state = {}, action) {
   switch (action.type) {
     case REGISTER_PATIENT:
       return [
-        ...state,
         {
-          test: "TEST_REGISTER_PAT"
+          accessToken: undefined,
+          refreshToken: undefined,
+          account: undefined,
+          error: undefined
         }
       ];
     case REGISTER_PHARMACIST:
       return [
-        ...state,
         {
-          text: "TEST_REGISTER_PHARMA"
+          accessToken: undefined,
+          refreshToken: undefined,
+          account: undefined,
+          error: undefined
         }
       ];
     case REGISTER_FAILURE:

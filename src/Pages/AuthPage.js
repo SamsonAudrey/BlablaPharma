@@ -6,6 +6,7 @@ import { checkToken } from "../utils/auth";
 import t from "tcomb-form-native";
 import CButton from "../components/Button";
 import HyperLinkText from "../components/HyperLinkText";
+import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 
 const Form = t.form.Form;
 
@@ -36,38 +37,43 @@ export default class Auth extends Component {
 
   checkConnexion = () => {
     if (this.props.isConnected) {
-      console.log("T'es connectéééé ");
-      const { navigate } = this.props.navigation;
-      //navigate("Tab");
-      this.unsubscribe();
+      console.log("T'es connectéé");
+      this.props.navigation.navigate("Tab");
     } else {
-      console.log("T'es pas connectééééé");
+      console.log("T'es pas connecté");
     }
   };
 
   handleSubmit = () => {
+    this.unsubscribe();
     console.log("presssss")
     const value = this._form.getValue();
     try {
       this.props.onUserAuth(value.email, value.password);
+      this.props.navigation.navigate('Tab');
     } catch (error) {
       console.log(error.message);
+      this.props.navigation.navigate('Tab');
     }
   };
 
   render() {
     let error;
     this.props.error
-      ? (error = <Text>Les identifiants donnés sont invalides</Text>)
-      : (error = null);
-    const {navigate} = this.props.navigation;
+      ? (error = <Text style={{color: 'red'}}>Les identifiants donnés sont invalides</Text>)
+        : (error = <Text></Text>);
+    const { navigate } = this.props.navigation;
     return (
-        <View>
+        <View style={{flex:1}}>
+          <KeyboardAwareScrollView automaticallyAdjustContentInsets={false}
+                                   resetScrollToCoords={{x: 0, y: 0}}
+                                   enableOnAndroid={true} >
           <View style={styles.titleView}>
               <Text style={styles.title}>Connexion</Text>
+
           </View>
           <View style={styles.container}>
-          {error}
+
             <ImageBackground
                 source={require('../assets/engagement.jpg')}
                 style={{width: '100%',  height: '100%'}}>
@@ -84,8 +90,10 @@ export default class Auth extends Component {
                         onPress={this.handleSubmit}
                     />
                   </View>
+
               </View>
             </ImageBackground>
+
           </View>
 
           <View style={styles.linkText1}>
@@ -104,6 +112,7 @@ export default class Auth extends Component {
                   style={{color: '#BED469', marginLeft: 10, fontSize: 16}}/>
             </View>
           </View>
+          </KeyboardAwareScrollView>
         </View>
     );
   }

@@ -11,7 +11,7 @@ export function checkToken() {
   const state = store.getState();
 
   return new Promise((resolve, reject) => {
-    console.log("rxcvvcvcxvxcxrr" + JSON.stringify(state));
+    console.log("state: " + JSON.stringify(state));
     // In case it is the connection and accessToken has not been added to the header
     state.user.accessToken
       ? (axios.defaults.headers.Authorization =
@@ -47,7 +47,7 @@ export function RefreshToken() {
           .then(
             () => {
               const newState = store.getState();
-              console.log("newstate" + JSON.stringify(newState));
+              console.log("newstate : " + JSON.stringify(newState));
               const newAccessTokenValue = newState.user.accessToken;
               console.log("new refresh token : " + newAccessTokenValue);
               axios.defaults.headers.Authorization =

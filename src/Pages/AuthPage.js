@@ -43,7 +43,6 @@ export default class Auth extends Component {
           navigate('SearchPharmacists')
         } catch (e) {
           console.log('error : ', e)
-        }
       }
       this.unsubscribe();
     } else {
@@ -56,6 +55,7 @@ export default class Auth extends Component {
     const value = this._form.getValue();
     try {
       this.props.onUserAuth(value.email, value.password);
+        //this.props.navigation.navigate("Tab");
     } catch (error) {
       console.log(error.message);
     }
@@ -74,7 +74,7 @@ export default class Auth extends Component {
           {error}
           </View>
           <View style={styles.container}>
-
+            {error}
             <ImageBackground
                 source={require('../assets/engagement.jpg')}
                 style={{width: '100%',  height: '100%'}}>

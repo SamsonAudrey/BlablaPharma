@@ -6,7 +6,6 @@ import { checkToken } from "../utils/auth";
 import t from "tcomb-form-native";
 import CButton from "../components/Button";
 import HyperLinkText from "../components/HyperLinkText";
-import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 
 const Form = t.form.Form;
 
@@ -46,18 +45,17 @@ export default class Auth extends Component {
           console.log('error : ', e)
         }
       }
+      this.unsubscribe();
     } else {
       console.log(this.props.isConnected+"T'es pas connecté Auth Page");
     }
   };
 
   handleSubmit = () => {
-    this.unsubscribe();
     console.log("presssss")
     const value = this._form.getValue();
     try {
       this.props.onUserAuth(value.email, value.password);
-      
     } catch (error) {
       console.log(error.message);
     }
@@ -73,7 +71,7 @@ export default class Auth extends Component {
         <View>
           <View style={styles.titleView}>
               <Text style={styles.title}>Connexion</Text>
-
+          {error}
           </View>
           <View style={styles.container}>
 

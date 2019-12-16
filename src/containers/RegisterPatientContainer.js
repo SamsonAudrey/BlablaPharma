@@ -4,8 +4,7 @@ import {registerPatient} from "../actions/registerAction";
 
 const mapStateToProps = state => {
     return {
-        state,
-        navigation: this.props.navigation,
+        state
     }
 }
 

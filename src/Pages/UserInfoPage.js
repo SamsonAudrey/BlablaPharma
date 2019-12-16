@@ -87,7 +87,7 @@ export default class UserInfoPage extends React.Component {
             onPress={() => {
               /*Navigate to the authentication page*/
               //navigate("AuthPage");
-                this.props.navigation.navigate("Home");
+                this.props.navigation.navigate("Connection");
             }}
           />
           <Button

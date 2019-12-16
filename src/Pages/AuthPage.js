@@ -69,8 +69,6 @@ export default class Auth extends Component {
       }
     } catch (error) {
       console.log(error.message);
-      this.props.onUserAuth(value.email, value.password);
-      this.props.navigation.navigate('Tab');
     }
   };
 

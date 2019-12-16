@@ -9,6 +9,8 @@ import React from "react";
 import * as colors from "react-native";
 import { Text } from "react-native";
 import RegisterPageContainer from "../containers/RegisterPageContainer";
+import RegisterPatientContainer from "../containers/RegisterPatientContainer";
+import RegisterPharmacistContainer from "../containers/RegisterPharmacistContainer";
 
 const SearchPharmacistsNavigator = createStackNavigator(
   {
@@ -20,23 +22,17 @@ const SearchPharmacistsNavigator = createStackNavigator(
 );
 
 const UserInfoNavigator = createStackNavigator(
-  {
-    UserInfo: UserInfoContainer,
-    AuthPage: AuthPageContainer,
-    RegisterPage: RegisterPageContainer
-  },
-  {
-    initialRouteName: "UserInfo"
-  }
-);
-const BlogNavigator = createStackNavigator(
-  {
-    BlogPage: BlogPageContainer
-  },
-  {
-    initialRouteName: "BlogPage"
-  }
-);
+    {
+        UserInfo: UserInfoContainer,
+        AuthPage:AuthPageContainer,
+        RegisterPage: RegisterPageContainer,
+        RegisterPage_Patient: RegisterPatientContainer,
+        RegisterPage_Pharmacist: RegisterPharmacistContainer
+    },
+    {
+      initialRouteName: 'UserInfo',
+    }
+  );
 
 const ChatNavigator = createStackNavigator(
   {

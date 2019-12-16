@@ -10,7 +10,7 @@ import { API_URL } from "react-native-dotenv";
 import axios from "axios";
 
 export const userAuth = (userEmail, userPassword) => {
-  console.log(`${API_URL}/loginff`);
+  console.log(`${API_URL}/login`);
   function thunk(dispatch) {
     return axios
       .post(`${API_URL}/login`, null, {

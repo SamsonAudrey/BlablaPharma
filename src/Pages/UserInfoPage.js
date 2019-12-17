@@ -1,7 +1,5 @@
 import React from "react";
 import { Button } from "react-native";
-import { checkToken } from "../utils/auth";
-import { store } from "../../store";
 
 export default class UserInfoPage extends React.Component {
   constructor(props) {

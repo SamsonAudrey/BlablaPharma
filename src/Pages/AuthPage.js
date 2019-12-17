@@ -38,13 +38,11 @@ export default class Auth extends Component {
       try {
         this.props.navigation.navigate("Tab");
       } catch (e) {
-        this.unsubscribe();
         console.log('error : ',e)
       }
       this.unsubscribe();
-    }
    } else {
-      console.log(this.props.isConnected+"T'es pas connecté Auth Page");
+      console.log(this.props.isConnected + "T'es pas connecté Auth Page");
     }
   };
 
@@ -53,7 +51,7 @@ export default class Auth extends Component {
     const value = this._form.getValue();
     try {
       this.props.onUserAuth(value.email, value.password);
-        //this.props.navigation.navigate("Tab");
+      //this.props.navigation.navigate("Tab");
     } catch (error) {
       console.log(error.message);
     }
@@ -71,6 +69,7 @@ export default class Auth extends Component {
               <Text style={styles.title}>Connexion</Text>
           </View>
           <View style={styles.container}>
+          {error}
             <ImageBackground
                 source={require('../assets/engagement.jpg')}
                 style={{width: '100%',  height: '100%'}}>
@@ -95,7 +94,7 @@ export default class Auth extends Component {
             <HyperLinkText
                 text={'Mot de passe oublié ?'}
                 onPress={() => null}
-                style={{color: '#BED469', marginLeft: 10, fontSize: 16}}/>
+                style={{color: '#BED469', marginLeft: 10, fontSize: 16, marginTop: 40}}/>
 
             <View style={styles.linkText2}>
               <Text style={{color: '#868788', marginLeft: 10,fontSize: 16}}>Pas encore inscrit ?</Text>

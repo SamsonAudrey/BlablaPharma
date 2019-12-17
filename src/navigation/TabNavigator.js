@@ -4,10 +4,13 @@ import SearchPharmacistsContainer from "../containers/SearchPharmacistsContainer
 import UserInfoContainer from "../containers/UserInfoContainer";
 import ChatPageContainer from "../containers/ChatPageContainer";
 import BlogPageContainer from "../containers/BlogPageContainer";
+import RegisterPageContainer from "../containers/RegisterPageContainer";
+import RegisterPatientContainer from "../containers/RegisterPatientContainer";
+import RegisterPharmacistContainer from "../containers/RegisterPharmacistContainer";
 import AuthPageContainer from "../containers/AuthPageContainer";
 import React from "react";
 import * as colors from "react-native";
-import { Text } from "react-native";
+import { Text, TouchableHighlight, Image } from "react-native";
 
 const SearchPharmacistsNavigator = createStackNavigator(
   {
@@ -21,7 +24,11 @@ const SearchPharmacistsNavigator = createStackNavigator(
 const UserInfoNavigator = createStackNavigator(
   {
     UserInfo: UserInfoContainer,
-    SearchPharmacists: SearchPharmacistsContainer
+    SearchPharmacists: SearchPharmacistsContainer,
+    Register:RegisterPageContainer,
+    RegisterPatient: RegisterPatientContainer,
+    RegisterPharmacist: RegisterPharmacistContainer,
+    Connection: AuthPageContainer,
   },
   {
     initialRouteName: "UserInfo"
@@ -50,39 +57,43 @@ export const TabNavigator = createBottomTabNavigator(
   {
     Blog: {
       screen: BlogNavigator,
-      navigationOptions: () => ({
+      navigationOptions: ({ navigation, screenProps }) => ({
         tabBarIcon: () => (
-          <Text>Blog</Text>
-          //<FontAwesomeIcon icon="coffee" name="user" size={24} />
-        )
-      })
+          <Text>Blog</Text>),
+        headerTitle: <TouchableHighlight onPress={(nav) => navigation.navigate('Home')}>
+            <Image source={require('../assets/logo-navbar.png')} style={{width: 300, height: 41 }}/>
+        </TouchableHighlight>,
+    })
     },
     SearchPharmacists: {
       screen: SearchPharmacistsNavigator,
-      navigationOptions: () => ({
+      navigationOptions: ({ navigation, screenProps }) => ({
         tabBarIcon: () => (
-          <Text>Pharmaciens</Text>
-          // <FontAwesomeIcon  icon="coffee" name ="search" size={24}/>
-        )
-      })
+          <Text>Pharmaciens</Text>),
+        headerTitle: <TouchableHighlight onPress={(nav) => navigation.navigate('Home')}>
+            <Image source={require('../assets/logo-navbar.png')} style={{width: 300, height: 41 }}/>
+        </TouchableHighlight>,
+    })
     },
     Chat: {
       screen: ChatNavigator,
-      navigationOptions: () => ({
+      navigationOptions: ({ navigation, screenProps }) => ({
         tabBarIcon: () => (
-          <Text>Messagerie</Text>
-          //<FontAwesomeIcon icon="coffee" name="comment-medical" size={24} />
-        )
-      })
+          <Text>Chat</Text>),
+        headerTitle: <TouchableHighlight onPress={(nav) => navigation.navigate('Home')}>
+            <Image source={require('../assets/logo-navbar.png')} style={{width: 300, height: 41 }}/>
+        </TouchableHighlight>,
+    })
     },
     UserInfo: {
       screen: UserInfoNavigator,
-      navigationOptions: () => ({
+      navigationOptions: ({ navigation, screenProps }) => ({
         tabBarIcon: () => (
-          <Text>Informations Utilisateurs</Text>
-          //<FontAwesomeIcon icon="coffee" name="user" size={24} />
-        )
-      })
+          <Text>UserInfo</Text>),
+        headerTitle: <TouchableHighlight onPress={(nav) => navigation.navigate('Home')}>
+            <Image source={require('../assets/logo-navbar.png')} style={{width: 300, height: 41 }}/>
+        </TouchableHighlight>,
+    })
     }
   },
   {

@@ -25,6 +25,6 @@ const mapDispatchToProps = (dispatch, state) => {
 const Auth = connect(
   mapStateToProps,
   mapDispatchToProps
-)(AuthPage, AuthUtils);
+)(AuthPage);
 
 export default Auth;

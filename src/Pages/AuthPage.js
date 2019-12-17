@@ -45,7 +45,8 @@ export default class Auth extends Component {
           console.log('error : ', e)
       }
       this.unsubscribe();
-    } else {
+    }
+   } else {
       console.log(this.props.isConnected+"T'es pas connecté Auth Page");
     }
   };
@@ -71,7 +72,6 @@ export default class Auth extends Component {
         <View>
           <View style={styles.titleView}>
               <Text style={styles.title}>Connexion</Text>
-          {error}
           </View>
           <View style={styles.container}>
             {error}
@@ -91,10 +91,8 @@ export default class Auth extends Component {
                         onPress={this.handleSubmit}
                     />
                   </View>
-
               </View>
             </ImageBackground>
-
           </View>
 
           <View style={styles.linkText1}>

@@ -23,7 +23,7 @@ class RegisterPatient extends Component {
             user: {},
             gender: 0
         };
-        console.log("hdeedhj"+this.props.navigation.getParam('userKind'))
+        console.log("hdeedhj"+JSON.stringify(this.props.navigation.getParam('userKind')))
 
 
         this.Email = t.refinement(t.String, email => {

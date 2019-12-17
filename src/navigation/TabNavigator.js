@@ -8,9 +8,6 @@ import AuthPageContainer from "../containers/AuthPageContainer";
 import React from "react";
 import * as colors from "react-native";
 import { Text } from "react-native";
-import RegisterPageContainer from "../containers/RegisterPageContainer";
-import RegisterPatientContainer from "../containers/RegisterPatientContainer";
-import RegisterPharmacistContainer from "../containers/RegisterPharmacistContainer";
 
 const SearchPharmacistsNavigator = createStackNavigator(
   {

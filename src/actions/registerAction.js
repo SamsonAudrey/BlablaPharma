@@ -1,4 +1,4 @@
-import { CONNECT_USER, REGISTER_FAILURE } from "./actionTypes";
+import {CONNECT_USER, REGISTER_FAILURE, REGISTER_INFO, REGISTER_KIND} from "./actionTypes";
 import { API_URL } from "react-native-dotenv";
 import { store } from "../../store";
 
@@ -83,7 +83,7 @@ export const registerPharmacist = (
         } else {
           console.log("response ", response);
         }
-        // store.dispatch(registerSuccess(response.data));
+        //store.dispatch(registerSuccess('pharmacist'));
       })
       .catch(error => {
         console.log("error " + error);
@@ -92,11 +92,11 @@ export const registerPharmacist = (
   };
 };
 
-export const registerSuccess = test => {
+export const registerSuccess = userRole => {
   return {
     type: CONNECT_USER,
     payload: {
-      test
+      userKind: userRole
     }
   };
 };
@@ -106,6 +106,26 @@ export const registerFailure = error => {
     type: REGISTER_FAILURE,
     payload: {
       error
+    }
+  };
+};
+
+
+export const userRegisterKind = userKind => {
+  return {
+    type: REGISTER_KIND,
+    payload: {
+      userKind: userKind
+    }
+  };
+};
+
+export const userRegisterInfo = (userInfo, userGender) => {
+  return {
+    type: REGISTER_INFO,
+    payload: {
+      userInfo: userInfo,
+      userGender: userGender
     }
   };
 };

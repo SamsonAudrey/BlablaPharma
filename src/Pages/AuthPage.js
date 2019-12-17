@@ -38,11 +38,8 @@ export default class Auth extends Component {
       try {
         this.props.navigation.navigate("Tab");
       } catch (e) {
-        try {
-          const { navigate } = this.props.navigation
-          navigate('SearchPharmacists')
-        } catch (e) {
-          console.log('error : ', e)
+        this.unsubscribe();
+        console.log('error : ',e)
       }
       this.unsubscribe();
     }
@@ -74,7 +71,6 @@ export default class Auth extends Component {
               <Text style={styles.title}>Connexion</Text>
           </View>
           <View style={styles.container}>
-            {error}
             <ImageBackground
                 source={require('../assets/engagement.jpg')}
                 style={{width: '100%',  height: '100%'}}>

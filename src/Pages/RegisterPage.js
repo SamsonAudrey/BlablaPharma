@@ -25,7 +25,10 @@ class Register extends Component {
                             <CButton
                                 title={"Pharmacien"}
                                 buttonStyle={'grey'}
-                                onPress={() => this.props.navigation.navigate('RegisterPatient', {userKind:'pharmacist'})}/>
+                                onPress={() => {
+                                    this.props.onRegisterKind('pharmacist');
+                                    this.props.navigation.navigate('RegisterPatient', {userKind:'pharmacist'})
+                                }}/>
                         </View>
                     </ImageBackground>
                 </View>
@@ -37,7 +40,11 @@ class Register extends Component {
                             <CButton
                                 title={"Patient"}
                                 buttonStyle={'green'}
-                                onPress={() => this.props.navigation.navigate('RegisterPatient', {userKind:'patient'})}/>
+                                onPress={() => {
+                                    this.props.onRegisterKind('patient');
+                                    this.props.navigation.navigate('RegisterPatient', {userKind:'patient'})
+                                }}
+                            />
                         </View>
                     </ImageBackground>
                 </View>

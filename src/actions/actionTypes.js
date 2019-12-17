@@ -8,4 +8,6 @@ export const REGISTER_PHARMACIST = "register_pharmacist";
 export const REGISTER_FAILURE = "register_failure";
 export const REFRESH_TOKEN_SUCCESS = "refresh_token_success";
 export const REFRESH_TOKEN_FAILURE = "refresh_token_failure";
+export const REGISTER_KIND = "register_user_kind";
+export const REGISTER_INFO = "register_user_info";
 export const LOGOUT = "logout";

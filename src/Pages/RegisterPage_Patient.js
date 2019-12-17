@@ -1,12 +1,13 @@
 'use strict';
 import React, {Component} from 'react';
-import {ImageBackground, StyleSheet, View, ScrollView} from 'react-native';
+import {ImageBackground, StyleSheet, View, Text} from 'react-native';
 import t from 'tcomb-form-native';
 import CButton from "../components/Button";
 import moment from 'moment';
 import RadioForm from 'react-native-simple-radio-button';
 import ButtonTitle from "../components/ButtonTitle";
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
+import {store} from "../../store";
 
 const Form = t.form.Form;
 const gender_props = [
@@ -14,6 +15,8 @@ const gender_props = [
     {label: 'Femme   ', value: 1 },
     {label: 'Autre', value: 2 },
 ];
+
+const state = store.getState();
 
 class RegisterPatient extends Component {
 
@@ -45,6 +48,10 @@ class RegisterPatient extends Component {
             confirmPassword: this.EqualPassword,
             birth: t.Date
         });
+
+        const state = store.getState();
+        this.userKind = state.registerReducer.userKind;
+        console.log('eeeeee ',this.userKind)
     }
 
     onChange(value) {
@@ -54,9 +61,9 @@ class RegisterPatient extends Component {
     handleSubmit = () => {
         const value = this._form.getValue();
         const { navigation } = this.props;
-        if (navigation.getParam('userKind') === 'pharmacist' && value !== null) {
-            const { navigate } = this.props.navigation;
-            navigate('RegisterPage_Pharmacist', {infoUser: value, gender : this.state.gender})
+        if (this.userKind === 'pharmacist' && value !== null) {
+            this.props.onRegisterInfo(value , this.state.gender);
+            this.props.navigation.navigate('RegisterPharmacist', {infoUser: value, gender : this.state.gender});
         } else {
             if (value !== null) {
                 // REGISTER PATIENT USER
@@ -67,8 +74,7 @@ class RegisterPatient extends Component {
                         gender, value.email,value.password);
 
                     alert('Inscription faite')
-                    const { navigate } = this.props.navigation;
-                    navigate('AuthPage');
+                    this.props.navigation.navigate('Home');
                 } catch (error) { // TODO
                     alert(error.message);
                 }
@@ -87,12 +93,14 @@ class RegisterPatient extends Component {
                                          enableOnAndroid={true} >
                     <View style={styles.imageView}>
                         <ImageBackground
-                            source={navigation.getParam('userKind') === 'patient' ? require('../assets/sign-in_cut.jpg') : require('../assets/sign-in-pharmacist_cut.png')}
+                            source={this.userKind === 'patient' ? require('../assets/sign-in_cut.jpg') : require('../assets/sign-in-pharmacist_cut.png')}
                             style={{width: '100%',  height: 170, opacity: 1}}>
                             <View style={styles.title}>
-                                <ButtonTitle title={navigation.getParam('userKind') === 'patient' ?  'Je suis patient' : 'Je suis pharmacien'} role={navigation.getParam('userKind')}></ButtonTitle>
+                                <ButtonTitle title={this.userKind === 'patient' ? 'Je suis patient' : 'Je suis pharmacien'}
+                                             role={this.userKind}/>
                             </View>
                         </ImageBackground>
+
                     </View>
 
                     <View style={styles.container}>
@@ -116,8 +124,8 @@ class RegisterPatient extends Component {
                         />
                         <View style={styles.submitButton}>
                             <CButton
-                                title={navigation.getParam('userKind') === 'patient' ? "S'inscrire" : "Suivant"}
-                                buttonStyle={navigation.getParam('userKind') === 'patient' ? 'green' : 'grey'}
+                                title={this.userKind === 'patient' ? "S'inscrire" : "Suivant"}
+                                buttonStyle={this.userKind === 'patient' ? 'green' : 'grey'}
                                 onPress={this.handleSubmit}
                             />
                         </View>

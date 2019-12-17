@@ -7,6 +7,7 @@ import CButton from "../components/Button";
 import moment from 'moment';
 import ButtonTitle from "../components/ButtonTitle";
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
+import {store} from "../../store";
 
 
 const Form = t.form.Form;
@@ -35,21 +36,24 @@ class RegisterPharmacist extends Component {
       address: t.String,
       institutionName: t.String
     });
+
+      const state = store.getState();
+      this.userInfo = state.registerReducer.userInfo;
+      this.userGender = state.registerReducer.userGender;
   }
 
   handleSubmit = () => {
     const value = this._form.getValue();
     if (value !== null) {
       // REGISTER PATIENT USER
-      const { navigation } = this.props;
-      const user = navigation.getParam("infoUser");
+      const user = this.userInfo;
       try {
         const date = user.birth;
         const birthday = moment(date).format("YYYY-MM-DD");
         const gender =
-          navigation.getParam("gender") === 0
+            this.userGender === 0
             ? "male"
-            : navigation.getParam("gender") === 1
+            : this.userGender === 1
             ? "female"
             : "another";
 
@@ -67,8 +71,7 @@ class RegisterPharmacist extends Component {
           value.postalCode,
           value.city);
         alert("Demande d'inscription faite");
-        const { navigate } = this.props.navigation;
-        navigate("AuthPage");
+        this.props.navigation.navigate("Home");
       } catch (error) {
         alert(error.message);
       }

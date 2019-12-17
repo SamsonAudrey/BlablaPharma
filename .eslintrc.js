@@ -36,6 +36,13 @@ module.exports = {
         'comma-dangle': 'off',
         "quotes": [2, "single", "avoid-escape"],
         'no-nested-ternary': 'off',
+        'no-unused-expressions': [2, { allowShortCircuit: true, allowTernary: true }],
+        'no-underscore-dangle': 'off',
+        "jsx-a11y/aria-role": [ 2, {
+            "ignoreNonDOM": true
+        }],
+        'global-require': 'off',
+        'no-return-assign': 'off'
     },
     'globals': {
         "fetch": false

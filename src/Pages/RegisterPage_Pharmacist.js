@@ -73,7 +73,6 @@ class RegisterPharmacist extends Component {
           value.city
         );
         alert("Demande d'inscription faite");
-        console.log('tttt')
         const { navigate } = navigation;
         navigate('Home');
       } catch (error) {

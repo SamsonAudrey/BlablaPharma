@@ -143,7 +143,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     padding: 10,
-    paddingTop: 60
+    paddingTop: '10%'
+  },
+  imageView: {
+    height: '25%'
   },
   submitButton: {
     margin: 30
@@ -153,10 +156,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(255,255,255,0.4)'
-  },
-  imageView: {
-    marginTop: 0,
-    height: '40%'
   }
 });
 

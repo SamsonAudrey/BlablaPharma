@@ -56,6 +56,8 @@ class RegisterPatient extends Component {
       const value = this._form.getValue();
       const { gender } = this.state;
       const { onRegisterPatient, onRegisterInfo, navigation } = this.props;
+
+      navigation.navigate('RegisterPharmacist', { infoUser: value, gender });
       if (this.userKind === 'pharmacist' && value !== null) {
         onRegisterInfo(value, gender);
         navigation.navigate('RegisterPharmacist', { infoUser: value, gender });
@@ -68,7 +70,8 @@ class RegisterPatient extends Component {
             genderLabel, value.email, value.password);
 
           alert('Inscription faite');
-          navigation.navigate('Home');
+          this.props.navigation.navigate('Home');
+
         } catch (error) { // TODO
           alert(error.message);
         }
@@ -87,7 +90,7 @@ class RegisterPatient extends Component {
             <View style={styles.imageView}>
               <ImageBackground
                 source={this.userKind === 'patient' ? require('../assets/sign-in_cut.jpg') : require('../assets/sign-in-pharmacist_cut.png')}
-                style={{ width: '100%', height: 170, opacity: 1 }}
+                style={{ width: '100%', height: '100%', opacity: 1 }}
               >
                 <View style={styles.title}>
                   <ButtonTitle
@@ -161,6 +164,9 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingTop: '10%'
   },
+  imageView: {
+    height: '25%'
+  },
   submitButton: {
     margin: 30
   },
@@ -170,9 +176,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(255,255,255,0.4)'
   },
-  imageView: {
-    height: '25%'
-  }
 });
 
 const options = {

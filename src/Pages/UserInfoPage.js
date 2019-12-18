@@ -1,5 +1,5 @@
-import React from "react";
-import { Button } from "react-native";
+import React from 'react';
+import { Button } from 'react-native';
 
 export default class UserInfoPage extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ export default class UserInfoPage extends React.Component {
   }
 
   componentDidMount() {
-    //store.subscribe(this.render);
+    // store.subscribe(this.render);
   }
 
   handleSubmitLogout = () => {
@@ -19,40 +19,36 @@ export default class UserInfoPage extends React.Component {
     }
   };
 
-  _renderOnline = navigate => {
-    return (
-      <>
-        <Button
-          title="Logout"
-          onPress={() => {
-            /*Navigate to the authentication page*/
-            this.handleSubmitLogout();
-          }}
-        />
-      </>
-    );
-  };
+  _renderOnline = (navigate) => (
+    <>
+      <Button
+        title="Logout"
+        onPress={() => {
+          /* Navigate to the authentication page */
+          this.handleSubmitLogout();
+        }}
+      />
+    </>
+  );
 
-  _renderOffline = navigate => {
-    return (
-      <>
-        <Button
-          title="Connexion"
-          onPress={() => {
-            /*Navigate to the authentication page*/
-            navigate("AuthPage");
-          }}
-        />
-        <Button
-          title="Inscription"
-          onPress={() => {
-            /*Navigate to the register page*/
-            navigate("RegisterPage");
-          }}
-        />
-      </>
-    );
-  };
+  _renderOffline = (navigate) => (
+    <>
+      <Button
+        title="Connexion"
+        onPress={() => {
+          /* Navigate to the authentication page */
+          navigate('AuthPage');
+        }}
+      />
+      <Button
+        title="Inscription"
+        onPress={() => {
+          /* Navigate to the register page */
+          navigate('RegisterPage');
+        }}
+      />
+    </>
+  );
 
   checkConnexion = () => {
     if (this.props.isConnected) {
@@ -71,7 +67,7 @@ export default class UserInfoPage extends React.Component {
           <Button
             title="Logout"
             onPress={() => {
-              /*Navigate to the authentication page*/
+              /* Navigate to the authentication page */
               this.handleSubmitLogout();
             }}
           />
@@ -83,17 +79,16 @@ export default class UserInfoPage extends React.Component {
           <Button
             title="Connexion"
             onPress={() => {
-              /*Navigate to the authentication page*/
-              //navigate("AuthPage");
-                this.props.navigation.navigate("Connection");
+              /* Navigate to the authentication page */
+              // navigate("AuthPage");
+              this.props.navigation.navigate('Connection');
             }}
           />
           <Button
             title="Inscription"
             onPress={() => {
-              /*Navigate to the register page*/
-              this.props.navigation.navigate("Register");
-
+              /* Navigate to the register page */
+              this.props.navigation.navigate('Register');
             }}
           />
         </>

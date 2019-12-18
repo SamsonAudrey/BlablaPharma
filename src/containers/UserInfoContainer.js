@@ -1,21 +1,19 @@
-import { connect } from "react-redux";
-import UserInfoPage from "../Pages/UserInfoPage";
-import { logout } from "../actions/userAction"
+import { connect } from 'react-redux';
+import UserInfoPage from '../Pages/UserInfoPage';
+import { logout } from '../actions/userAction';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   console.log(state);
   return {
     isConnected: state.connection.isConnected
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onUserLogout: () => {
-      dispatch(logout());
-    }
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  onUserLogout: () => {
+    dispatch(logout());
+  }
+});
 
 const UserInfo = connect(
   mapStateToProps,

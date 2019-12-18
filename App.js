@@ -1,17 +1,17 @@
-import React from "react";
-import { MainStack } from "./src/navigation/RootNavigation";
-import { createAppContainer } from "react-navigation";
-import { persistor, store } from "./store";
-import { PersistGate } from "redux-persist/integration/react";
-import { Provider } from "react-redux";
+import React from 'react';
+import { createAppContainer } from 'react-navigation';
+import { PersistGate } from 'redux-persist/integration/react';
+import { Provider } from 'react-redux';
+import { persistor, store } from './store';
+import { MainStack } from './src/navigation/RootNavigation';
 
-const AppContainer = createAppContainer(MainStack);//createAppContainer(TabNavigator);
+const AppContainer = createAppContainer(MainStack);// createAppContainer(TabNavigator);
 
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <PersistGate /*loading={<Loading/>}*/ persistor={persistor}>
+        <PersistGate persistor={persistor}>
           <AppContainer />
         </PersistGate>
       </Provider>

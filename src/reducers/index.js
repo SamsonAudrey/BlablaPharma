@@ -1,10 +1,12 @@
-import user from "./userReducer";
-import { combineReducers } from "redux";
-import registerReducer from "./registerReducer";
-import connection from "./connectionReducer"
+import { combineReducers } from 'redux';
+import user from './userReducer';
+import registerReducer from './registerReducer';
+import connection from './connectionReducer';
+import navigationReducer from './navigationReducer'
 
 export default combineReducers({
   user,
   connection,
-  registerReducer
+  registerReducer,
+  navigation: navigationReducer
 });

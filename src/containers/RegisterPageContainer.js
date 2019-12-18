@@ -1,20 +1,18 @@
-import { connect } from "react-redux";
-import RegisterPage from "../Pages/RegisterPage";
-import {refreshToken, userAuth} from "../actions/userAction";
-import {userKindForRegister, userRegisterInfo, userRegisterKind} from "../actions/registerAction";
+import { connect } from 'react-redux';
+import RegisterPage from '../Pages/RegisterPage';
+import { refreshToken, userAuth } from '../actions/userAction';
+import { userKindForRegister, userRegisterInfo, userRegisterKind } from '../actions/registerAction';
 
-const mapStateToProps = state => {
-  console.log('rrrrrr ------', state)
-  return { test: "tt" };
+const mapStateToProps = (state) => {
+  console.log('rrrrrr ------', state);
+  return { test: 'tt' };
 };
 
-const mapDispatchToProps = (dispatch, state) => {
-  return {
-    onRegisterKind: (userKind) => {
-      dispatch(userRegisterKind(userKind));
-    },
-  };
-};
+const mapDispatchToProps = (dispatch, state) => ({
+  onRegisterKind: (userKind) => {
+    dispatch(userRegisterKind(userKind));
+  },
+});
 
 const Register = connect(
   mapStateToProps,

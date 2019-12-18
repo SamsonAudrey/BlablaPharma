@@ -42,7 +42,8 @@ module.exports = {
             "ignoreNonDOM": true
         }],
         'global-require': 'off',
-        'no-return-assign': 'off'
+        'no-return-assign': 'off',
+        'react/prefer-stateless-function': 'off'
     },
     'globals': {
         "fetch": false

@@ -1,15 +1,17 @@
-import React, { Component } from "react";
-import { View, StyleSheet, Text, Button, Alert, ImageBackground } from "react-native";
-import { store } from "../../store";
-import { checkToken } from "../utils/auth";
+import React, { Component } from 'react';
+import {
+  View, StyleSheet, Text, Button, Alert, ImageBackground
+} from 'react-native';
+import t from 'tcomb-form-native';
+import { store } from '../../store';
+import { checkToken } from '../utils/auth';
 
-import t from "tcomb-form-native";
-import CButton from "../components/Button";
-import HyperLinkText from "../components/HyperLinkText";
+import CButton from '../components/Button';
+import HyperLinkText from '../components/HyperLinkText';
 
-const Form = t.form.Form;
+const { Form } = t.form;
 
-const Email = t.refinement(t.String, email => {
+const Email = t.refinement(t.String, (email) => {
   const reg = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
   return reg.test(email);
 });
@@ -23,35 +25,37 @@ export default class Auth extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    //this.checkConnexion = this.checkConnexion.bind(this);
+    // this.checkConnexion = this.checkConnexion.bind(this);
   }
 
   componentDidMount() {
-    console.log("component did mount");
+    console.log('component did mount');
     this.unsubscribe = store.subscribe(this.checkConnexion);
     this.checkConnexion();
   }
 
   checkConnexion = () => {
+    const { navigate } = this.props.navigation;
     if (this.props.isConnected) {
       console.log("T'es connectéé");
       try {
-        this.props.navigation.navigate("Tab");
+        navigate('SearchPharmacists');
       } catch (e) {
-        console.log('error : ',e)
+        console.log('error : ', e);
       }
       this.unsubscribe();
-   } else {
-      console.log(this.props.isConnected + "T'es pas connecté Auth Page");
+    } else {
+      console.log(`${this.props.isConnected}T'es pas connecté Auth Page`);
     }
   };
 
   handleSubmit = () => {
-    console.log("presssss")
+    console.log('presssss');
     const value = this._form.getValue();
+    console.log('value: ', value);
     try {
       this.props.onUserAuth(value.email, value.password);
-      //this.props.navigation.navigate("Tab");
+      // this.props.navigation.navigate("Tab");
     } catch (error) {
       console.log(error.message);
     }
@@ -60,51 +64,56 @@ export default class Auth extends Component {
   render() {
     let error;
     this.props.error
-      ? (error = <Text style={{color: 'red'}}>Les identifiants donnés sont invalides</Text>)
-        : (error = <Text></Text>);
+      ? (error = <Text style={{ color: 'red' }}>Les identifiants donnés sont invalides</Text>)
+      : (error = <Text />);
     const { navigate } = this.props.navigation;
     return (
-        <View>
-          <View style={styles.titleView}>
-              <Text style={styles.title}>Connexion</Text>
-          </View>
-          <View style={styles.container}>
+      <View>
+        <View style={styles.titleView}>
+          <Text style={styles.title}>Connexion</Text>
+        </View>
+        <View style={styles.container}>
           {error}
-            <ImageBackground
-                source={require('../assets/engagement.jpg')}
-                style={{width: '100%',  height: '100%'}}>
-              <View style={styles.form}>
-                  <Form
-                      ref={c => (this._form = c)}
-                      type={User}
-                      options={options}
-                  />
-                  <View style={styles.buttonView}>
-                    <CButton
-                        title={"Connexion"}
-                        buttonStyle={'grey'}
-                        onPress={this.handleSubmit}
-                    />
-                  </View>
+          <ImageBackground
+            source={require('../assets/engagement.jpg')}
+            style={{ width: '100%', height: '100%' }}
+          >
+            <View style={styles.form}>
+              <Form
+                ref={(c) => (this._form = c)}
+                type={User}
+                options={options}
+              />
+              <View style={styles.buttonView}>
+                <CButton
+                  title="Connexion"
+                  buttonStyle="grey"
+                  onPress={this.handleSubmit}
+                />
               </View>
-            </ImageBackground>
-          </View>
-
-          <View style={styles.linkText1}>
-            <HyperLinkText
-                text={'Mot de passe oublié ?'}
-                onPress={() => null}
-                style={{color: '#BED469', marginLeft: 10, fontSize: 16, marginTop: 40}}/>
-
-            <View style={styles.linkText2}>
-              <Text style={{color: '#868788', marginLeft: 10,fontSize: 16}}>Pas encore inscrit ?</Text>
-                <HyperLinkText
-                  text={'S\'inscrire'}
-                  onPress={() => this.props.navigation.navigate('Register')}
-                  style={{color: '#BED469', marginLeft: 10, fontSize: 16}}/>
             </View>
+          </ImageBackground>
+        </View>
+
+        <View style={styles.linkText1}>
+          <HyperLinkText
+            text="Mot de passe oublié ?"
+            onPress={() => null}
+            style={{
+              color: '#BED469', marginLeft: 10, fontSize: 16, marginTop: 40
+            }}
+          />
+
+          <View style={styles.linkText2}>
+            <Text style={{ color: '#868788', marginLeft: 10, fontSize: 16 }}>Pas encore inscrit ?</Text>
+            <HyperLinkText
+              text={'S\'inscrire'}
+              onPress={() => navigate('Register')}
+              style={{ color: '#BED469', marginLeft: 10, fontSize: 16 }}
+            />
           </View>
         </View>
+      </View>
     );
   }
 }
@@ -112,7 +121,8 @@ export default class Auth extends Component {
 
 // Custom Stylesheet
 const _ = require('lodash');
-const s = _.cloneDeep(t.form.Form.stylesheet)
+
+const s = _.cloneDeep(t.form.Form.stylesheet);
 s.textbox.normal.minWidth = '80%';
 s.textbox.error.minWidth = '80%';
 s.textbox.normal.borderColor = '#707070';
@@ -128,7 +138,7 @@ s.dateValue.error.borderWidth = 1;
 s.dateValue.error.color = '#707070';
 s.dateValue.error.borderColor = '#a94442';
 s.dateValue.error.borderRadius = 5;
-s.errorBlock.fontSize= 15;
+s.errorBlock.fontSize = 15;
 
 const options = {
   fields: {
@@ -138,7 +148,7 @@ const options = {
       placeholderTextColor: '#707070',
     },
     password: {
-      error: "Le mot de passe est incorrect",
+      error: 'Le mot de passe est incorrect',
       secureTextEntry: true,
       password: true,
       placeholder: 'Mot de passe',
@@ -165,7 +175,6 @@ const styles = StyleSheet.create({
     marginTop: '5%'
   },
   buttonView: {
-    marginTop: '8%'
   },
   form: {
     paddingTop: '12%',
@@ -173,7 +182,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor:'rgba(255,255,255,0.4)'
+    backgroundColor: 'rgba(255,255,255,0.4)'
   },
   linkText2: {
     marginTop: '5%',

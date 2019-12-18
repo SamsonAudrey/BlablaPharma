@@ -1,26 +1,18 @@
 
 import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import SearchBarPharmacists from '../containers/PharmacistsSearchBarContainer';
+import PharmacistsListContainer from '../containers/PharmacistsListContainer';
 
-class ListPharmacists extends Component {
+class SearchPharmacistsPage extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>ListPharmacists</Text>
+      <View>
+        <SearchBarPharmacists />
+        <PharmacistsListContainer />
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    padding: 10,
-    paddingTop: 80
-  }
-});
-
-export default ListPharmacists;
+export default SearchPharmacistsPage;

@@ -3,7 +3,6 @@ import {
   ImageBackground, StyleSheet, Text, View
 } from 'react-native';
 import t from 'tcomb-form-native';
-import { getStoredState } from 'redux-persist';
 import { store } from '../../store';
 
 import CButton from '../components/Button';

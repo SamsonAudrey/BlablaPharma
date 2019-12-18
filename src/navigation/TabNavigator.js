@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import React from 'react';
 import * as colors from 'react-native';
 import { Text, TouchableHighlight, Image } from 'react-native';
-import SearchPharmacistsContainer from '../containers/SearchPharmacistsContainer';
+import SearchPharmacistsPage from '../Pages/SearchPharmacistsPage';
 import UserInfoContainer from '../containers/UserInfoContainer';
 import ChatPageContainer from '../containers/ChatPageContainer';
 import BlogPageContainer from '../containers/BlogPageContainer';
@@ -14,7 +14,7 @@ import AuthPageContainer from '../containers/AuthPageContainer';
 
 const SearchPharmacistsNavigator = createStackNavigator(
   {
-    SearchPharmacists: SearchPharmacistsContainer
+    SearchPharmacists: SearchPharmacistsPage
   },
   {
     initialRouteName: 'SearchPharmacists'
@@ -24,7 +24,7 @@ const SearchPharmacistsNavigator = createStackNavigator(
 const UserInfoNavigator = createStackNavigator(
   {
     UserInfo: UserInfoContainer,
-    SearchPharmacists: SearchPharmacistsContainer,
+    SearchPharmacists: SearchPharmacistsPage,
     Register: RegisterPageContainer,
     RegisterPatient: RegisterPatientContainer,
     RegisterPharmacist: RegisterPharmacistContainer,
@@ -53,16 +53,17 @@ const BlogNavigator = createStackNavigator(
   }
 );
 
-export const TabNavigator = createBottomTabNavigator(
+export default createBottomTabNavigator(
   {
     Blog: {
       screen: BlogNavigator,
       navigationOptions: ({ navigation, screenProps }) => ({
         tabBarIcon: () => (
           <Text>Blog</Text>),
-        headerTitle: <TouchableHighlight onPress={() => navigation.navigate('Home')}>
-          <Image source={require('../assets/logo-navbar.png')} style={{ width: 300, height: 41 }} />
-        </TouchableHighlight>,
+        headerTitle:
+  <TouchableHighlight onPress={() => navigation.navigate('Home')}>
+    <Image source={require('../assets/logo-navbar.png')} style={{ width: 300, height: 41 }} />
+  </TouchableHighlight>,
       })
     },
     SearchPharmacists: {
@@ -70,9 +71,10 @@ export const TabNavigator = createBottomTabNavigator(
       navigationOptions: ({ navigation, screenProps }) => ({
         tabBarIcon: () => (
           <Text>Pharmaciens</Text>),
-        headerTitle: <TouchableHighlight onPress={() => navigation.navigate('Home')}>
-          <Image source={require('../assets/logo-navbar.png')} style={{ width: 300, height: 41 }} />
-        </TouchableHighlight>,
+        headerTitle:
+  <TouchableHighlight onPress={() => navigation.navigate('Home')}>
+    <Image source={require('../assets/logo-navbar.png')} style={{ width: 300, height: 41 }} />
+  </TouchableHighlight>,
       })
     },
     Chat: {
@@ -80,9 +82,10 @@ export const TabNavigator = createBottomTabNavigator(
       navigationOptions: ({ navigation, screenProps }) => ({
         tabBarIcon: () => (
           <Text>Chat</Text>),
-        headerTitle: <TouchableHighlight onPress={() => navigation.navigate('Home')}>
-          <Image source={require('../assets/logo-navbar.png')} style={{ width: 300, height: 41 }} />
-        </TouchableHighlight>,
+        headerTitle:
+  <TouchableHighlight onPress={() => navigation.navigate('Home')}>
+    <Image source={require('../assets/logo-navbar.png')} style={{ width: 300, height: 41 }} />
+  </TouchableHighlight>,
       })
     },
     UserInfo: {
@@ -90,9 +93,10 @@ export const TabNavigator = createBottomTabNavigator(
       navigationOptions: ({ navigation, screenProps }) => ({
         tabBarIcon: () => (
           <Text>UserInfo</Text>),
-        headerTitle: <TouchableHighlight onPress={() => navigation.navigate('Home')}>
-          <Image source={require('../assets/logo-navbar.png')} style={{ width: 300, height: 41 }} />
-        </TouchableHighlight>,
+        headerTitle:
+  <TouchableHighlight onPress={() => navigation.navigate('Home')}>
+    <Image source={require('../assets/logo-navbar.png')} style={{ width: 300, height: 41 }} />
+  </TouchableHighlight>,
       })
     }
   },

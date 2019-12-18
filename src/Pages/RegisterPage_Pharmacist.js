@@ -1,13 +1,11 @@
-
 import React, { Component } from 'react';
-import { View, StyleSheet, ImageBackground } from 'react-native';
+import { ImageBackground, StyleSheet, View } from 'react-native';
 import t from 'tcomb-form-native';
 import moment from 'moment';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import CButton from '../components/Button';
 import ButtonTitle from '../components/ButtonTitle';
 import { store } from '../../store';
-
 
 const { Form } = t.form;
 
@@ -37,8 +35,12 @@ class RegisterPharmacist extends Component {
     });
 
     const state = store.getState();
-    this.userInfo = state.navigation.userInfo;
-    this.userGender = state.navigation.userGender;
+    this.userInfo = state.navigationInfo.userInfo;
+    this.userGender = state.navigationInfo.userGender;
+  }
+
+  onChange(value) {
+    this.state.user = value;
   }
 
   handleSubmit = () => {
@@ -55,7 +57,8 @@ class RegisterPharmacist extends Component {
             ? 'female'
             : 'another';
 
-        this.props.onRegisterPharmacist(
+        const { onRegisterPharmacist, navigation } = this.props;
+        onRegisterPharmacist(
           user.firstName,
           user.lastName,
           birthday,
@@ -70,7 +73,8 @@ class RegisterPharmacist extends Component {
           value.city
         );
         alert("Demande d'inscription faite");
-        this.props.navigation.navigate('Home');
+        const { navigate } = navigation;
+        navigate('Home');
       } catch (error) {
         alert(error.message);
       }
@@ -114,14 +118,10 @@ class RegisterPharmacist extends Component {
       </View>
     );
   }
-
-
-  onChange(value) {
-    this.state.user = value;
-  }
 }
 
 // Custom Stylesheet
+// eslint-disable-next-line import/no-extraneous-dependencies
 const _ = require('lodash');
 
 const s2 = _.cloneDeep(t.form.Form.stylesheet);
@@ -144,7 +144,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     padding: 10,
-    paddingTop: 60
+    paddingTop: '10%'
+  },
+  imageView: {
+    height: '25%'
   },
   submitButton: {
     margin: 30
@@ -154,10 +157,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(255,255,255,0.4)'
-  },
-  imageView: {
-    marginTop: 0,
-    height: '40%'
   }
 });
 

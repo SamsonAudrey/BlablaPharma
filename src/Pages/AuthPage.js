@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import {
-  View, StyleSheet, Text, Button, Alert, ImageBackground
+  ImageBackground, StyleSheet, Text, View
 } from 'react-native';
 import t from 'tcomb-form-native';
 import { store } from '../../store';
-import { checkToken } from '../utils/auth';
 
 import CButton from '../components/Button';
 import HyperLinkText from '../components/HyperLinkText';
@@ -35,27 +34,29 @@ export default class Auth extends Component {
   }
 
   checkConnexion = () => {
-    const { navigate } = this.props.navigation;
-    if (this.props.isConnected) {
+    const { isConnected } = this.props;
+    if (isConnected) {
       console.log("T'es connectéé");
       try {
-        navigate('SearchPharmacists');
+        const { navigation } = this.props;
+        navigation.navigate('Tab');
       } catch (e) {
         console.log('error : ', e);
       }
       this.unsubscribe();
     } else {
-      console.log(`${this.props.isConnected}T'es pas connecté Auth Page`);
+      console.log(`${isConnected}T'es pas connecté Auth Page`);
     }
   };
 
   handleSubmit = () => {
     console.log('presssss');
     const value = this._form.getValue();
-    console.log('value: ', value);
+    console.log(value);
     try {
-      this.props.onUserAuth(value.email, value.password);
-      // this.props.navigation.navigate("Tab");
+      const { onUserAuth } = this.props;
+      onUserAuth(value.email, value.password);
+      // this.props.navigationInfo.navigate("Tab");
     } catch (error) {
       console.log(error.message);
     }
@@ -63,10 +64,11 @@ export default class Auth extends Component {
 
   render() {
     let error;
-    this.props.error
+    const { error: error1, navigation } = this.props;
+    // eslint-disable-next-line no-unused-expressions
+    error1
       ? (error = <Text style={{ color: 'red' }}>Les identifiants donnés sont invalides</Text>)
       : (error = <Text />);
-    const { navigate } = this.props.navigation;
     return (
       <View>
         <View style={styles.titleView}>
@@ -108,7 +110,7 @@ export default class Auth extends Component {
             <Text style={{ color: '#868788', marginLeft: 10, fontSize: 16 }}>Pas encore inscrit ?</Text>
             <HyperLinkText
               text={'S\'inscrire'}
-              onPress={() => navigate('Register')}
+              onPress={() => navigation.navigate('Register')}
               style={{ color: '#BED469', marginLeft: 10, fontSize: 16 }}
             />
           </View>
@@ -120,6 +122,7 @@ export default class Auth extends Component {
 
 
 // Custom Stylesheet
+// eslint-disable-next-line import/no-extraneous-dependencies
 const _ = require('lodash');
 
 const s = _.cloneDeep(t.form.Form.stylesheet);

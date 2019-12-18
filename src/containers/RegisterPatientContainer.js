@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+// eslint-disable-next-line camelcase
 import RegisterPage_Patient from '../Pages/RegisterPage_Patient';
 import { registerPatient, userRegisterInfo } from '../actions/registerAction';
 

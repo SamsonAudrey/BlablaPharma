@@ -1,19 +1,14 @@
-
 import React, { Component } from 'react';
 import {
-  View, ImageBackground, Text, StyleSheet
+  ImageBackground, StyleSheet, Text, View
 } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import CButton from '../components/Button';
 import HyperLinkText from '../components/HyperLinkText';
 
 class Register extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
-    const { navigate } = this.props.navigation;
+    const { navigation } = this.props;
+    const { navigate } = navigation;
     return (
       <View>
         <View style={styles.titleView}>
@@ -29,8 +24,9 @@ class Register extends Component {
                 title="Pharmacien"
                 buttonStyle="grey"
                 onPress={() => {
-                  this.props.onRegisterKind('pharmacist');
-                  this.props.navigation.navigate('RegisterPatient', { userKind: 'pharmacist' });
+                  const { onRegisterKind } = this.props;
+                  onRegisterKind('pharmacist');
+                  navigation.navigate('RegisterPatient', { userKind: 'pharmacist' });
                 }}
               />
             </View>
@@ -46,8 +42,9 @@ class Register extends Component {
                 title="Patient"
                 buttonStyle="green"
                 onPress={() => {
-                  this.props.onRegisterKind('patient');
-                  this.props.navigation.navigate('RegisterPatient', { userKind: 'patient' });
+                  const { onRegisterKind } = this.props;
+                  onRegisterKind('patient');
+                  navigation.navigate('RegisterPatient', { userKind: 'patient' });
                 }}
               />
             </View>
@@ -58,7 +55,7 @@ class Register extends Component {
           <HyperLinkText
             text="Se connecter"
             nav="AuthPage"
-            onPress={() => this.props.navigation.navigate('Connection')}
+            onPress={() => navigate('Connection')}
             style={{ color: '#BED469', marginLeft: 10, fontSize: 16 }}
           />
         </View>
@@ -94,6 +91,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   }
 });
-
 
 export default Register;

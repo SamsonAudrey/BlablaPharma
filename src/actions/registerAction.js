@@ -1,8 +1,10 @@
 import { API_URL } from 'react-native-dotenv';
 import {
-  CONNECT_USER, REGISTER_FAILURE, REGISTER_INFO, REGISTER_KIND
+  CONNECT_USER,
+  REGISTER_FAILURE,
+  REGISTER_INFO,
+  REGISTER_KIND
 } from './actionTypes';
-import { store } from '../../store';
 
 export const registerPatient = (
   firstName,
@@ -30,6 +32,7 @@ export const registerPatient = (
     if (response.ok) {
       console.log('REGISTERED');
     } else {
+      console.log('NOT REGISTERED');
       console.log('response ', response);
     }
     // dispatch(registerSuccess(response));
@@ -77,9 +80,9 @@ export const registerPharmacist = (
     if (response.ok) {
       console.log('REGISTERED');
     } else {
+      console.log('NOT REGISTERED');
       console.log('response ', response);
     }
-    // store.dispatch(registerSuccess('pharmacist'));
   })
   .catch((error) => {
     console.log(`error ${error}`);

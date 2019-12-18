@@ -1,5 +1,3 @@
-
-'use strict';
 import React, { Component } from 'react';
 import { ImageBackground, StyleSheet, View } from 'react-native';
 import t from 'tcomb-form-native';
@@ -37,8 +35,12 @@ class RegisterPharmacist extends Component {
     });
 
     const state = store.getState();
-    this.userInfo = state.registerReducer.userInfo;
-    this.userGender = state.registerReducer.userGender;
+    this.userInfo = state.navigation.userInfo;
+    this.userGender = state.navigation.userGender;
+  }
+
+  onChange(value) {
+    this.state.user = value;
   }
 
   handleSubmit = () => {
@@ -71,8 +73,7 @@ class RegisterPharmacist extends Component {
           value.city
         );
         alert("Demande d'inscription faite");
-        const { navigate } = navigation;
-        navigate('Home');
+        navigation.navigate('Home');
       } catch (error) {
         alert(error.message);
       }
@@ -84,6 +85,7 @@ class RegisterPharmacist extends Component {
       <View style={{ flex: 1 }}>
         <KeyboardAwareScrollView
           automaticallyAdjustContentInsets={false}
+          resetScrollToCoords={{ x: 0, y: 0 }}
           enableOnAndroid
         >
           <View style={styles.imageView}>
@@ -98,7 +100,7 @@ class RegisterPharmacist extends Component {
           </View>
           <View style={styles.container}>
             <Form
-              ref={(c) => (this._form = c)}
+              ref={(c) => this._form = c}
               type={this.User}
               options={options}
               onChange={(v) => this.onChange(v)}
@@ -115,15 +117,10 @@ class RegisterPharmacist extends Component {
       </View>
     );
   }
-
-
-
-  onChange(value) {
-    this.state.user = value;
-  }
 }
 
 // Custom Stylesheet
+// eslint-disable-next-line import/no-extraneous-dependencies
 const _ = require('lodash');
 
 const s2 = _.cloneDeep(t.form.Form.stylesheet);

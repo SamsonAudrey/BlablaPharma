@@ -1,8 +1,5 @@
-
 import React, { Component } from 'react';
-import {
-  ImageBackground, StyleSheet, View, Text
-} from 'react-native';
+import { ImageBackground, StyleSheet, View } from 'react-native';
 import t from 'tcomb-form-native';
 import moment from 'moment';
 import RadioForm from 'react-native-simple-radio-button';
@@ -12,13 +9,11 @@ import CButton from '../components/Button';
 import { store } from '../../store';
 
 const { Form } = t.form;
-const gender_props = [
+const genderProps = [
   { label: 'Homme   ', value: 0 },
   { label: 'Femme   ', value: 1 },
   { label: 'Autre', value: 2 },
 ];
-
-const state = store.getState();
 
 class RegisterPatient extends Component {
   constructor(props) {
@@ -27,18 +22,20 @@ class RegisterPatient extends Component {
       user: {},
       gender: 0
     };
-    console.log(`hdeedhj${JSON.stringify(this.props.navigation.getParam('userKind'))}`);
-
-
     this.Email = t.refinement(t.String, (email) => {
       const reg = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
       return reg.test(email);
     });
-    this.Password = t.refinement(t.String, (pwd) => { // TODO
+    this.Password = t.refinement(t.String, (pwd) => {
       const reg = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[*@!#%&()[\]^~\\|?='"{}/_-]).{8,}$/;
       return pwd.length >= 8 && reg.test(pwd); // minimum password length should be 8 symbols
     });
-    this.EqualPassword = t.refinement(t.String, (s) => s === this.state.user.password);
+
+    this.EqualPassword = t.refinement(t.String, (s) => {
+      const { user } = this.state;
+      const { password } = user;
+      return password === s;
+    });
     this.User = t.struct({
       email: this.Email,
       firstName: t.String,
@@ -47,10 +44,8 @@ class RegisterPatient extends Component {
       confirmPassword: this.EqualPassword,
       birth: t.Date
     });
-
     const state = store.getState();
-    this.userKind = state.registerReducer.userKind;
-    console.log('eeeeee ', this.userKind);
+    this.userKind = state.navigation.userKind;
   }
 
   onChange(value) {
@@ -59,20 +54,21 @@ class RegisterPatient extends Component {
 
     handleSubmit = () => {
       const value = this._form.getValue();
-      const { navigation } = this.props;
+      const { gender } = this.state;
+      const { onRegisterPatient, onRegisterInfo, navigation } = this.props;
       if (this.userKind === 'pharmacist' && value !== null) {
-        this.props.onRegisterInfo(value, this.state.gender);
-        this.props.navigation.navigate('RegisterPharmacist', { infoUser: value, gender: this.state.gender });
+        onRegisterInfo(value, gender);
+        navigation.navigate('RegisterPharmacist', { infoUser: value, gender });
       } else if (value !== null) {
         // REGISTER PATIENT USER
         try {
-          const gender = this.state.gender === 0 ? 'male' : this.state.gender === 1 ? 'female' : 'another';
+          const genderLabel = gender === 0 ? 'male' : gender === 1 ? 'female' : 'another';
           const birthday = moment(value.birth).format('YYYY-MM-DD');
-          this.props.onRegisterPatient(value.firstName, value.lastName, birthday,
-            gender, value.email, value.password);
+          onRegisterPatient(value.firstName, value.lastName, birthday,
+            genderLabel, value.email, value.password);
 
           alert('Inscription faite');
-          this.props.navigation.navigate('Home');
+          navigation.navigate('Home');
         } catch (error) { // TODO
           alert(error.message);
         }
@@ -81,8 +77,6 @@ class RegisterPatient extends Component {
 
 
     render() {
-      const { navigation } = this.props;
-
       return (
         <View style={{ flex: 1 }}>
           <KeyboardAwareScrollView
@@ -114,7 +108,7 @@ class RegisterPatient extends Component {
                 onChange={(v) => this.onChange(v)}
               />
               <RadioForm
-                radio_props={gender_props}
+                radio_props={genderProps}
                 initial={0}
                 onPress={(value) => { this.state.gender = value; }}
                 formHorizontal
@@ -139,6 +133,7 @@ class RegisterPatient extends Component {
 }
 
 // Custom Stylesheet
+// eslint-disable-next-line import/no-extraneous-dependencies
 const _ = require('lodash');
 
 const s = _.cloneDeep(t.form.Form.stylesheet);

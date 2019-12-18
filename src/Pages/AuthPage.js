@@ -102,12 +102,12 @@ export default class Auth extends Component {
             text="Mot de passe oublié ?"
             onPress={() => null}
             style={{
-              color: '#BED469', marginLeft: 10, fontSize: 16, marginTop: 40
+              color: '#BED469', marginLeft: 20, fontSize: 16, marginTop: '5%'
             }}
           />
 
           <View style={styles.linkText2}>
-            <Text style={{ color: '#868788', marginLeft: 10, fontSize: 16 }}>Pas encore inscrit ?</Text>
+            <Text style={{ color: '#868788', marginLeft: 20, fontSize: 16 }}>Pas encore inscrit ?</Text>
             <HyperLinkText
               text={'S\'inscrire'}
               onPress={() => navigation.navigate('Register')}
@@ -133,6 +133,7 @@ s.textbox.normal.color = '#707070';
 s.textbox.normal.backgroundColor = '#fff';
 s.textbox.error.backgroundColor = '#fff';
 s.textbox.normal.borderRadius = 5;
+s.textbox.normal.marginBottom = 20;
 s.dateValue.normal.color = '#707070';
 s.dateValue.normal.borderWidth = 1;
 s.dateValue.normal.borderColor = '#707070';
@@ -142,6 +143,7 @@ s.dateValue.error.color = '#707070';
 s.dateValue.error.borderColor = '#a94442';
 s.dateValue.error.borderRadius = 5;
 s.errorBlock.fontSize = 15;
+
 
 const options = {
   fields: {
@@ -167,25 +169,26 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '10%',
+    marginTop: 30,
+    marginBottom: 10,
   },
   title: {
     color: '#BED469',
     fontSize: 24
   },
   container: {
-    height: '50%',
-    marginTop: '5%'
+    height: '70%',
   },
   buttonView: {
+    marginTop: 15
   },
   form: {
-    paddingTop: '12%',
+    paddingTop: '40%',
     padding: '5%',
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.4)'
+    backgroundColor: 'rgba(255,255,255,0.4)',
   },
   linkText2: {
     marginTop: '5%',

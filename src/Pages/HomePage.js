@@ -1,21 +1,15 @@
 
 import React, { Component } from 'react';
 import {
-  View, StyleSheet, Text, ImageBackground
+  View, StyleSheet, ImageBackground
 } from 'react-native';
-import CButton from '../components/Button';
-import ButtonTitle from '../components/ButtonTitle';
 import FatButton from '../components/FatButton';
 import HyperLinkText from '../components/HyperLinkText';
 
 class Home extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     return (
-      <View>
+      <View style={styles.container}>
 
         <View style={styles.imageView}>
           <ImageBackground
@@ -36,12 +30,12 @@ class Home extends Component {
           <HyperLinkText
             text="Inscription"
             onPress={() => this.props.navigation.navigate('Register')}
-            style={{ color: '#868788', marginTop: 30, fontSize: 16 }}
+            style={{ color: '#868788', fontSize: 16 }}
           />
           <HyperLinkText
             text="Connexion"
             onPress={() => this.props.navigation.navigate('Connection')}
-            style={{ color: '#868788', marginTop: 15, fontSize: 16 }}
+            style={{ color: '#868788', fontSize: 16 }}
           />
         </View>
 
@@ -53,16 +47,10 @@ class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    padding: 10,
-    paddingTop: 80
   },
   imageView: {
-    marginTop: 130,
-    marginBottom: 30,
-    height: '60%',
+    height: '80%',
+    marginTop: '20%'
   },
   buttonView: {
     flex: 1,
@@ -71,7 +59,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.3)',
   },
   linkText: {
-    justifyContent: 'flex-end',
+    justifyContent: 'space-around',
+    flexDirection: 'row',
     alignItems: 'center',
   }
 });

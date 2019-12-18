@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     height: '25%'
   },
   submitButton: {
-    margin: 30
+    //margin: 30
   },
   title: {
     flex: 1,

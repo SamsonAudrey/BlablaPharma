@@ -60,7 +60,7 @@ export const TabNavigator = createBottomTabNavigator(
       navigationOptions: ({ navigation, screenProps }) => ({
         tabBarIcon: () => (
           <Text>Blog</Text>),
-        headerTitle: <TouchableHighlight onPress={(nav) => navigation.navigate('Home')}>
+        headerTitle: <TouchableHighlight onPress={() => navigation.navigate('Home')}>
           <Image source={require('../assets/logo-navbar.png')} style={{ width: 300, height: 41 }} />
                      </TouchableHighlight>,
       })
@@ -70,7 +70,7 @@ export const TabNavigator = createBottomTabNavigator(
       navigationOptions: ({ navigation, screenProps }) => ({
         tabBarIcon: () => (
           <Text>Pharmaciens</Text>),
-        headerTitle: <TouchableHighlight onPress={(nav) => navigation.navigate('Home')}>
+        headerTitle: <TouchableHighlight onPress={() => navigation.navigate('Home')}>
           <Image source={require('../assets/logo-navbar.png')} style={{ width: 300, height: 41 }} />
                      </TouchableHighlight>,
       })
@@ -80,9 +80,9 @@ export const TabNavigator = createBottomTabNavigator(
       navigationOptions: ({ navigation, screenProps }) => ({
         tabBarIcon: () => (
           <Text>Chat</Text>),
-        headerTitle: <TouchableHighlight onPress={(nav) => navigation.navigate('Home')}>
+        headerTitle: <TouchableHighlight onPress={() => navigation.navigate('Home')}>
           <Image source={require('../assets/logo-navbar.png')} style={{ width: 300, height: 41 }} />
-                     </TouchableHighlight>,
+        </TouchableHighlight>,
       })
     },
     UserInfo: {
@@ -90,7 +90,7 @@ export const TabNavigator = createBottomTabNavigator(
       navigationOptions: ({ navigation, screenProps }) => ({
         tabBarIcon: () => (
           <Text>UserInfo</Text>),
-        headerTitle: <TouchableHighlight onPress={(nav) => navigation.navigate('Home')}>
+        headerTitle: <TouchableHighlight onPress={() => navigation.navigate('Home')}>
           <Image source={require('../assets/logo-navbar.png')} style={{ width: 300, height: 41 }} />
                      </TouchableHighlight>,
       })

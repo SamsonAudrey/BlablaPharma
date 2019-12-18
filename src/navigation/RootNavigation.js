@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createSwitchNavigator } from 'react-navigation';
 import HomePage from '../Pages/HomePage';
 import { TabNavigator } from './TabNavigator';
 

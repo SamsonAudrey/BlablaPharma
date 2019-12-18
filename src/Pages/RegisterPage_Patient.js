@@ -56,8 +56,6 @@ class RegisterPatient extends Component {
       const value = this._form.getValue();
       const { gender } = this.state;
       const { onRegisterPatient, onRegisterInfo, navigation } = this.props;
-
-      navigation.navigate('RegisterPharmacist', { infoUser: value, gender });
       if (this.userKind === 'pharmacist' && value !== null) {
         onRegisterInfo(value, gender);
         navigation.navigate('RegisterPharmacist', { infoUser: value, gender });
@@ -70,8 +68,7 @@ class RegisterPatient extends Component {
             genderLabel, value.email, value.password);
 
           alert('Inscription faite');
-          this.props.navigation.navigate('Home');
-
+          navigation.navigate('Home');
         } catch (error) { // TODO
           alert(error.message);
         }

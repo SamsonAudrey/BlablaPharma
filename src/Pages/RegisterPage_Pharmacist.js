@@ -35,8 +35,8 @@ class RegisterPharmacist extends Component {
     });
 
     const state = store.getState();
-    this.userInfo = state.navigation.userInfo;
-    this.userGender = state.navigation.userGender;
+    this.userInfo = state.navigationInfo.userInfo;
+    this.userGender = state.navigationInfo.userGender;
   }
 
   onChange(value) {
@@ -57,7 +57,7 @@ class RegisterPharmacist extends Component {
             ? 'female'
             : 'another';
 
-        const { navigation, onRegisterPharmacist } = this.props;
+        const { onRegisterPharmacist, navigation } = this.props;
         onRegisterPharmacist(
           user.firstName,
           user.lastName,
@@ -73,7 +73,9 @@ class RegisterPharmacist extends Component {
           value.city
         );
         alert("Demande d'inscription faite");
-        navigation.navigate('Home');
+        console.log('tttt')
+        const { navigate } = navigation;
+        navigate('Home');
       } catch (error) {
         alert(error.message);
       }

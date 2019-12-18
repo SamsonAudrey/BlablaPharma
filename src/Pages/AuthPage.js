@@ -56,7 +56,7 @@ export default class Auth extends Component {
     try {
       const { onUserAuth } = this.props;
       onUserAuth(value.email, value.password);
-      // this.props.navigation.navigate("Tab");
+      // this.props.navigationInfo.navigate("Tab");
     } catch (error) {
       console.log(error.message);
     }

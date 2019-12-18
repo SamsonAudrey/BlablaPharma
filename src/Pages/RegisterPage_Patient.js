@@ -45,7 +45,7 @@ class RegisterPatient extends Component {
       birth: t.Date
     });
     const state = store.getState();
-    this.userKind = state.navigation.userKind;
+    this.userKind = state.navigationInfo.userKind;
   }
 
   onChange(value) {

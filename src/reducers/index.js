@@ -8,5 +8,5 @@ export default combineReducers({
   user,
   connection,
   registerReducer,
-  navigation: navigationReducer
+  navigationInfo: navigationReducer
 });

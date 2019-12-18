@@ -6,7 +6,8 @@ import {
   CONNECT_USER_FAILURE,
   REFRESH_TOKEN_SUCCESS,
   REFRESH_TOKEN_FAILURE,
-  LOGOUT
+  LOGOUT,
+  ERROR_401
 } from './actionTypes';
 
 export const userAuth = (userEmail, userPassword) => {
@@ -24,6 +25,8 @@ export const userAuth = (userEmail, userPassword) => {
       })
       .catch((error) => {
         dispatch(userAuthFailure(error));
+        dispatch(error401());
+        console.log("zzzzzzzzzzzzzzzzzzzzzz")
       });
   }
   // thunk.interceptInOffline = true;
@@ -47,6 +50,10 @@ export const userAuthFailure = (error) => ({
   payload: {
     error: error.message
   }
+});
+
+export const error401 = () => ({
+  type: ERROR_401
 });
 
 export const refreshToken = (refreshTokenValue) => {

@@ -49,7 +49,7 @@ class RegisterPatient extends Component {
     });
 
     const state = store.getState();
-    this.userKind = state.registerReducer.userKind;
+    this.userKind = state.navigation.userKind;
     console.log('eeeeee ', this.userKind);
   }
 

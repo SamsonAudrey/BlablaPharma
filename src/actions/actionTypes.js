@@ -11,3 +11,5 @@ export const REFRESH_TOKEN_FAILURE = 'refresh_token_failure';
 export const REGISTER_KIND = 'register_user_kind';
 export const REGISTER_INFO = 'register_user_info';
 export const LOGOUT = 'logout';
+export const ERROR_401 = 'error_401';
+export const CLEAR_ERROR = 'clear_error';

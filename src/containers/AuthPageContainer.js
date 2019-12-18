@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import AuthPage from '../Pages/AuthPage';
 import { userAuth, refreshToken } from '../actions/userAction';
-import AuthUtils from '../utils/auth';
+import { clearError } from '../actions/errorAction'
 
 const mapStateToProps = (state) => {
   console.log(`yooo${JSON.stringify(state)}`);
   return {
-    error: state.user.error,
+    error: state.error.error,
     isConnected: state.connection.isConnected
   };
 };
@@ -17,6 +17,9 @@ const mapDispatchToProps = (dispatch, state) => ({
   },
   onTokenRefresh: () => {
     dispatch(refreshToken(state.refreshToken));
+  },
+  onErrorClear: () => {
+    dispatch(clearError());
   }
 });
 

@@ -15,7 +15,7 @@ import reducer from './src/reducers';
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['network', 'user.error'],
+  blacklist: ['network', 'error'],
   stateReconciler: autoMergeLevel2
 };
 const persistedReducer = persistReducer(persistConfig, reducer);

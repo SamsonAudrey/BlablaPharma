@@ -62,7 +62,7 @@ export const TabNavigator = createBottomTabNavigator(
           <Text>Blog</Text>),
         headerTitle: <TouchableHighlight onPress={(nav) => navigation.navigate('Home')}>
           <Image source={require('../assets/logo-navbar.png')} style={{ width: 300, height: 41 }} />
-                     </TouchableHighlight>,
+        </TouchableHighlight>,
       })
     },
     SearchPharmacists: {
@@ -72,7 +72,7 @@ export const TabNavigator = createBottomTabNavigator(
           <Text>Pharmaciens</Text>),
         headerTitle: <TouchableHighlight onPress={(nav) => navigation.navigate('Home')}>
           <Image source={require('../assets/logo-navbar.png')} style={{ width: 300, height: 41 }} />
-                     </TouchableHighlight>,
+        </TouchableHighlight>,
       })
     },
     Chat: {
@@ -82,7 +82,7 @@ export const TabNavigator = createBottomTabNavigator(
           <Text>Chat</Text>),
         headerTitle: <TouchableHighlight onPress={(nav) => navigation.navigate('Home')}>
           <Image source={require('../assets/logo-navbar.png')} style={{ width: 300, height: 41 }} />
-                     </TouchableHighlight>,
+        </TouchableHighlight>,
       })
     },
     UserInfo: {
@@ -92,7 +92,7 @@ export const TabNavigator = createBottomTabNavigator(
           <Text>UserInfo</Text>),
         headerTitle: <TouchableHighlight onPress={(nav) => navigation.navigate('Home')}>
           <Image source={require('../assets/logo-navbar.png')} style={{ width: 300, height: 41 }} />
-                     </TouchableHighlight>,
+        </TouchableHighlight>,
       })
     }
   },

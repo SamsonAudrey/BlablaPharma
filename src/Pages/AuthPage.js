@@ -3,6 +3,7 @@ import {
   View, StyleSheet, Text, Button, Alert, ImageBackground
 } from 'react-native';
 import t from 'tcomb-form-native';
+import { getStoredState } from 'redux-persist';
 import { store } from '../../store';
 import { checkToken } from '../utils/auth';
 
@@ -30,8 +31,12 @@ export default class Auth extends Component {
 
   componentDidMount() {
     console.log('component did mount');
-    this.unsubscribe = store.subscribe(this.checkConnexion);
+    this.unsubscribe = store.subscribe(this.checkConnexion, this.render);
     this.checkConnexion();
+  }
+
+  componentWillUnmount() {
+    this.props.onErrorClear();
   }
 
   checkConnexion = () => {
@@ -62,9 +67,13 @@ export default class Auth extends Component {
   };
 
   render() {
+    const state = store.getState();
+    console.log(`uuuuu${JSON.stringify(state)}`);
     let error;
-    this.props.error
-      ? (error = <Text style={{ color: 'red' }}>Les identifiants donnés sont invalides</Text>)
+    state.error.error
+      ? (state.error.error === '401')
+        ? (error = <Text style={{ color: 'red' }}>Les identifiants donnés sont invalides</Text>)
+        : (error = <Text />)
       : (error = <Text />);
     const { navigate } = this.props.navigation;
     return (

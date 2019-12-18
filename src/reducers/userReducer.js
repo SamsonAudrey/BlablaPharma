@@ -18,8 +18,7 @@ export default function user(state = {}, action) {
       return {
         accessToken: state.accessToken,
         refreshToken: state.refreshToken,
-        account: state.account,
-        error: action.payload.error
+        account: state.account
       };
     case REFRESH_TOKEN_SUCCESS:
       return {
@@ -31,15 +30,13 @@ export default function user(state = {}, action) {
       return {
         accessToken: state.accessToken,
         refreshToken: state.refreshToken,
-        account: state.account,
-        error: action.payload.error
+        account: state.account
       };
     case LOGOUT:
       return {
         accessToken: undefined,
         refreshToken: undefined,
         account: undefined,
-        error: undefined
       };
     default:
       return state;

@@ -3,6 +3,7 @@ import {
   ImageBackground, StyleSheet, Text, View
 } from 'react-native';
 import t from 'tcomb-form-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { store } from '../../store';
 
 import CButton from '../components/Button';
@@ -70,7 +71,11 @@ export default class Auth extends Component {
       ? (error = <Text style={{ color: 'red' }}>Les identifiants donnés sont invalides</Text>)
       : (error = <Text />);
     return (
-      <View>
+      <KeyboardAwareScrollView
+        automaticallyAdjustContentInsets={false}
+        enableOnAndroid
+        style={{ flex: 1 }}
+      >
         <View style={styles.titleView}>
           <Text style={styles.title}>Connexion</Text>
         </View>
@@ -115,7 +120,7 @@ export default class Auth extends Component {
             />
           </View>
         </View>
-      </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
@@ -183,9 +188,9 @@ const styles = StyleSheet.create({
   form: {
     paddingTop: '40%',
     padding: '5%',
-    flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
+    height: '100%',
     backgroundColor: 'rgba(255,255,255,0.4)',
   },
   linkText2: {

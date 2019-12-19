@@ -150,7 +150,7 @@ s.dateValue.error.minWidth = '70%';
 s.dateValue.error.color = '#707070';
 s.dateValue.error.borderColor = '#a94442';
 s.dateValue.error.borderRadius = 5;
-s.errorBlock.fontSize = 14;
+s.errorBlock.fontSize = 15;
 
 const styles = StyleSheet.create({
   form: {

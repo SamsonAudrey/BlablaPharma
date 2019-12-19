@@ -66,13 +66,9 @@ export default class Auth extends Component {
   };
 
   render() {
-    const state = store.getState();
-    console.log(`uuuuu${JSON.stringify(state)}`);
     let error;
-    state.error.error
-      ? (state.error.error === '401')
-        ? (error = <Text style={{ color: 'red' }}>Les identifiants donnés sont invalides</Text>)
-        : (error = <Text />)
+    this.props.error_401
+      ? (error = <Text style={{ color: 'red' }}>Les identifiants donnés sont invalides</Text>)
       : (error = <Text />);
     return (
       <KeyboardAwareScrollView

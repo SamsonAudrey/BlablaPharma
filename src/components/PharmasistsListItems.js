@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { View, Text } from 'react-native';
-import PropTypes from 'prop-types';
 
 export default class PharmacistsListItems extends React.Component {
   render() {
@@ -11,7 +10,6 @@ export default class PharmacistsListItems extends React.Component {
         }
       },
     } = this.props;
-    console.log("oooooooooooooooo" + JSON.stringify(firstName));
     return (
       <View>
         <Text>{firstName}</Text>

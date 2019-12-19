@@ -2,12 +2,11 @@
 import { API_URL } from 'react-native-dotenv';
 import axios from 'axios';
 import {
-  CONNECT_USER,
+  CONNECT_USER_SUCCESS,
   CONNECT_USER_FAILURE,
   REFRESH_TOKEN_SUCCESS,
   REFRESH_TOKEN_FAILURE,
-  LOGOUT,
-  ERROR_401
+  LOGOUT
 } from './actionTypes';
 
 export const userAuth = (userEmail, userPassword) => {
@@ -35,7 +34,7 @@ export const userAuth = (userEmail, userPassword) => {
 };
 
 export const userAuthSuccess = (auth) => ({
-  type: CONNECT_USER,
+  type: CONNECT_USER_SUCCESS,
   payload: {
     accesstoken: auth.token,
     refreshToken: auth.refreshToken,
@@ -45,13 +44,7 @@ export const userAuthSuccess = (auth) => ({
 
 export const userAuthFailure = (error) => ({
   type: CONNECT_USER_FAILURE,
-  payload: {
-    error: error.message
-  }
-});
-
-export const error401 = () => ({
-  type: ERROR_401
+  error
 });
 
 export const refreshToken = (refreshTokenValue) => {
@@ -85,9 +78,7 @@ export const refreshTokenSuccess = (refresh) => ({
 
 export const refreshTokenFailure = (error) => ({
   type: REFRESH_TOKEN_FAILURE,
-  payload: {
-    error: error.message
-  }
+  error
 });
 
 export const logout = () => ({

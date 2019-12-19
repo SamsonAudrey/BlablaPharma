@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  ImageBackground, StyleSheet, View, ScrollView, Text
+  ImageBackground, StyleSheet, View
 } from 'react-native';
 import t from 'tcomb-form-native';
 import moment from 'moment';

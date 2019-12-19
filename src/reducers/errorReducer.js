@@ -1,12 +1,16 @@
-import { ERROR_401, CLEAR_ERROR } from '../actions/actionTypes';
+import { ERROR_401, ERROR_OTHER, CLEAR_ERROR } from '../actions/actionTypes';
 
 
 export default function error(state = {}, action) {
   switch (action.type) {
     case ERROR_401:
-      console.log("lllll")
       return {
         error: '401'
+      };
+    case ERROR_OTHER:
+      console.log(action.error.message);
+      return {
+        error: action.error.message
       };
     case CLEAR_ERROR:
       return {

@@ -43,7 +43,9 @@ module.exports = {
         }],
         'global-require': 'off',
         'no-return-assign': 'off',
-        'react/prefer-stateless-function': 'off'
+        'react/prefer-stateless-function': 'off',
+        'react/destructuring-assignment': 'off',
+        'linebreak-style': 'off'
     },
     'globals': {
         "fetch": false

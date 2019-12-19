@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import AuthPage from '../Pages/AuthPage';
 import { userAuth, refreshToken } from '../actions/userAction';
-import { clearError } from '../actions/errorAction'
+import { clearError } from '../actions/errorAction';
 
 const mapStateToProps = (state) => {
   console.log(`yooo${JSON.stringify(state)}`);

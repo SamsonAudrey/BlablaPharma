@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import {
-  View, StyleSheet, ImageBackground
+  View, StyleSheet, Text, ImageBackground
 } from 'react-native';
 import FatButton from '../components/FatButton';
 import HyperLinkText from '../components/HyperLinkText';
@@ -10,7 +10,9 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-
+        <View style={styles.sloganView}>
+          <Text style={styles.slogan}>Votre pharmacien en ligne {'\n'}et à votre écoute</Text>
+        </View>
         <View style={styles.imageView}>
           <ImageBackground
             source={require('../assets/auth.jpg')}
@@ -48,9 +50,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  sloganView: {
+    alignItems: 'center',
+    margin: 15
+  },
+  slogan: {
+    fontSize: 20,
+    textAlign: 'center',
+    color: '#707070',
+    fontWeight: 'bold',
+  },
   imageView: {
-    height: '80%',
-    marginTop: '15%'
+    height: '75%',
   },
   buttonView: {
     flex: 1,
@@ -62,6 +73,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     flexDirection: 'row',
     alignItems: 'center',
+    marginTop: 30
   }
 });
 

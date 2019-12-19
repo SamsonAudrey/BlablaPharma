@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import {
-  ImageBackground, StyleSheet, View, ScrollView, Text
+  ImageBackground, StyleSheet, View
 } from 'react-native';
 import t from 'tcomb-form-native';
 import moment from 'moment';
 import RadioForm from 'react-native-simple-radio-button';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import ImageFactory from 'react-native-image-picker-form';
 import ButtonTitle from '../components/ButtonTitle';
 import CButton from '../components/Button';
 import { store } from '../../store';
+
 
 const { Form } = t.form;
 const genderProps = [
@@ -44,7 +46,8 @@ class RegisterPatient extends Component {
       lastName: t.String,
       password: this.Password,
       confirmPassword: this.EqualPassword,
-      birth: t.Date
+      birth: t.Date,
+      image: t.maybe(t.String)
     });
     const state = store.getState();
     this.userKind = state.navigationInfo.userKind;
@@ -55,6 +58,7 @@ class RegisterPatient extends Component {
   }
 
     handleSubmit = () => {
+      console.log('SUBMIIIIIIIIIT');
       const value = this._form.getValue();
       const { gender } = this.state;
       const { onRegisterPatient, onRegisterInfo, navigation } = this.props;
@@ -62,13 +66,16 @@ class RegisterPatient extends Component {
         onRegisterInfo(value, gender);
         navigation.navigate('RegisterPharmacist', { infoUser: value, gender });
       } else if (value !== null) {
+        console.log('SUBMIIIIIIIIIT PATIENT');
+
         // REGISTER PATIENT USER
         try {
           const genderLabel = gender === 0 ? 'male' : gender === 1 ? 'female' : 'another';
           const birthday = moment(value.birth).format('YYYY-MM-DD');
+          // const picture = value.image === null ? null : null; // TODO
           onRegisterPatient(value.firstName, value.lastName, birthday,
-            genderLabel, value.email, value.password);
-
+            genderLabel, value.email, value.password, 'test');
+          console.log('ok');
           alert('Inscription faite');
           navigation.navigate('Home');
         } catch (error) { // TODO
@@ -164,7 +171,7 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     marginTop: '5%',
-    height: 120
+    height: 150
   },
   title: {
     height: '100%',
@@ -218,6 +225,17 @@ const options = {
       },
 
     },
+    image: {
+      config: {
+        title: 'Choisir une photo de profil',
+        options: ['Ouvrir camera', 'Selection gallerie', 'Annuler'],
+        // Used on Android to style BottomSheet
+        style: {
+        }
+      },
+      error: 'No image provided',
+      factory: ImageFactory
+    }
   },
   auto: 'placeholders',
   stylesheet: s

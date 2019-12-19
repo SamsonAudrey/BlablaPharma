@@ -3,6 +3,7 @@ import {
   ImageBackground, StyleSheet, Text, View
 } from 'react-native';
 import t from 'tcomb-form-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { store } from '../../store';
 
 import CButton from '../components/Button';
@@ -56,7 +57,7 @@ export default class Auth extends Component {
     try {
       const { onUserAuth } = this.props;
       onUserAuth(value.email, value.password);
-      // this.props.navigationInfo.navigate("Tab");
+      this.props.navigation.navigate('SearchPharmacists');
     } catch (error) {
       console.log(error.message);
     }
@@ -70,7 +71,11 @@ export default class Auth extends Component {
       ? (error = <Text style={{ color: 'red' }}>Les identifiants donnés sont invalides</Text>)
       : (error = <Text />);
     return (
-      <View>
+      <KeyboardAwareScrollView
+        automaticallyAdjustContentInsets={false}
+        enableOnAndroid
+        style={{ flex: 1 }}
+      >
         <View style={styles.titleView}>
           <Text style={styles.title}>Connexion</Text>
         </View>
@@ -102,12 +107,12 @@ export default class Auth extends Component {
             text="Mot de passe oublié ?"
             onPress={() => null}
             style={{
-              color: '#BED469', marginLeft: 10, fontSize: 16, marginTop: 40
+              color: '#BED469', marginLeft: 20, fontSize: 16, marginTop: '5%'
             }}
           />
 
           <View style={styles.linkText2}>
-            <Text style={{ color: '#868788', marginLeft: 10, fontSize: 16 }}>Pas encore inscrit ?</Text>
+            <Text style={{ color: '#868788', marginLeft: 20, fontSize: 16 }}>Pas encore inscrit ?</Text>
             <HyperLinkText
               text={'S\'inscrire'}
               onPress={() => navigation.navigate('Register')}
@@ -115,7 +120,7 @@ export default class Auth extends Component {
             />
           </View>
         </View>
-      </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
@@ -133,6 +138,7 @@ s.textbox.normal.color = '#707070';
 s.textbox.normal.backgroundColor = '#fff';
 s.textbox.error.backgroundColor = '#fff';
 s.textbox.normal.borderRadius = 5;
+s.textbox.normal.marginBottom = 20;
 s.dateValue.normal.color = '#707070';
 s.dateValue.normal.borderWidth = 1;
 s.dateValue.normal.borderColor = '#707070';
@@ -142,6 +148,7 @@ s.dateValue.error.color = '#707070';
 s.dateValue.error.borderColor = '#a94442';
 s.dateValue.error.borderRadius = 5;
 s.errorBlock.fontSize = 15;
+
 
 const options = {
   fields: {
@@ -164,28 +171,27 @@ const options = {
 
 const styles = StyleSheet.create({
   titleView: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '10%',
+    marginTop: 20,
   },
   title: {
     color: '#BED469',
     fontSize: 24
   },
   container: {
-    height: '50%',
-    marginTop: '5%'
+    height: '70%',
   },
   buttonView: {
+    marginTop: '10%'
   },
   form: {
-    paddingTop: '12%',
+    paddingTop: '40%',
     padding: '5%',
-    flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.4)'
+    height: '100%',
+    backgroundColor: 'rgba(255,255,255,0.4)',
   },
   linkText2: {
     marginTop: '5%',

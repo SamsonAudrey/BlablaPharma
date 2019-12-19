@@ -7,14 +7,14 @@ import {
 const mapStateToProps = (state) => {
   console.log(`passe à la search baaar ${JSON.stringify(state)}`);
   return {
-    filter: state.searchPharmacists.filter,
+    gender: state.searchPharmacists.gender,
+    profession: state.searchPharmacists.profession,
     text: state.searchPharmacists.text
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onGenderFilterUpdate: (gender) => {
-    console.log(`fdsf${gender}`);
     dispatch(updateSearchGenderFilter(gender));
   },
   onProfessionFilterUpdate: (profession) => {

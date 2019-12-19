@@ -8,6 +8,7 @@ export default function error(state = {}, action) {
         error: '401'
       };
     case ERROR_OTHER:
+      console.log(action.error.message);
       return {
         error: action.error.message
       };

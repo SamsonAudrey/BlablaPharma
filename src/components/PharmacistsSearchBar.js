@@ -5,6 +5,10 @@ import {
 
 export default class SearchBar extends Component {
   componentDidUpdate() {
+    const gender = this.props.gender;
+    const profession = this.props.profession;
+    const text = this.props.text;
+    this.props.onSearch(text, gender, profession);
   }
 
 handleChangeSearch = (text) => {
@@ -23,8 +27,8 @@ handleChangeProfessionFilter = (profession) => {
 }
 
 render() {
-  const gender = this.props.filter ? (this.props.filter.gender) : '';
-  const profession = this.props.filter ? (this.props.filter.profession) : '';
+  const gender = this.props.gender
+  const profession = this.props.profession
   return (
     <>
       <View style={styles.searchBarContainer}>

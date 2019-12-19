@@ -9,24 +9,20 @@ export default function searchPharmacists(state = {}, action) {
     case SEARCH_UPDATE_TEXT:
       return {
         text: action.text,
-        filter: state.filter
+        gender: state.gender,
+        profession: state.profession
       };
     case SEARCH_UPDATE_PROFESSION_FILTER:
       return {
         text: state.text,
-        filter: {
-          gender: state.gender,
-          profession: action.profession
-        }
+        gender: state.gender,
+        profession: action.profession
       };
     case SEARCH_UPDATE_GENDER_FILTER:
-      console.log(`genderr${action.gender}`);
       return {
         text: state.text,
-        filter: {
-          genderFilter: action.gender,
-          professionFilter: state.profession
-        }
+        gender: action.gender,
+        profession: state.profession
       };
     default:
       return state;

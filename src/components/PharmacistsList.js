@@ -5,16 +5,18 @@ import {
 
 import PharmacistsListItems from './PharmasistsListItems';
 
-export default class CoursePage extends React.Component {
+export default class PharmarmacistsList extends React.Component {
   render() {
     return (
       <View>
+        {this.props.isFetching === true
+          ? <Text> IsLoading </Text> : <Text>Is Not Loadingggg</Text>}
         {this.props.pharmacists.length > 0 ? (
           <FlatList
             data={this.props.pharmacists}
             renderItem={(pharmacist) => (
               <PharmacistsListItems
-                pharmacist={pharmacist}
+                data={pharmacist}
               />
             )}
             keyExtractor={(item) => item.id.toString()}

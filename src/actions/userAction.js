@@ -25,8 +25,6 @@ export const userAuth = (userEmail, userPassword) => {
       })
       .catch((error) => {
         dispatch(userAuthFailure(error));
-        dispatch(error401());
-        console.log("zzzzzzzzzzzzzzzzzzzzzz")
       });
   }
   // thunk.interceptInOffline = true;

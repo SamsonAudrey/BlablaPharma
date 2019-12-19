@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
-import PharmacistsList from '../components/PharmacistsList'
+import PharmacistsList from '../components/PharmacistsList';
+import { createLoadingSelector } from '../utils/loadingSelector';
 
-const mapStateToProps = (state) => {
-  console.log(state);
-  return {
-    pharmacists: state.pharmacists
-  };
-};
+const loadingSelector = createLoadingSelector(['PHARMACISTS_SEARCH']);
+
+const mapStateToProps = (state) => ({
+  pharmacists: state.pharmacists,
+  isFetching: loadingSelector(state)
+});
 
 const PharmacistsListContainer = connect(
   mapStateToProps,

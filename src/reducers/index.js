@@ -6,6 +6,7 @@ import navigationReducer from './navigationReducer';
 import error from './errorReducer';
 import pharmacists from './pharmacistsReducer';
 import searchPharmacists from './searchPharmacistsReducer';
+import loading from './loadingReducer';
 
 export default combineReducers({
   user,
@@ -14,5 +15,6 @@ export default combineReducers({
   error,
   pharmacists,
   searchPharmacists,
+  loading,
   navigationInfo: navigationReducer,
 });

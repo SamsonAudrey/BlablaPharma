@@ -12,7 +12,8 @@ export const registerPatient = (
   userBirthDate,
   userGender,
   userEmail,
-  userPassword
+  userPassword,
+  picture
 ) => (dispatch) => fetch(`${API_URL}/register/basic`, {
   method: 'POST',
   headers: {
@@ -25,10 +26,13 @@ export const registerPatient = (
     birthDayDate: userBirthDate,
     gender: userGender,
     email: userEmail,
-    password: userPassword
+    password: userPassword,
+    // picture TODO
   })
 })
   .then((response) => {
+    console.log('------PICTURE------');
+    console.log(picture);
     if (response.ok) {
       console.log('REGISTERED');
     } else {

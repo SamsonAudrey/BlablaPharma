@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { ImageBackground, StyleSheet, View } from 'react-native';
+import {
+  ImageBackground, StyleSheet, View, ScrollView
+} from 'react-native';
 import t from 'tcomb-form-native';
 import moment from 'moment';
 import RadioForm from 'react-native-simple-radio-button';
@@ -80,8 +82,8 @@ class RegisterPatient extends Component {
       return (
         <View style={{ flex: 1 }}>
           <KeyboardAwareScrollView
-            automaticallyAdjustContentInsets={false}
             resetScrollToCoords={{ x: 0, y: 0 }}
+            automaticallyAdjustContentInsets={false}
             enableOnAndroid
           >
             <View style={styles.imageView}>
@@ -96,11 +98,9 @@ class RegisterPatient extends Component {
                   />
                 </View>
               </ImageBackground>
-
             </View>
 
             <View style={styles.container}>
-
               <Form
                 ref={(c) => this._form = c}
                 type={this.User}
@@ -150,7 +150,7 @@ s.dateValue.error.borderWidth = 1;
 s.dateValue.error.color = '#707070';
 s.dateValue.error.borderColor = '#a94442';
 s.dateValue.error.borderRadius = 5;
-s.errorBlock.fontSize = 15;
+s.errorBlock.fontSize = 14;
 
 const styles = StyleSheet.create({
   container: {
@@ -158,14 +158,13 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: 'white',
-    padding: 10,
-    paddingTop: '10%'
+    marginTop: '5%'
   },
   imageView: {
     height: '25%'
   },
   submitButton: {
-    //margin: 30
+    marginTop: '5%'
   },
   title: {
     flex: 1,

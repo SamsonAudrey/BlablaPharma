@@ -56,7 +56,7 @@ export default class Auth extends Component {
     try {
       const { onUserAuth } = this.props;
       onUserAuth(value.email, value.password);
-      // this.props.navigationInfo.navigate("Tab");
+      this.props.navigation.navigate('SearchPharmacists');
     } catch (error) {
       console.log(error.message);
     }
@@ -166,11 +166,9 @@ const options = {
 
 const styles = StyleSheet.create({
   titleView: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30,
-    marginBottom: 10,
+    marginTop: 20,
   },
   title: {
     color: '#BED469',
@@ -180,7 +178,7 @@ const styles = StyleSheet.create({
     height: '70%',
   },
   buttonView: {
-    marginTop: 15
+    marginTop: '10%'
   },
   form: {
     paddingTop: '40%',

@@ -4,10 +4,18 @@ import {
 } from 'react-native';
 
 export default class SearchBar extends Component {
+
+  componentDidMount() {
+    const { gender } = this.props;
+    const { profession } = this.props;
+    const { text } = this.props;
+    this.props.onSearch(text, gender, profession);
+  }
+
   componentDidUpdate() {
-    const gender = this.props.gender;
-    const profession = this.props.profession;
-    const text = this.props.text;
+    const { gender } = this.props;
+    const { profession } = this.props;
+    const { text } = this.props;
     this.props.onSearch(text, gender, profession);
   }
 
@@ -27,8 +35,8 @@ handleChangeProfessionFilter = (profession) => {
 }
 
 render() {
-  const gender = this.props.gender
-  const profession = this.props.profession
+  const { gender } = this.props;
+  const { profession } = this.props;
   return (
     <>
       <View style={styles.searchBarContainer}>

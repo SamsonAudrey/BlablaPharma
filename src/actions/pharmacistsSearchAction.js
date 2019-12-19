@@ -14,7 +14,7 @@ export const pharmacistsSearch = (
   qValue,
   genderValue,
   professionLabelValue,
-  limitValue = 50,
+  limitValue = 20,
 ) => {
   function thunk(dispatch) {
     const TEMPO_URL = 'https://api.blablapharma.fr';

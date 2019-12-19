@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ImageBackground, StyleSheet, View } from 'react-native';
+import {ImageBackground, Platform, StyleSheet, View} from 'react-native';
 import t from 'tcomb-form-native';
 import moment from 'moment';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -25,13 +25,16 @@ class RegisterPharmacist extends Component {
       const reg = /^(([0-9]{10}[A-z])|([0-9]{9}[A-z]{2})|([0-9]{11}))$/;
       return reg.test(id);
     });
+    this.AllString = t.refinement(t.String, (str) => {
+      return str.length > 1;
+    });
     this.User = t.struct({
       profession: t.String,
       ID: this.ProfessionalId,
       postalCode: this.CodePostal,
-      city: t.String,
-      address: t.String,
-      institutionName: t.String
+      city: this.AllString,
+      address: this.AllString,
+      institutionName: this.AllString
     });
 
     const state = store.getState();
@@ -83,39 +86,37 @@ class RegisterPharmacist extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <KeyboardAwareScrollView
-          automaticallyAdjustContentInsets={false}
-          resetScrollToCoords={{ x: 0, y: 0 }}
-          enableOnAndroid
-        >
-          <View style={styles.imageView}>
-            <ImageBackground
-              source={require('../assets/sign-in-pharmacist_cut.png')}
-              style={{ width: '100%', height: '100%', opacity: 1 }}
-            >
-              <View style={styles.title}>
-                <ButtonTitle title="Je suis pharmacien" role="pharmacist" />
-              </View>
-            </ImageBackground>
-          </View>
-          <View style={styles.container}>
-            <Form
-              ref={(c) => this._form = c}
-              type={this.User}
-              options={options}
-              onChange={(v) => this.onChange(v)}
-            />
-            <View style={styles.submitButton}>
-              <CButton
-                title={"S'inscrire"}
-                buttonStyle="green"
-                onPress={this.handleSubmit}
-              />
+      <KeyboardAwareScrollView
+        automaticallyAdjustContentInsets={false}
+        enableOnAndroid
+        style={{ flex: 1 }}
+      >
+        <View style={styles.imageView}>
+          <ImageBackground
+            source={require('../assets/sign-in-pharmacist_cut.png')}
+            style={{ width: '100%', height: '100%', opacity: 1 }}
+          >
+            <View style={styles.title}>
+              <ButtonTitle title="Je suis pharmacien" role="pharmacist" />
             </View>
+          </ImageBackground>
+        </View>
+        <View style={styles.container}>
+          <Form
+            ref={(c) => this._form = c}
+            type={this.User}
+            options={options}
+            onChange={(v) => this.onChange(v)}
+          />
+          <View style={styles.submitButton}>
+            <CButton
+              title={"S'inscrire"}
+              buttonStyle="green"
+              onPress={this.handleSubmit}
+            />
           </View>
-        </KeyboardAwareScrollView>
-      </View>
+        </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
@@ -133,27 +134,29 @@ s2.textbox.normal.borderRadius = 5;
 s2.errorBlock.fontSize = 15;
 s2.pickerContainer.normal.borderColor = '#707070';
 s2.pickerContainer.normal.borderRadius = 5;
+s2.select.normal.color = '#707070';
+s2.select.normal.borderWidth = 1;
+s2.select.normal.borderRadius = 1;
+s2.select.normal.borderColor = '#707070';
 s2.pickerTouchable.normal.height = 36;
 s2.pickerTouchable.normal.color = '#707070';
 s2.pickerValue.normal.color = '#707070';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
-    padding: 10,
-    paddingTop: '10%'
+    marginTop: '10%'
   },
   imageView: {
     height: '25%'
   },
   submitButton: {
-    margin: 30
+    marginTop: '5%',
+    height: 140
   },
   title: {
-    flex: 1,
+    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(255,255,255,0.4)'
@@ -170,8 +173,8 @@ const options = {
         { value: 'pharmacist', text: 'Pharmacien' },
         { value: 'student', text: 'Etudiant' },
         { value: 'pharmacistBlablapharma', text: 'Blabla Pharmacien' }
-      ]
-      // nullOption: {value: '1', text: 'Pharmacien'},
+      ],
+      nullOption: { value: 'default', text: 'Profession' },
     },
     ID: {
       placeholder: 'Identifiant professionnel',

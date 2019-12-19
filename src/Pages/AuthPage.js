@@ -37,10 +37,9 @@ export default class Auth extends Component {
   checkConnexion = () => {
     const { isConnected } = this.props;
     if (isConnected) {
-      console.log("T'es connectéé");
       try {
-        const { navigation } = this.props;
-        navigation.navigate('Tab');
+        const { navigate } = this.props.navigation;
+        navigate('SearchPharmacists');
       } catch (e) {
         console.log('error : ', e);
       }
@@ -57,7 +56,6 @@ export default class Auth extends Component {
     try {
       const { onUserAuth } = this.props;
       onUserAuth(value.email, value.password);
-      this.props.navigation.navigate('SearchPharmacists');
     } catch (error) {
       console.log(error.message);
     }

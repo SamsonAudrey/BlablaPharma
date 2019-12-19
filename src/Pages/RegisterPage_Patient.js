@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  ImageBackground, StyleSheet, View, ScrollView
+  ImageBackground, StyleSheet, View, ScrollView, Text
 } from 'react-native';
 import t from 'tcomb-form-native';
 import moment from 'moment';
@@ -80,54 +80,53 @@ class RegisterPatient extends Component {
 
     render() {
       return (
-        <View style={{ flex: 1 }}>
-          <KeyboardAwareScrollView
-            resetScrollToCoords={{ x: 0, y: 0 }}
-            automaticallyAdjustContentInsets={false}
-            enableOnAndroid
-          >
-            <View style={styles.imageView}>
-              <ImageBackground
-                source={this.userKind === 'patient' ? require('../assets/sign-in_cut.jpg') : require('../assets/sign-in-pharmacist_cut.png')}
-                style={{ width: '100%', height: '100%', opacity: 1 }}
-              >
-                <View style={styles.title}>
-                  <ButtonTitle
-                    title={this.userKind === 'patient' ? 'Je suis patient' : 'Je suis pharmacien'}
-                    role={this.userKind}
-                  />
-                </View>
-              </ImageBackground>
-            </View>
-
-            <View style={styles.container}>
-              <Form
-                ref={(c) => this._form = c}
-                type={this.User}
-                options={options}
-                onChange={(v) => this.onChange(v)}
-              />
-              <RadioForm
-                radio_props={genderProps}
-                initial={0}
-                onPress={(value) => { this.state.gender = value; }}
-                formHorizontal
-                buttonColor="#868788"
-                labelColor="#868788"
-                selectedButtonColor="#868788"
-                buttonSize={10}
-                buttonWrapStyle={{ marginLeft: 20 }}
-              />
-              <View style={styles.submitButton}>
-                <CButton
-                  title={this.userKind === 'patient' ? "S'inscrire" : 'Suivant'}
-                  buttonStyle={this.userKind === 'patient' ? 'green' : 'grey'}
-                  onPress={this.handleSubmit}
+        <KeyboardAwareScrollView
+          automaticallyAdjustContentInsets={false}
+          enableOnAndroid
+          style={{ flex: 1 }}
+        >
+          <View style={styles.imageView}>
+            <ImageBackground
+              source={this.userKind === 'patient' ? require('../assets/sign-in_cut.jpg') : require('../assets/sign-in-pharmacist_cut.png')}
+              style={{ width: '100%', height: '100%', opacity: 1 }}
+            >
+              <View style={styles.title}>
+                <ButtonTitle
+                  title={this.userKind === 'patient' ? 'Je suis patient' : 'Je suis pharmacien'}
+                  role={this.userKind}
                 />
               </View>
+            </ImageBackground>
+          </View>
+
+          <View style={styles.form}>
+            <Form
+              ref={(c) => this._form = c}
+              type={this.User}
+              options={options}
+              onChange={(v) => this.onChange(v)}
+            />
+            <RadioForm
+              radio_props={genderProps}
+              initial={0}
+              onPress={(value) => { this.state.gender = value; }}
+              formHorizontal
+              buttonColor="#868788"
+              labelColor="#868788"
+              selectedButtonColor="#868788"
+              buttonSize={10}
+              buttonWrapStyle={{ marginLeft: 20 }}
+              style={{ marginTop: '4%' }}
+            />
+            <View style={styles.submitButton}>
+              <CButton
+                title={this.userKind === 'patient' ? "S'inscrire" : 'Suivant'}
+                buttonStyle={this.userKind === 'patient' ? 'green' : 'grey'}
+                onPress={this.handleSubmit}
+              />
             </View>
-          </KeyboardAwareScrollView>
-        </View>
+          </View>
+        </KeyboardAwareScrollView>
       );
     }
 }
@@ -137,8 +136,8 @@ class RegisterPatient extends Component {
 const _ = require('lodash');
 
 const s = _.cloneDeep(t.form.Form.stylesheet);
-s.textbox.normal.minWidth = '80%';
-s.textbox.error.minWidth = '80%';
+s.textbox.normal.minWidth = '70%';
+s.textbox.error.minWidth = '70%';
 s.textbox.normal.borderColor = '#707070';
 s.textbox.normal.color = '#707070';
 s.textbox.normal.borderRadius = 5;
@@ -147,27 +146,28 @@ s.dateValue.normal.borderWidth = 1;
 s.dateValue.normal.borderColor = '#707070';
 s.dateValue.normal.borderRadius = 5;
 s.dateValue.error.borderWidth = 1;
+s.dateValue.error.minWidth = '70%';
 s.dateValue.error.color = '#707070';
 s.dateValue.error.borderColor = '#a94442';
 s.dateValue.error.borderRadius = 5;
 s.errorBlock.fontSize = 14;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
+  form: {
+    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
-    marginTop: '5%'
+    marginTop: '10%'
   },
   imageView: {
-    height: '25%'
+    height: '20%'
   },
   submitButton: {
-    marginTop: '5%'
+    marginTop: '5%',
+    height: 120
   },
   title: {
-    flex: 1,
+    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(255,255,255,0.4)'
@@ -194,7 +194,7 @@ const options = {
       placeholderTextColor: '#707070',
       password: true,
       secureTextEntry: true,
-      error: 'Doit contenir une majuscule, une minuscule, un symbole et minimum 8 caractères'
+      error: 'Doit contenir une majuscule, \nune minuscule, un symbole et \nminimum 8 caractères'
     },
     confirmPassword: {
       placeholder: 'Confirmation mot de passe',

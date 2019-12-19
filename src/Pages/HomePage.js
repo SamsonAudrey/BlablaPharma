@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   imageView: {
     height: '80%',
-    marginTop: '20%'
+    marginTop: '15%'
   },
   buttonView: {
     flex: 1,

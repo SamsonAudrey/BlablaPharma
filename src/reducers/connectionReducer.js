@@ -1,5 +1,5 @@
 import {
-  CONNECT_USER,
+  CONNECT_USER_SUCCESS,
   CONNECT_USER_FAILURE,
   REFRESH_TOKEN_SUCCESS,
   REFRESH_TOKEN_FAILURE,
@@ -8,7 +8,7 @@ import {
 
 export default function connection(state = {}, action) {
   switch (action.type) {
-    case CONNECT_USER:
+    case CONNECT_USER_SUCCESS:
       console.log('1');
       return {
         isConnected: true

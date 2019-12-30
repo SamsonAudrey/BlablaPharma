@@ -11,7 +11,6 @@ const errorReducer = (state = {}, action) => {
   if (!matches) return state;
 
   const [, requestName, requestState] = matches;
-  console.log(`error messsssage ${error.message}`);
 
   return {
     ...state,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  View, Text, StyleSheet, Dimensions
+  View, Text, StyleSheet, Dimensions, Image
 } from 'react-native';
 import CButton from './Button';
 
@@ -15,6 +15,10 @@ export default class PharmacistsListItems extends React.Component {
     } = this.props;
     return (
       <View style={styles.container}>
+        <Image
+          source={require('../assets/logo-fav.png')}
+          style={{ width: '27%', height: '32%', alignSelf: 'center' }}
+        />
         <Text style={styles.title}>
           {firstName}
           {' '}
@@ -43,12 +47,22 @@ const styles = StyleSheet.create({
     borderColor: '#707070',
     borderWidth: 1,
     borderRadius: 5,
+    width: Dimensions.get('window').width * 0.8,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
     padding: 10,
-    width: Dimensions.get('window').width * 0.8
+    paddingBottom: 0,
+    backgroundColor: 'white'
+
   },
   buttonContainer: {
     alignItems: 'center',
-    marginTop: 10
+    marginTop: 5
   },
   text: {
     color: '#707070'

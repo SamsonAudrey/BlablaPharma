@@ -67,7 +67,6 @@ export default class Auth extends Component {
 
   render() {
     const state = store.getState();
-    console.log(`uuuuu${JSON.stringify(state)}`);
     let error;
     state.error.error
       ? (state.error.error === '401')

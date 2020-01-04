@@ -30,7 +30,16 @@ const styles = StyleSheet.create({
     padding: 5,
     justifyContent: 'center',
     opacity: 1,
-    backgroundColor: '#BED469'
+    backgroundColor: '#BED469',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+
+    elevation: 3,
   },
   buttonText: {
     fontSize: 20,

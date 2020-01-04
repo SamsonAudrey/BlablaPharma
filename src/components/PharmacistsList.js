@@ -10,7 +10,7 @@ export default class PharmarmacistsList extends React.Component {
     return (
       <View>
         {this.props.isFetching === true
-          ? <Text> IsLoading </Text> : <Text>Is Not Loadingggg</Text>}
+          ? <Text> Loading </Text> : <Text>Loaded</Text>}
         {this.props.pharmacists.length > 0 ? (
           <FlatList
             data={this.props.pharmacists}
@@ -21,11 +21,11 @@ export default class PharmarmacistsList extends React.Component {
             )}
             keyExtractor={(item) => item.id.toString()}
             ItemSeparatorComponent={() => (
-              <View style={{ height: 0.5, backgroundColor: '#E5E5E5' }} />
+              <View style={{ height: 10, backgroundColor: '#E5E5E5' }} />
             )}
           />
         ) : (
-          <Text> Desooo pas de pharmaciens </Text>
+          <Text> Aucun pharmacien trouvé </Text>
         )}
       </View>
     );

@@ -69,7 +69,7 @@ export default class SearchBar extends Component {
         <Collapse>
           <CollapseHeader>
             <View style={styles.filterView}>
-              <Text style={{ fontSize: 16 }}>+ Filtres</Text>
+              <Text style={styles.titleFilter}>+ Filtres</Text>
             </View>
           </CollapseHeader>
           <CollapseBody>
@@ -115,6 +115,10 @@ let styles = StyleSheet.create({
   title: {
     color: '#707070',
     fontSize: 24
+  },
+  titleFilter: {
+    color: '#707070',
+    fontSize: 16
   },
   form: {
     justifyContent: 'flex-start',

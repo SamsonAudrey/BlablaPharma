@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 16,
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 0, // TODO 0 OR 5 ?
     borderColor: '#848484',
     fontSize: 16
   },

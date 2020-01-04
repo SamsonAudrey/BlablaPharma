@@ -38,8 +38,8 @@ export default class SearchBar extends Component {
   };
 
   render() {
-    const { gender } = this.props;
-    const { profession } = this.props;
+    // const { gender } = this.props;
+    // const { profession } = this.props;
     const genderProps = [
       { label: 'Tous   ', value: '' },
       { label: 'Homme   ', value: 'male' },
@@ -110,7 +110,7 @@ let styles = StyleSheet.create({
   titleView: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20,
+    marginVertical: 20,
   },
   title: {
     color: '#707070',
@@ -131,9 +131,9 @@ let styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    // marginVertical: 10,
-    marginTop: '10%',
-    height: '10%'
+    marginTop: 10,
+    height: 40,
+    marginBottom: 0
   },
   textInputSearch: {
     borderColor: '#707070',
@@ -154,7 +154,7 @@ let styles = StyleSheet.create({
   filterView: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '2%',
-    color: '#707070'
+    color: '#707070',
+    marginVertical: '1%'
   },
 });

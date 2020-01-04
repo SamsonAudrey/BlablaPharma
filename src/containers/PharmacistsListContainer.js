@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import PharmacistsList from '../components/PharmacistsList';
 import { createLoadingSelector } from '../utils/loadingSelector';
+import CustomTabView from '../components/CustomTabView';
 
 const loadingSelector = createLoadingSelector(['PHARMACISTS_SEARCH']);
 

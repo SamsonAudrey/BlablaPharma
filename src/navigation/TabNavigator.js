@@ -14,7 +14,8 @@ import AuthPageContainer from '../containers/AuthPageContainer';
 
 const SearchPharmacistsNavigator = createStackNavigator(
   {
-    SearchPharmacists: SearchPharmacistsPage
+    SearchPharmacists: SearchPharmacistsPage,
+    ChatPage: ChatPageContainer
   },
   {
     initialRouteName: 'SearchPharmacists'

@@ -1,22 +1,26 @@
-import { ERROR_401, ERROR_OTHER, CLEAR_ERROR } from '../actions/actionTypes';
 
+const errorReducer = (state = {}, action) => {
+  const { type, error } = action;
+  const matches = /(.*)_(REQUEST|SUCCESS|FAILURE|NOT_FOUND|CLEAR_ERROR)/.exec(type);
 
-export default function error(state = {}, action) {
-  switch (action.type) {
-    case ERROR_401:
-      return {
-        error: '401'
-      };
-    case ERROR_OTHER:
-      console.log(action.error.message);
-      return {
-        error: action.error.message
-      };
-    case CLEAR_ERROR:
-      return {
-        error: undefined
-      };
-    default:
-      return state;
+  if (type === 'CLEAR_ERROR') {
+    return null;
   }
-}
+
+  // not a *_REQUEST / *_SUCCESS /  *_FAILURE actions, so we ignore them
+  if (!matches) return state;
+
+  const [, requestName, requestState] = matches;
+
+  return {
+    ...state,
+    // This will add different error status with the type of their action
+    // example CONNECT_USER_401 = true OR false
+    // To get the result of it you only have to import this in your container
+    // and do errorReducer('CONNECT_USER_401') for example
+    [`${requestName}_401`]: requestState === 'FAILURE' && error.message === 'Request failed with status code 401',
+    [`${requestName}_404`]: requestState === 'NOT_FOUND'
+  };
+};
+
+export default errorReducer;

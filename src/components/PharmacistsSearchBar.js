@@ -48,7 +48,7 @@ render() {
           value={this.props.text}
         />
       </View>
-      <View>
+      <View>  
         <Picker
           selectedValue={gender}
           style={{ height: 50, width: 100 }}

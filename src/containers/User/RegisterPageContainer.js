@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import RegisterPage from '../Pages/RegisterPage';
-import { userRegisterKind } from '../actions/registerAction';
+import RegisterPage from '../../Pages/User/RegisterPage';
+import { userRegisterKind } from '../../actions/registerAction';
 
 const mapStateToProps = (state) => {
   console.log('rrrrrr ------', state);

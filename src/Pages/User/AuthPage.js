@@ -4,10 +4,10 @@ import {
 } from 'react-native';
 import t from 'tcomb-form-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { store } from '../../store';
+import { store } from '../../../store';
 
-import CButton from '../components/Button';
-import HyperLinkText from '../components/HyperLinkText';
+import CButton from '../../components/Button';
+import HyperLinkText from '../../components/HyperLinkText';
 
 const { Form } = t.form;
 
@@ -66,13 +66,9 @@ export default class Auth extends Component {
   };
 
   render() {
-    const state = store.getState();
-    console.log(`uuuuu${JSON.stringify(state)}`);
     let error;
-    state.error.error
-      ? (state.error.error === '401')
-        ? (error = <Text style={{ color: 'red' }}>Les identifiants donnés sont invalides</Text>)
-        : (error = <Text />)
+    this.props.error_401
+      ? (error = <Text style={{ color: 'red' }}>Les identifiants donnés sont invalides</Text>)
       : (error = <Text />);
     return (
       <KeyboardAwareScrollView
@@ -86,7 +82,7 @@ export default class Auth extends Component {
         <View style={styles.container}>
           {error}
           <ImageBackground
-            source={require('../assets/engagement.jpg')}
+            source={require('../../assets/engagement.jpg')}
             style={{ width: '100%', height: '100%' }}
           >
             <View style={styles.form}>

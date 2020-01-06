@@ -1,5 +1,6 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
+//import { ReduxNetworkProvider } from 'react-native-offline';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { persistor, store } from './store';

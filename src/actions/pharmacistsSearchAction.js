@@ -16,26 +16,33 @@ export const pharmacistsSearch = (
   professionLabelValue,
   limitValue = 20,
 ) => {
+  console.log(`rrrrrrrrrrrrrr${qValue
+  }${genderValue
+  }${professionLabelValue
+  }${limitValue}`);
   function thunk(dispatch) {
     const TEMPO_URL = 'https://api.blablapharma.fr';
     dispatch({ type: PHARMACISTS_SEARCH_REQUEST });
     return axios
       .get(`${TEMPO_URL}/pharmacists/search`, {
         params: {
-          ...((qValue !== undefined) ? { q: qValue } : {}),
-          ...((genderValue !== undefined) ? { gender: genderValue } : {}),
-          ...((professionLabelValue !== undefined) ? { professionLabel: professionLabelValue } : {}),
+          ...((qValue !== undefined) ? { q: qValue } : { q: '' }),
+          ...((genderValue !== undefined && genderValue !== '') ? { gender: genderValue } : {}),
+          ...((professionLabelValue !== undefined && professionLabelValue !== '') ? { professionLabel: professionLabelValue } : {}),
           ...((limitValue !== undefined) ? { limit: limitValue } : {}),
         }
       })
       .then((response) => {
         if (response.data.length !== 0) {
+          console.log(`founnd${response.data}`);
           dispatch(pharmacistSsearchSuccess(response.data));
         } else {
+          console.log('not founnnnd');
           dispatch(pharmacistsSearchNotFound());
         }
       })
       .catch((error) => {
+        console.log(`erroroororor${error}`);
         dispatch(pharmacistSsearchFailure(error));
       });
   }

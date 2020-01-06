@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import {
   ImageBackground, StyleSheet, Text, View
 } from 'react-native';
-import CButton from '../components/Button';
-import HyperLinkText from '../components/HyperLinkText';
+import CButton from '../../components/Button';
+import HyperLinkText from '../../components/HyperLinkText';
 
 class Register extends Component {
   render() {
@@ -16,7 +16,7 @@ class Register extends Component {
         </View>
         <View style={[styles.view, { marginTop: 10 }]}>
           <ImageBackground
-            source={require('../assets/sign-in.jpg')}
+            source={require('../../assets/sign-in.jpg')}
             style={{ width: '100%', height: '100%', opacity: 1 }}
           >
             <View style={styles.buttonView}>
@@ -34,7 +34,7 @@ class Register extends Component {
         </View>
         <View style={[styles.view, { marginTop: 10 }]}>
           <ImageBackground
-            source={require('../assets/sign-in-pharmacist_large_cut.png')}
+            source={require('../../assets/sign-in-pharmacist_large_cut.png')}
             style={{ width: '100%', height: '100%', opacity: 1 }}
           >
             <View style={styles.buttonView}>

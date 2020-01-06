@@ -4,37 +4,36 @@
  */
 import axios from 'axios';
 import { API_URL } from 'react-native-dotenv';
-import { store } from '../../store';
 import { refreshToken, logout } from '../actions/userAction';
 
-export function checkToken() {
+export const checkToken = (store) => (next) => (action) => {
   const state = store.getState();
-
   return new Promise((resolve, reject) => {
     console.log(`state: ${JSON.stringify(state)}`);
     // In case it is the connection and accessToken has not been added to the header
     state.user.accessToken
       ? (axios.defaults.headers.Authorization = `Bearer ${state.user.accessToken}`)
-      : null;
+      : reject();
     // If there is no account it means that the user is not connected
     state.user.account.id
       ? axios
         .get(`${API_URL}/accounts/${state.user.account.id}`) // This line is meant to hit the API
         .then(() => {
-          resolve();
+          console.log('bahhh ca marchcheh');
+          next(action);  
         })
         .catch(() => {
           RefreshToken()
             .then((response) => {
               if (response.success) {
-                resolve();
+                next(action);
               } else reject(new TypeError("Token Refreshing didn't worked"));
             })
             .catch((err) => reject(err));
         })
       : reject(new TypeError('The user is not connected'));
   });
-}
+};
 
 export function RefreshToken() {
   const state = store.getState();

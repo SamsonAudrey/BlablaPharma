@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View } from 'react-native';
 import SearchBarPharmacists from '../containers/PharmacistsSearchBarContainer';
 import PharmacistsListContainer from '../containers/PharmacistsListContainer';
 

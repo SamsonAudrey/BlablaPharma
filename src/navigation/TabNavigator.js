@@ -4,13 +4,15 @@ import React from 'react';
 import * as colors from 'react-native';
 import { Text, TouchableHighlight, Image } from 'react-native';
 import SearchPharmacistsPage from '../Pages/SearchPharmacistsPage';
-import UserInfoContainer from '../containers/UserInfoContainer';
+import UserInfoContainer from '../containers/User/UserInfoContainer';
 import ChatPageContainer from '../containers/ChatPageContainer';
 import BlogPageContainer from '../containers/BlogPageContainer';
-import RegisterPageContainer from '../containers/RegisterPageContainer';
-import RegisterPatientContainer from '../containers/RegisterPatientContainer';
-import RegisterPharmacistContainer from '../containers/RegisterPharmacistContainer';
-import AuthPageContainer from '../containers/AuthPageContainer';
+import RegisterPageContainer from '../containers/User/RegisterPageContainer';
+import RegisterPatientContainer from '../containers/User/RegisterPatientContainer';
+import RegisterPharmacistContainer from '../containers/User/RegisterPharmacistContainer';
+import AuthPageContainer from '../containers/User/AuthPageContainer';
+import UserPersonnalInfoPageContainer from '../containers/User/UserPersonnalInfoPageContainer';
+import ModifUserPersonnalInfoPageContainer from '../containers/User/ModifUserPersonnalInfoContainer';
 
 const SearchPharmacistsNavigator = createStackNavigator(
   {
@@ -29,6 +31,8 @@ const UserInfoNavigator = createStackNavigator(
     RegisterPatient: RegisterPatientContainer,
     RegisterPharmacist: RegisterPharmacistContainer,
     Connection: AuthPageContainer,
+    UserPersonnalInfo: UserPersonnalInfoPageContainer,
+    ModifUserPersonnalInfo: ModifUserPersonnalInfoPageContainer
   },
   {
     initialRouteName: 'UserInfo'
@@ -57,7 +61,7 @@ export default createBottomTabNavigator(
   {
     Blog: {
       screen: BlogNavigator,
-      navigationOptions: ({ navigation, screenProps }) => ({
+      navigationOptions: ({ navigation }) => ({
         tabBarIcon: () => (
           <Text>Blog</Text>),
         headerTitle:
@@ -90,7 +94,7 @@ export default createBottomTabNavigator(
     },
     UserInfo: {
       screen: UserInfoNavigator,
-      navigationOptions: ({ navigation, screenProps }) => ({
+      navigationOptions: ({ navigation }) => ({
         tabBarIcon: () => (
           <Text>UserInfo</Text>),
         headerTitle:

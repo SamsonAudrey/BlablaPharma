@@ -3,9 +3,11 @@ import {
   TextInput, View, Picker, StyleSheet, Text
 } from 'react-native';
 import {
-  Collapse, CollapseHeader, CollapseBody, AccordionList
+  Collapse, CollapseHeader, CollapseBody
 } from 'accordion-collapse-react-native';
 import RadioForm from 'react-native-simple-radio-button';
+
+let initial = 0;
 
 export default class SearchBar extends Component {
   componentDidMount() {
@@ -26,12 +28,25 @@ export default class SearchBar extends Component {
 
   handleChangeSearch = (text) => {
     this.props.onTextUpdate(text);
-    console.log(`t'as changé texxxt : ${text}`);
+    // console.log(`t'as changé texxxt : ${text}`);
   };
 
   handleChangeGenderFilter = (genderValue) => {
     this.props.onGenderFilterUpdate(genderValue);
-    console.log(`t'as changé gender filter : ${genderValue}`);
+    // console.log(`t'as changé gender filter : ${genderValue}`);
+    switch (genderValue) {
+      case 'male':
+        initial = 1;
+        return;
+      case 'female':
+        initial = 2;
+        return;
+      case 'another':
+        initial = 3;
+        return;
+      default:
+        initial = 0;
+    }
   };
 
   handleChangeProfessionFilter = (profession) => {
@@ -78,7 +93,7 @@ export default class SearchBar extends Component {
             <View style={styles.form}>
               <RadioForm
                 radio_props={genderProps}
-                initial={0}
+                initial={initial}
                 onPress={(genderValue) => this.handleChangeGenderFilter(genderValue)}
                 formHorizontal
                 buttonColor="#868788"

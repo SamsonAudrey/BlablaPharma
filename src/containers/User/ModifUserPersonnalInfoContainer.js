@@ -13,11 +13,11 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onUserUpdateRemoteAccount: (account) => {
-    console.log(`rereremooote`)
+    // console.log(`rereremooote`)
     dispatch(userUpdateRemoteAccount(account));
   },
   onUserUpdateLocalAccount: (element, value) => {
-    console.log('lololoolcaaal');
+    // console.log('lololoolcaaal');
     dispatch(userUpdateLocalAccount(element, value));
   }
 });

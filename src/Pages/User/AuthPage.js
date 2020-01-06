@@ -115,7 +115,7 @@ export default class Auth extends Component {
             <Text style={{ color: '#868788', marginLeft: 20, fontSize: 16 }}>Pas encore inscrit ?</Text>
             <HyperLinkText
               text={'S\'inscrire'}
-              onPress={() => navigation.navigate('Register')}
+              onPress={() => this.props.navigation.navigate('Register')}
               style={{ color: '#BED469', marginLeft: 10, fontSize: 16 }}
             />
           </View>

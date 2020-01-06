@@ -16,7 +16,7 @@ export const pharmacistsSearch = (
   professionLabelValue,
   limitValue = 20,
 ) => {
-  console.log(`rrrrrrrrrrrrrr${qValue
+  console.log(`PARAMS SEARCH PHARMACIST : ${qValue
   }${genderValue
   }${professionLabelValue
   }${limitValue}`);

@@ -14,6 +14,10 @@ export const blablapharmacistsSearch = (
   professionLabelValue,
   limitValue = 20,
 ) => {
+  console.log(`PARAMS SEARCH BLABLAPHARMACIST : ${qValue
+      }${genderValue
+      }${professionLabelValue
+      }${limitValue}`)
   function thunk(dispatch) {
     const TEMPO_URL = 'https://api.blablapharma.fr';
     dispatch({ type: BLABLAPHARMACISTS_SEARCH_REQUEST });

@@ -7,7 +7,7 @@ import { createErrorSelector } from '../../utils/errorSelector';
 const error401Selector = createErrorSelector(['CONNECT_USER_401']);
 
 const mapStateToProps = (state) => {
-  console.log(`yooo${JSON.stringify(state)}`);
+  // console.log(`yooo${JSON.stringify(state)}`);
   return {
     error_401: error401Selector(state),
     isConnected: state.connection.isConnected

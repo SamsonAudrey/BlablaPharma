@@ -1,16 +1,14 @@
-import { API_URL } from 'react-native-dotenv';
 import axios from 'axios';
 import {
   SEARCH_UPDATE_TEXT,
-  SEARCH_UPDATE_PROFESSION_FILTER,
   SEARCH_UPDATE_GENDER_FILTER,
-  PHARMACISTS_SEARCH_SUCCESS,
-  PHARMACISTS_SEARCH_FAILURE,
-  PHARMACISTS_SEARCH_NOT_FOUND,
-  PHARMACISTS_SEARCH_REQUEST
+  BLABLAPHARMACISTS_SEARCH_SUCCESS,
+  BLABLAPHARMACISTS_SEARCH_FAILURE,
+  BLABLAPHARMACISTS_SEARCH_NOT_FOUND,
+  BLABLAPHARMACISTS_SEARCH_REQUEST
 } from './actionTypes';
 
-export const pharmacistsSearch = (
+export const blablapharmacistsSearch = (
   qValue,
   genderValue,
   professionLabelValue,
@@ -18,7 +16,7 @@ export const pharmacistsSearch = (
 ) => {
   function thunk(dispatch) {
     const TEMPO_URL = 'https://api.blablapharma.fr';
-    dispatch({ type: PHARMACISTS_SEARCH_REQUEST });
+    dispatch({ type: BLABLAPHARMACISTS_SEARCH_REQUEST });
     return axios
       .get(`${TEMPO_URL}/pharmacists/search`, {
         params: {
@@ -30,13 +28,13 @@ export const pharmacistsSearch = (
       })
       .then((response) => {
         if (response.data.length !== 0) {
-          dispatch(pharmacistsSearchSuccess(response.data));
+          dispatch(blablapharmacistsSearchSuccess(response.data));
         } else {
-          dispatch(pharmacistsSearchNotFound());
+          dispatch(blablapharmacistsSearchNotFound());
         }
       })
       .catch((error) => {
-        dispatch(pharmacistsSearchFailure(error));
+        dispatch(blablapharmacistSsearchFailure(error));
       });
   }
   // thunk.interceptInOffline = true;
@@ -46,19 +44,19 @@ export const pharmacistsSearch = (
   return thunk;
 };
 
-export const pharmacistsSearchSuccess = (pharmacists) => ({
-  type: PHARMACISTS_SEARCH_SUCCESS,
+export const blablapharmacistsSearchSuccess = (blablapharmacists) => ({
+  type: BLABLAPHARMACISTS_SEARCH_SUCCESS,
   payload: {
-    pharmacists
+    blablapharmacists
   }
 });
 
-export const pharmacistsSearchNotFound = () => ({
-  type: PHARMACISTS_SEARCH_NOT_FOUND
+export const blablapharmacistsSearchNotFound = () => ({
+  type: BLABLAPHARMACISTS_SEARCH_NOT_FOUND
 });
 
-export const pharmacistsSearchFailure = (error) => ({
-  type: PHARMACISTS_SEARCH_FAILURE,
+export const blablapharmacistSsearchFailure = (error) => ({
+  type: BLABLAPHARMACISTS_SEARCH_FAILURE,
   error
 });
 
@@ -70,9 +68,4 @@ export const updateSearchText = (text) => ({
 export const updateSearchGenderFilter = (gender) => ({
   type: SEARCH_UPDATE_GENDER_FILTER,
   gender
-});
-
-export const updateSearchProfessionFilter = (profession) => ({
-  type: SEARCH_UPDATE_PROFESSION_FILTER,
-  profession
 });

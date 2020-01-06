@@ -43,9 +43,9 @@ export default class CustomTabView extends React.Component {
     <View style={styles.scene}>
       {this.props.isFetching === true
         ? <Text> Loading </Text> : <Text>Loaded</Text>}
-      {this.props.pharmacists.length > 0 ? (
+      {this.props.blablapharmacists.length > 0 ? (
         <FlatList
-          data={this.props.pharmacists}
+          data={this.props.blablapharmacists}
           renderItem={(pharmacist) => (
             <PharmacistsListItems
               data={pharmacist}

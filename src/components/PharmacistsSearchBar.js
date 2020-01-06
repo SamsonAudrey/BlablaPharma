@@ -14,16 +14,14 @@ export default class SearchBar extends Component {
     const { gender } = this.props;
     const { profession } = this.props;
     const { text } = this.props;
-    this.props.onSearch(text, gender, 'pharmacist');
-    this.props.onBlablaSearch(text, gender, profession);
+    this.props.onSearch(text, gender, '');
   }
 
   componentDidUpdate() {
     const { gender } = this.props;
     const { profession } = this.props;
     const { text } = this.props;
-    this.props.onSearch(text, gender, 'pharmacist');
-    this.props.onBlablaSearch(text, gender, profession);
+    this.props.onSearch(text, gender, '');
   }
 
   handleChangeSearch = (text) => {

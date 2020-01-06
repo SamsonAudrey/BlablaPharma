@@ -1,29 +1,23 @@
 import { connect } from 'react-redux';
+import { filter } from 'lodash';
 import PharmacistsList from '../components/PharmacistsList';
 import { createLoadingSelector } from '../utils/loadingSelector';
 import CustomTabView from '../components/CustomTabView';
 import {
-  pharmacistsSearch,
-  updateSearchGenderFilter,
-  updateSearchProfessionFilter,
-  updateSearchText
+  pharmacistsSearch
 } from '../actions/pharmacistsSearchAction';
-import { blablapharmacistsSearch } from '../actions/blablapharmacistsSearchAction';
 
 const loadingSelector = createLoadingSelector(['PHARMACISTS_SEARCH']);
 
 const mapStateToProps = (state) => ({
-  pharmacists: state.pharmacists,
-  blablapharmacists: state.blablapharmacists,
+  pharmacists: filter(state.pharmacists, { professionLabel: 'pharmacist' }),
+  blablapharmacists: filter(state.pharmacists, { professionLabel: 'pharmacistBlablapharma' }),
   isFetching: loadingSelector(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onSearch: (text, gender, profession) => {
     dispatch(pharmacistsSearch(text, gender, profession));
-  },
-  onBlablaSearch: (text, gender, profession) => {
-    dispatch(blablapharmacistsSearch(text, gender, profession));
   }
 });
 

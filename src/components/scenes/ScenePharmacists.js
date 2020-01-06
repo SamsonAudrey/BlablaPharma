@@ -32,8 +32,5 @@ export default class ScenePharmacists extends React.Component {
 const styles = StyleSheet.create({
   scene: {
     alignItems: 'center',
-    // justifyContent: 'center',
-    // marginVertical: 10
-    // flex:8
   }
 });

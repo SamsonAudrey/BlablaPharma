@@ -3,7 +3,6 @@ import PharmacistsSearchBar from '../components/PharmacistsSearchBar';
 import {
   updateSearchText, pharmacistsSearch, updateSearchProfessionFilter, updateSearchGenderFilter
 } from '../actions/pharmacistsSearchAction';
-import {blablapharmacistsSearch} from "../actions/blablapharmacistsSearchAction";
 
 const mapStateToProps = (state) => {
   // console.log(`passe à la search baaar ${JSON.stringify(state)}`);
@@ -26,9 +25,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onSearch: (text, gender, profession) => {
     dispatch(pharmacistsSearch(text, gender, profession));
-  },
-  onBlablaSearch: (text, gender) => {
-    dispatch(blablapharmacistsSearch(text, gender, 'pharmacistBlablapharma'));
   }
 });
 

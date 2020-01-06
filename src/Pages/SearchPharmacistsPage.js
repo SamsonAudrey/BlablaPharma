@@ -2,12 +2,14 @@
 import React, { Component } from 'react';
 import SearchBarPharmacists from '../containers/PharmacistsSearchBarContainer';
 import PharmacistsListContainer from '../containers/PharmacistsListContainer';
+import {View} from 'react-native';
 
 class SearchPharmacistsPage extends Component {
   render() {
     return (
       <>
-        <SearchBarPharmacists />
+          <View style={{backgroundColor: 'white'}}>
+              <SearchBarPharmacists /></View>
         <PharmacistsListContainer />
       </>
     );

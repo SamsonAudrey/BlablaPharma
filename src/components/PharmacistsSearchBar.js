@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  TextInput, View, Picker, StyleSheet, Text
+  TextInput, View, StyleSheet, Text
 } from 'react-native';
 import {
   Collapse, CollapseHeader, CollapseBody
@@ -12,14 +12,14 @@ let initial = 0;
 export default class SearchBar extends Component {
   componentDidMount() {
     const { gender } = this.props;
-    const { profession } = this.props;
+    // const { profession } = this.props;
     const { text } = this.props;
     this.props.onSearch(text, gender, '');
   }
 
   componentDidUpdate() {
     const { gender } = this.props;
-    const { profession } = this.props;
+    // const { profession } = this.props;
     const { text } = this.props;
     this.props.onSearch(text, gender, '');
   }
@@ -62,11 +62,12 @@ export default class SearchBar extends Component {
       { label: 'Autre', value: 'another' },
     ];
 
-    const professionProps = [
+    /* const professionProps = [
       { label: 'Tous   ', value: '' },
       { label: 'Pharmaciens   ', value: 'pharmacist' },
       { label: 'BlaBlaPharmaciens', value: 'pharmacistBlablapharma' },
-    ];
+    ]; */
+
     return (
       <>
         <View style={styles.titleView}>

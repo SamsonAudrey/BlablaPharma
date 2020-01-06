@@ -8,9 +8,6 @@ export default class ScenePharmacists extends React.Component {
   render() {
     return (
       <View style={styles.scene}>
-        {this.props.isFetching === true
-          ? <Text> Loading </Text> : <Text>Loaded</Text>}
-        <Text>{this.props.pharmacists.length}</Text>
         {this.props.pharmacists.length > 0 ? (
           <FlatList
             data={this.props.pharmacists}
@@ -21,7 +18,8 @@ export default class ScenePharmacists extends React.Component {
             )}
             keyExtractor={(item) => item.id.toString()}
             ItemSeparatorComponent={() => (<View style={{ height: 15 }} />)}
-            ListFooterComponent={() => (<View style={{ height: 30 }} />)}
+            ListFooterComponent={() => (<View style={{ height: 20 }} />)}
+            style={{ marginTop: 10 }}
           />
         ) : (
           <Text> Aucun pharmacien trouvé </Text>

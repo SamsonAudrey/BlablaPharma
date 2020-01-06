@@ -60,7 +60,8 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingBottom: 0,
     backgroundColor: 'white',
-    height: 265
+    height: 265,
+    alignItems: 'center'
   },
   buttonContainer: {
     alignItems: 'center',

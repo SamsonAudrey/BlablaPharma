@@ -56,22 +56,24 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
+    elevation: 3,
     padding: 10,
     paddingBottom: 0,
     backgroundColor: 'white',
-    height: 270
+    height: 265
   },
   buttonContainer: {
     alignItems: 'center',
     marginTop: 7
   },
   text: {
-    color: '#707070'
+    color: '#707070',
+    fontSize: 12,
   },
   title: {
     color: '#707070',
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 16,
     marginVertical: 10,
     textAlign: 'center'
   }

@@ -86,18 +86,6 @@ export default class SearchBar extends Component {
                 buttonWrapStyle={{ marginLeft: 20 }}
                 style={{ marginTop: '4%' }}
               />
-              <RadioForm
-                radio_props={professionProps}
-                initial={0}
-                onPress={(itemValue) => this.handleChangeProfessionFilter(itemValue)}
-                formHorizontal
-                buttonColor="#868788"
-                labelColor="#868788"
-                selectedButtonColor="#868788"
-                buttonSize={10}
-                buttonWrapStyle={{ marginLeft: 20 }}
-                style={{ marginTop: '4%' }}
-              />
             </View>
           </CollapseBody>
         </Collapse>
@@ -105,6 +93,20 @@ export default class SearchBar extends Component {
     );
   }
 }
+
+/* <RadioForm
+  radio_props={professionProps}
+  initial={0}
+  onPress={(itemValue) => this.handleChangeProfessionFilter(itemValue)}
+  formHorizontal
+  buttonColor="#868788"
+  labelColor="#868788"
+  selectedButtonColor="#868788"
+  buttonSize={10}
+  buttonWrapStyle={{ marginLeft: 20 }}
+  style={{ marginTop: '4%' }}
+  // UTIL ???
+/> */
 
 let styles = StyleSheet.create({
   titleView: {
@@ -131,19 +133,20 @@ let styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10,
-    height: 40,
+    marginTop: '1%',
+    height: 35,
     marginBottom: 0
   },
   textInputSearch: {
-    borderColor: '#707070',
+    borderColor: '#a9a9a9',
     borderWidth: 1,
     borderRadius: 5,
     height: '100%',
-    width: '82%',
+    width: '80%',
+    padding: 5,
     color: '#707070',
-    fontSize: 18,
-    textAlign: 'center'
+    fontSize: 16,
+    textAlign: 'center',
   },
   collapseBody: {
     flexDirection: 'row',

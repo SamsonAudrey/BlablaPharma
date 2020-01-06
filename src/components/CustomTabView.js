@@ -5,6 +5,8 @@ import React from 'react';
 import { SceneMap, TabView } from 'react-native-tab-view';
 import Animated from 'react-native-reanimated';
 import PharmacistsListItems from './PharmasistsListItems';
+// eslint-disable-next-line import/extensions
+import ScenePharmacists from './scenes/ScenePharmacists';
 
 export default class CustomTabView extends React.Component {
   state = {
@@ -12,61 +14,19 @@ export default class CustomTabView extends React.Component {
     routes: [
       { key: 'first', title: 'Pharmaciens BlablaPharma' },
       { key: 'second', title: 'Vos\nPharmaciens' },
-    ],
+    ]
   };
 
-  // eslint-disable-next-line react/sort-comp
-  FirstRoute = () => (
-    <View style={styles.scene}>
-      {this.props.isFetching === true
-        ? <Text> Loading </Text> : <Text>Loaded</Text>}
-      {this.props.pharmacists.length > 0 ? (
-        <FlatList
-          data={this.props.pharmacists}
-          renderItem={(pharmacist) => (
-            <PharmacistsListItems
-              data={pharmacist}
-            />
-          )}
-          keyExtractor={(item) => item.id.toString()}
-          ItemSeparatorComponent={() => (<View style={{ height: 15 }} />)}
-          ListFooterComponent={() => (<View style={{ height: 30 }} />)}
-        />
-      ) : (
-        <Text> Aucun pharmacien trouvé </Text>
-      )}
-    </View>
-  );
-
-  // eslint-disable-next-line react/sort-comp
-  SecondRoute = () => (
-    <View style={styles.scene}>
-      {this.props.isFetching === true
-        ? <Text> Loading </Text> : <Text>Loaded</Text>}
-      {this.props.blablapharmacists.length > 0 ? (
-        <FlatList
-          data={this.props.blablapharmacists}
-          renderItem={(pharmacist) => (
-            <PharmacistsListItems
-              data={pharmacist}
-            />
-          )}
-          keyExtractor={(item) => item.id.toString()}
-          ItemSeparatorComponent={() => (<View style={{ height: 15 }} />)}
-          ListFooterComponent={() => (<View style={{ height: 30 }} />)}
-        />
-      ) : (
-        <Text> Aucun pharmacien trouvé </Text>
-      )}
-    </View>
-  );
-
-
-  _renderScene = SceneMap({
-    first: this.FirstRoute,
-    second: this.SecondRoute,
-  });
-
+ renderScene = ({ route }) => {
+   switch (route.key) {
+     case 'first':
+       return <ScenePharmacists pharmacists={this.props.blablapharmacists} />;
+     case 'second':
+       return <ScenePharmacists pharmacists={this.props.pharmacists} />;
+     default:
+       return null;
+   }
+ };
 
   _handleIndexChange = (index) => this.setState({ index });
 
@@ -136,7 +96,7 @@ export default class CustomTabView extends React.Component {
       <>
         <TabView
           navigationState={this.state}
-          renderScene={this._renderScene}
+          renderScene={this.renderScene}
           renderTabBar={this._renderTabBar}
           onIndexChange={this._handleIndexChange}
         />
@@ -163,6 +123,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     // justifyContent: 'center',
     // marginVertical: 10
-    //flex:8
+    // flex:8
   }
 });

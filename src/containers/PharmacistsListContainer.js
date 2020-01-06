@@ -31,6 +31,6 @@ const mapDispatchToProps = (dispatch) => ({
 const PharmacistsListContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CustomTabView);
+)(PharmacistsList, CustomTabView);
 
 export default PharmacistsListContainer;

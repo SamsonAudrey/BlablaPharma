@@ -12,7 +12,7 @@ export default class SearchBar extends Component {
     const { gender } = this.props;
     const { profession } = this.props;
     const { text } = this.props;
-    this.props.onSearch(text, gender, profession);
+    this.props.onSearch(text, gender, 'pharmacist');
     this.props.onBlablaSearch(text, gender, profession);
   }
 
@@ -20,7 +20,7 @@ export default class SearchBar extends Component {
     const { gender } = this.props;
     const { profession } = this.props;
     const { text } = this.props;
-    this.props.onSearch(text, gender, profession);
+    this.props.onSearch(text, gender, 'pharmacist');
     this.props.onBlablaSearch(text, gender, profession);
   }
 
@@ -87,19 +87,6 @@ export default class SearchBar extends Component {
                 buttonSize={10}
                 buttonWrapStyle={{ marginLeft: 20 }}
                 style={{ marginTop: '4%' }}
-              />
-              <RadioForm
-                  radio_props={professionProps}
-                  initial={0}
-                  onPress={(itemValue) => this.handleChangeProfessionFilter(itemValue)}
-                  formHorizontal
-                  buttonColor="#868788"
-                  labelColor="#868788"
-                  selectedButtonColor="#868788"
-                  buttonSize={10}
-                  buttonWrapStyle={{ marginLeft: 20 }}
-                  style={{ marginTop: '4%' }}
-                  // UTIL ???
               />
             </View>
           </CollapseBody>

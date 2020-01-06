@@ -29,9 +29,8 @@ export default class CustomTabView extends React.Component {
             />
           )}
           keyExtractor={(item) => item.id.toString()}
-          ItemSeparatorComponent={() => (
-            <View style={{ height: 10 }} />
-          )}
+          ItemSeparatorComponent={() => (<View style={{ height: 15 }} />)}
+          ListFooterComponent={() => (<View style={{ height: 30 }} />)}
         />
       ) : (
         <Text> Aucun pharmacien trouvé </Text>
@@ -53,9 +52,8 @@ export default class CustomTabView extends React.Component {
             />
           )}
           keyExtractor={(item) => item.id.toString()}
-          ItemSeparatorComponent={() => (
-            <View style={{ height: 10 }} />
-          )}
+          ItemSeparatorComponent={() => (<View style={{ height: 15 }} />)}
+          ListFooterComponent={() => (<View style={{ height: 30 }} />)}
         />
       ) : (
         <Text> Aucun pharmacien trouvé </Text>
@@ -148,9 +146,6 @@ export default class CustomTabView extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
   tabBar: {
     flexDirection: 'row',
     paddingTop: 10,
@@ -158,7 +153,7 @@ const styles = StyleSheet.create({
   tabItem: {
     flex: 1,
     textAlign: 'center',
-    padding: 16,
+    padding: 14,
     borderWidth: 1,
     borderRadius: 0, // TODO 0 OR 5 ?
     borderColor: '#848484',
@@ -167,6 +162,7 @@ const styles = StyleSheet.create({
   scene: {
     alignItems: 'center',
     // justifyContent: 'center',
-    marginVertical: 10
+    // marginVertical: 10
+    //flex:8
   }
 });

@@ -44,6 +44,7 @@ export default class PharmacistsListItems extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     borderColor: '#707070',
     borderWidth: 1,
     borderRadius: 5,
@@ -57,12 +58,12 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     padding: 10,
     paddingBottom: 0,
-    backgroundColor: 'white'
-
+    backgroundColor: 'white',
+    height: 270
   },
   buttonContainer: {
     alignItems: 'center',
-    marginTop: 5
+    marginTop: 7
   },
   text: {
     color: '#707070'

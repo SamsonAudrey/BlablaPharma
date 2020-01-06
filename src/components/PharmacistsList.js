@@ -12,6 +12,7 @@ export default class PharmarmacistsList extends React.Component {
     return (
       <>
         <CustomTabView pharmacists={this.props.pharmacists} />
+
       </>
     );
   }

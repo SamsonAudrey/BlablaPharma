@@ -9,7 +9,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onRegisterPatient: (firstName, lastName, birthDate, gender, email, password, picture) => {
-    dispatch(registerPatient(firstName, lastName, birthDate, gender, email, password, picture));
+    dispatch(registerPatient(firstName, lastName, birthDate, gender, email, password));
+    // TODO picture
   },
   onRegisterInfo: (userInfo, userGender) => {
     dispatch(userRegisterInfo(userInfo, userGender));

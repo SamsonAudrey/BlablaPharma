@@ -34,16 +34,16 @@ export const pharmacistsSearch = (
       })
       .then((response) => {
         if (response.data.length !== 0) {
+          dispatch(pharmacistsSearchSuccess(response.data));
           console.log(`founnd${response.data}`);
-          dispatch(pharmacistSsearchSuccess(response.data));
         } else {
           console.log('not founnnnd');
           dispatch(pharmacistsSearchNotFound());
         }
       })
       .catch((error) => {
+        dispatch(pharmacistsSearchFailure(error));
         console.log(`erroroororor${error}`);
-        dispatch(pharmacistSsearchFailure(error));
       });
   }
   // thunk.interceptInOffline = true;
@@ -53,7 +53,7 @@ export const pharmacistsSearch = (
   return thunk;
 };
 
-export const pharmacistSsearchSuccess = (pharmacists) => ({
+export const pharmacistsSearchSuccess = (pharmacists) => ({
   type: PHARMACISTS_SEARCH_SUCCESS,
   payload: {
     pharmacists
@@ -64,7 +64,7 @@ export const pharmacistsSearchNotFound = () => ({
   type: PHARMACISTS_SEARCH_NOT_FOUND
 });
 
-export const pharmacistSsearchFailure = (error) => ({
+export const pharmacistsSearchFailure = (error) => ({
   type: PHARMACISTS_SEARCH_FAILURE,
   error
 });

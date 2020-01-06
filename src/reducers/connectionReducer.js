@@ -3,12 +3,13 @@ import {
   CONNECT_USER_FAILURE,
   REFRESH_TOKEN_SUCCESS,
   REFRESH_TOKEN_FAILURE,
-  LOGOUT
+  LOGOUT,
+  TOKEN_VERIFIED
 } from '../actions/userActionTypes';
 
 export default function connection(state = {}, action) {
   switch (action.type) {
-    case CONNECT_USER_SUCCESS:
+    case CONNECT_USER_SUCCESS || TOKEN_VERIFIED:
       console.log('1');
       return {
         isConnected: true

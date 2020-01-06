@@ -13,7 +13,7 @@ export default function user(state = {}, action) {
   switch (action.type) {
     case CONNECT_USER_SUCCESS:
       return {
-        accessToken: action.payload.accesstoken,
+        accessToken: action.payload.accessToken,
         refreshToken: action.payload.refreshToken,
         account: action.payload.account
       };
@@ -25,7 +25,7 @@ export default function user(state = {}, action) {
       };
     case REFRESH_TOKEN_SUCCESS:
       return {
-        accessToken: action.payload.accesstoken,
+        accessToken: action.payload.accessToken,
         refreshToken: state.refreshToken,
         account: state.account
       };
@@ -37,7 +37,7 @@ export default function user(state = {}, action) {
       };
     case USER_PERSONNAL_INFO_SEARCH_SUCCESS:
       return {
-        accessToken: state.accesstoken,
+        accessToken: state.accessToken,
         refreshToken: state.refreshToken,
         account: action.payload.account
       };

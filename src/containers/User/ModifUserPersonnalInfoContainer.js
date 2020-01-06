@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { userSearch } from '../../actions/userAction';
 import { userUpdateLocalAccount, userUpdateRemoteAccount } from '../../actions/userModifInfoAction';
 import { createLoadingSelector } from '../../utils/loadingSelector';
 import ModifUserPersonnalInfo from '../../Pages/User/ModifUserPersonnalInfo';
@@ -19,6 +20,9 @@ const mapDispatchToProps = (dispatch) => ({
   onUserUpdateLocalAccount: (element, value) => {
     console.log('lololoolcaaal');
     dispatch(userUpdateLocalAccount(element, value));
+  },
+  onUserSearch: (userid) => {
+    dispatch(userSearch(userid));
   }
 });
 

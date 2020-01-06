@@ -1,41 +1,56 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-sequences */
 /*
  * In this script we manage the session of the user with the accessToken and refreshToken
  *
  */
 import axios from 'axios';
 import { API_URL } from 'react-native-dotenv';
-import { refreshToken, logout } from '../actions/userAction';
+import {
+  refreshToken, userAuthFailure, tokenVerified
+} from '../actions/userAction';
+
+// import { store } from '../../store';
 
 export const checkToken = (store) => (next) => (action) => {
   const state = store.getState();
-  return new Promise((resolve, reject) => {
-    console.log(`state: ${JSON.stringify(state)}`);
-    // In case it is the connection and accessToken has not been added to the header
-    state.user.accessToken
-      ? (axios.defaults.headers.Authorization = `Bearer ${state.user.accessToken}`)
-      : reject();
-    // If there is no account it means that the user is not connected
-    state.user.account.id
-      ? axios
-        .get(`${API_URL}/accounts/${state.user.account.id}`) // This line is meant to hit the API
-        .then(() => {
-          console.log('bahhh ca marchcheh');
-          next(action);  
-        })
-        .catch(() => {
-          RefreshToken()
-            .then((response) => {
-              if (response.success) {
-                next(action);
-              } else reject(new TypeError("Token Refreshing didn't worked"));
-            })
-            .catch((err) => reject(err));
-        })
-      : reject(new TypeError('The user is not connected'));
-  });
+  console.log(`state: ${JSON.stringify(state)}`);
+  if (!state.user.accessToken) {
+    store.dispatch(userAuthFailure);
+    return next(action);
+  }
+  // In case it is the connection and accessToken has not been added to the header
+  axios.defaults.headers.Authorization = `Bearer ${state.user.accessToken}`;
+  // If there is no account it means that the user is not connected
+  state.user.account.id
+    ? axios
+      .get(`${API_URL}/accounts/${state.user.account.id}`) // This line is meant to hit the API
+      .then(() => {
+        console.log('bahhh ca marchcheh');
+        store.dispatch(tokenVerified),
+        next(action);
+      })
+      .catch(() => {
+        RefreshToken(store)
+          .then((response) => {
+            if (response.success) {
+              store.dispatch(tokenVerified),
+              next(action);
+            } else {
+              store.dispatch(userAuthFailure),
+              next(action);
+            }
+          })
+          .catch(() => console.log('pas de refressssh'),
+            store.dispatch(userAuthFailure),
+            next(action));
+      })
+    : (store.dispatch(userAuthFailure),
+    next(action)
+    );
 };
 
-export function RefreshToken() {
+export function RefreshToken(store) {
   const state = store.getState();
 
   return new Promise((resolve, reject) => {
@@ -60,8 +75,4 @@ export function RefreshToken() {
         })
       : reject(new TypeError("Doesn't have any account id"));
   });
-}
-
-export function Logout() {
-  store.dispatch(logout());
 }

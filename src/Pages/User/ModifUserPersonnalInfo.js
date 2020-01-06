@@ -8,7 +8,7 @@ class SearchPharmacistsPage extends Component {
       <View>
         <GeneralModifInfo
           userUpdateRemoteAccount={this.props.onUserUpdateRemoteAccount}
-          userUpdateLocalAccount={this.props.onUserUpdateLocalAccount}
+          onUserSearch={this.props.onUserSearch}
           account={this.props.account}
         />
       </View>

@@ -9,7 +9,8 @@ import {
   USER_PERSONNAL_INFO_SEARCH_FAILURE,
   USER_PERSONNAL_INFO_SEARCH_REQUEST,
   USER_PERSONNAL_INFO_SEARCH_SUCCESS,
-  LOGOUT
+  LOGOUT,
+  TOKEN_VERIFIED
 } from './userActionTypes';
 
 export const userAuth = (userEmail, userPassword) => {
@@ -39,7 +40,7 @@ export const userAuth = (userEmail, userPassword) => {
 export const userAuthSuccess = (auth) => ({
   type: CONNECT_USER_SUCCESS,
   payload: {
-    accesstoken: auth.token,
+    accessToken: auth.token,
     refreshToken: auth.refreshToken,
     account: auth.account
   }
@@ -75,7 +76,7 @@ export const refreshToken = (refreshTokenValue) => {
 export const refreshTokenSuccess = (refresh) => ({
   type: REFRESH_TOKEN_SUCCESS,
   payload: {
-    accesstoken: refresh.token,
+    accessToken: refresh.token,
   }
 });
 
@@ -122,5 +123,6 @@ export const userSearchFailure = (error) => ({
 });
 
 
-
-
+export const tokenVerified = () => ({
+  type: TOKEN_VERIFIED
+});

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  ImageBackground, StyleSheet, View, ScrollView, Text
+  ImageBackground, StyleSheet, View,
 } from 'react-native';
 import t from 'tcomb-form-native';
 import moment from 'moment';
@@ -68,7 +68,6 @@ class RegisterPatient extends Component {
           const birthday = moment(value.birth).format('YYYY-MM-DD');
           onRegisterPatient(value.firstName, value.lastName, birthday,
             genderLabel, value.email, value.password);
-
           alert('Inscription faite');
           navigation.navigate('Home');
         } catch (error) { // TODO

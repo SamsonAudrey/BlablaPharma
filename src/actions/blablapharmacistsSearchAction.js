@@ -22,7 +22,7 @@ export const blablapharmacistsSearch = (
         params: {
           ...((qValue !== undefined) ? { q: qValue } : {}),
           ...((genderValue !== undefined) ? { gender: genderValue } : {}),
-          ...((professionLabelValue !== undefined) ? { professionLabel: professionLabelValue } : {}),
+          ...({ professionLabel: 'pharmacistBlablapharma' }),
           ...((limitValue !== undefined) ? { limit: limitValue } : {}),
         }
       })

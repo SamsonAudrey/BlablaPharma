@@ -4,7 +4,7 @@ import {
   REFRESH_TOKEN_SUCCESS,
   REFRESH_TOKEN_FAILURE,
   LOGOUT
-} from '../actions/actionTypes';
+} from '../actions/userActionTypes';
 
 export default function connection(state = {}, action) {
   switch (action.type) {

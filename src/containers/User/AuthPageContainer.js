@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import AuthPage from '../Pages/AuthPage';
-import { userAuth, refreshToken } from '../actions/userAction';
-import { clearError } from '../actions/errorAction';
-import { createErrorSelector } from '../utils/errorSelector';
+import AuthPage from '../../Pages/User/AuthPage';
+import { userAuth, refreshToken } from '../../actions/userAction';
+import { clearError } from '../../actions/errorAction';
+import { createErrorSelector } from '../../utils/errorSelector';
 
 const error401Selector = createErrorSelector(['CONNECT_USER_401']);
 

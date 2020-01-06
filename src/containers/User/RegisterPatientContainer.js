@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 // eslint-disable-next-line camelcase
-import RegisterPage_Patient from '../Pages/RegisterPage_Patient';
-import { registerPatient, userRegisterInfo } from '../actions/registerAction';
+import RegisterPage_Patient from '../../Pages/User/RegisterPage_Patient';
+import { registerPatient, userRegisterInfo } from '../../actions/registerAction';
 
 const mapStateToProps = (state) => ({
   state

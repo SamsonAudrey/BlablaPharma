@@ -4,10 +4,10 @@ import {
 } from 'react-native';
 import t from 'tcomb-form-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { store } from '../../store';
+import { store } from '../../../store';
 
-import CButton from '../components/Button';
-import HyperLinkText from '../components/HyperLinkText';
+import CButton from '../../components/Button';
+import HyperLinkText from '../../components/HyperLinkText';
 
 const { Form } = t.form;
 
@@ -82,7 +82,7 @@ export default class Auth extends Component {
         <View style={styles.container}>
           {error}
           <ImageBackground
-            source={require('../assets/engagement.jpg')}
+            source={require('../../assets/engagement.jpg')}
             style={{ width: '100%', height: '100%' }}
           >
             <View style={styles.form}>

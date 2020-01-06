@@ -3,9 +3,9 @@ import {ImageBackground, Platform, StyleSheet, View} from 'react-native';
 import t from 'tcomb-form-native';
 import moment from 'moment';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import CButton from '../components/Button';
-import ButtonTitle from '../components/ButtonTitle';
-import { store } from '../../store';
+import CButton from '../../components/Button';
+import ButtonTitle from '../../components/ButtonTitle';
+import { store } from '../../../store';
 
 const { Form } = t.form;
 
@@ -93,7 +93,7 @@ class RegisterPharmacist extends Component {
       >
         <View style={styles.imageView}>
           <ImageBackground
-            source={require('../assets/sign-in-pharmacist_cut.png')}
+            source={require('../../assets/sign-in-pharmacist_cut.png')}
             style={{ width: '100%', height: '100%', opacity: 1 }}
           >
             <View style={styles.title}>

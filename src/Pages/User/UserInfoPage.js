@@ -28,6 +28,13 @@ export default class UserInfoPage extends React.Component {
           this.handleSubmitLogout();
         }}
       />
+      <Button
+        title="Informations personnelles"
+        onPress={() => {
+          /* Navigate to the authentication page */
+          navigate('UserPersonnalInfoPage');
+        }}
+      />
     </>
   );
 
@@ -69,6 +76,13 @@ export default class UserInfoPage extends React.Component {
             onPress={() => {
               /* Navigate to the authentication page */
               this.handleSubmitLogout();
+            }}
+          />
+          <Button
+            title="Informations personnelles"
+            onPress={() => {
+              /* Navigate to the authentication page */
+              navigate('UserPersonnalInfo');
             }}
           />
         </>

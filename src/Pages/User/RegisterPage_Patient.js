@@ -6,9 +6,9 @@ import t from 'tcomb-form-native';
 import moment from 'moment';
 import RadioForm from 'react-native-simple-radio-button';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import ButtonTitle from '../components/ButtonTitle';
-import CButton from '../components/Button';
-import { store } from '../../store';
+import ButtonTitle from '../../components/ButtonTitle';
+import CButton from '../../components/Button';
+import { store } from '../../../store';
 
 const { Form } = t.form;
 const genderProps = [
@@ -87,7 +87,7 @@ class RegisterPatient extends Component {
         >
           <View style={styles.imageView}>
             <ImageBackground
-              source={this.userKind === 'patient' ? require('../assets/sign-in_cut.jpg') : require('../assets/sign-in-pharmacist_cut.png')}
+              source={this.userKind === 'patient' ? require('../../assets/sign-in_cut.jpg') : require('../../assets/sign-in-pharmacist_cut.png')}
               style={{ width: '100%', height: '100%', opacity: 1 }}
             >
               <View style={styles.title}>

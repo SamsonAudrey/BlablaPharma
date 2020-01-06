@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
-import UserInfoPage from '../Pages/UserInfoPage';
-import { logout } from '../actions/userAction';
+import UserInfoPage from '../../Pages/User/UserInfoPage';
+import { logout } from '../../actions/userAction';
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     isConnected: state.connection.isConnected
   };

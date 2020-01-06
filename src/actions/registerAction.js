@@ -1,6 +1,6 @@
 import { API_URL } from 'react-native-dotenv';
 import {
-  CONNECT_USER,
+  CONNECT_USER_SUCCESS,
   REGISTER_FAILURE,
   REGISTER_INFO,
   REGISTER_KIND
@@ -88,13 +88,6 @@ export const registerPharmacist = (
     console.log(`error ${error}`);
     dispatch(registerFailure(error));
   });
-
-export const registerSuccess = (userRole) => ({
-  type: CONNECT_USER,
-  payload: {
-    userKind: userRole
-  }
-});
 
 export const registerFailure = (error) => ({
   type: REGISTER_FAILURE,

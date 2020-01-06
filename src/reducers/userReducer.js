@@ -1,10 +1,13 @@
+
 import {
   CONNECT_USER_SUCCESS,
   CONNECT_USER_FAILURE,
   REFRESH_TOKEN_SUCCESS,
   REFRESH_TOKEN_FAILURE,
-  LOGOUT
-} from '../actions/actionTypes';
+  USER_PERSONNAL_INFO_SEARCH_SUCCESS,
+  LOGOUT,
+  UPDATE_USER_LOCAL_ACCOUNT
+} from '../actions/userActionTypes';
 
 export default function user(state = {}, action) {
   switch (action.type) {
@@ -31,6 +34,20 @@ export default function user(state = {}, action) {
         accessToken: state.accessToken,
         refreshToken: state.refreshToken,
         account: state.account
+      };
+    case USER_PERSONNAL_INFO_SEARCH_SUCCESS:
+      return {
+        accessToken: state.accesstoken,
+        refreshToken: state.refreshToken,
+        account: action.payload.account
+      };
+    case UPDATE_USER_LOCAL_ACCOUNT:
+      return {
+        ...state,
+        account: {
+          ...state.account,
+          [`${action.element}`]: action.value
+        }
       };
     case LOGOUT:
       return {

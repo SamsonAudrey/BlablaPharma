@@ -23,7 +23,7 @@ export const userAuth = (userEmail, userPassword) => {
         }
       })
       .then((response) => {
-        console.log(JSON.stringify(response.data))
+        // console.log(JSON.stringify(response.data))
         dispatch(userAuthSuccess(response.data));
       })
       .catch((error) => {
@@ -95,11 +95,11 @@ export const userSearch = (accountId) => {
     return axios
       .get(`${API_URL}/accounts/${accountId}`)
       .then((response) => {
-        console.log("yessssssssssssssss")
+        // console.log("yessssssssssssssss")
         dispatch(userSearchSuccess(response.data));
       })
       .catch((error) => {
-        console.log("errrrrrrrrr")
+        // console.log("errrrrrrrrr")
         dispatch(userSearchFailure(error));
       });
   }

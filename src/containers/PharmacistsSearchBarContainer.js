@@ -5,7 +5,7 @@ import {
 } from '../actions/pharmacistsSearchAction';
 
 const mapStateToProps = (state) => {
-  console.log(`passe à la search baaar ${JSON.stringify(state)}`);
+  // console.log(`passe à la search baaar ${JSON.stringify(state)}`);
   return {
     gender: state.searchPharmacists.gender,
     profession: state.searchPharmacists.profession,

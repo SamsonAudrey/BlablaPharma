@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
+import CButton from '../../components/Button';
 
 export default class UserInfoPage extends React.Component {
   constructor(props) {
@@ -21,38 +22,46 @@ export default class UserInfoPage extends React.Component {
 
   _renderOnline = (navigate) => (
     <>
-      <Button
-        title="Logout"
+      <CButton
+        title="Déconnexion"
         onPress={() => {
           /* Navigate to the authentication page */
           this.handleSubmitLogout();
         }}
+        long
       />
-      <Button
+      <CButton
         title="Informations personnelles"
         onPress={() => {
           /* Navigate to the authentication page */
-          navigate('UserPersonnalInfoPage');
+          navigate('UserPersonnalInfo');
         }}
+        long
+        buttonStyle="white"
       />
     </>
   );
 
   _renderOffline = (navigate) => (
     <>
-      <Button
+      <CButton
         title="Connexion"
         onPress={() => {
           /* Navigate to the authentication page */
-          navigate('AuthPage');
+          // navigate("AuthPage");
+          this.props.navigation.navigate('Connection');
         }}
+        long
+        buttonStyle="green"
       />
-      <Button
+      <CButton
         title="Inscription"
         onPress={() => {
           /* Navigate to the register page */
-          navigate('RegisterPage');
+          this.props.navigation.navigate('Register');
         }}
+        long
+        buttonStyle="green"
       />
     </>
   );
@@ -66,48 +75,123 @@ export default class UserInfoPage extends React.Component {
   };
 
   render() {
-    let page;
+    let footer;
+    let personalInfo;
     const { navigate } = this.props.navigation;
     if (this.props.isConnected) {
-      page = (
+      footer = (
         <>
-          <Button
-            title="Logout"
+          <CButton
+            title="Déconnexion"
             onPress={() => {
               /* Navigate to the authentication page */
               this.handleSubmitLogout();
             }}
-          />
-          <Button
-            title="Informations personnelles"
-            onPress={() => {
-              /* Navigate to the authentication page */
-              navigate('UserPersonnalInfo');
-            }}
+            long
           />
         </>
       );
+      personalInfo = (
+        <CButton
+          title="Informations personnelles"
+          onPress={() => {
+            /* Navigate to the authentication page */
+            navigate('UserPersonnalInfo');
+          }}
+          long
+          buttonStyle="white"
+        />
+      );
     } else {
-      page = (
+      footer = (
         <>
-          <Button
+          <CButton
             title="Connexion"
             onPress={() => {
               /* Navigate to the authentication page */
               // navigate("AuthPage");
               this.props.navigation.navigate('Connection');
             }}
+            long
+            buttonStyle="green"
           />
-          <Button
+          <CButton
             title="Inscription"
             onPress={() => {
               /* Navigate to the register page */
               this.props.navigation.navigate('Register');
             }}
+            long
+            buttonStyle="green"
           />
         </>
       );
+      personalInfo = (null);
     }
-    return <>{page}</>;
+    return (
+      <>
+        <View style={styles.container}>
+          <View style={styles.middle}>
+            {personalInfo}
+            <CButton
+              title="A propos"
+              onPress={() => {
+                /* Navigate to the authentication page */
+                navigate('UserPersonnalInfo');
+              }}
+              long
+              buttonStyle="white"
+            />
+            <CButton
+              title="Protection des données"
+              onPress={() => {
+                /* Navigate to the authentication page */
+                navigate('UserPersonnalInfo');
+              }}
+              long
+              buttonStyle="white"
+            />
+            <CButton
+              title="Conditions générales"
+              onPress={() => {
+                /* Navigate to the authentication page */
+                navigate('UserPersonnalInfo');
+              }}
+              long
+              buttonStyle="white"
+            />
+            <CButton
+              title="Gestion des cookies "
+              onPress={() => {
+                /* Navigate to the authentication page */
+                navigate('UserPersonnalInfo');
+              }}
+              long
+              buttonStyle="white"
+            />
+          </View>
+          <View style={styles.footer}>
+            {footer}
+          </View>
+        </View>
+
+      </>
+    );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    height: '100%',
+    justifyContent: 'flex-end',
+  },
+  middle: {
+    alignSelf: 'center',
+  },
+  footer: {
+    height: '30%',
+    justifyContent: 'flex-end',
+    marginBottom: 20
+  }
+});

@@ -1,13 +1,11 @@
 import {
-  StyleSheet, View, Text, FlatList
+  StyleSheet, View
 } from 'react-native';
 import React from 'react';
-import { SceneMap, TabView } from 'react-native-tab-view';
+import { TabView } from 'react-native-tab-view';
 import Animated from 'react-native-reanimated';
-import PharmacistsListItems from './PharmasistsListItems';
 // eslint-disable-next-line import/extensions
 import ScenePharmacists from './scenes/ScenePharmacists';
-import {filter} from "lodash";
 
 export default class CustomTabView extends React.Component {
   state = {

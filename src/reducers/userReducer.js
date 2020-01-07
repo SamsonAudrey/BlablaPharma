@@ -5,8 +5,7 @@ import {
   REFRESH_TOKEN_SUCCESS,
   REFRESH_TOKEN_FAILURE,
   USER_PERSONNAL_INFO_SEARCH_SUCCESS,
-  LOGOUT,
-  UPDATE_USER_LOCAL_ACCOUNT
+  LOGOUT
 } from '../actions/userActionTypes';
 
 export default function user(state = {}, action) {
@@ -40,14 +39,6 @@ export default function user(state = {}, action) {
         accessToken: state.accessToken,
         refreshToken: state.refreshToken,
         account: action.payload.account
-      };
-    case UPDATE_USER_LOCAL_ACCOUNT:
-      return {
-        ...state,
-        account: {
-          ...state.account,
-          [`${action.element}`]: action.value
-        }
       };
     case LOGOUT:
       return {

@@ -1,16 +1,37 @@
 import React from 'react';
 import CustomTabView from './CustomTabView';
-
+import ScenePharmacists from './scenes/ScenePharmacists';
 
 export default class PharmarmacistsList extends React.Component {
-  render() {
-    return (
-      <>
-        <CustomTabView
-          pharmacists={this.props.pharmacists}
-          blablapharmacists={this.props.blablapharmacists}
-        />
-      </>
-    );
-  }
+  state = {
+    index: 0,
+    routes: [
+      { key: 'first', title: 'Pharmaciens BlablaPharma' },
+      { key: 'second', title: 'Vos\nPharmaciens' },
+    ]
+  };
+
+ renderScene = ({ route }) => {
+   switch (route.key) {
+     case 'first':
+       return <ScenePharmacists pharmacists={this.props.blablapharmacists} />;
+     case 'second':
+       return <ScenePharmacists pharmacists={this.props.pharmacists} />;
+     default:
+       return null;
+   }
+ };
+
+ render() {
+   return (
+     <>
+       <CustomTabView
+         pharmacists={this.props.pharmacists}
+         blablapharmacists={this.props.blablapharmacists}
+         renderScene={this.renderScene}
+         state={this.state}
+       />
+     </>
+   );
+ }
 }

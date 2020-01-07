@@ -11,7 +11,9 @@ const errorReducer = (state = {}, action) => {
   if (!matches) return state;
 
   const [, requestName, requestState] = matches;
-
+  if (requestState === 'FAILURE') {
+    console.log("errrr"+ requestName + error.message)
+  }
   return {
     ...state,
     // This will add different error status with the type of their action
@@ -19,6 +21,7 @@ const errorReducer = (state = {}, action) => {
     // To get the result of it you only have to import this in your container
     // and do errorReducer('CONNECT_USER_401') for example
     [`${requestName}_401`]: requestState === 'FAILURE' && error.message === 'Request failed with status code 401',
+    [`${requestName}_403`]: requestState === 'FAILURE' && error.message === 'Request failed with status code 403',
     [`${requestName}_404`]: requestState === 'NOT_FOUND'
   };
 };

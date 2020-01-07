@@ -1,16 +1,15 @@
 import { API_URL } from 'react-native-dotenv';
 import axios from 'axios';
 import {
-  USER_PERSONNAL_INFO_SEARCH_FAILURE,
-  USER_PERSONNAL_INFO_SEARCH_REQUEST,
-  USER_PERSONNAL_INFO_SEARCH_SUCCESS,
-  UPDATE_USER_LOCAL_ACCOUNT
+  USER_PERSONNAL_INFO_UPDATE_SUCCESS,
+  USER_PERSONNAL_INFO_UPDATE_REQUEST,
+  USER_PERSONNAL_INFO_UPDATE_FAILURE
 } from './userActionTypes';
 
 export const userUpdateRemoteAccount = (account) => {
-  // console.log("accuuu"+ `${API_URL}/accounts/${account.id}` )
+  console.log("accuuu"+ `${API_URL}/accounts/${JSON.stringify(account.newEmail)}`)
   function thunk(dispatch) {
-    dispatch({ type: USER_PERSONNAL_INFO_SEARCH_REQUEST });
+    dispatch({ type: USER_PERSONNAL_INFO_UPDATE_REQUEST });
     return axios
       .put(`${API_URL}/accounts/${account.id}`, {
         firstName: account.firstName,
@@ -23,11 +22,11 @@ export const userUpdateRemoteAccount = (account) => {
         picture: account.picture
       })
       .then((response) => {
-        // console.log("respuu"+ JSON.stringify(response.data))
+        console.log("respuu"+ JSON.stringify(response.data))
         dispatch(userUpdateSuccess(response.data));
       })
       .catch((error) => {
-        // console.log("erruuuu"+ JSON.stringify(error))
+        console.log("erruuuu"+ JSON.stringify(error))
         dispatch(userUpdateFailure(error));
       });
   }
@@ -39,19 +38,13 @@ export const userUpdateRemoteAccount = (account) => {
 };
 
 export const userUpdateSuccess = (account) => ({
-  type: USER_PERSONNAL_INFO_SEARCH_SUCCESS,
+  type: USER_PERSONNAL_INFO_UPDATE_SUCCESS,
   payload: {
     account
   }
 });
 
 export const userUpdateFailure = (error) => ({
-  type: USER_PERSONNAL_INFO_SEARCH_FAILURE,
+  type: USER_PERSONNAL_INFO_UPDATE_FAILURE,
   error
-});
-
-export const userUpdateLocalAccount = (element, value) => ({
-  type: UPDATE_USER_LOCAL_ACCOUNT,
-  element,
-  value
 });

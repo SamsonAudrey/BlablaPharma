@@ -8,6 +8,7 @@ import error from './errorReducer';
 import pharmacists from './pharmacistsReducer';
 import searchPharmacists from './searchPharmacistsReducer';
 import loading from './loadingReducer';
+import success from './successReducer';
 
 export default combineReducers({
   user,
@@ -17,6 +18,7 @@ export default combineReducers({
   pharmacists,
   searchPharmacists,
   loading,
+  success,
   navigationInfo: navigationReducer,
   network
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import CButton from '../../components/Button';
 
 export default class UserInfoPage extends React.Component {
@@ -132,6 +132,10 @@ export default class UserInfoPage extends React.Component {
       <>
         <View style={styles.container}>
           <View style={styles.middle}>
+            <Image
+              source={require('../../assets/logo-fav.png')}
+              style={{ width: 100, height: 110, marginVertical: '5%' }}
+            />
             {personalInfo}
             <CButton
               title="A propos"
@@ -187,7 +191,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   middle: {
-    alignSelf: 'center',
+    alignItems: 'center',
   },
   footer: {
     height: '30%',

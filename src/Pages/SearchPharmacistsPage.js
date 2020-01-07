@@ -1,16 +1,21 @@
 
 import React, { Component } from 'react';
+import { View } from 'react-native';
+import SafeAreaView from 'react-native-safe-area-view';
 import SearchBarPharmacists from '../containers/PharmacistsSearchBarContainer';
 import PharmacistsListContainer from '../containers/PharmacistsListContainer';
-import {View} from 'react-native';
+
 
 class SearchPharmacistsPage extends Component {
   render() {
     return (
       <>
-          <View style={{backgroundColor: 'white'}}>
-              <SearchBarPharmacists /></View>
-        <PharmacistsListContainer />
+        <SafeAreaView style={{ flex: 1 }}>
+          <View style={{ backgroundColor: 'white', marginTop: 10 }}>
+            <SearchBarPharmacists />
+          </View>
+          <PharmacistsListContainer />
+        </SafeAreaView>
       </>
     );
   }

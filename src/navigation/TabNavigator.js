@@ -40,8 +40,8 @@ const SearchPharmacistsNavigator = createStackNavigator(
       // headerTitle: () => <LogoTitle />,
       // headerTitleAlign: 'left',
       // textAlign: 'left',
-      // headerShown: false,
-      headerStyle: {
+      headerShown: false,
+      /* headerStyle: {
         backgroundColor: '#fff', // #BED469
         borderBottomWidth: 0,
         shadowOpacity: 0,
@@ -57,7 +57,7 @@ const SearchPharmacistsNavigator = createStackNavigator(
       },
       headerLeft: <TouchableHighlight onPress={() => null}>
         <Image source={require('../assets/logo-fav.png')} style={{ width: 33, height: 36 }} />
-      </TouchableHighlight>,
+      </TouchableHighlight>, */
     }
   }
 );

@@ -3,7 +3,6 @@ import {
   View, Text, StyleSheet, Dimensions, Image
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Fontisto from 'react-native-vector-icons/Fontisto';
 import CButton from './Button';
 
 export default class PharmacistsListItems extends React.Component {
@@ -21,7 +20,7 @@ export default class PharmacistsListItems extends React.Component {
           source={require('../assets/logo-fav.png')}
           style={{ width: '27%', height: '32%', alignSelf: 'center' }}
         />
-        <Text style={styles.title} numberOfLines={1} >
+        <Text style={styles.title} numberOfLines={1}>
           {firstName}
           {' '}
           {lastName}
@@ -31,15 +30,24 @@ export default class PharmacistsListItems extends React.Component {
             : gender === 'male' ? <Icon name="mars" size={18} color="#BED469" />
               : <Icon name="intersex" size={18} color="#BED469" />}
         </Text>
-        {professionLabel ?
+        {professionLabel
+          ? (
             <Text style={styles.text}>
-              <Fontisto name="doctor" size={16} color="#BED469" />  {professionLabel}</Text>
-            : null}
+              <Icon name="user-md" size={18} color="#BED469" />
+              {'  '}
+              {professionLabel}
+            </Text>
+          )
+          : null}
         <Text style={styles.text}>
-          <Icon name="map-marker" size={18} color="#BED469" />  {city}
+          <Icon name="map-marker" size={18} color="#BED469" />
+          {'  '}
+          {city}
         </Text>
         <Text style={styles.text}>
-          <Icon name="home" size={18} color="#BED469" /> {institutionName}
+          <Icon name="home" size={18} color="#BED469" />
+          {'  '}
+          {institutionName}
         </Text>
         <View style={styles.buttonContainer}>
           <CButton
@@ -90,6 +98,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginVertical: 5,
     textAlign: 'center',
-    //flex: 1,
+    // flex: 1,
   }
 });

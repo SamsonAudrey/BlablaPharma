@@ -1,33 +1,68 @@
 import {
-  StyleSheet, View, Text, FlatList
+  StyleSheet, View
 } from 'react-native';
 import React from 'react';
-import { SceneMap, TabView } from 'react-native-tab-view';
+import { TabView } from 'react-native-tab-view';
 import Animated from 'react-native-reanimated';
-import PharmacistsListItems from './PharmasistsListItems';
-// eslint-disable-next-line import/extensions
-import ScenePharmacists from './scenes/ScenePharmacists';
-import {filter} from "lodash";
 
 export default class CustomTabView extends React.Component {
-  state = {
+  /*
+  How to use the customTabView
+  There is 2 props to gove : state and renderScene
+<CustomTabViewModifInfo
+       renderScene={this.renderScene}
+       state={this.statee}
+     />
+Here are examples of these props:
+
+     stateTabView = {
     index: 0,
     routes: [
-      { key: 'first', title: 'Pharmaciens BlablaPharma' },
-      { key: 'second', title: 'Vos\nPharmaciens' },
+      { key: 'first', title: 'General' },
+      { key: 'second', title: 'Mot de Passe' },
+      { key: 'third', title: 'Email' },
     ]
   };
-
- renderScene = ({ route }) => {
+  renderScene = ({ route }) => {
    switch (route.key) {
      case 'first':
-       return <ScenePharmacists pharmacists={this.props.blablapharmacists} />;
+       return (
+         <GeneralModifInfo
+           userUpdateRemoteAccount={this.props.onUserUpdateRemoteAccount}
+           onUserSearch={this.props.onUserSearch}
+           account={this.props.account}
+           error={this.props.error403Update}
+         />
+       );
      case 'second':
-       return <ScenePharmacists pharmacists={this.props.pharmacists} />;
+       return (
+         <PasswordChange
+           userUpdateRemoteAccount={this.props.onUserUpdateRemoteAccount}
+           onUserSearch={this.props.onUserSearch}
+           account={this.props.account}
+           error={this.props.error}
+         />
+       );
+     case 'third':
+       return (
+         <EmailChange
+           userUpdateRemoteAccount={this.props.onUserUpdateRemoteAccount}
+           onUserSearch={this.props.onUserSearch}
+           account={this.props.account}
+           error={this.props.error}
+         />
+       );
      default:
        return null;
    }
  };
+  */
+  constructor(props) {
+    super(props);
+    this.state = this.props.state;
+  }
+
+  renderScene= this.props.renderScene
 
   _handleIndexChange = (index) => this.setState({ index });
 

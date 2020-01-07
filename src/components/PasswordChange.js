@@ -1,36 +1,36 @@
 import React, { Component } from 'react';
 import {
-  View, StyleSheet
+  View, StyleSheet, Text
 } from 'react-native';
 import t from 'tcomb-form-native';
-import RadioForm from 'react-native-simple-radio-button';
-// import moment from 'moment';
 import CButton from './Button';
 
 const { Form } = t.form;
-const genderProps = [
-  { label: 'Homme   ', value: 0 },
-  { label: 'Femme   ', value: 1 },
-  { label: 'Autre', value: 2 },
-];
 
-export default class GeneralModif extends Component {
+export default class PasswordChange extends Component {
   constructor(props) {
     super(props);
-    const { account } = this.props;
+
     this.state = {
-      user: {
-        firstName: account.firstName,
-        lastName: account.lastName
-      },
-      gender: account.gender === 'male' ? 0 : account.gender === 'female' ? 1 : 2
+      passwords: {}
     };
 
-    this.Name = t.refinement(t.String, (name) => name.length >= 2);
+    this.Password = t.refinement(t.String, (pwd) => {
+      const reg = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[*@!#%&()[\]^~\\|?='"{}/_-]).{8,}$/;
+      return pwd.length >= 8 && reg.test(pwd); // minimum password length should be 8 symbols
+    });
 
-    this.General = t.struct({
-      firstName: this.Name,
-      lastName: this.Name,
+    this.EqualPassword = t.refinement(t.String, (s) => {
+      const { passwords } = this.state;
+      const { newPassword } = passwords;
+      console.log(`${JSON.stringify(passwords)}  ${s}`);
+      return newPassword === s;
+    });
+
+    this.Passwords = t.struct({
+      oldPassword: this.Password,
+      newPassword: this.Password,
+      confirmNewPassword: this.EqualPassword,
     });
   }
 
@@ -40,62 +40,44 @@ export default class GeneralModif extends Component {
   }
 
   onChange(value) {
-    this.state.user = value;
+    this.state.passwords = value;
   }
 
   handleSubmit = () => {
-    const { userUpdateRemoteAccount, account } = this.props;
     const value = this._form.getValue();
-    if (value) {
-      const { gender } = this.state;
+    if (this._form.getValue()) {
+      const { userUpdateRemoteAccount, account } = this.props;
+      const { passwords } = this.state;
       const changes = {
         id: account.id,
-        firstName: value.firstName,
-        lastName: value.lastName,
-        gender: gender === 0 ? 'male' : gender === 1 ? 'female' : 'another'
+        oldPassword: passwords.oldPassword,
+        newPassword: passwords.newPassword
       };
       userUpdateRemoteAccount(changes);
+      this.setState(undefined);
     }
   }
 
   render() {
+    const error403Update = this.props.error === true ? "L'ancien mot de passe n'est pas bon" : '';
     return (
-    /* <KeyboardAwareScrollView
-        automaticallyAdjustContentInsets={false}
-        enableOnAndroid
-        style={{ flex: 2 }}
-      > */
       <View style={styles.form}>
+        <Text>{error403Update}</Text>
         <Form
           ref={(c) => this._form = c}
-          type={this.General}
+          type={this.Passwords}
           options={options}
-          initial={this.state.user}
-          value={this.state.user}
-          onChange={(v) => this.onChange(v)}
-        />
-        <RadioForm
-          radio_props={genderProps}
-          initial={this.state.gender}
-          onPress={(value) => { this.state.gender = value; }}
-          formHorizontal
-          buttonColor="#868788"
-          labelColor="#868788"
-          selectedButtonColor="#868788"
-          buttonSize={10}
-          buttonWrapStyle={{ marginLeft: 20 }}
-          style={{ marginTop: '4%' }}
+          value={this.state.passwords}
+          onChange={(text) => this.onChange(text)}
         />
         <View style={styles.submitButton}>
           <CButton
-            title="Update"
+            title="Mettre à jour"
             buttonStyle="grey"
             onPress={this.handleSubmit}
           />
         </View>
       </View>
-    // </KeyboardAwareScrollView>
-
     );
   }
 }
@@ -143,20 +125,26 @@ const styles = StyleSheet.create({
 
 const options = {
   fields: {
-    email: {
-      placeholder: 'Email',
+    oldPassword: {
+      placeholder: 'Ancien mot de passe',
       placeholderTextColor: '#707070',
-      error: "L'email est incorrect"
+      password: true,
+      secureTextEntry: true,
+      error: 'Doit contenir une majuscule, \nune minuscule, un symbole et \nminimum 8 caractères'
     },
-    firstName: {
-      placeholder: 'Prénom',
+    newPassword: {
+      placeholder: 'Nouveau mot de passe',
       placeholderTextColor: '#707070',
-      error: 'Doit contenir minimum 1 caractères'
+      password: true,
+      secureTextEntry: true,
+      error: 'Doit contenir une majuscule, \nune minuscule, un symbole et \nminimum 8 caractères'
     },
-    lastName: {
-      placeholder: 'Nom',
+    confirmNewPassword: {
+      placeholder: 'Confirmation mot de passe',
       placeholderTextColor: '#707070',
-      error: 'Doit contenir minimum 1 caractères'
+      password: true,
+      secureTextEntry: true,
+      error: 'Les mots de passe sont différents'
     },
   },
   auto: 'placeholders',

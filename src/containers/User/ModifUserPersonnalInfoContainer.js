@@ -1,15 +1,23 @@
 import { connect } from 'react-redux';
 import { userSearch } from '../../actions/userAction';
-import { userUpdateLocalAccount, userUpdateRemoteAccount } from '../../actions/userModifInfoAction';
+import { userUpdateRemoteAccount } from '../../actions/userModifInfoAction';
 import { createLoadingSelector } from '../../utils/loadingSelector';
+import { createErrorSelector } from '../../utils/errorSelector';
+import { createSuccessSelector } from '../../utils/successSelector';
 import ModifUserPersonnalInfo from '../../Pages/User/ModifUserPersonnalInfo';
+import { clearSuccess, clearError } from '../../actions/selectorAction'
 
-
-const loadingSelector = createLoadingSelector(['USER_PERSONNAL_INFO_SEARCH']);
+const error403UpdateSelector = createErrorSelector(['USER_PERSONNAL_INFO_UPDATE_403']);
+const successUpdateSelector = createSuccessSelector(['USER_PERSONNAL_INFO_UPDATE']);
+const loadingUpdateSelector = createLoadingSelector(['USER_PERSONNAL_INFO_UPDATE']);
 
 const mapStateToProps = (state) => ({
   account: state.user.account,
-  isFetching: loadingSelector(state)
+  selector: {
+    isUpdating: loadingUpdateSelector(state),
+    error403Update: error403UpdateSelector(state),
+    successUpdate: successUpdateSelector(state)
+  }
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -17,12 +25,14 @@ const mapDispatchToProps = (dispatch) => ({
     // console.log(`rereremooote`)
     dispatch(userUpdateRemoteAccount(account));
   },
-  onUserUpdateLocalAccount: (element, value) => {
-    // console.log('lololoolcaaal');
-    dispatch(userUpdateLocalAccount(element, value));
-  },
   onUserSearch: (userid) => {
     dispatch(userSearch(userid));
+  },
+  onClearSuccess: () => {
+    dispatch(clearSuccess());
+  },
+  onClearError: () => {
+    dispatch(clearError());
   }
 });
 

@@ -1,19 +1,17 @@
 import { connect } from 'react-redux';
 import AuthPage from '../../Pages/User/AuthPage';
 import { userAuth, refreshToken } from '../../actions/userAction';
-import { clearError } from '../../actions/errorAction';
+import { clearError } from '../../actions/selectorAction';
 import { createErrorSelector } from '../../utils/errorSelector';
 
 const error401Selector = createErrorSelector(['CONNECT_USER_401']);
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state) =>
   // console.log(`yooo${JSON.stringify(state)}`);
-  return {
+  ({
     error_401: error401Selector(state),
     isConnected: state.connection.isConnected
-  };
-};
-
+  });
 const mapDispatchToProps = (dispatch, state) => ({
   onUserAuth: (email, password) => {
     dispatch(userAuth(email, password));

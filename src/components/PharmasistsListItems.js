@@ -2,6 +2,8 @@ import * as React from 'react';
 import {
   View, Text, StyleSheet, Dimensions, Image
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 import CButton from './Button';
 
 export default class PharmacistsListItems extends React.Component {
@@ -9,7 +11,7 @@ export default class PharmacistsListItems extends React.Component {
     const {
       data: {
         item: {
-          firstName, lastName, gender, city, picture, institutionName, profession_label
+          firstName, lastName, gender, city, picture, institutionName, professionLabel
         }
       },
     } = this.props;
@@ -19,15 +21,26 @@ export default class PharmacistsListItems extends React.Component {
           source={require('../assets/logo-fav.png')}
           style={{ width: '27%', height: '32%', alignSelf: 'center' }}
         />
-        <Text style={styles.title}>
+        <Text style={styles.title} numberOfLines={1} >
           {firstName}
           {' '}
           {lastName}
         </Text>
-        <Text style={styles.text}>{gender}</Text>
-        {profession_label ? <Text style={styles.text}>{profession_label}</Text> : null}
-        <Text style={styles.text}>{city}</Text>
-        <Text style={styles.text}>{institutionName}</Text>
+        <Text style={styles.text}>
+          {gender === 'female' ? <Icon name="venus" size={18} color="#BED469" />
+            : gender === 'male' ? <Icon name="mars" size={18} color="#BED469" />
+              : <Icon name="intersex" size={18} color="#BED469" />}
+        </Text>
+        {professionLabel ?
+            <Text style={styles.text}>
+              <Fontisto name="doctor" size={16} color="#BED469" />  {professionLabel}</Text>
+            : null}
+        <Text style={styles.text}>
+          <Icon name="map-marker" size={18} color="#BED469" />  {city}
+        </Text>
+        <Text style={styles.text}>
+          <Icon name="home" size={18} color="#BED469" /> {institutionName}
+        </Text>
         <View style={styles.buttonContainer}>
           <CButton
             title="Contacter"
@@ -75,7 +88,8 @@ const styles = StyleSheet.create({
     color: '#707070',
     fontWeight: 'bold',
     fontSize: 16,
-    marginVertical: 10,
-    textAlign: 'center'
+    marginVertical: 5,
+    textAlign: 'center',
+    //flex: 1,
   }
 });

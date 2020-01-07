@@ -108,15 +108,17 @@ const styles = StyleSheet.create({
   tabBar: {
     flexDirection: 'row',
     paddingTop: 10,
+    width: '90%',
+    alignSelf: 'center'
   },
   tabItem: {
     flex: 1,
     textAlign: 'center',
     padding: 14,
     borderWidth: 1,
-    borderRadius: 0, // TODO 0 OR 5 ?
+    borderRadius: 5, // TODO 0 OR 5 ?
     borderColor: '#848484',
-    fontSize: 16
+    fontSize: 16,
   },
   scene: {
     alignItems: 'center',

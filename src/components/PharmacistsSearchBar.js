@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
 import {
-  TextInput, View, Picker, StyleSheet, Text
+  TextInput, View, StyleSheet, Text, Platform
 } from 'react-native';
 import {
   Collapse, CollapseHeader, CollapseBody
 } from 'accordion-collapse-react-native';
 import RadioForm from 'react-native-simple-radio-button';
+import LinearGradient from 'react-native-linear-gradient';
 
 let initial = 0;
 
 export default class SearchBar extends Component {
   componentDidMount() {
     const { gender } = this.props;
-    const { profession } = this.props;
+    // const { profession } = this.props;
     const { text } = this.props;
     this.props.onSearch(text, gender, '');
   }
 
   componentDidUpdate() {
     const { gender } = this.props;
-    const { profession } = this.props;
+    // const { profession } = this.props;
     const { text } = this.props;
     this.props.onSearch(text, gender, '');
   }
@@ -62,16 +63,20 @@ export default class SearchBar extends Component {
       { label: 'Autre', value: 'another' },
     ];
 
-    const professionProps = [
+    /* const professionProps = [
       { label: 'Tous   ', value: '' },
       { label: 'Pharmaciens   ', value: 'pharmacist' },
       { label: 'BlaBlaPharmaciens', value: 'pharmacistBlablapharma' },
-    ];
+    ]; */
+
     return (
       <>
+        <LinearGradient
+            colors={['#BED469', '#BED469', '#BED469']}
+        >
         <View style={styles.titleView}>
           <Text style={styles.title}>Contacter un pharmacien</Text>
-        </View>
+        </View></LinearGradient>
         <View style={styles.searchBarContainer}>
           <TextInput
             placeholder="Recherche pharmaciens proches"
@@ -127,7 +132,8 @@ let styles = StyleSheet.create({
   titleView: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 20,
+    marginBottom: 20,
+    marginTop: Platform.OS === 'ios' ? 50 : 20,
   },
   title: {
     color: '#707070',
@@ -140,22 +146,23 @@ let styles = StyleSheet.create({
   form: {
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: 'white',
-    marginVertical: '1%'
+    backgroundColor: 'transparent',
+    marginVertical: '1%',
   },
   searchBarContainer: {
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '1%',
+    marginTop: '3%',
     height: 35,
     marginBottom: 0
   },
   textInputSearch: {
-    borderColor: '#a9a9a9',
+    borderColor: '#a9a9a9', // a9a9a9
     borderWidth: 1,
     borderRadius: 5,
+    backgroundColor: '#fff',
     height: '100%',
     width: '80%',
     padding: 5,

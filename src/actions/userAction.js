@@ -23,6 +23,7 @@ export const userAuth = (userEmail, userPassword) => {
         }
       })
       .then((response) => {
+        console.log(API_URL);
         // console.log(JSON.stringify(response.data))
         dispatch(userAuthSuccess(response.data));
       })

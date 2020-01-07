@@ -134,7 +134,7 @@ export default class UserInfoPage extends React.Component {
           <View style={styles.middle}>
             <Image
               source={require('../../assets/logo-fav.png')}
-              style={{ width: 100, height: 110, marginVertical: '5%' }}
+              style={{ width: 80, height: 90, marginVertical: '5%' }}
             />
             {personalInfo}
             <CButton

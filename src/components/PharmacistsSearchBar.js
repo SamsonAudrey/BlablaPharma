@@ -128,7 +128,7 @@ let styles = StyleSheet.create({
   titleView: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 20,
+    marginBottom: 20,
   },
   title: {
     color: '#707070',

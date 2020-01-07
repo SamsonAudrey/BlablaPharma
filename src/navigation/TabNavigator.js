@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import React from 'react';
 import * as colors from 'react-native';
 import { Text, TouchableHighlight, Image } from 'react-native';
+import { Button } from 'react-native';
 import SearchPharmacistsPage from '../Pages/SearchPharmacistsPage';
 import UserInfoContainer from '../containers/User/UserInfoContainer';
 import ChatPageContainer from '../containers/ChatPageContainer';
@@ -16,14 +17,14 @@ import ModifUserPersonnalInfoPageContainer from '../containers/User/ModifUserPer
 
 
 class LogoTitle extends React.Component {
-    render() {
-        return (
-            <Image
-                source={require('../assets/logo-fav.png')}
-                style={{ width: '11%', height: '100%' }}
-            />
-        );
-    }
+  render() {
+    return (
+      <Image
+        source={require('../assets/logo-fav.png')}
+        style={{ width: '11%', height: '75%' }}
+      />
+    );
+  }
 }
 
 
@@ -35,17 +36,29 @@ const SearchPharmacistsNavigator = createStackNavigator(
   {
     initialRouteName: 'SearchPharmacists',
     defaultNavigationOptions: {
-      //title: 'test',
-        headerTitle: () => <LogoTitle />,
+      // title: 'test',
+      // headerTitle: () => <LogoTitle />,
+      // headerTitleAlign: 'left',
+      // textAlign: 'left',
       // headerShown: false,
       headerStyle: {
-        backgroundColor: '#ececec', //#BED469
-      },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-            fontWeight: 'bold',
+        backgroundColor: '#fff', // #BED469
+        borderBottomWidth: 0,
+        shadowOpacity: 0,
+        shadowOffset: {
+          height: 0,
         },
-    },
+        elevation: 0,
+
+      },
+      headerTintColor: '#a9a9a9',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+      headerLeft: <TouchableHighlight onPress={() => null}>
+        <Image source={require('../assets/logo-fav.png')} style={{ width: 33, height: 36 }} />
+      </TouchableHighlight>,
+    }
   }
 );
 
@@ -104,10 +117,6 @@ export default createBottomTabNavigator(
       navigationOptions: ({ navigation, screenProps }) => ({
         tabBarIcon: () => (
           <Text>Pharmaciens</Text>),
-        title:
-  <TouchableHighlight onPress={() => navigation.navigate('Home')}>
-    <Image source={require('../assets/logo-navbar.png')} style={{ width: 300, height: 41 }} />
-  </TouchableHighlight>,
       })
     },
     Chat: {
@@ -141,6 +150,7 @@ export default createBottomTabNavigator(
       style: {
         backgroundColor: colors.dark_grey // TabBar background
       }
+
     }
   },
   {

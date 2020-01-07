@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import {
-  TextInput, View, StyleSheet, Text
+  TextInput, View, StyleSheet, Text, Platform
 } from 'react-native';
 import {
   Collapse, CollapseHeader, CollapseBody
 } from 'accordion-collapse-react-native';
 import RadioForm from 'react-native-simple-radio-button';
+import LinearGradient from 'react-native-linear-gradient';
 
 let initial = 0;
 
@@ -70,9 +71,12 @@ export default class SearchBar extends Component {
 
     return (
       <>
+        <LinearGradient
+            colors={['#BED469', '#BED469', '#BED469']}
+        >
         <View style={styles.titleView}>
           <Text style={styles.title}>Contacter un pharmacien</Text>
-        </View>
+        </View></LinearGradient>
         <View style={styles.searchBarContainer}>
           <TextInput
             placeholder="Recherche pharmaciens proches"
@@ -129,7 +133,7 @@ let styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20,
-    marginTop: 20
+    marginTop: Platform.OS === 'ios' ? 50 : 20,
   },
   title: {
     color: '#707070',
@@ -150,12 +154,12 @@ let styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '1%',
+    marginTop: '3%',
     height: 35,
     marginBottom: 0
   },
   textInputSearch: {
-    borderColor: '#fff', // a9a9a9
+    borderColor: '#a9a9a9', // a9a9a9
     borderWidth: 1,
     borderRadius: 5,
     backgroundColor: '#fff',

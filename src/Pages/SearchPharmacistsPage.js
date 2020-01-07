@@ -11,16 +11,15 @@ class SearchPharmacistsPage extends Component {
   render() {
     return (
       <>
-        <SafeAreaView style={{ flex: 1 }}>
           <LinearGradient
-            colors={['#fff', '#d6e29b', '#BED469']}
-            style={{flex:1}}
+            colors={['#fff', '#fff', '#fff']}
+            //style={{flex:1}}
           >
             <SearchBarPharmacists />
-            <PharmacistsListContainer />
-          </LinearGradient>
 
-        </SafeAreaView>
+          </LinearGradient>
+          <PharmacistsListContainer />
+
       </>
     );
   }

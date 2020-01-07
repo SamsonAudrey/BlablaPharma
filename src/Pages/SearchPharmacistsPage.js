@@ -17,7 +17,7 @@ class SearchPharmacistsPage extends Component {
             style={{flex:1}}
           >
             <SearchBarPharmacists />
-              <PharmacistsListContainer />
+            <PharmacistsListContainer />
           </LinearGradient>
 
         </SafeAreaView>

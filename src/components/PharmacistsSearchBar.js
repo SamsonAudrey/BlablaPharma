@@ -142,8 +142,8 @@ let styles = StyleSheet.create({
   form: {
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: 'white',
-    marginVertical: '1%'
+    backgroundColor: 'transparent',
+    marginVertical: '1%',
   },
   searchBarContainer: {
     width: '100%',

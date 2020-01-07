@@ -147,7 +147,8 @@ export default createBottomTabNavigator(
       activeTintColor: colors.white, // active icon color
       inactiveTintColor: colors.modal_grey_2, // inactive icon color
       style: {
-        backgroundColor: colors.dark_grey // TabBar background
+        backgroundColor: '#fff', // TabBar background
+        // borderTopWidth: 0,
       }
 
     }

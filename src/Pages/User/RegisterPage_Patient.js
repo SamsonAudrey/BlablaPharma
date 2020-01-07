@@ -33,10 +33,10 @@ class RegisterPatient extends Component {
       return pwd.length >= 8 && reg.test(pwd); // minimum password length should be 8 symbols
     });
 
-    this.EqualPassword = t.refinement(t.String, (s) => {
+    this.EqualPassword = t.refinement(t.String, (confPwd) => {
       const { user } = this.state;
       const { password } = user;
-      return password === s;
+      return password === confPwd;
     });
     this.User = t.struct({
       email: this.Email,

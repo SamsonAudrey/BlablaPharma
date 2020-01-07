@@ -129,6 +129,7 @@ let styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20,
+    marginTop: 20
   },
   title: {
     color: '#707070',
@@ -154,9 +155,10 @@ let styles = StyleSheet.create({
     marginBottom: 0
   },
   textInputSearch: {
-    borderColor: '#a9a9a9',
+    borderColor: '#fff', // a9a9a9
     borderWidth: 1,
     borderRadius: 5,
+    backgroundColor: '#fff',
     height: '100%',
     width: '80%',
     padding: 5,

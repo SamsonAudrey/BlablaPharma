@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import React from 'react';
 import * as colors from 'react-native';
 import { Text, TouchableHighlight, Image } from 'react-native';
-import { Button } from 'react-native';
 import SearchPharmacistsPage from '../Pages/SearchPharmacistsPage';
 import UserInfoContainer from '../containers/User/UserInfoContainer';
 import ChatPageContainer from '../containers/ChatPageContainer';

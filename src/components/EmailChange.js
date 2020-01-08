@@ -3,6 +3,7 @@ import {
   View, StyleSheet, Text
 } from 'react-native';
 import t from 'tcomb-form-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import CButton from './Button';
 
 const { Form } = t.form;
@@ -44,24 +45,29 @@ export default class EmailChange extends Component {
   render() {
     const error403Update = this.props.error === true ? 'Email déjà utilisé' : '';
     return (
-      <View style={styles.form}>
-        <Text>{error403Update}</Text>
-        <Form
-          ref={(c) => this._form = c}
-          type={this.Email}
-          options={options}
-          initial={this.state}
-          value={this.state}
-          onChange={(text) => this.onChange(text)}
-        />
-        <View style={styles.submitButton}>
-          <CButton
-            title="Mettre à jour"
-            buttonStyle="green"
-            onPress={this.handleSubmit}
+      <KeyboardAwareScrollView
+        automaticallyAdjustContentInsets={false}
+        enableOnAndroid
+      >
+        <View style={styles.form}>
+          <Text>{error403Update}</Text>
+          <Form
+            ref={(c) => this._form = c}
+            type={this.Email}
+            options={options}
+            initial={this.state}
+            value={this.state}
+            onChange={(text) => this.onChange(text)}
           />
+          <View style={styles.submitButton}>
+            <CButton
+              title="Mettre à jour"
+              buttonStyle="green"
+              onPress={this.handleSubmit}
+            />
+          </View>
         </View>
-      </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
@@ -96,8 +102,7 @@ const styles = StyleSheet.create({
     height: '20%'
   },
   submitButton: {
-    marginTop: '5%',
-    height: 120
+    marginVertical: '5%',
   },
   title: {
     height: '100%',

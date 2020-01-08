@@ -73,7 +73,7 @@ export default class PasswordChange extends Component {
         <View style={styles.submitButton}>
           <CButton
             title="Mettre à jour"
-            buttonStyle="grey"
+            buttonStyle="green"
             onPress={this.handleSubmit}
           />
         </View>

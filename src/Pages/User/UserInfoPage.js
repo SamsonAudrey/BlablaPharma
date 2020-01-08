@@ -150,7 +150,7 @@ export default class UserInfoPage extends React.Component {
               title="Protection des données"
               onPress={() => {
                 /* Navigate to the authentication page */
-                navigate('UserPersonnalInfo');
+                navigate('');
               }}
               long
               buttonStyle="white"
@@ -159,7 +159,7 @@ export default class UserInfoPage extends React.Component {
               title="Conditions générales"
               onPress={() => {
                 /* Navigate to the authentication page */
-                navigate('UserPersonnalInfo');
+                navigate('');
               }}
               long
               buttonStyle="white"
@@ -168,7 +168,7 @@ export default class UserInfoPage extends React.Component {
               title="Gestion des cookies "
               onPress={() => {
                 /* Navigate to the authentication page */
-                navigate('UserPersonnalInfo');
+                navigate('');
               }}
               long
               buttonStyle="white"

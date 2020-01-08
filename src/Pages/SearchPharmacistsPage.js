@@ -1,7 +1,4 @@
-
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
-import SafeAreaView from 'react-native-safe-area-view';
 import LinearGradient from 'react-native-linear-gradient';
 import SearchBarPharmacists from '../containers/PharmacistsSearchBarContainer';
 import PharmacistsListContainer from '../containers/PharmacistsListContainer';

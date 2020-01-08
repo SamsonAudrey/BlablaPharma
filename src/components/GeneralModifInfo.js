@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import {
-  View, StyleSheet
+  View, StyleSheet, Image
 } from 'react-native';
 import t from 'tcomb-form-native';
 import RadioForm from 'react-native-simple-radio-button';
 import moment from 'moment';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import CButton from './Button';
 
 const { Form } = t.form;
@@ -62,33 +64,42 @@ export default class GeneralModif extends Component {
 
   render() {
     return (
-      <View style={styles.form}>
-        <Form
-          ref={(c) => this._form = c}
-          type={this.General}
-          options={options}
-          initial={this.state.user}
-          value={this.state.user}
-          onChange={(v) => this.onChange(v)}
-        />
-        <RadioForm
-          radio_props={genderProps}
-          initial={this.state.gender}
-          onPress={(value) => { this.state.gender = value; }}
-          formHorizontal
-          buttonColor="#868788"
-          labelColor="#868788"
-          selectedButtonColor="#868788"
-          buttonSize={10}
-          buttonWrapStyle={{ marginLeft: 20 }}
-          style={{ marginTop: '4%' }}
-        />
-        <View style={styles.submitButton}>
-          <CButton
-            title="Mettre à jour"
-            buttonStyle="grey"
-            onPress={this.handleSubmit}
+      <View style={styles.container}>
+        <View style={styles.image}>
+          <Image
+            source={require('../assets/user-icon.png')}
+            style={{ width: 80, height: 90, opacity: 0.5, marginRight: '5%' }}
           />
+          <MaterialIcons name="photo-camera" size={24} color="#707070" />
+        </View>
+        <View style={styles.form}>
+          <Form
+            ref={(c) => this._form = c}
+            type={this.General}
+            options={options}
+            initial={this.state.user}
+            value={this.state.user}
+            onChange={(v) => this.onChange(v)}
+          />
+          <RadioForm
+            radio_props={genderProps}
+            initial={this.state.gender}
+            onPress={(value) => { this.state.gender = value; }}
+            formHorizontal
+            buttonColor="#868788"
+            labelColor="#868788"
+            selectedButtonColor="#868788"
+            buttonSize={10}
+            buttonWrapStyle={{ marginLeft: 20 }}
+            style={{ marginTop: '4%' }}
+          />
+          <View style={styles.submitButton}>
+            <CButton
+              title="Mettre à jour"
+              buttonStyle="green"
+              onPress={this.handleSubmit}
+            />
+          </View>
         </View>
       </View>
     );
@@ -115,14 +126,19 @@ s.dateValue.error.borderRadius = 5;
 s.errorBlock.fontSize = 15;
 
 const styles = StyleSheet.create({
+  container: {
+    marginVertical: '5%'
+  },
   form: {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
-    marginTop: '10%'
+    marginTop: '5%'
   },
-  imageView: {
-    height: '20%'
+  image: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    justifyContent: 'center',
   },
   submitButton: {
     marginTop: '5%',

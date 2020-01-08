@@ -57,7 +57,7 @@ export default class EmailChange extends Component {
         <View style={styles.submitButton}>
           <CButton
             title="Mettre à jour"
-            buttonStyle="grey"
+            buttonStyle="green"
             onPress={this.handleSubmit}
           />
         </View>

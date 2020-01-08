@@ -24,7 +24,8 @@ export default class GeneralModif extends Component {
     this.state = {
       user: {
         firstName: account.firstName,
-        lastName: account.lastName
+        lastName: account.lastName,
+        birth: new Date(account.birthDayDate)
       },
       gender: account.gender === 'male' ? 0 : account.gender === 'female' ? 1 : 2
     };

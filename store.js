@@ -11,7 +11,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from '@react-native-community/async-storage';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import reducer from './src/reducers';
-import { checkTokenGate } from './src/utils/auth'
+import { checkTokenGate } from './src/utils/auth';
 
 const persistConfig = {
   key: 'root',

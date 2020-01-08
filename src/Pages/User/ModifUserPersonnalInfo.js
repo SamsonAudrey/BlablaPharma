@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import {
+  Platform, StyleSheet, Text, View
+} from 'react-native';
 import CustomTabView from '../../components/CustomTabView';
 import GeneralModifInfo from '../../components/GeneralModifInfo';
 import PasswordChange from '../../components/PasswordChange';
@@ -61,12 +63,30 @@ class ModifUserPersonnalInfoPage extends Component {
      this.props.onClearSuccess();
    }
    return (
-     <CustomTabView
-       renderScene={this.renderScene}
-       state={this.stateTabView}
-     />
+     <>
+       <View style={styles.titleView}>
+         <Text style={styles.title}>Mise à jour</Text>
+       </View>
+       <CustomTabView
+         renderScene={this.renderScene}
+         state={this.stateTabView}
+       />
+     </>
    );
  }
 }
+
+const styles = StyleSheet.create({
+  titleView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    marginTop: Platform.OS === 'ios' ? 50 : 20,
+  },
+  title: {
+    color: '#707070',
+    fontSize: 24
+  }
+});
 
 export default ModifUserPersonnalInfoPage;

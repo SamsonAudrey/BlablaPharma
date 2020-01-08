@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 import moment from 'moment';
 import SafeAreaView from 'react-native-safe-area-view';
+import BackButton from "../../components/BackButton";
 
 class UserPersonnalInfoPage extends Component {
   componentDidMount() {
@@ -24,6 +25,10 @@ class UserPersonnalInfoPage extends Component {
     return (
       <>
         <SafeAreaView style={{ flex: 1 }}>
+          <BackButton
+              title="Retour"
+              onPress={() => this.props.navigation.goBack()}
+          />
           <View style={styles.container}>
             <Image
               source={require('../../assets/user-icon.png')}

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import {
+  Button,
   Platform, StyleSheet, Text, View
 } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SafeAreaView from 'react-native-safe-area-view';
 import CustomTabView from '../../components/CustomTabView';
 import GeneralModifInfo from '../../components/GeneralModifInfo';
 import PasswordChange from '../../components/PasswordChange';
 import EmailChange from '../../components/EmailChange';
+import BackButton from "../../components/BackButton";
 
 class ModifUserPersonnalInfoPage extends Component {
   stateTabView = {
@@ -67,6 +68,10 @@ class ModifUserPersonnalInfoPage extends Component {
    return (
      <>
        <SafeAreaView style={{ flex: 1 }}>
+         <BackButton
+           title="Retour"
+           onPress={() => this.props.navigation.goBack()}
+         />
          <View style={styles.titleView}>
            <Text style={styles.title}>Mise à jour</Text>
          </View>
@@ -85,7 +90,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20,
-    marginTop: Platform.OS === 'ios' ? 50 : 20,
+    marginTop: Platform.OS === 'ios' ? 0 : 20,
   },
   title: {
     color: '#707070',

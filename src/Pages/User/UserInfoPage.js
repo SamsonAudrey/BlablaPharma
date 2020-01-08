@@ -1,5 +1,8 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {
+  Image, Platform, StyleSheet, Text, View
+} from 'react-native';
+import SafeAreaView from 'react-native-safe-area-view';
 import CButton from '../../components/Button';
 
 export default class UserInfoPage extends React.Component {
@@ -130,54 +133,56 @@ export default class UserInfoPage extends React.Component {
     }
     return (
       <>
-        <View style={styles.container}>
-          <View style={styles.middle}>
-            <Image
-              source={require('../../assets/logo-fav.png')}
-              style={{ width: 80, height: 90, marginVertical: '5%'}}
-            />
-            {personalInfo}
-            <CButton
-              title="A propos"
-              onPress={() => {
-                /* Navigate to the authentication page */
-                navigate('UserPersonnalInfo');
-              }}
-              long
-              buttonStyle="white"
-            />
-            <CButton
-              title="Protection des données"
-              onPress={() => {
-                /* Navigate to the authentication page */
-                navigate('');
-              }}
-              long
-              buttonStyle="white"
-            />
-            <CButton
-              title="Conditions générales"
-              onPress={() => {
-                /* Navigate to the authentication page */
-                navigate('');
-              }}
-              long
-              buttonStyle="white"
-            />
-            <CButton
-              title="Gestion des cookies "
-              onPress={() => {
-                /* Navigate to the authentication page */
-                navigate('');
-              }}
-              long
-              buttonStyle="white"
-            />
+        <SafeAreaView style={{ flex: 1 }}>
+          <View style={styles.container}>
+            <View style={styles.middle}>
+              <Image
+                source={require('../../assets/logo-fav.png')}
+                style={{ width: 80, height: 90, marginVertical: '5%' }}
+              />
+              {personalInfo}
+              <CButton
+                title="A propos"
+                onPress={() => {
+                  /* Navigate to the authentication page */
+                  navigate('UserPersonnalInfo');
+                }}
+                long
+                buttonStyle="white"
+              />
+              <CButton
+                title="Protection des données"
+                onPress={() => {
+                  /* Navigate to the authentication page */
+                  navigate('');
+                }}
+                long
+                buttonStyle="white"
+              />
+              <CButton
+                title="Conditions générales"
+                onPress={() => {
+                  /* Navigate to the authentication page */
+                  navigate('');
+                }}
+                long
+                buttonStyle="white"
+              />
+              <CButton
+                title="Gestion des cookies "
+                onPress={() => {
+                  /* Navigate to the authentication page */
+                  navigate('');
+                }}
+                long
+                buttonStyle="white"
+              />
+            </View>
+            <View style={styles.footer}>
+              {footer}
+            </View>
           </View>
-          <View style={styles.footer}>
-            {footer}
-          </View>
-        </View>
+        </SafeAreaView>
 
       </>
     );

@@ -77,8 +77,7 @@ const UserInfoNavigator = createStackNavigator(
   },
   {
     initialRouteName: 'UserInfo',
-      defaultNavigationOptions: {
-          headerShown: false}
+    defaultNavigationOptions: { headerShown: false }
   }
 );
 

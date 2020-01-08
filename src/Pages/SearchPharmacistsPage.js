@@ -8,14 +8,12 @@ class SearchPharmacistsPage extends Component {
   render() {
     return (
       <>
-          <LinearGradient
-            colors={['#fff', '#fff', '#fff']}
-            //style={{flex:1}}
-          >
-            <SearchBarPharmacists />
-
-          </LinearGradient>
-          <PharmacistsListContainer />
+        <LinearGradient
+          colors={['#fff', '#fff', '#fff']}
+        >
+          <SearchBarPharmacists />
+        </LinearGradient>
+        <PharmacistsListContainer />
 
       </>
     );

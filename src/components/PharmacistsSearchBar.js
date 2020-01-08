@@ -72,11 +72,12 @@ export default class SearchBar extends Component {
     return (
       <>
         <LinearGradient
-            colors={['#BED469', '#BED469', '#BED469']}
+          colors={['#BED469', '#BED469', '#BED469']}
         >
-        <View style={styles.titleView}>
-          <Text style={styles.title}>Contacter un pharmacien</Text>
-        </View></LinearGradient>
+          <View style={styles.titleView}>
+            <Text style={styles.title}>Contacter un pharmacien</Text>
+          </View>
+        </LinearGradient>
         <View style={styles.searchBarContainer}>
           <TextInput
             placeholder="Recherche pharmaciens proches"

@@ -6,6 +6,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 import moment from 'moment';
+import SafeAreaView from 'react-native-safe-area-view';
 
 class UserPersonnalInfoPage extends Component {
   componentDidMount() {
@@ -22,73 +23,75 @@ class UserPersonnalInfoPage extends Component {
     const createdDateFormated = moment(createdDate).format('DD/MM/YYYY');
     return (
       <>
-        <View style={styles.container}>
-          <Image
-            source={require('../../assets/user-icon.png')}
-            style={{ width: 100, height: 110, opacity: 0.5 }}
-          />
-          <Text style={styles.title}>
-            {account.firstName}
-            {' '}
-            {account.lastName}
-          </Text>
-          <Icon
-            name="edit"
-            size={24}
-            color="#707070"
-            onPress={() => {
+        <SafeAreaView style={{ flex: 1 }}>
+          <View style={styles.container}>
+            <Image
+              source={require('../../assets/user-icon.png')}
+              style={{ width: 100, height: 110, opacity: 0.5 }}
+            />
+            <Text style={styles.title}>
+              {account.firstName}
+              {' '}
+              {account.lastName}
+            </Text>
+            <Icon
+              name="edit"
+              size={24}
+              color="#707070"
+              onPress={() => {
               /* Navigate to the authentication page */
-              navigate('ModifUserPersonnalInfo');
-            }}
-            style={{ marginVertical: '5%' }}
-          />
-        </View>
-        <View style={styles.info}>
-          <Text style={styles.text}>
-            <Entypo name="email" size={18} color="#707070" />
-            {' '}
-            {account.email}
-          </Text>
-          <Text style={styles.text}>
-            <Icon name="birthday-cake" size={18} color="#707070" />
-            {' '}
-            {birthDate}
-          </Text>
-          <Text style={styles.text}>
-            {account.gender === 'female' ? (
-              <>
-                <Icon name="venus" size={18} color="#707070" />
-                {' '}
-                Femme
-              </>
-            )
-              : account.gender === 'male' ? (
+                navigate('ModifUserPersonnalInfo');
+              }}
+              style={{ marginVertical: '5%' }}
+            />
+          </View>
+          <View style={styles.info}>
+            <Text style={styles.text}>
+              <Entypo name="email" size={18} color="#707070" />
+              {' '}
+              {account.email}
+            </Text>
+            <Text style={styles.text}>
+              <Icon name="birthday-cake" size={18} color="#707070" />
+              {' '}
+              {birthDate}
+            </Text>
+            <Text style={styles.text}>
+              {account.gender === 'female' ? (
                 <>
-                  <Icon name="mars" size={18} color="#707070" />
+                  <Icon name="venus" size={18} color="#707070" />
                   {' '}
-                  Homme
+                Femme
                 </>
               )
-                : (
+                : account.gender === 'male' ? (
                   <>
-                    <Icon name="intersex" size={18} color="#707070" />
+                    <Icon name="mars" size={18} color="#707070" />
                     {' '}
-                    Autre
-                    {' '}
+                  Homme
                   </>
-                )}
-          </Text>
-          <Text style={styles.text}>
-            <Icon name="calendar-plus-o" size={18} color="#707070" />
-            {' '}
+                )
+                  : (
+                    <>
+                      <Icon name="intersex" size={18} color="#707070" />
+                      {' '}
+                    Autre
+                      {' '}
+                    </>
+                  )}
+            </Text>
+            <Text style={styles.text}>
+              <Icon name="calendar-plus-o" size={18} color="#707070" />
+              {' '}
             Compte créé le
-            {' '}
-            {createdDateFormated}
-          </Text>
-        </View>
-        <View style={styles.footer}>
-          <Text style={styles.deleteAccount}>Supprimer le compte</Text>
-        </View>
+              {' '}
+              {createdDateFormated}
+            </Text>
+          </View>
+          <View style={styles.footer}>
+            <Text style={styles.deleteAccount}>Supprimer le compte</Text>
+          </View>
+        </SafeAreaView>
       </>
     );
   }

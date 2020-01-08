@@ -1,6 +1,6 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
-//import { ReduxNetworkProvider } from 'react-native-offline';
+// import { ReduxNetworkProvider } from 'react-native-offline';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { PersistGate } from 'redux-persist/integration/react';
@@ -13,13 +13,13 @@ const AppContainer = createAppContainer(MainStack);// createAppContainer(TabNavi
 export default class App extends React.Component {
   render() {
     return (
-        <SafeAreaProvider>
-      <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          <AppContainer />
-        </PersistGate>
-      </Provider>
-        </SafeAreaProvider>
+      <SafeAreaProvider>
+        <Provider store={store}>
+          <PersistGate persistor={persistor}>
+            <AppContainer />
+          </PersistGate>
+        </Provider>
+      </SafeAreaProvider>
     );
   }
 }

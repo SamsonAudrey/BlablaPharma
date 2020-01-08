@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import {
   Platform, StyleSheet, Text, View
 } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import SafeAreaView from 'react-native-safe-area-view';
 import CustomTabView from '../../components/CustomTabView';
 import GeneralModifInfo from '../../components/GeneralModifInfo';
 import PasswordChange from '../../components/PasswordChange';
 import EmailChange from '../../components/EmailChange';
-import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 
 class ModifUserPersonnalInfoPage extends Component {
   stateTabView = {
@@ -65,14 +66,15 @@ class ModifUserPersonnalInfoPage extends Component {
    }
    return (
      <>
-
-       <View style={styles.titleView}>
-         <Text style={styles.title}>Mise à jour</Text>
-       </View>
-       <CustomTabView
-         renderScene={this.renderScene}
-         state={this.stateTabView}
-       />
+       <SafeAreaView style={{ flex: 1 }}>
+         <View style={styles.titleView}>
+           <Text style={styles.title}>Mise à jour</Text>
+         </View>
+         <CustomTabView
+           renderScene={this.renderScene}
+           state={this.stateTabView}
+         />
+       </SafeAreaView>
      </>
    );
  }

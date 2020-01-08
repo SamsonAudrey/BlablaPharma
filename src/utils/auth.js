@@ -13,7 +13,7 @@ import {
 // import { store } from '../../store';
 
 
-const checkTokenGate = (store) => (next) => (action) => {
+export const checkTokenGate = (store) => (next) => (action) => {
   switch (action.type) {
     case 'USER_PERSONNAL_INFO_SEARCH_REQUEST'
     || 'USER_PERSONNAL_INFO_UPDATE_REQUEST'

@@ -12,9 +12,23 @@ import {
 
 // import { store } from '../../store';
 
-export const checkToken = (store) => (next) => (action) => {
+
+const checkTokenGate = (store) => (next) => (action) => {
+  switch (action.type) {
+    case 'USER_PERSONNAL_INFO_SEARCH_REQUEST'
+    || 'USER_PERSONNAL_INFO_UPDATE_REQUEST'
+    || 'CONNECT_USER_SUCCESS'
+    || 'REGISTER_PHARMACIST': {
+      checkToken(store, next, action);
+      break;
+    }
+    default:
+      next(action);
+  }
+};
+
+const checkToken = (store, next, action) => {
   const state = store.getState();
-  console.log(`state: ${JSON.stringify(state)}`);
   if (!state.user.accessToken) {
     store.dispatch(userAuthFailure);
     return next(action);

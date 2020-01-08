@@ -196,8 +196,8 @@ const styles = StyleSheet.create({
     marginTop: '5%'
   },
   footer: {
-    height: '30%',
+    marginTop: '30%',
     justifyContent: 'flex-end',
-    marginBottom: 20
+    marginBottom: '5%'
   }
 });

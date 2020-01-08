@@ -6,6 +6,7 @@ import CustomTabView from '../../components/CustomTabView';
 import GeneralModifInfo from '../../components/GeneralModifInfo';
 import PasswordChange from '../../components/PasswordChange';
 import EmailChange from '../../components/EmailChange';
+import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 
 class ModifUserPersonnalInfoPage extends Component {
   stateTabView = {
@@ -64,6 +65,7 @@ class ModifUserPersonnalInfoPage extends Component {
    }
    return (
      <>
+
        <View style={styles.titleView}>
          <Text style={styles.title}>Mise à jour</Text>
        </View>

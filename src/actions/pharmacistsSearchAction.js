@@ -35,7 +35,7 @@ export const pharmacistsSearch = (
       .then((response) => {
         if (response.data.length !== 0) {
           dispatch(pharmacistsSearchSuccess(response.data));
-          console.log(`founnd${response.data}`);
+          //console.log(`founnd${response.data}`);
         } else {
           console.log('not founnnnd');
           dispatch(pharmacistsSearchNotFound());

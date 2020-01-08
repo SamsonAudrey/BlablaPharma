@@ -27,7 +27,7 @@ export default class SearchBar extends Component {
 
   handleChangeSearch = (text) => {
     this.props.onTextUpdate(text);
-    // console.log(`t'as changé texxxt : ${text}`);
+    console.log(`t'as changé texxxt : ${text}`);
   };
 
   handleChangeGenderFilter = (genderValue) => {

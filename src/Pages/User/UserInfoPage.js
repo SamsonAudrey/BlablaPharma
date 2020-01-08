@@ -134,7 +134,7 @@ export default class UserInfoPage extends React.Component {
           <View style={styles.middle}>
             <Image
               source={require('../../assets/logo-fav.png')}
-              style={{ width: 80, height: 90, marginVertical: '5%' }}
+              style={{ width: 80, height: 90, marginVertical: '5%'}}
             />
             {personalInfo}
             <CButton
@@ -187,11 +187,13 @@ export default class UserInfoPage extends React.Component {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    height: '100%',
+    // height: '100%',
     justifyContent: 'flex-end',
+
   },
   middle: {
     alignItems: 'center',
+    marginTop: '5%'
   },
   footer: {
     height: '30%',

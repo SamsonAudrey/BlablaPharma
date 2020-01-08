@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import t from 'tcomb-form-native';
 import RadioForm from 'react-native-simple-radio-button';
-// import moment from 'moment';
+import moment from 'moment';
 import CButton from './Button';
 
 const { Form } = t.form;
@@ -31,6 +31,7 @@ export default class GeneralModif extends Component {
     this.General = t.struct({
       firstName: this.Name,
       lastName: this.Name,
+      birth: t.Date
     });
   }
 
@@ -52,6 +53,7 @@ export default class GeneralModif extends Component {
         id: account.id,
         firstName: value.firstName,
         lastName: value.lastName,
+        birthDayDate: value.birth,
         gender: gender === 0 ? 'male' : gender === 1 ? 'female' : 'another'
       };
       userUpdateRemoteAccount(changes);
@@ -60,11 +62,6 @@ export default class GeneralModif extends Component {
 
   render() {
     return (
-    /* <KeyboardAwareScrollView
-        automaticallyAdjustContentInsets={false}
-        enableOnAndroid
-        style={{ flex: 2 }}
-      > */
       <View style={styles.form}>
         <Form
           ref={(c) => this._form = c}
@@ -88,14 +85,12 @@ export default class GeneralModif extends Component {
         />
         <View style={styles.submitButton}>
           <CButton
-            title="Update"
+            title="Mettre à jour"
             buttonStyle="grey"
             onPress={this.handleSubmit}
           />
         </View>
       </View>
-    // </KeyboardAwareScrollView>
-
     );
   }
 }
@@ -157,6 +152,20 @@ const options = {
       placeholder: 'Nom',
       placeholderTextColor: '#707070',
       error: 'Doit contenir minimum 1 caractères'
+    },
+    birth: {
+      placeholder: 'Date de naissance',
+      placeholderTextColor: '#707070',
+      mode: 'date', // display the Date field as a DatePickerAndroid
+      config: {
+        format: (date) => {
+          if (date) {
+            return moment(date).format('YYYY-MM-DD');
+          }
+          return moment(new Date()).format('YYYY-MM-DD');
+        },
+        defaultValueText: 'Date de naissance',
+      },
     },
   },
   auto: 'placeholders',

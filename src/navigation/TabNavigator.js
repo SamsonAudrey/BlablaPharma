@@ -76,7 +76,9 @@ const UserInfoNavigator = createStackNavigator(
     ModifUserPersonnalInfo: ModifUserPersonnalInfoPageContainer
   },
   {
-    initialRouteName: 'UserInfo'
+    initialRouteName: 'UserInfo',
+      defaultNavigationOptions: {
+          headerShown: false}
   }
 );
 

@@ -135,11 +135,11 @@ export default class UserInfoPage extends React.Component {
       <>
         <SafeAreaView style={{ flex: 1 }}>
           <View style={styles.container}>
-            <View style={styles.middle}>
               <Image
-                source={require('../../assets/logo-fav.png')}
-                style={{ width: 80, height: 90, marginVertical: '5%' }}
+                  source={require('../../assets/logo-fav.png')}
+                  style={{ width: 80, height: 90, marginVertical: '10%' }}
               />
+            <View style={styles.middle}>
               {personalInfo}
               <CButton
                 title="A propos"
@@ -198,11 +198,10 @@ const styles = StyleSheet.create({
   },
   middle: {
     alignItems: 'center',
-    marginTop: '5%'
+    marginVertical: '5%'
   },
   footer: {
     marginTop: '30%',
     justifyContent: 'flex-end',
-    marginBottom: '5%'
   }
 });

@@ -16,6 +16,7 @@ import RegisterPharmacistContainer from '../containers/User/RegisterPharmacistCo
 import AuthPageContainer from '../containers/User/AuthPageContainer';
 import UserPersonnalInfoPageContainer from '../containers/User/UserPersonnalInfoPageContainer';
 import ModifUserPersonnalInfoPageContainer from '../containers/User/ModifUserPersonnalInfoContainer';
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 
 class LogoTitle extends React.Component {
@@ -112,7 +113,7 @@ export default createBottomTabNavigator(
       screen: BlogNavigator,
       navigationOptions: ({ navigation }) => ({
         tabBarIcon: ({ tintColor }) => (
-          <Ionicons name="md-images" size={32} color={tintColor} />),
+          <MaterialCommunityIcons name="video-image" size={36} color={tintColor} />),
       })
     },
     SearchPharmacists: {

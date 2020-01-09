@@ -10,6 +10,7 @@ import SafeAreaView from 'react-native-safe-area-view';
 import ButtonTitle from '../../components/ButtonTitle';
 import CButton from '../../components/Button';
 import { store } from '../../../store';
+import ImageFactory from 'react-native-image-picker-form';
 
 const { Form } = t.form;
 const genderProps = [
@@ -45,7 +46,8 @@ class RegisterPatient extends Component {
       lastName: t.String,
       password: this.Password,
       confirmPassword: this.EqualPassword,
-      birth: t.Date
+      birth: t.Date,
+      image: t.maybe(t.String)
     });
     const state = store.getState();
     this.userKind = state.navigationInfo.userKind;
@@ -117,7 +119,7 @@ class RegisterPatient extends Component {
                 selectedButtonColor="#868788"
                 buttonSize={10}
                 buttonWrapStyle={{ marginLeft: 20 }}
-                style={{ marginTop: '4%' }}
+                style={{ marginTop: '5%' }}
               />
               <View style={styles.submitButton}>
                 <CButton
@@ -153,6 +155,7 @@ s.dateValue.error.color = '#707070';
 s.dateValue.error.borderColor = '#a94442';
 s.dateValue.error.borderRadius = 5;
 s.errorBlock.fontSize = 15;
+s.controlLabel.normal.color = 'red'
 
 const styles = StyleSheet.create({
   form: {
@@ -166,7 +169,7 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     marginTop: '5%',
-    height: 120
+    height: 150
   },
   title: {
     height: '100%',
@@ -220,9 +223,21 @@ const options = {
       },
 
     },
+    image: {
+      config: {
+        title: 'Choisir une photo de profil',
+        options: ['Ouvrir camera', 'Selection gallerie', 'Annuler'],
+        // Used on Android to style BottomSheet
+        style: {
+        }
+      },
+      error: 'Aucune image',
+      factory: ImageFactory
+    }
   },
   auto: 'placeholders',
-  stylesheet: s
+  stylesheet: s,
+  config: { buttonTextColor: '#707070' }
 };
 
 

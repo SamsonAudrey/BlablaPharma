@@ -6,6 +6,7 @@ import t from 'tcomb-form-native';
 import moment from 'moment';
 import RadioForm from 'react-native-simple-radio-button';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import SafeAreaView from 'react-native-safe-area-view';
 import ButtonTitle from '../../components/ButtonTitle';
 import CButton from '../../components/Button';
 import { store } from '../../../store';
@@ -79,53 +80,55 @@ class RegisterPatient extends Component {
 
     render() {
       return (
-        <KeyboardAwareScrollView
-          automaticallyAdjustContentInsets={false}
-          enableOnAndroid
-          style={{ flex: 1 }}
-        >
-          <View style={styles.imageView}>
-            <ImageBackground
-              source={this.userKind === 'patient' ? require('../../assets/sign-in_cut.jpg') : require('../../assets/sign-in-pharmacist_cut.png')}
-              style={{ width: '100%', height: '100%', opacity: 1 }}
-            >
-              <View style={styles.title}>
-                <ButtonTitle
-                  title={this.userKind === 'patient' ? 'Je suis patient' : 'Je suis pharmacien'}
-                  role={this.userKind}
+        <SafeAreaView style={{ flex: 1 }}>
+          <KeyboardAwareScrollView
+            automaticallyAdjustContentInsets={false}
+            enableOnAndroid
+            style={{ flex: 1 }}
+          >
+            <View style={styles.imageView}>
+              <ImageBackground
+                source={this.userKind === 'patient' ? require('../../assets/sign-in_cut.jpg') : require('../../assets/sign-in-pharmacist_cut.png')}
+                style={{ width: '100%', height: '100%', opacity: 1 }}
+              >
+                <View style={styles.title}>
+                  <ButtonTitle
+                    title={this.userKind === 'patient' ? 'Je suis patient' : 'Je suis pharmacien'}
+                    role={this.userKind}
+                  />
+                </View>
+              </ImageBackground>
+            </View>
+
+            <View style={styles.form}>
+              <Form
+                ref={(c) => this._form = c}
+                type={this.User}
+                options={options}
+                onChange={(v) => this.onChange(v)}
+              />
+              <RadioForm
+                radio_props={genderProps}
+                initial={0}
+                onPress={(value) => { this.state.gender = value; }}
+                formHorizontal
+                buttonColor="#868788"
+                labelColor="#868788"
+                selectedButtonColor="#868788"
+                buttonSize={10}
+                buttonWrapStyle={{ marginLeft: 20 }}
+                style={{ marginTop: '4%' }}
+              />
+              <View style={styles.submitButton}>
+                <CButton
+                  title={this.userKind === 'patient' ? "S'inscrire" : 'Suivant'}
+                  buttonStyle={this.userKind === 'patient' ? 'green' : 'grey'}
+                  onPress={this.handleSubmit}
                 />
               </View>
-            </ImageBackground>
-          </View>
-
-          <View style={styles.form}>
-            <Form
-              ref={(c) => this._form = c}
-              type={this.User}
-              options={options}
-              onChange={(v) => this.onChange(v)}
-            />
-            <RadioForm
-              radio_props={genderProps}
-              initial={0}
-              onPress={(value) => { this.state.gender = value; }}
-              formHorizontal
-              buttonColor="#868788"
-              labelColor="#868788"
-              selectedButtonColor="#868788"
-              buttonSize={10}
-              buttonWrapStyle={{ marginLeft: 20 }}
-              style={{ marginTop: '4%' }}
-            />
-            <View style={styles.submitButton}>
-              <CButton
-                title={this.userKind === 'patient' ? "S'inscrire" : 'Suivant'}
-                buttonStyle={this.userKind === 'patient' ? 'green' : 'grey'}
-                onPress={this.handleSubmit}
-              />
             </View>
-          </View>
-        </KeyboardAwareScrollView>
+          </KeyboardAwareScrollView>
+        </SafeAreaView>
       );
     }
 }

@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import t from 'tcomb-form-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import SafeAreaView from 'react-native-safe-area-view';
 import { store } from '../../../store';
 
 import CButton from '../../components/Button';
@@ -71,56 +72,58 @@ export default class Auth extends Component {
       ? (error = <Text style={{ color: 'red' }}>Les identifiants donnés sont invalides</Text>)
       : (error = <Text />);
     return (
-      <KeyboardAwareScrollView
-        automaticallyAdjustContentInsets={false}
-        enableOnAndroid
-        style={{ flex: 1 }}
-      >
-        <View style={styles.titleView}>
-          <Text style={styles.title}>Connexion</Text>
-        </View>
-        <View style={styles.container}>
-          {error}
-          <ImageBackground
-            source={require('../../assets/engagement.jpg')}
-            style={{ width: '100%', height: '100%' }}
-          >
-            <View style={styles.form}>
-              <Form
-                ref={(c) => (this._form = c)}
-                type={User}
-                options={options}
-              />
-              <View style={styles.buttonView}>
-                <CButton
-                  title="Connexion"
-                  buttonStyle="grey"
-                  onPress={this.handleSubmit}
-                />
-              </View>
-            </View>
-          </ImageBackground>
-        </View>
-
-        <View style={styles.linkText1}>
-          <HyperLinkText
-            text="Mot de passe oublié ?"
-            onPress={() => null}
-            style={{
-              color: '#BED469', marginLeft: 20, fontSize: 16, marginTop: '5%'
-            }}
-          />
-
-          <View style={styles.linkText2}>
-            <Text style={{ color: '#868788', marginLeft: 20, fontSize: 16 }}>Pas encore inscrit ?</Text>
-            <HyperLinkText
-              text={'S\'inscrire'}
-              onPress={() => this.props.navigation.navigate('Register')}
-              style={{ color: '#BED469', marginLeft: 10, fontSize: 16 }}
-            />
+      <SafeAreaView style={{ flex: 1}}>
+        <KeyboardAwareScrollView
+          automaticallyAdjustContentInsets={false}
+          enableOnAndroid
+          style={{ flex: 1 }}
+        >
+          <View style={styles.titleView}>
+            <Text style={styles.title}>Connexion</Text>
           </View>
-        </View>
-      </KeyboardAwareScrollView>
+          <View style={styles.container}>
+            {error}
+            <ImageBackground
+              source={require('../../assets/engagement.jpg')}
+              style={{ width: '100%', height: '100%' }}
+            >
+              <View style={styles.form}>
+                <Form
+                  ref={(c) => (this._form = c)}
+                  type={User}
+                  options={options}
+                />
+                <View style={styles.buttonView}>
+                  <CButton
+                    title="Connexion"
+                    buttonStyle="grey"
+                    onPress={this.handleSubmit}
+                  />
+                </View>
+              </View>
+            </ImageBackground>
+          </View>
+
+          <View style={styles.linkText1}>
+            <HyperLinkText
+              text="Mot de passe oublié ?"
+              onPress={() => null}
+              style={{
+                color: '#BED469', marginLeft: 20, fontSize: 16, marginTop: '5%'
+              }}
+            />
+
+            <View style={styles.linkText2}>
+              <Text style={{ color: '#868788', marginLeft: 20, fontSize: 16 }}>Pas encore inscrit ?</Text>
+              <HyperLinkText
+                text={'S\'inscrire'}
+                onPress={() => this.props.navigation.navigate('Register')}
+                style={{ color: '#BED469', marginLeft: 10, fontSize: 16 }}
+              />
+            </View>
+          </View>
+        </KeyboardAwareScrollView>
+      </SafeAreaView>
     );
   }
 }
@@ -181,6 +184,7 @@ const styles = StyleSheet.create({
   },
   container: {
     height: '70%',
+    marginTop: '10%'
   },
   buttonView: {
     marginTop: '10%'
@@ -194,10 +198,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.4)',
   },
   linkText2: {
-    marginTop: '5%',
+    marginTop: '3%',
     flexDirection: 'row'
   },
   linkText1: {
-    marginTop: '5%'
+    marginTop: '3%'
   }
 });

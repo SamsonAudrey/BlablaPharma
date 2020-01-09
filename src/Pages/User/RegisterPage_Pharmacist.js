@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import {ImageBackground, Platform, StyleSheet, View} from 'react-native';
+import {
+  ImageBackground, Platform, StyleSheet, View
+} from 'react-native';
 import t from 'tcomb-form-native';
 import moment from 'moment';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import SafeAreaView from 'react-native-safe-area-view';
 import CButton from '../../components/Button';
 import ButtonTitle from '../../components/ButtonTitle';
 import { store } from '../../../store';
@@ -25,9 +28,7 @@ class RegisterPharmacist extends Component {
       const reg = /^(([0-9]{10}[A-z])|([0-9]{9}[A-z]{2})|([0-9]{11}))$/;
       return reg.test(id);
     });
-    this.AllString = t.refinement(t.String, (str) => {
-      return str.length > 1;
-    });
+    this.AllString = t.refinement(t.String, (str) => str.length > 1);
     this.User = t.struct({
       profession: t.String,
       ID: this.ProfessionalId,
@@ -86,37 +87,39 @@ class RegisterPharmacist extends Component {
 
   render() {
     return (
-      <KeyboardAwareScrollView
-        automaticallyAdjustContentInsets={false}
-        enableOnAndroid
-        style={{ flex: 1 }}
-      >
-        <View style={styles.imageView}>
-          <ImageBackground
-            source={require('../../assets/sign-in-pharmacist_cut.png')}
-            style={{ width: '100%', height: '100%', opacity: 1 }}
-          >
-            <View style={styles.title}>
-              <ButtonTitle title="Je suis pharmacien" role="pharmacist" />
-            </View>
-          </ImageBackground>
-        </View>
-        <View style={styles.container}>
-          <Form
-            ref={(c) => this._form = c}
-            type={this.User}
-            options={options}
-            onChange={(v) => this.onChange(v)}
-          />
-          <View style={styles.submitButton}>
-            <CButton
-              title={"S'inscrire"}
-              buttonStyle="green"
-              onPress={this.handleSubmit}
-            />
+      <SafeAreaView style={{ flex: 1 }}>
+        <KeyboardAwareScrollView
+          automaticallyAdjustContentInsets={false}
+          enableOnAndroid
+          style={{ flex: 1 }}
+        >
+          <View style={styles.imageView}>
+            <ImageBackground
+              source={require('../../assets/sign-in-pharmacist_cut.png')}
+              style={{ width: '100%', height: '100%', opacity: 1 }}
+            >
+              <View style={styles.title}>
+                <ButtonTitle title="Je suis pharmacien" role="pharmacist" />
+              </View>
+            </ImageBackground>
           </View>
-        </View>
-      </KeyboardAwareScrollView>
+          <View style={styles.container}>
+            <Form
+              ref={(c) => this._form = c}
+              type={this.User}
+              options={options}
+              onChange={(v) => this.onChange(v)}
+            />
+            <View style={styles.submitButton}>
+              <CButton
+                title={"S'inscrire"}
+                buttonStyle="green"
+                onPress={this.handleSubmit}
+              />
+            </View>
+          </View>
+        </KeyboardAwareScrollView>
+      </SafeAreaView>
     );
   }
 }

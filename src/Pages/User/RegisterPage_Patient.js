@@ -6,9 +6,11 @@ import t from 'tcomb-form-native';
 import moment from 'moment';
 import RadioForm from 'react-native-simple-radio-button';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import SafeAreaView from 'react-native-safe-area-view';
 import ButtonTitle from '../../components/ButtonTitle';
 import CButton from '../../components/Button';
 import { store } from '../../../store';
+import ImageFactory from 'react-native-image-picker-form';
 
 const { Form } = t.form;
 const genderProps = [
@@ -44,7 +46,8 @@ class RegisterPatient extends Component {
       lastName: t.String,
       password: this.Password,
       confirmPassword: this.EqualPassword,
-      birth: t.Date
+      birth: t.Date,
+      image: t.maybe(t.String)
     });
     const state = store.getState();
     this.userKind = state.navigationInfo.userKind;
@@ -79,53 +82,55 @@ class RegisterPatient extends Component {
 
     render() {
       return (
-        <KeyboardAwareScrollView
-          automaticallyAdjustContentInsets={false}
-          enableOnAndroid
-          style={{ flex: 1 }}
-        >
-          <View style={styles.imageView}>
-            <ImageBackground
-              source={this.userKind === 'patient' ? require('../../assets/sign-in_cut.jpg') : require('../../assets/sign-in-pharmacist_cut.png')}
-              style={{ width: '100%', height: '100%', opacity: 1 }}
-            >
-              <View style={styles.title}>
-                <ButtonTitle
-                  title={this.userKind === 'patient' ? 'Je suis patient' : 'Je suis pharmacien'}
-                  role={this.userKind}
+        <SafeAreaView style={{ flex: 1 }}>
+          <KeyboardAwareScrollView
+            automaticallyAdjustContentInsets={false}
+            enableOnAndroid
+            style={{ flex: 1 }}
+          >
+            <View style={styles.imageView}>
+              <ImageBackground
+                source={this.userKind === 'patient' ? require('../../assets/sign-in_cut.jpg') : require('../../assets/sign-in-pharmacist_cut.png')}
+                style={{ width: '100%', height: '100%', opacity: 1 }}
+              >
+                <View style={styles.title}>
+                  <ButtonTitle
+                    title={this.userKind === 'patient' ? 'Je suis patient' : 'Je suis pharmacien'}
+                    role={this.userKind}
+                  />
+                </View>
+              </ImageBackground>
+            </View>
+
+            <View style={styles.form}>
+              <Form
+                ref={(c) => this._form = c}
+                type={this.User}
+                options={options}
+                onChange={(v) => this.onChange(v)}
+              />
+              <RadioForm
+                radio_props={genderProps}
+                initial={0}
+                onPress={(value) => { this.state.gender = value; }}
+                formHorizontal
+                buttonColor="#868788"
+                labelColor="#868788"
+                selectedButtonColor="#868788"
+                buttonSize={10}
+                buttonWrapStyle={{ marginLeft: 20 }}
+                style={{ marginTop: '5%' }}
+              />
+              <View style={styles.submitButton}>
+                <CButton
+                  title={this.userKind === 'patient' ? "S'inscrire" : 'Suivant'}
+                  buttonStyle={this.userKind === 'patient' ? 'green' : 'grey'}
+                  onPress={this.handleSubmit}
                 />
               </View>
-            </ImageBackground>
-          </View>
-
-          <View style={styles.form}>
-            <Form
-              ref={(c) => this._form = c}
-              type={this.User}
-              options={options}
-              onChange={(v) => this.onChange(v)}
-            />
-            <RadioForm
-              radio_props={genderProps}
-              initial={0}
-              onPress={(value) => { this.state.gender = value; }}
-              formHorizontal
-              buttonColor="#868788"
-              labelColor="#868788"
-              selectedButtonColor="#868788"
-              buttonSize={10}
-              buttonWrapStyle={{ marginLeft: 20 }}
-              style={{ marginTop: '4%' }}
-            />
-            <View style={styles.submitButton}>
-              <CButton
-                title={this.userKind === 'patient' ? "S'inscrire" : 'Suivant'}
-                buttonStyle={this.userKind === 'patient' ? 'green' : 'grey'}
-                onPress={this.handleSubmit}
-              />
             </View>
-          </View>
-        </KeyboardAwareScrollView>
+          </KeyboardAwareScrollView>
+        </SafeAreaView>
       );
     }
 }
@@ -150,6 +155,7 @@ s.dateValue.error.color = '#707070';
 s.dateValue.error.borderColor = '#a94442';
 s.dateValue.error.borderRadius = 5;
 s.errorBlock.fontSize = 15;
+s.controlLabel.normal.color = 'red'
 
 const styles = StyleSheet.create({
   form: {
@@ -163,7 +169,7 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     marginTop: '5%',
-    height: 120
+    height: 150
   },
   title: {
     height: '100%',
@@ -217,9 +223,21 @@ const options = {
       },
 
     },
+    image: {
+      config: {
+        title: 'Choisir une photo de profil',
+        options: ['Ouvrir camera', 'Selection gallerie', 'Annuler'],
+        // Used on Android to style BottomSheet
+        style: {
+        }
+      },
+      error: 'Aucune image',
+      factory: ImageFactory
+    }
   },
   auto: 'placeholders',
-  stylesheet: s
+  stylesheet: s,
+  config: { buttonTextColor: '#707070' }
 };
 
 

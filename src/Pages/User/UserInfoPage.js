@@ -145,7 +145,7 @@ export default class UserInfoPage extends React.Component {
                 title="A propos"
                 onPress={() => {
                   /* Navigate to the authentication page */
-                  navigate('UserPersonnalInfo');
+                  navigate('');
                 }}
                 long
                 buttonStyle="white"

@@ -6,6 +6,7 @@ import { Text, TouchableHighlight, Image } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import SearchPharmacistsPage from '../Pages/SearchPharmacistsPage';
 import UserInfoContainer from '../containers/User/UserInfoContainer';
 import ChatPageContainer from '../containers/ChatPageContainer';
@@ -16,7 +17,7 @@ import RegisterPharmacistContainer from '../containers/User/RegisterPharmacistCo
 import AuthPageContainer from '../containers/User/AuthPageContainer';
 import UserPersonnalInfoPageContainer from '../containers/User/UserPersonnalInfoPageContainer';
 import ModifUserPersonnalInfoPageContainer from '../containers/User/ModifUserPersonnalInfoContainer';
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Foundation from "react-native-vector-icons/Foundation";
 
 
 class LogoTitle extends React.Component {
@@ -113,28 +114,42 @@ export default createBottomTabNavigator(
       screen: BlogNavigator,
       navigationOptions: ({ navigation }) => ({
         tabBarIcon: ({ tintColor }) => (
-          <MaterialCommunityIcons name="video-image" size={36} color={tintColor} />),
+          <>
+            <Foundation name="comment-video" size={30} color={tintColor} style={{ marginTop: 1 }} />
+            <Text style={{ marginTop: 0, color: '#707070',fontSize: 12  }}>Blog</Text>
+          </>
+        ),
       })
     },
     SearchPharmacists: {
       screen: SearchPharmacistsNavigator,
       navigationOptions: ({ navigation, screenProps }) => ({
         tabBarIcon: ({ tintColor }) => (
-          <Octicons name="search" size={30} style={{ marginTop: 5 }} color={tintColor} />),
+          <>
+            <Octicons name="search" size={30} style={{ marginTop: 2, marginBottom: 0, paddingBottom: 0 }} color={tintColor} />
+            <Text style={{ marginTop: 0, paddingTop: 0, color: '#707070', fontSize: 12 }}>Pharmaciens</Text>
+          </>
+        ),
       })
     },
     Chat: {
       screen: ChatNavigator,
       navigationOptions: ({ navigation, screenProps }) => ({
         tabBarIcon: ({ tintColor }) => (
-          <Ionicons name="md-chatboxes" size={32} style={{ marginTop: 5 }} color={tintColor} />),
+          <>
+              <Ionicons name="md-chatboxes" size={30} style={{ marginTop: 1 }} color={tintColor} />
+            <Text style={{ marginTop: 0, paddingTop: 0, color: '#707070', fontSize: 12 }}>Messages</Text>
+</>),
       })
     },
     UserInfo: {
       screen: UserInfoNavigator,
       navigationOptions: ({ navigation }) => ({
         tabBarIcon: ({ tintColor }) => (
-          <FontAwesome name="user" size={30} color={tintColor} />),
+          <>
+              <FontAwesome name="user" size={30} color={tintColor} style={{ marginTop: 1, marginBottom: 3 }} />
+            <Text style={{ marginTop: 0, paddingTop: 0, color: '#707070', fontSize: 12 }}>Info</Text>
+</>),
       })
     }
   },

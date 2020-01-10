@@ -7,6 +7,7 @@ import {
 } from 'accordion-collapse-react-native';
 import RadioForm from 'react-native-simple-radio-button';
 import LinearGradient from 'react-native-linear-gradient';
+import SafeAreaView from 'react-native-safe-area-view';
 
 let initial = 0;
 
@@ -54,8 +55,6 @@ export default class SearchBar extends Component {
   };
 
   render() {
-    // const { gender } = this.props;
-    // const { profession } = this.props;
     const genderProps = [
       { label: 'Tous   ', value: '' },
       { label: 'Homme   ', value: 'male' },
@@ -63,78 +62,60 @@ export default class SearchBar extends Component {
       { label: 'Autre', value: 'another' },
     ];
 
-    /* const professionProps = [
-      { label: 'Tous   ', value: '' },
-      { label: 'Pharmaciens   ', value: 'pharmacist' },
-      { label: 'BlaBlaPharmaciens', value: 'pharmacistBlablapharma' },
-    ]; */
-
     return (
       <>
-        <LinearGradient
-          colors={['#BED469', '#BED469', '#BED469']}
-        >
-          <View style={styles.titleView}>
-            <Text style={styles.title}>Contacter un pharmacien</Text>
+        <SafeAreaView style={{ }}>
+          <LinearGradient
+            colors={['#BED469', '#BED469', '#BED469']}
+          >
+            <View style={styles.titleView}>
+              <Text style={styles.title}>Contacter un pharmacien</Text>
+            </View>
+          </LinearGradient>
+          <View style={styles.searchBarContainer}>
+            <TextInput
+              placeholder="Recherche pharmaciens proches"
+              style={styles.textInputSearch}
+              underlineColorAndroid="transparent"
+              onChangeText={(text) => this.handleChangeSearch(text)}
+              value={this.props.text}
+            />
           </View>
-        </LinearGradient>
-        <View style={styles.searchBarContainer}>
-          <TextInput
-            placeholder="Recherche pharmaciens proches"
-            style={styles.textInputSearch}
-            underlineColorAndroid="transparent"
-            onChangeText={(text) => this.handleChangeSearch(text)}
-            value={this.props.text}
-          />
-        </View>
-        <Collapse>
-          <CollapseHeader>
-            <View style={styles.filterView}>
-              <Text style={styles.titleFilter}>+ Filtres</Text>
-            </View>
-          </CollapseHeader>
-          <CollapseBody>
-            <View style={styles.form}>
-              <RadioForm
-                radio_props={genderProps}
-                initial={initial}
-                onPress={(genderValue) => this.handleChangeGenderFilter(genderValue)}
-                formHorizontal
-                buttonColor="#868788"
-                labelColor="#868788"
-                selectedButtonColor="#868788"
-                buttonSize={10}
-                buttonWrapStyle={{ marginLeft: 20 }}
-                style={{ marginTop: '4%' }}
-              />
-            </View>
-          </CollapseBody>
-        </Collapse>
+          <Collapse>
+            <CollapseHeader>
+              <View style={styles.filterView}>
+                <Text style={styles.titleFilter}>+ Filtres</Text>
+              </View>
+            </CollapseHeader>
+            <CollapseBody>
+              <View style={styles.form}>
+                <RadioForm
+                  radio_props={genderProps}
+                  initial={initial}
+                  onPress={(genderValue) => this.handleChangeGenderFilter(genderValue)}
+                  formHorizontal
+                  buttonColor="#868788"
+                  labelColor="#868788"
+                  selectedButtonColor="#868788"
+                  buttonSize={10}
+                  buttonWrapStyle={{ marginLeft: 20 }}
+                  style={{ marginTop: '4%' }}
+                />
+              </View>
+            </CollapseBody>
+          </Collapse>
+        </SafeAreaView>
       </>
     );
   }
 }
-
-/* <RadioForm
-  radio_props={professionProps}
-  initial={0}
-  onPress={(itemValue) => this.handleChangeProfessionFilter(itemValue)}
-  formHorizontal
-  buttonColor="#868788"
-  labelColor="#868788"
-  selectedButtonColor="#868788"
-  buttonSize={10}
-  buttonWrapStyle={{ marginLeft: 20 }}
-  style={{ marginTop: '4%' }}
-  // UTIL ???
-/> */
 
 let styles = StyleSheet.create({
   titleView: {
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20,
-    marginTop: Platform.OS === 'ios' ? 50 : 20,
+    marginTop: 20,
   },
   title: {
     color: '#707070',

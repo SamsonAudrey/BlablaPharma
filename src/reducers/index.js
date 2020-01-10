@@ -9,6 +9,7 @@ import pharmacists from './pharmacistsReducer';
 import searchPharmacists from './searchPharmacistsReducer';
 import loading from './loadingReducer';
 import success from './successReducer';
+import conversations from './conversationReducer';
 
 export default combineReducers({
   user,
@@ -19,6 +20,7 @@ export default combineReducers({
   searchPharmacists,
   loading,
   success,
+  conversations,
   navigationInfo: navigationReducer,
   network
 });

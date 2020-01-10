@@ -18,7 +18,8 @@ export const checkTokenGate = (store) => (next) => (action) => {
     case 'USER_PERSONNAL_INFO_SEARCH_REQUEST'
     || 'USER_PERSONNAL_INFO_UPDATE_REQUEST'
     || 'CONNECT_USER_SUCCESS'
-    || 'REGISTER_PHARMACIST': {
+    || 'REGISTER_PHARMACIST'
+    || 'GET_CONVERSATIONS_REQUEST': {
       checkToken(store, next, action);
       break;
     }

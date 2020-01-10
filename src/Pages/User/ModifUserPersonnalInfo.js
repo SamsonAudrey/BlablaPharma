@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  Button,
   Platform, StyleSheet, Text, View
 } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';

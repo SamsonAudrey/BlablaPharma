@@ -8,7 +8,7 @@ import CustomTabView from '../../components/CustomTabView';
 import GeneralModifInfo from '../../components/GeneralModifInfo';
 import PasswordChange from '../../components/PasswordChange';
 import EmailChange from '../../components/EmailChange';
-import BackButton from "../../components/BackButton";
+import BackButton from '../../components/BackButton';
 
 class ModifUserPersonnalInfoPage extends Component {
   stateTabView = {

@@ -57,12 +57,13 @@ Here are examples of these props:
    }
  };
   */
+
   constructor(props) {
     super(props);
     this.state = this.props.state;
   }
 
-  renderScene= this.props.renderScene
+  renderScene= this.props.renderScene;
 
   _handleIndexChange = (index) => this.setState({ index });
 
@@ -153,14 +154,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 14,
     borderWidth: 1,
-    borderRadius: 5, // TODO 0 OR 5 ?
+    borderRadius: 5,
     borderColor: '#848484',
     fontSize: 16,
   },
   scene: {
     alignItems: 'center',
-    // justifyContent: 'center',
-    // marginVertical: 10
-    // flex:8
   }
 });

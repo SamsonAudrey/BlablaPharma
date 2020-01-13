@@ -7,6 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Foundation from 'react-native-vector-icons/Foundation';
 import SearchPharmacistsPage from '../Pages/SearchPharmacistsPage';
 import UserInfoContainer from '../containers/User/UserInfoContainer';
 import ChatPageContainer from '../containers/ChatPageContainer';
@@ -17,7 +18,6 @@ import RegisterPharmacistContainer from '../containers/User/RegisterPharmacistCo
 import AuthPageContainer from '../containers/User/AuthPageContainer';
 import UserPersonnalInfoPageContainer from '../containers/User/UserPersonnalInfoPageContainer';
 import ModifUserPersonnalInfoPageContainer from '../containers/User/ModifUserPersonnalInfoContainer';
-import Foundation from "react-native-vector-icons/Foundation";
 
 
 class LogoTitle extends React.Component {
@@ -100,10 +100,7 @@ const BlogNavigator = createStackNavigator(
     initialRouteName: 'BlogPage',
     defaultNavigationOptions: {
       title: '',
-      // headerShown: false,
-      headerStyle: {
-        backgroundColor: '#BED469',
-      },
+      headerShown: false,
     },
   }
 );
@@ -116,7 +113,7 @@ export default createBottomTabNavigator(
         tabBarIcon: ({ tintColor }) => (
           <>
             <Foundation name="comment-video" size={30} color={tintColor} style={{ marginTop: 1 }} />
-            <Text style={{ marginTop: 0, color: '#707070',fontSize: 12  }}>Blog</Text>
+            <Text style={{ marginTop: 0, color: '#707070', fontSize: 12 }}>Blog</Text>
           </>
         ),
       })
@@ -127,7 +124,12 @@ export default createBottomTabNavigator(
         tabBarIcon: ({ tintColor }) => (
           <>
             <Octicons name="search" size={30} style={{ marginTop: 2, marginBottom: 0, paddingBottom: 0 }} color={tintColor} />
-            <Text style={{ marginTop: 0, paddingTop: 0, color: '#707070', fontSize: 12 }}>Pharmaciens</Text>
+            <Text style={{
+              marginTop: 0, paddingTop: 0, color: '#707070', fontSize: 12
+            }}
+            >
+                Pharmaciens
+            </Text>
           </>
         ),
       })
@@ -137,9 +139,15 @@ export default createBottomTabNavigator(
       navigationOptions: ({ navigation, screenProps }) => ({
         tabBarIcon: ({ tintColor }) => (
           <>
-              <Ionicons name="md-chatboxes" size={30} style={{ marginTop: 1 }} color={tintColor} />
-            <Text style={{ marginTop: 0, paddingTop: 0, color: '#707070', fontSize: 12 }}>Messages</Text>
-</>),
+            <Ionicons name="md-chatboxes" size={30} style={{ marginTop: 1 }} color={tintColor} />
+            <Text style={{
+              marginTop: 0, paddingTop: 0, color: '#707070', fontSize: 12
+            }}
+            >
+                Messages
+            </Text>
+          </>
+        ),
       })
     },
     UserInfo: {
@@ -147,9 +155,15 @@ export default createBottomTabNavigator(
       navigationOptions: ({ navigation }) => ({
         tabBarIcon: ({ tintColor }) => (
           <>
-              <FontAwesome name="user" size={30} color={tintColor} style={{ marginTop: 1, marginBottom: 3 }} />
-            <Text style={{ marginTop: 0, paddingTop: 0, color: '#707070', fontSize: 12 }}>Info</Text>
-</>),
+            <FontAwesome name="user" size={30} color={tintColor} style={{ marginTop: 1, marginBottom: 3 }} />
+            <Text style={{
+              marginTop: 0, paddingTop: 0, color: '#707070', fontSize: 12
+            }}
+            >
+                Info
+            </Text>
+          </>
+        ),
       })
     }
   },

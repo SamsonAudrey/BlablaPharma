@@ -10,7 +10,6 @@ import { store } from '../../store';
 class Home extends Component {
   render() {
     const state = store.getState();
-    console.log(state.connection.isConnected);
     return (
       <View style={styles.container}>
         <View style={styles.imageView}>

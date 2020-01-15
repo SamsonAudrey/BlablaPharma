@@ -15,8 +15,8 @@ class Home extends Component {
       <View style={styles.container}>
         <View style={styles.imageView}>
           <ImageBackground
-            source={require('../assets/banner.jpg')}
-            style={{ width: '100%', height: '100%', opacity: 1 }}
+            source={require('../assets/first-page.jpg')}
+            style={{ width: '110%', height: '100%', opacity: 1 }}
           >
             <View style={styles.sloganView}>
               <Text style={styles.slogan}>Votre pharmacien{'\n'}en ligne{'\n'}et à votre écoute</Text>
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#707070',
     fontWeight: 'bold',
-    marginTop: '10%'
+    marginTop: '5%'
   },
   imageView: {
     height: '88%',

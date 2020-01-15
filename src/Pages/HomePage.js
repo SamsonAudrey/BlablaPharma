@@ -15,7 +15,7 @@ class Home extends Component {
         </View>
         <View style={styles.imageView}>
           <ImageBackground
-            source={require('../assets/auth.jpg')}
+            source={require('../assets/banner.jpg')}
             style={{ width: '100%', height: '100%', opacity: 1 }}
           >
             <View style={styles.buttonView}>

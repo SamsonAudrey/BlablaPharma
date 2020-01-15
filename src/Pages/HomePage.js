@@ -10,14 +10,14 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.sloganView}>
-          <Text style={styles.slogan}>Votre pharmacien en ligne {'\n'}et à votre écoute</Text>
-        </View>
         <View style={styles.imageView}>
           <ImageBackground
             source={require('../assets/banner.jpg')}
             style={{ width: '100%', height: '100%', opacity: 1 }}
           >
+            <View style={styles.sloganView}>
+              <Text style={styles.slogan}>Votre pharmacien{'\n'}en ligne{'\n'}et à votre écoute</Text>
+            </View>
             <View style={styles.buttonView}>
               <FatButton
                 title1="Contacter un"
@@ -51,23 +51,27 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   sloganView: {
+    flex: 1,
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    margin: 15
+    backgroundColor: 'rgba(255,255,255,0.5)',
   },
   slogan: {
-    fontSize: 20,
+    fontSize: 30,
+    padding: 1,
     textAlign: 'center',
     color: '#707070',
     fontWeight: 'bold',
+    marginTop: '10%'
   },
   imageView: {
-    height: '75%',
+    height: '88%',
   },
   buttonView: {
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.3)',
+    backgroundColor: 'rgba(255,255,255,0.5)',
   },
   linkText: {
     justifyContent: 'space-around',

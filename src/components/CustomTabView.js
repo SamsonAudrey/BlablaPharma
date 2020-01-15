@@ -8,14 +8,14 @@ import Animated from 'react-native-reanimated';
 export default class CustomTabView extends React.Component {
   /*
   How to use the customTabView
-  There is 2 props to gove : state and renderScene
-<CustomTabViewModifInfo
+  There is 2 props to give : state and renderScene
+    <CustomTabViewModifInfo
        renderScene={this.renderScene}
        state={this.statee}
      />
-Here are examples of these props:
 
-     stateTabView = {
+  Here are examples of these props:
+  stateTabView = {
     index: 0,
     routes: [
       { key: 'first', title: 'General' },
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   tabBar: {
     flexDirection: 'row',
     paddingTop: 10,
-    width: '90%',
+    width: '93%',
     alignSelf: 'center'
   },
   tabItem: {

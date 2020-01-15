@@ -148,9 +148,6 @@ export default createMaterialTopTabNavigator(
       inactiveTintColor: '#707070',
       labelStyle: {
         fontSize: 10,
-          //margin: 0,
-          //padding: 0,
-          //width: '100%'
       },
       tabStyle: {
         height: 60

@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 import CustomTabView from './CustomTabView';
 import ScenePharmacists from './scenes/ScenePharmacists';
 
@@ -25,12 +26,14 @@ export default class PharmarmacistsList extends React.Component {
  render() {
    return (
      <>
-       <CustomTabView
-         pharmacists={this.props.pharmacists}
-         blablapharmacists={this.props.blablapharmacists}
-         renderScene={this.renderScene}
-         state={this.state}
-       />
+       <View style={{ flex: 1, paddingHorizontal: '1%' }}>
+         <CustomTabView
+           pharmacists={this.props.pharmacists}
+           blablapharmacists={this.props.blablapharmacists}
+           renderScene={this.renderScene}
+           state={this.state}
+         />
+       </View>
      </>
    );
  }

@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   buttonGreen: {
-    backgroundColor: '#ffffff'
+    backgroundColor: '#BED469'
   },
   buttonGrey: {
     backgroundColor: '#868788'

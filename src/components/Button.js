@@ -6,6 +6,7 @@ class CButton extends Component {
     return (
       <TouchableHighlight
         onPress={this.props.onPress}
+        underlayColor={this.props.buttonStyle === 'green' ? '#DCF271' : '#e2e2e2'}
         style={[
           styles.button,
           this.props.buttonStyle === 'green' ? styles.buttonGreen : this.props.buttonStyle === 'white' ? styles.buttonWhite : styles.buttonGrey,
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
   buttonTextGrey: {
     color: 'white',
   },
-  buttonTextWhite:{
+  buttonTextWhite: {
     color: '#868788'
   }
 });

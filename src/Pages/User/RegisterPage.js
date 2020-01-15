@@ -12,6 +12,7 @@ class Register extends Component {
     const { navigate } = navigation;
     return (
       <SafeAreaView style={{ flex: 1 }}>
+
         <View>
           <View style={styles.titleView}>
             <Text style={styles.title}>Inscription</Text>
@@ -34,7 +35,7 @@ class Register extends Component {
               </View>
             </ImageBackground>
           </View>
-          <View style={[styles.view, { marginTop: 10 }]}>
+          <View style={[styles.view, { marginTop: '1%' }]}>
             <ImageBackground
               source={require('../../assets/sign-in-pharmacist_large_cut.png')}
               style={{ width: '100%', height: '100%', opacity: 1 }}

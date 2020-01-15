@@ -36,7 +36,7 @@ class Blog extends Component {
             <Text style={styles.title}>Blog</Text>
           </View>
         </LinearGradient>
-        <View style={{ height: '100%' }}>
+        <View style={{ height: '100%', paddingHorizontal: '1%' }}>
           <CustomTabView
             renderScene={this.renderScene}
             state={this.state}

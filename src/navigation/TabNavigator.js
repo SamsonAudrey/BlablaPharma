@@ -1,13 +1,9 @@
 import { createStackNavigator } from 'react-navigation-stack';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import React from 'react';
-import * as colors from 'react-native';
-import { Text, TouchableHighlight, Image } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Foundation from 'react-native-vector-icons/Foundation';
 import SearchPharmacistsPage from '../Pages/SearchPharmacistsPage';
 import UserInfoContainer from '../containers/User/UserInfoContainer';
 import ChatPageContainer from '../containers/ChatPageContainer';
@@ -18,19 +14,6 @@ import RegisterPharmacistContainer from '../containers/User/RegisterPharmacistCo
 import AuthPageContainer from '../containers/User/AuthPageContainer';
 import UserPersonnalInfoPageContainer from '../containers/User/UserPersonnalInfoPageContainer';
 import ModifUserPersonnalInfoPageContainer from '../containers/User/ModifUserPersonnalInfoContainer';
-
-
-class LogoTitle extends React.Component {
-  render() {
-    return (
-      <Image
-        source={require('../assets/logo-fav.png')}
-        style={{ width: '11%', height: '75%' }}
-      />
-    );
-  }
-}
-
 
 const SearchPharmacistsNavigator = createStackNavigator(
   {
@@ -53,7 +36,6 @@ const SearchPharmacistsNavigator = createStackNavigator(
           height: 0,
         },
         elevation: 0,
-
       },
       headerTintColor: '#a9a9a9',
       headerTitleStyle: {
@@ -105,17 +87,17 @@ const BlogNavigator = createStackNavigator(
   }
 );
 
-export default createBottomTabNavigator(
+export default createMaterialTopTabNavigator(
   {
     Blog: {
       screen: BlogNavigator,
       navigationOptions: ({ navigation }) => ({
         tabBarIcon: ({ tintColor }) => (
           <>
-            <Foundation name="comment-video" size={30} color={tintColor} style={{ marginTop: 1 }} />
-            <Text style={{ marginTop: 0, color: '#707070', fontSize: 12 }}>Blog</Text>
+            <Ionicons name="ios-images" size={30} color={tintColor} style={{ }} />
           </>
         ),
+        tabBarLabel: 'Blog'
       })
     },
     SearchPharmacists: {
@@ -123,15 +105,10 @@ export default createBottomTabNavigator(
       navigationOptions: ({ navigation, screenProps }) => ({
         tabBarIcon: ({ tintColor }) => (
           <>
-            <Octicons name="search" size={30} style={{ marginTop: 2, marginBottom: 0, paddingBottom: 0 }} color={tintColor} />
-            <Text style={{
-              marginTop: 0, paddingTop: 0, color: '#707070', fontSize: 12
-            }}
-            >
-                Pharmaciens
-            </Text>
+            <Octicons name="search" size={30} style={{ }} color={tintColor} />
           </>
         ),
+        tabBarLabel: 'Pharmaciens'
       })
     },
     Chat: {
@@ -139,15 +116,10 @@ export default createBottomTabNavigator(
       navigationOptions: ({ navigation, screenProps }) => ({
         tabBarIcon: ({ tintColor }) => (
           <>
-            <Ionicons name="md-chatboxes" size={30} style={{ marginTop: 1 }} color={tintColor} />
-            <Text style={{
-              marginTop: 0, paddingTop: 0, color: '#707070', fontSize: 12
-            }}
-            >
-                Messages
-            </Text>
+            <Ionicons name="md-chatboxes" size={30} style={{ }} color={tintColor} />
           </>
         ),
+        tabBarLabel: 'Messages'
       })
     },
     UserInfo: {
@@ -155,28 +127,39 @@ export default createBottomTabNavigator(
       navigationOptions: ({ navigation }) => ({
         tabBarIcon: ({ tintColor }) => (
           <>
-            <FontAwesome name="user" size={30} color={tintColor} style={{ marginTop: 1, marginBottom: 3 }} />
-            <Text style={{
-              marginTop: 0, paddingTop: 0, color: '#707070', fontSize: 12
-            }}
-            >
-                Info
-            </Text>
+            <FontAwesome name="user" size={30} color={tintColor} style={{ }} />
           </>
         ),
+        tabBarLabel: 'Info'
       })
     }
   },
   {
     tabBarOptions: {
-      showLabel: false, // hide labels
+      showLabel: true,
+      showIcon: true,
       style: {
-        backgroundColor: '#fff', // TabBar background
-        // borderTopWidth: 0,
+        backgroundColor: '#fff',
+        width: '100%'
       },
+      upperCaseLabel: false,
+      indicatorStyle: { backgroundColor: '#BED469' },
       activeTintColor: '#BED469',
-      inactiveTintColor: '#707070'
+      inactiveTintColor: '#707070',
+      labelStyle: {
+        fontSize: 10,
+      },
+      tabStyle: {
+        height: 60
+      },
+      iconStyle: {
+        width: '100%',
+        height: 28,
+      },
     },
+    navigationOptions: {
+    },
+    tabBarPosition: 'bottom'
   },
   {
     initialRouteName: 'SearchPharmacists'

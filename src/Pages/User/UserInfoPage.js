@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Image, Platform, StyleSheet, Text, View
+  Image, StyleSheet, View
 } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import CButton from '../../components/Button';
@@ -71,7 +71,7 @@ export default class UserInfoPage extends React.Component {
 
   checkConnexion = () => {
     if (this.props.isConnected) {
-      console.log("T'es connectéééé User Info");
+      console.log("T'es connecté User Info");
     } else {
       console.log("T'es pas connecté User Info");
     }
@@ -137,7 +137,7 @@ export default class UserInfoPage extends React.Component {
           <View style={styles.container}>
               <Image
                   source={require('../../assets/logo-fav.png')}
-                  style={{ width: 80, height: 90, marginVertical: '10%' }}
+                  style={{ width: '20.30%', height: '14.40%', marginTop: '10%' }}
               />
             <View style={styles.middle}>
               {personalInfo}

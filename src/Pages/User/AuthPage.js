@@ -55,9 +55,7 @@ export default class Auth extends Component {
   };
 
   handleSubmit = () => {
-    console.log('presssss');
     const value = this._form.getValue();
-    console.log(value);
     try {
       const { onUserAuth } = this.props;
       onUserAuth(value.email, value.password);
@@ -184,7 +182,7 @@ const styles = StyleSheet.create({
   },
   container: {
     height: '70%',
-    marginTop: '10%'
+    marginTop: '8%'
   },
   buttonView: {
     marginTop: '10%'

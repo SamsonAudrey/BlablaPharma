@@ -22,7 +22,7 @@ class Home extends Component {
               <FatButton
                 title1="Contacter un"
                 title2="pharmacien"
-                onPress={() => this.props.navigation.navigate('Tab')}
+                onPress={() => this.props.navigation.navigate('SearchPharmacists')}
               />
             </View>
           </ImageBackground>

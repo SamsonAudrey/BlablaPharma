@@ -5,9 +5,12 @@ import {
 } from 'react-native';
 import FatButton from '../components/FatButton';
 import HyperLinkText from '../components/HyperLinkText';
+import { store } from '../../store';
 
 class Home extends Component {
   render() {
+    const state = store.getState();
+    console.log(state.connection.isConnected);
     return (
       <View style={styles.container}>
         <View style={styles.imageView}>
@@ -29,16 +32,21 @@ class Home extends Component {
         </View>
 
         <View style={styles.linkText}>
-          <HyperLinkText
-            text="Inscription"
-            onPress={() => this.props.navigation.navigate('Register')}
-            style={{ color: '#868788', fontSize: 16 }}
-          />
-          <HyperLinkText
-            text="Connexion"
-            onPress={() => this.props.navigation.navigate('Connection')}
-            style={{ color: '#868788', fontSize: 16 }}
-          />
+          {state.connection.isConnected ? null
+            : (
+              <>
+                <HyperLinkText
+                  text="Inscription"
+                  onPress={() => this.props.navigation.navigate('Register')}
+                  style={{ color: '#868788', fontSize: 16 }}
+                />
+                <HyperLinkText
+                  text="Connexion"
+                  onPress={() => this.props.navigation.navigate('Connection')}
+                  style={{ color: '#868788', fontSize: 16 }}
+                />
+              </>
+            )}
         </View>
 
       </View>

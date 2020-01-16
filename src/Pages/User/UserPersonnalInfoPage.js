@@ -8,6 +8,8 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import moment from 'moment';
 import SafeAreaView from 'react-native-safe-area-view';
 import BackButton from '../../components/BackButton';
+import CModal from '../../components/Modal';
+import CButton from '../../components/Button';
 
 class UserPersonnalInfoPage extends Component {
   componentDidMount() {
@@ -28,10 +30,24 @@ class UserPersonnalInfoPage extends Component {
     }
   };
 
+  handler = () => (
+    <Text style={styles.deleteAccount}>
+        Supprimer le compte
+    </Text>
+  );
+
+  button= () => (
+    <CButton
+      title="Supprimer"
+      buttonStyle="danger"
+      onPress={() => this.handleDeleteAccount()}
+    />
+  );
+
+
   render() {
     const { account } = this.props;
     const { navigate } = this.props.navigation;
-    console.log(account);
     const birthDate = moment(account.birthDayDate).format('DD/MM/YYYY');
     const createdDate = new Date(account.createdAt).toISOString();
     const createdDateFormated = moment(createdDate).format('DD/MM/YYYY');
@@ -107,12 +123,12 @@ class UserPersonnalInfoPage extends Component {
             </Text>
           </View>
           <View style={styles.footer}>
-            <Text
-              style={styles.deleteAccount}
-              onPress={this.handleDeleteAccount}
-            >
-              Supprimer le compte
-            </Text>
+            <CModal
+              handler={this.handler()}
+              text="Êtes-vous sûr de vouloir supprimer votre compte ?"
+              button={this.button()}
+              todo={() => this.handleDeleteAccount()}
+            />
           </View>
         </SafeAreaView>
       </>

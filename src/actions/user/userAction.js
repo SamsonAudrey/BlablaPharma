@@ -1,4 +1,3 @@
-
 import { API_URL } from 'react-native-dotenv';
 import axios from 'axios';
 import {
@@ -10,7 +9,10 @@ import {
   USER_PERSONNAL_INFO_SEARCH_REQUEST,
   USER_PERSONNAL_INFO_SEARCH_SUCCESS,
   LOGOUT,
-  TOKEN_VERIFIED
+  TOKEN_VERIFIED,
+  USER_PERSONNAL_DELETE_ACCOUNT_REQUEST,
+  USER_PERSONNAL_DELETE_ACCOUNT_SUCCESS,
+  USER_PERSONNAL_DELETE_ACCOUNT_FAILURE
 } from './userActionTypes';
 
 export const userAuth = (userEmail, userPassword) => {
@@ -123,6 +125,38 @@ export const userSearchFailure = (error) => ({
   error
 });
 
+
+export const userDelete = (accountId) => {
+  function thunk(dispatch) {
+    dispatch({ type: USER_PERSONNAL_DELETE_ACCOUNT_REQUEST });
+    return axios
+      .delete(`${API_URL}/accounts/${accountId}`)
+      .then((response) => {
+        console.log('ACCOUNT DELETED');
+        dispatch(userDeleteSuccess(response.data));
+      })
+      .catch((error) => {
+        console.log('ACCOUNT NOT DELETED');
+        dispatch(userDeleteFailure(error));
+      });
+  }
+  // thunk.interceptInOffline = true;
+  thunk.meta = {
+    retry: true
+  };
+  return thunk;
+};
+
+export const userDeleteSuccess = (account) => ({
+  type: USER_PERSONNAL_DELETE_ACCOUNT_SUCCESS,
+  payload: {
+  }
+});
+
+export const userDeleteFailure = (error) => ({
+  type: USER_PERSONNAL_DELETE_ACCOUNT_FAILURE,
+  error
+});
 
 export const tokenVerified = () => ({
   type: TOKEN_VERIFIED

@@ -9,7 +9,7 @@ class CButton extends Component {
         underlayColor={this.props.buttonStyle === 'green' ? '#DCF271' : '#e2e2e2'}
         style={[
           styles.button,
-          this.props.buttonStyle === 'green' ? styles.buttonGreen : this.props.buttonStyle === 'white' ? styles.buttonWhite : styles.buttonGrey,
+          this.props.buttonStyle === 'green' ? styles.buttonGreen : this.props.buttonStyle === 'white' ? styles.buttonWhite : this.props.buttonStyle === 'danger' ? styles.buttonDanger : styles.buttonGrey,
           this.props.long ? { width: 250 } : null]}
       >
         <Text
@@ -45,6 +45,9 @@ const styles = StyleSheet.create({
   },
   buttonGrey: {
     backgroundColor: '#868788'
+  },
+  buttonDanger: {
+    backgroundColor: 'red'
   },
   buttonWhite: {
     backgroundColor: 'white',

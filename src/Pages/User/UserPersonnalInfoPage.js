@@ -7,9 +7,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 import moment from 'moment';
 import SafeAreaView from 'react-native-safe-area-view';
-import BackButton from '../../components/BackButton';
+import BackButton from '../../components/Buttons/BackButton';
 import CModal from '../../components/Modal';
-import CButton from '../../components/Button';
+import CButton from '../../components/Buttons/Button';
 
 class UserPersonnalInfoPage extends Component {
   componentDidMount() {

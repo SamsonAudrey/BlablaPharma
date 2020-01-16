@@ -7,8 +7,8 @@ import moment from 'moment';
 import RadioForm from 'react-native-simple-radio-button';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SafeAreaView from 'react-native-safe-area-view';
-import ButtonTitle from '../../components/ButtonTitle';
-import CButton from '../../components/Button';
+import ButtonTitle from '../../components/Buttons/ButtonTitle';
+import CButton from '../../components/Buttons/Button';
 import { store } from '../../../store';
 import ImageFactory from 'react-native-image-picker-form';
 

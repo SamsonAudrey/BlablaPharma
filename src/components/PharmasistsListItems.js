@@ -3,7 +3,7 @@ import {
   View, Text, StyleSheet, Dimensions, Image
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import CButton from './Button';
+import CButton from './Buttons/Button';
 
 export default class PharmacistsListItems extends React.Component {
   render() {
@@ -60,8 +60,6 @@ export default class PharmacistsListItems extends React.Component {
     );
   }
 }
-
-// WHY LAST NAME = ' DECONNECTE ' ???????
 
 const styles = StyleSheet.create({
   container: {

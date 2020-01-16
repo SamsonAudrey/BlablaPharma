@@ -6,8 +6,8 @@ import t from 'tcomb-form-native';
 import moment from 'moment';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SafeAreaView from 'react-native-safe-area-view';
-import CButton from '../../components/Button';
-import ButtonTitle from '../../components/ButtonTitle';
+import CButton from '../../components/Buttons/Button';
+import ButtonTitle from '../../components/Buttons/ButtonTitle';
 import { store } from '../../../store';
 
 const { Form } = t.form;

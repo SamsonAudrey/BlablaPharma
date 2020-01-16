@@ -45,6 +45,8 @@ target 'BlablaPharmaApp' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'react-native-video', :path => '../node_modules/react-native-video'
+
   target 'BlablaPharmaAppTests' do
     inherit! :search_paths
     # Pods for testing

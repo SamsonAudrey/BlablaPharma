@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {
   View, StyleSheet, Text, ImageBackground
 } from 'react-native';
-import FatButton from '../components/FatButton';
+import FatButton from '../components/Buttons/FatButton';
 import HyperLinkText from '../components/HyperLinkText';
 import { store } from '../../store';
 

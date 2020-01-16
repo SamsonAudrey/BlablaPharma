@@ -7,7 +7,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import SafeAreaView from 'react-native-safe-area-view';
 import { store } from '../../../store';
 
-import CButton from '../../components/Button';
+import CButton from '../../components/Buttons/Button';
 import HyperLinkText from '../../components/HyperLinkText';
 
 const { Form } = t.form;

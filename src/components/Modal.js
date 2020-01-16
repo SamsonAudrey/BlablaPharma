@@ -4,7 +4,7 @@ import {
   View, Text, StyleSheet, TouchableHighlight
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import CButton from './Button';
+import CButton from './Buttons/Button';
 
 class CModal extends Component {
   constructor(props) {

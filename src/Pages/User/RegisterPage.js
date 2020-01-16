@@ -3,7 +3,7 @@ import {
   ImageBackground, StyleSheet, Text, View
 } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
-import CButton from '../../components/Button';
+import CButton from '../../components/Buttons/Button';
 import HyperLinkText from '../../components/HyperLinkText';
 
 class Register extends Component {

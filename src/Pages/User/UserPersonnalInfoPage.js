@@ -127,7 +127,6 @@ class UserPersonnalInfoPage extends Component {
               handler={this.handler()}
               text="Êtes-vous sûr de vouloir supprimer votre compte ?"
               button={this.button()}
-              todo={() => this.handleDeleteAccount()}
             />
           </View>
         </SafeAreaView>

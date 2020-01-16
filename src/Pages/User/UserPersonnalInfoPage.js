@@ -15,6 +15,19 @@ class UserPersonnalInfoPage extends Component {
     this.props.onUserSearch(account.id);
   }
 
+  handleDeleteAccount = () => {
+    try {
+      const { account } = this.props;
+      this.props.onUserLogout();
+      this.props.onDeleteAccount(account.id);
+      // Go back to home page
+      const { navigate } = this.props.navigation;
+      navigate('Home');
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   render() {
     const { account } = this.props;
     const { navigate } = this.props.navigation;
@@ -94,7 +107,12 @@ class UserPersonnalInfoPage extends Component {
             </Text>
           </View>
           <View style={styles.footer}>
-            <Text style={styles.deleteAccount}>Supprimer le compte</Text>
+            <Text
+              style={styles.deleteAccount}
+              onPress={this.handleDeleteAccount}
+            >
+              Supprimer le compte
+            </Text>
           </View>
         </SafeAreaView>
       </>

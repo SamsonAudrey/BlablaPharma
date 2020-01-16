@@ -6,7 +6,7 @@ import {
   REFRESH_TOKEN_FAILURE,
   USER_PERSONNAL_INFO_SEARCH_SUCCESS,
   LOGOUT
-} from '../actions/userActionTypes';
+} from '../actions/user/userActionTypes';
 
 export default function user(state = {}, action) {
   switch (action.type) {

@@ -8,7 +8,7 @@ import {
   PHARMACISTS_SEARCH_FAILURE,
   PHARMACISTS_SEARCH_NOT_FOUND,
   PHARMACISTS_SEARCH_REQUEST
-} from './actionTypes';
+} from '../actionTypes';
 
 export const pharmacistsSearch = (
   qValue,
@@ -35,7 +35,7 @@ export const pharmacistsSearch = (
       .then((response) => {
         if (response.data.length !== 0) {
           dispatch(pharmacistsSearchSuccess(response.data));
-          //console.log(`founnd${response.data}`);
+          // console.log(`founnd${response.data}`);
         } else {
           console.log('not founnnnd');
           dispatch(pharmacistsSearchNotFound());
@@ -43,7 +43,7 @@ export const pharmacistsSearch = (
       })
       .catch((error) => {
         dispatch(pharmacistsSearchFailure(error));
-        console.log(`erroroororor${error}`);
+        console.log(`ERROR : ${error}`);
       });
   }
   // thunk.interceptInOffline = true;

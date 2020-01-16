@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import RegisterPage_Pharmacist from '../../Pages/User/RegisterPage_Pharmacist';
-import { registerPharmacist } from '../../actions/registerAction';
+import { registerPharmacist } from '../../actions/register/registerAction';
 
 const mapStateToProps = (state) => state;
 

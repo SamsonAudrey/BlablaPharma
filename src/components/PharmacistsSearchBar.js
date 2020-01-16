@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  TextInput, View, StyleSheet, Text, Platform
+  TextInput, View, StyleSheet, Text
 } from 'react-native';
 import {
   Collapse, CollapseHeader, CollapseBody
@@ -14,26 +14,22 @@ let initial = 0;
 export default class SearchBar extends Component {
   componentDidMount() {
     const { gender } = this.props;
-    // const { profession } = this.props;
     const { text } = this.props;
     this.props.onSearch(text, gender, '');
   }
 
   componentDidUpdate() {
     const { gender } = this.props;
-    // const { profession } = this.props;
     const { text } = this.props;
     this.props.onSearch(text, gender, '');
   }
 
   handleChangeSearch = (text) => {
     this.props.onTextUpdate(text);
-    console.log(`t'as changé texxxt : ${text}`);
   };
 
   handleChangeGenderFilter = (genderValue) => {
     this.props.onGenderFilterUpdate(genderValue);
-    // console.log(`t'as changé gender filter : ${genderValue}`);
     switch (genderValue) {
       case 'male':
         initial = 1;
@@ -51,7 +47,6 @@ export default class SearchBar extends Component {
 
   handleChangeProfessionFilter = (profession) => {
     this.props.onProfessionFilterUpdate(profession);
-    console.log(`t'as changé profession filter : ${profession}`);
   };
 
   render() {
@@ -141,7 +136,7 @@ let styles = StyleSheet.create({
     marginBottom: 0
   },
   textInputSearch: {
-    borderColor: '#a9a9a9', // a9a9a9
+    borderColor: '#a9a9a9',
     borderWidth: 1,
     borderRadius: 5,
     backgroundColor: '#fff',
@@ -156,7 +151,6 @@ let styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    // height: '100%'
   },
   filterView: {
     justifyContent: 'center',

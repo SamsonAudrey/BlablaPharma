@@ -2,10 +2,9 @@ import { connect } from 'react-redux';
 import PharmacistsSearchBar from '../components/PharmacistsSearchBar';
 import {
   updateSearchText, pharmacistsSearch, updateSearchProfessionFilter, updateSearchGenderFilter
-} from '../actions/pharmacistsSearchAction';
+} from '../actions/pharmacist/pharmacistsSearchAction';
 
 const mapStateToProps = (state) => {
-  // console.log(`passe à la search baaar ${JSON.stringify(state)}`);
   return {
     gender: state.searchPharmacists.gender,
     profession: state.searchPharmacists.profession,

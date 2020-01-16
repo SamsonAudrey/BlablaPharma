@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { userSearch } from '../../actions/userAction';
-import { userUpdateRemoteAccount } from '../../actions/userModifInfoAction';
+import { userSearch } from '../../actions/user/userAction';
+import { userUpdateRemoteAccount } from '../../actions/user/userModifInfoAction';
 import { createLoadingSelector } from '../../utils/loadingSelector';
 import { createErrorSelector } from '../../utils/errorSelector';
 import { createSuccessSelector } from '../../utils/successSelector';

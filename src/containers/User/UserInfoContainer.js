@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import UserInfoPage from '../../Pages/User/UserInfoPage';
-import { logout } from '../../actions/userAction';
+import { logout } from '../../actions/user/userAction';
 
 const mapStateToProps = (state) => {
   return {

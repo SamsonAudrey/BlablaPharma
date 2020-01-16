@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import AuthPage from '../../Pages/User/AuthPage';
-import { userAuth, refreshToken } from '../../actions/userAction';
+import { userAuth, refreshToken } from '../../actions/user/userAction';
 import { clearError } from '../../actions/selectorAction';
 import { createErrorSelector } from '../../utils/errorSelector';
 

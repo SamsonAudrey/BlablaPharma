@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { userSearch } from '../../actions/userAction';
+import { userSearch } from '../../actions/user/userAction';
 import { createLoadingSelector } from '../../utils/loadingSelector';
 import UserPersonnalInfoPage from '../../Pages/User/UserPersonnalInfoPage';
 

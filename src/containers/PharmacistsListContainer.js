@@ -5,7 +5,7 @@ import { createLoadingSelector } from '../utils/loadingSelector';
 import CustomTabView from '../components/CustomTabView';
 import {
   pharmacistsSearch
-} from '../actions/pharmacistsSearchAction';
+} from '../actions/pharmacist/pharmacistsSearchAction';
 
 const loadingSelector = createLoadingSelector(['PHARMACISTS_SEARCH']);
 

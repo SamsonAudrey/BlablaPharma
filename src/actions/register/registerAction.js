@@ -4,7 +4,7 @@ import {
   REGISTER_FAILURE,
   REGISTER_INFO,
   REGISTER_KIND
-} from './actionTypes';
+} from '../actionTypes';
 
 export const registerPatient = (
   firstName,

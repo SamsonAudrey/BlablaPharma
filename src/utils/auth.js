@@ -7,67 +7,125 @@
 import axios from 'axios';
 import { API_URL } from 'react-native-dotenv';
 import {
-  refreshToken, userAuthFailure, tokenVerified
+  refreshToken, userAuthFailure
 } from '../actions/userAction';
+import { store } from '../../store';
 
-// import { store } from '../../store';
 
-
-export const checkTokenGate = (store) => (next) => (action) => {
-  switch (action.type) {
-    case 'USER_PERSONNAL_INFO_SEARCH_REQUEST'
-    || 'USER_PERSONNAL_INFO_UPDATE_REQUEST'
-    || 'CONNECT_USER_SUCCESS'
-    || 'REGISTER_PHARMACIST'
-    || 'GET_CONVERSATIONS_REQUEST': {
-      checkToken(store, next, action);
-      break;
+axios.interceptors.request.use(
+  (config) => {
+    console.log('ca uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuse');
+    const state = store.getState();
+    if (state.user.accessToken) {
+      config.headers.Authorization = `Bearer ${state.user.accessToken}`;
     }
-    default:
-      next(action);
+    // config.headers['Content-Type'] = 'application/json';
+    return config;
+  },
+  (error) => {
+    Promise.reject(error);
   }
-};
+);
 
-const checkToken = (store, next, action) => {
-  const state = store.getState();
-  if (!state.user.accessToken) {
-    store.dispatch(userAuthFailure);
-    return next(action);
+axios.interceptors.response.use((response) => {
+  console.log(`Y aaaa paaasss pbbbb${JSON.stringify(response)}`);
+
+  return response;
+},
+// Return a successful response back to the calling service
+
+(error) => {
+  console.log(`Y aaaa pbbbb${JSON.stringify(error)}`);
+  // Return any error which is not due to authentication back to the calling service
+  const originalRequest = error.config;
+
+
+  if (error.response.status === 401 && originalRequest.url
+        === `${API_URL}/auth/token`) {
+    // It means the refreshToken is not valid and we must login again
+    // So we must navigate to login
+    // router.push('/login');
+    console.log('il y a pb de refresh');
+    return Promise.reject(error);
   }
-  // In case it is the connection and accessToken has not been added to the header
-  axios.defaults.headers.Authorization = `Bearer ${state.user.accessToken}`;
-  // If there is no account it means that the user is not connected
-  state.user.account.id
-    ? axios
-      .get(`${API_URL}/accounts/${state.user.account.id}`) // This line is meant to hit the API
-      .then(() => {
-        console.log('bahhh ca marchcheh');
-        store.dispatch(tokenVerified),
-        next(action);
-      })
-      .catch(() => {
-        RefreshToken(store)
-          .then((response) => {
-            if (response.success) {
-              store.dispatch(tokenVerified),
-              next(action);
-            } else {
-              store.dispatch(userAuthFailure),
-              next(action);
-            }
-          })
-          .catch(() => console.log('pas de refressssh'),
-            store.dispatch(userAuthFailure),
-            next(action));
-      })
-    : (store.dispatch(userAuthFailure),
-    next(action)
+  if (error.response.status === 401 && !originalRequest._retry) {
+    originalRequest._retry = true;
+    console.log('Y aaaa pbbbb 400000001111111111');
+    checkToken()
+      .then(
+        () => axios(originalRequest),
+        (err) => {
+          Promise.reject(err);
+        }
+      );
+  }
+  return Promise.reject(error);
+});
+
+export async function getToken() {
+  return checkToken()
+    .then(
+      () => {
+        const state = store.getState();
+        state.user.accessToken;
+      },
+      (err) => err
+    );
+}
+
+export const checkTokenGate = (callback) => {
+  checkToken()
+    .then(
+      () => new Promise((resolve, reject) => {
+        axios.request(config).then((response) => {
+          resolve(response);
+        }).catch((error) => {
+          reject(error);
+        });
+      }),
+      (err) => reject(err)
     );
 };
 
-export function RefreshToken(store) {
+const checkToken = () => {
   const state = store.getState();
+  console.log(state);
 
+  return new Promise((resolve, reject) => {
+    if (!state.user.accessToken) {
+      store.dispatch(userAuthFailure);
+      resolve();
+    }
+    // In case it is the connection and accessToken has not been added to the header
+
+    // If there is no account it means that the user is not connected
+    console.log(`state: ${JSON.stringify(state)}`);
+    // In case it is the connection and accessToken has not been added to the header
+    state.user.accessToken
+      ? (axios.defaults.headers.Authorization = `Bearer ${state.user.accessToken}`)
+      : reject();
+    // If there is no account it means that the user is not connected
+    state.user.account.id
+      ? axios
+        .get(`${API_URL}/accounts/${state.user.account.id}`) // This line is meant to hit the API
+        .then(() => {
+          console.log('bahhh ca marchcheh');
+          resolve();
+        })
+        .catch(() => {
+          RefreshToken(state)
+            .then((response) => {
+              if (response.success) {
+                resolve();
+              } else reject(new TypeError("Token Refreshing didn't worked"));
+            })
+            .catch((err) => reject(err));
+        })
+      : reject(new TypeError('The user is not connected'));
+  });
+};
+
+export function RefreshToken(state) {
   return new Promise((resolve, reject) => {
     state.user.refreshToken
       ? store

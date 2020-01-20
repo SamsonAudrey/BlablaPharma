@@ -5,9 +5,11 @@ import {
 } from 'react-native';
 import FatButton from '../components/FatButton';
 import HyperLinkText from '../components/HyperLinkText';
+import {store} from '../../store'
 
 class Home extends Component {
   render() {
+    console.log(store.getState())
     return (
       <View style={styles.container}>
         <View style={styles.sloganView}>

@@ -13,7 +13,7 @@ export default class EmailChange extends Component {
     super(props);
     const { account } = this.props;
     this.state = {
-      newEmail: account.email
+      email: account.email
     };
 
     this.Email = t.refinement(t.String, (email) => {
@@ -22,7 +22,7 @@ export default class EmailChange extends Component {
     });
 
     this.Email = t.struct({
-      newEmail: this.Email
+      email : this.Email
     });
   }
 
@@ -33,10 +33,10 @@ export default class EmailChange extends Component {
   handleSubmit = () => {
     if (this._form.getValue()) {
       const { userUpdateRemoteAccount, account } = this.props;
-      const { newEmail } = this.state;
+      const { email } = this.state;
       const changes = {
         id: account.id,
-        newEmail
+        email
       };
       userUpdateRemoteAccount(changes);
     }
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
 
 const options = {
   fields: {
-    newEmail: {
+    email: {
       placeholder: 'Email',
       placeholderTextColor: '#707070',
       error: "L'email est incorrect"

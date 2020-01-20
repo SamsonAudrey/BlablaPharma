@@ -3,7 +3,7 @@ import {
   FlatList, View, Text
 } from 'react-native';
 import ConversationListItems from './ConversationListItems';
-import ConversationContainer from '../../containers/Chat/ConversationContainer'
+import ConversationContainer from '../../containers/Chat/ConversationContainer';
 
 
 export default class ConversationList extends Component {
@@ -16,6 +16,10 @@ export default class ConversationList extends Component {
     navigate('Conversation', {
       conversationId
     });
+  }
+
+  handleRefresh = () => {
+    this.props.onGetConversations();
   }
 
   render() {
@@ -32,12 +36,21 @@ export default class ConversationList extends Component {
                 handlPress={this.handlPress}
               />
             )}
+            refreshing={this.props.isFetching}
+            onRefresh={this.handleRefresh}
             keyExtractor={(item) => item.id.toString()}
             ItemSeparatorComponent={() => (
               <View style={{ height: 0.5, backgroundColor: '#E5E5E5' }} />
             )}
           />
-        ) : <Text> Vous n avez pas de conversation pour le moment </Text>}
+        ) : (
+          <Text
+            onPress={this.handleRefresh}
+          >
+            {' '}
+Vous n avez pas de conversation pour le moment
+          </Text>
+        )}
       </>
     );
   }

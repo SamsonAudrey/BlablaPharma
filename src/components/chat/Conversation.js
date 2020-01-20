@@ -1,5 +1,7 @@
 import React from 'react';
+import { API_URL } from 'react-native-dotenv';
 import { GiftedChat } from 'react-native-gifted-chat';
+
 
 export default class Conversation extends React.Component {
   constructor(props) {

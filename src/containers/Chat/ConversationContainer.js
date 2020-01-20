@@ -4,10 +4,10 @@ import { getMessages, sendMessage } from '../../actions/chat/messagesAction';
 
 const mapStateToProps = (state, ownProps) => {
   const { navigation } = ownProps;
-  //console.log("mmmm"+JSON.stringify(state.conversations));
+  // console.log("mmmm"+JSON.stringify(state.conversations));
   const { conversationId } = navigation.state.params;
   const conv = state.conversations.filter((convers) => convers.id === conversationId);
-  console.log("convvv"+JSON.stringify(conv))
+  console.log(`convvv${JSON.stringify(conv)}`);
   return {
     conversationId,
     messages: conv[0].messages,

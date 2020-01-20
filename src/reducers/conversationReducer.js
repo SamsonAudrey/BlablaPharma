@@ -24,16 +24,18 @@ export default function conversation(state = {}, action) {
         }
       };
     case GET_MESSAGES_SUCCESS:
-      //console.log(`iiii${JSON.stringify(state)}`);
+      // console.log(`iiii${JSON.stringify(state)}`);
       const conversationItem2 = state.filter((conv) => conv.id === action.conversationId);
       return state.map((item) => {
         if (item !== conversationItem2[0]) {
-          //console.log(`hhhh${JSON.stringify(conversationItem2[0])}bbbbbbbb${JSON.stringify(item)}`);
+          // console.log(`hhhh${JSON.stringify(conversationItem2[0])}bbbbbbbb${JSON.stringify(item)}`);
           return item;
         }
         return {
           ...item,
-          messages: action.payload.messages
+          messages: {
+            ...item.messages, messages: action.payload.messages
+          }
         };
       });
     default:

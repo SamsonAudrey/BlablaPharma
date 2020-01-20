@@ -52,6 +52,7 @@ class RegisterPatient extends Component {
     });
     const state = store.getState();
     this.userKind = state.navigationInfo.userKind;
+    console.log(this.userKind);
   }
 
   componentDidMount() {
@@ -65,6 +66,8 @@ class RegisterPatient extends Component {
   }
 
   onChange(value) {
+    console.log('ON CHANGE ');
+    console.log(value);
     this.state.user = value;
   }
 
@@ -74,6 +77,7 @@ class RegisterPatient extends Component {
     const { onRegisterPatient, onRegisterInfo, navigation } = this.props;
     if (this.userKind === 'pharmacist' && value !== null) {
       // 1 STEP REGISTER PHARMACIST USER
+      console.log(' REGISTER PHARMACIST USER');
       onRegisterInfo(value, gender);
       navigation.navigate('RegisterPharmacist', { infoUser: value, gender });
     } else if (value !== null) {

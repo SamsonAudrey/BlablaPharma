@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { reducer as network } from 'react-native-offline'
+import { reducer as network } from 'react-native-offline';
 import user from './userReducer';
 import registerReducer from './registerReducer';
 import connection from './connectionReducer';

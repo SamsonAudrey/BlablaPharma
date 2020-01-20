@@ -3,7 +3,7 @@ import RegisterPage from '../../Pages/User/RegisterPage';
 import { userRegisterKind } from '../../actions/register/registerAction';
 
 const mapStateToProps = (state) => {
-  console.log('rrrrrr ------', state);
+  // console.log('rrrrrr ------', state);
   return { test: 'tt' };
 };
 

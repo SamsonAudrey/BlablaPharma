@@ -3,7 +3,7 @@ import {
   View, Text, StyleSheet, Dimensions, Image
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import CButton from './Buttons/Button';
+import CButton from '../Buttons/Button';
 
 export default class PharmacistsListItems extends React.Component {
   render() {
@@ -17,7 +17,7 @@ export default class PharmacistsListItems extends React.Component {
     return (
       <View style={styles.container}>
         <Image
-          source={require('../assets/logo-fav.png')}
+          source={require('../../assets/logo-fav.png')}
           style={{ width: '27%', height: '32%', alignSelf: 'center' }}
         />
         <Text style={styles.title} numberOfLines={1}>

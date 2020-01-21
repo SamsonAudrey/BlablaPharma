@@ -13,6 +13,7 @@ export default class BlogListItems extends React.Component {
     this.state = {
     };
   }
+
   render() {
     const {
       data: {
@@ -37,6 +38,8 @@ export default class BlogListItems extends React.Component {
             onProgress={null}
             // paused={this.state.paused}
             paused={true}
+            width={'100%'}
+            height={'100%'}
             ref={(videoPlayer) => (this.videoPlayer = videoPlayer)}
             style={styles.backgroundVideo}
           />

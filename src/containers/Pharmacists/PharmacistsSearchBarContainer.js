@@ -1,16 +1,14 @@
 import { connect } from 'react-redux';
-import PharmacistsSearchBar from '../components/PharmacistsSearchBar';
+import PharmacistsSearchBar from '../../components/Pharmacists/PharmacistsSearchBar';
 import {
   updateSearchText, pharmacistsSearch, updateSearchProfessionFilter, updateSearchGenderFilter
-} from '../actions/pharmacist/pharmacistsSearchAction';
+} from '../../actions/pharmacist/pharmacistsSearchAction';
 
-const mapStateToProps = (state) => {
-  return {
-    gender: state.searchPharmacists.gender,
-    profession: state.searchPharmacists.profession,
-    text: state.searchPharmacists.text
-  };
-};
+const mapStateToProps = (state) => ({
+  gender: state.searchPharmacists.gender,
+  profession: state.searchPharmacists.profession,
+  text: state.searchPharmacists.text
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onGenderFilterUpdate: (gender) => {

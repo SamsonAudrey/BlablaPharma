@@ -9,6 +9,8 @@ import pharmacists from './pharmacistsReducer';
 import searchPharmacists from './searchPharmacistsReducer';
 import loading from './loadingReducer';
 import success from './successReducer';
+import searchBlog from './searchBlogReducer';
+import blog from './blogReducer';
 
 export default combineReducers({
   user,
@@ -17,6 +19,8 @@ export default combineReducers({
   error,
   pharmacists,
   searchPharmacists,
+  blog,
+  searchBlog,
   loading,
   success,
   navigationInfo: navigationReducer,

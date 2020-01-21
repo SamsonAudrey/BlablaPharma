@@ -2,7 +2,7 @@ import React from 'react';
 import {
   FlatList, StyleSheet, Text, View
 } from 'react-native';
-import PharmacistsListItems from '../PharmasistsListItems';
+import PharmacistsListItems from '../Pharmacists/PharmasistsListItems';
 
 export default class ScenePharmacists extends React.Component {
   render() {

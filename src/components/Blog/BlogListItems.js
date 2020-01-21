@@ -3,11 +3,9 @@ import {
   View, Text, StyleSheet, Dimensions
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Video from 'react-native-video';
+import YouTube from 'react-native-youtube';
 
 export default class BlogListItems extends React.Component {
-  videoPlayer;
-
   constructor(props) {
     super(props);
     this.state = {
@@ -18,33 +16,34 @@ export default class BlogListItems extends React.Component {
     const {
       data: {
         item: {
-          title
+          title, videoYoutubeId, userLike
         }
       },
     } = this.props;
+    let icon;
+    userLike
+      ? (icon = 'heart')
+      : (icon = 'heart-o');
     return (
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>{title}</Text>
-          <FontAwesome name="heart-o" size={20} style={{ margin: 5 }} color="red" />
+          <FontAwesome name={icon} size={20} style={{ margin: 5, marginBottom: 0 }} color="red" />
         </View>
-        <Text>start</Text>
         <View style={styles.containerVideo}>
-          <Video
-            source={{ uri: 'https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4' }} // Can be a URL or a local file.
-            onEnd={null}
-            onLoad={null}
-            onLoadStart={null}
-            onProgress={null}
-            // paused={this.state.paused}
-            paused={true}
-            width={'100%'}
-            height={'100%'}
-            ref={(videoPlayer) => (this.videoPlayer = videoPlayer)}
-            style={styles.backgroundVideo}
+          <YouTube
+            apiKey="AIzaSyDq8iXoqd7lCeetXlJv-yZC9Jf1ngeZfp0" // for Android
+            videoId={videoYoutubeId} // The YouTube video ID
+            play={false}// control playback of video with true/false
+            fullscreen={false} // control whether the video should play in fullscreen or inline
+            loop // control whether the video should loop when ended
+            onReady={null}
+            onChangeState={null}
+            onChangeQuality={null}
+            onError={null}
+            style={{ alignSelf: 'stretch', height: '90%', marginTop: 5 }}
           />
         </View>
-        <Text>end</Text>
       </View>
     );
   }
@@ -82,19 +81,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginVertical: 5,
     textAlign: 'left',
-    width: '80%'
+    width: '80%',
   },
   containerVideo: {
     flex: 1,
-    //borderWidth: 1,
-    width: '100%'
-  },
-  backgroundVideo: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    //backgroundColor: 'grey'
+    width: '100%',
   }
 });

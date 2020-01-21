@@ -17,7 +17,8 @@ const mapStateToProps = (state) => ({
     isUpdating: loadingRegisterSelector(state),
     error400Register: errorRegisterSelector(state),
     successRegister: successRegisterSelector(state)
-  }
+  },
+  user: {}
 });
 
 const mapDispatchToProps = (dispatch) => ({

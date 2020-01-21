@@ -52,7 +52,6 @@ class RegisterPatient extends Component {
     });
     const state = store.getState();
     this.userKind = state.navigationInfo.userKind;
-    console.log(this.userKind);
   }
 
   componentDidMount() {
@@ -66,8 +65,6 @@ class RegisterPatient extends Component {
   }
 
   onChange(value) {
-    console.log('ON CHANGE ');
-    console.log(value);
     this.state.user = value;
   }
 
@@ -77,7 +74,6 @@ class RegisterPatient extends Component {
     const { onRegisterPatient, onRegisterInfo, navigation } = this.props;
     if (this.userKind === 'pharmacist' && value !== null) {
       // 1 STEP REGISTER PHARMACIST USER
-      console.log(' REGISTER PHARMACIST USER');
       onRegisterInfo(value, gender);
       navigation.navigate('RegisterPharmacist', { infoUser: value, gender });
     } else if (value !== null) {
@@ -143,6 +139,7 @@ class RegisterPatient extends Component {
               type={this.User}
               options={options}
               onChange={(v) => this.onChange(v)}
+              value={store.getState().navigationInfo.userInfo}
             />
             <RadioForm
               radio_props={genderProps}
@@ -264,7 +261,8 @@ const options = {
         options: ['Ouvrir camera', 'Selection gallerie', 'Annuler'],
         // Used on Android to style BottomSheet
         style: {
-        }
+        },
+       // cropping: false
       },
       error: 'Aucune image',
       factory: ImageFactory

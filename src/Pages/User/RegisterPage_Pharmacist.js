@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  ImageBackground, Platform, StyleSheet, Text, View
+  ImageBackground, StyleSheet, Text, View
 } from 'react-native';
 import t from 'tcomb-form-native';
 import moment from 'moment';
@@ -73,7 +73,7 @@ class RegisterPharmacist extends Component {
             ? 'female'
             : 'another';
 
-        const { onRegisterPharmacist, navigation } = this.props;
+        const { onRegisterPharmacist } = this.props;
         onRegisterPharmacist(
           user.firstName,
           user.lastName,

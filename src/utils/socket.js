@@ -1,24 +1,48 @@
 import { API_URL } from 'react-native-dotenv';
-import { store } from '../../store';
-import { getToken } from './auth';
-const socketIOClient = require('socket.io-client');
-const sailsIOClient = require('sails.io.js');
 
+import socketIOClient from 'socket.io-client';
+import sailsIOClient from 'sails.io.js';
+// import { getToken } from './auth';
+const io = sailsIOClient(socketIOClient);
+io.sails.autoConnect = false;
 
-  
-  const io = socketIOClient.sails ? (socketIOClient)
-    : (sailsIOClient(socketIOClient));
-  const token = await getToken();
-  io.sails.url = API_URL;
-  io.sails.transports = ['polling'];
-  io.sails.reconnection = true;
-  if (token) {
-    io.sails.headers = {
-      authorization: `Bearer ${token}`
-    };
-  } else {
-    console.log('y a pbbpbppbpbpbpbpb');
+export const socket = io.sails.connect(API_URL, {
+  reconnection: true,
+  transports: ['polling']
+});
+
+/**
+ * Set the configuration of the request for the Socker
+ * @param method : Request method 'GET', 'POST', 'PUT', 'DELETE'
+ * @param route : path of the resource
+ * @param data : data to send
+ */
+const configSocket = (method, route, authorization, data = {}) => ({
+  method,
+  url: route,
+  data,
+  headers: {
+    authorization: `Bearer ${authorization}`
   }
+});
 
-  const { socket } = io;
-  export default socket;
+export const getRequest = (route, accessToken) => new Promise(((res, rej) => {
+  socket.request(configSocket('get', route, accessToken), (resData, jwres) => {
+    if (jwres.statusCode >= 400) rej(resData);
+    else res(resData);
+  });
+}));
+
+export const putRequest = (route, data = {}) => new Promise(((res, rej) => {
+  socket.request(configSocket('put', route, data), (resData, jwres) => {
+    if (jwres.statusCode >= 400) rej(resData);
+    else res(resData);
+  });
+}));
+
+export const postRequest = (route, data = {}) => new Promise(((res, rej) => {
+  socket.request(configSocket('post', route, data), (resData, jwres) => {
+    if (jwres.statusCode >= 400) rej(resData);
+    else res(resData);
+  });
+}));

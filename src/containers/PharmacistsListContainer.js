@@ -6,6 +6,7 @@ import CustomTabView from '../components/CustomTabView';
 import {
   pharmacistsSearch
 } from '../actions/pharmacistsSearchAction';
+import { createConversations } from '../actions/chat/conversationAction';
 
 const loadingSelector = createLoadingSelector(['PHARMACISTS_SEARCH']);
 
@@ -18,6 +19,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onSearch: (text, gender, profession) => {
     dispatch(pharmacistsSearch(text, gender, profession));
+  },
+  onContact: (memberId) => {
+    dispatch(createConversations(memberId))
   }
 });
 

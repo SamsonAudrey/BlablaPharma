@@ -6,18 +6,26 @@ import { GiftedChat } from 'react-native-gifted-chat';
 export default class Conversation extends React.Component {
   constructor(props) {
     super(props);
-    const m = this.messageFormat(this.props.messages);
     this.state = {
+      memberId: this.props.memberId,
       conversationId: this.props.conversationId,
       messages: this.props.messages,
     };
   }
 
   componentDidMount() {
-    this.props.onGetMessages(this.state.conversationId);
-    this.setState({
-      messages: this.messageFormat(this.props.messages)
-    });
+    // We create a conversation each time we mount this page,
+    // the API will give us information on the conversation
+    // if it already exists.
+    // We don't know if a conversation exists unless we create
+    //
+    console.log(`yyyyyyy${this.state.conversationId}`);
+    this.props.onGetConversation(this.props.conversationId)
+      .then((resp) => console.log(`trouuuuv${resp}`),
+        (err) => {
+          c;
+          this.props.onCreateConversation(this.props.memberId);
+        });
     /* this.setState({
       messages: [
         {
@@ -41,7 +49,7 @@ export default class Conversation extends React.Component {
     }));
   }
 
-  messageFormat = (messages) => messages.forEach((message) => ({
+  messageFormat = (messages) => messages.map((message) => ({
     _id: message.id,
     text: message.content,
     createdAt: message.createdAt,
@@ -51,10 +59,11 @@ export default class Conversation extends React.Component {
   }))
 
   render() {
-    console.log(`proops${JSON.stringify(this.state)}`);
+    console.log(`proops${JSON.stringify(this.props.messages)}`);
+    const mess = this.messageFormat(this.props.messages);
     return (
       <GiftedChat
-        messages={this.state.messages}
+        messages={mess}
         onSend={(messages) => this.onSend(messages)}
         user={{
           _id: 1,

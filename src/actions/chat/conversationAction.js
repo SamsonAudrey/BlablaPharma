@@ -1,5 +1,3 @@
-import { API_URL } from 'react-native-dotenv';
-import axios from 'axios';
 import 'json-circular-stringify';
 import {
   CREATE_CONVERSATION_FAILURE,
@@ -8,44 +6,26 @@ import {
   GET_CONVERSATIONS_FAILURE,
   GET_CONVERSATIONS_REQUEST,
   GET_CONVERSATIONS_SUCCESS,
+  GET_CONVERSATION_FAILURE,
+  GET_CONVERSATION_REQUEST,
+  GET_CONVERSATION_SUCCESS,
 } from './chatActionTypes';
-import {store} from '../../../store';
-import socket from '../../utils/socket';
-
-
-import socketIOClient from 'socket.io-client';
-import sailsIOClient from 'sails.io.js';
-
-console.log('fdsfsdfsff');
-const state = store.getState();
-const io = socketIOClient.sails ? (socketIOClient)
-  : (sailsIOClient(socketIOClient));
-io.sails.url = API_URL;
-io.sails.transports = ['polling'];
-io.sails.reconnection = true;
-if(state.user.accessToken){
-  io.sails.headers = {
-    authorization: `Bearer ${state.user.accessToken}`
-    };
-}
-  
-
-
-//const { socket } = io;
-//console.log(`eeeeeeeeeeeee${JSON.stringify(io.socket)}`);
+import { getToken } from '../../utils/auth';
+import { getRequest, postRequest } from '../../utils/socket';
 
 export const createConversations = (memberId) => {
   function thunk(dispatch) {
     dispatch({ type: CREATE_CONVERSATION_REQUEST });
-    return socket
-      .post(`/conversations?memberId=${memberId}`,
+    return postRequest(`/conversations?memberId=${memberId}`)
+      .then(
         (response) => {
           console.log(`cede${JSON.stringify(response)}`);
           dispatch(createConversationSuccess(response.data));
         },
         (error) => {
           dispatch(createConversationFailure(error));
-        });
+        }
+      );
   }
   // thunk.interceptInOffline = true;
   thunk.meta = {
@@ -70,17 +50,20 @@ export const createConversationFailure = (error) => ({
 
 export const getConversations = () => {
   async function thunk(dispatch) {
-    // const token = await getToken();
+    const token = await getToken();
     dispatch({ type: GET_CONVERSATIONS_REQUEST });
     // socket.headers = token;
-    //console.log(`dsqdssssssssssssssssssssss${JSON.stringify(socket)}`);
-    return socket
-      .get('/conversations', (response) => {
+    // console.log(`dsqdssssssssssssssssssssss${JSON.stringify(socket)}`);
+    return getRequest('/conversations', token)
+      .then((response) => {
+        if (response.message === 'Unauthorized access') {
+          console.log('tttt');
+        }
         console.log(`refdsfdfdsfss${JSON.stringify(response)}`);
         dispatch(getConversationsSuccess(response));
       },
       (error) => {
-        console.log("ehgiukgh"+JSON.stringify(error))
+        console.log(`ehgiukgh${JSON.stringify(error)}`);
         dispatch(getConversationsFailure(error));
       });
   }
@@ -101,5 +84,50 @@ export const getConversationsSuccess = (conversations) => ({
 
 export const getConversationsFailure = (error) => ({
   type: GET_CONVERSATIONS_FAILURE,
+  error
+});
+
+
+export const getConversation = (conversationId) => {
+  async function thunk(dispatch) {
+    const token = await getToken();
+    dispatch({ type: GET_CONVERSATION_REQUEST });
+    // socket.headers = token;
+    console.log(`dsqdssssssssssssssssssssss${conversationId}`);
+    return new Promise((resolve, reject) => {
+      getRequest(`/conversations/${conversationId}`, token)
+        .then((response) => {
+          if (response.message === 'Unauthorized access') {
+            console.log('tttt');
+          }
+          console.log(`gettt connnvvvv resssp${JSON.stringify(response)}`);
+          dispatch(getConversationSuccess(response));
+          resolve(response);
+        },
+        (error) => {
+          console.log(`gettt connnvvvv errr${JSON.stringify(error)}`);
+          dispatch(getConversationFailure(error));
+          reject(error);
+        });
+    });
+  }
+  // thunk.interceptInOffline = true;
+  thunk.meta = {
+    retry: true
+  };
+
+  return thunk;
+};
+
+
+export const getConversationSuccess = (conversation) => ({
+  type: GET_CONVERSATION_SUCCESS,
+  conversationId: conversation.id,
+  messages: conversation.messages
+
+});
+
+export const getConversationFailure = (error) => ({
+  type: GET_CONVERSATION_FAILURE,
   error
 });

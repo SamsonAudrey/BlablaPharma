@@ -5,7 +5,7 @@ export default class ConversationListItems extends Component {
   
 
   render() {
-    console.log(`props de item${JSON.stringify(this.props)}`);
+    //console.log(`props de item${JSON.stringify(this.props)}`);
     const conversation = this.props.conversation.item;
     const otherPerson = conversation.members[1];
     return (
@@ -21,7 +21,7 @@ export default class ConversationListItems extends Component {
           ) : <Text>Pas de message pour l instant</Text>}
         </View>
         <CButton
-          onPress={() => this.props.handlPress(conversation.id)}
+          onPress={() => this.props.handlPress(conversation.id, otherPerson.id)}
           title="Conv"
         />
       </>

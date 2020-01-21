@@ -9,29 +9,8 @@ import {
   GET_MESSAGES_SUCCESS
 } from './chatActionTypes';
 import { store } from '../../../store';
+import { getRequest, postRequest, socket } from '../../utils/socket';
 
-
-const socketIOClient = require('socket.io-client');
-const sailsIOClient = require('sails.io.js');
-
-const state = store.getState();
-console.log('fdsfsdfsff');
-
-const io = socketIOClient.sails ? (socketIOClient)
-  : (sailsIOClient(socketIOClient));
-io.sails.url = API_URL;
-io.sails.transports = ['polling'];
-io.sails.reconnection = true;
-if (state.user.accessToken) {
-  console.log(`rrere${state.user.accessToken}`);
-  io.sails.headers = {
-    authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOjExLCJyb2xlIjoiYmFzaWMiLCJpYXQiOjE1NzkxMDMxMzEsImV4cCI6MTU3OTE4OTUzMSwiYXVkIjoiYXBpIn0.eg_bQato-3k2MXz0S2uCs7aZBtWPaF7bY5vchNoYGm0'
-  };
-} else {
-  console.log('y a pbbpbppbpbpbpbpb');
-}
-
-const { socket } = io;
 // socket logic
 const typing = false;
 let debounce = null;
@@ -51,7 +30,7 @@ socket.on('event:read', (data) => {
 
 socket.on('message', (data) => {
   console.log(`message: ${JSON.stringify(data)}`);
-  getMessagesSuccess(data.conversation, data);
+  store.dispatch(getMessagesSuccess(data.conversation, data));
 });
 
 
@@ -119,9 +98,8 @@ export const getMessages = (conversationId,
 export const getMessagesSuccess = (conversationId, messages) => ({
   type: GET_MESSAGES_SUCCESS,
   conversationId,
-  payload: {
-    messages
-  }
+  messages
+
 });
 
 export const getMessagesFailure = (error) => ({

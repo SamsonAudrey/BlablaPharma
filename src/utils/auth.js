@@ -14,7 +14,6 @@ import { store } from '../../store';
 
 axios.interceptors.request.use(
   (config) => {
-    console.log('ca uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuse');
     const state = store.getState();
     if (state.user.accessToken) {
       config.headers.Authorization = `Bearer ${state.user.accessToken}`;
@@ -67,7 +66,7 @@ export async function getToken() {
     .then(
       () => {
         const state = store.getState();
-        state.user.accessToken;
+        return state.user.accessToken;
       },
       (err) => err
     );

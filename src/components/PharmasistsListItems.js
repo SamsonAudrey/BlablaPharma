@@ -10,7 +10,7 @@ export default class PharmacistsListItems extends React.Component {
     const {
       data: {
         item: {
-          firstName, lastName, gender, city, picture, institutionName, professionLabel
+          id, firstName, lastName, gender, city, picture, institutionName, professionLabel
         }
       },
     } = this.props;

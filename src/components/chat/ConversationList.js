@@ -11,10 +11,11 @@ export default class ConversationList extends Component {
     this.props.onGetConversations();
   }
 
-  handlPress = (conversationId) => {
+  handlPress = (conversationId, memberId) => {
     const { navigate } = this.props.navigation;
     navigate('Conversation', {
-      conversationId
+      conversationId,
+      memberId
     });
   }
 

@@ -3,7 +3,8 @@ import {
   View, Text, StyleSheet, Dimensions
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import YouTube from 'react-native-youtube';
+import { WebView } from 'react-native-webview';
+import moment from 'moment';
 
 export default class BlogListItems extends React.Component {
   constructor(props) {
@@ -16,7 +17,7 @@ export default class BlogListItems extends React.Component {
     const {
       data: {
         item: {
-          title, videoYoutubeId, userLike
+          title, videoYoutubeId, userLike, createdAt
         }
       },
     } = this.props;
@@ -24,6 +25,7 @@ export default class BlogListItems extends React.Component {
     userLike
       ? (icon = 'heart')
       : (icon = 'heart-o');
+    const date = moment(createdAt).format('DD/MM/YYYY');
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -31,18 +33,20 @@ export default class BlogListItems extends React.Component {
           <FontAwesome name={icon} size={20} style={{ margin: 5, marginBottom: 0 }} color="red" />
         </View>
         <View style={styles.containerVideo}>
-          <YouTube
-            apiKey="AIzaSyDq8iXoqd7lCeetXlJv-yZC9Jf1ngeZfp0" // for Android
-            videoId={videoYoutubeId} // The YouTube video ID
-            play={false}// control playback of video with true/false
-            fullscreen={false} // control whether the video should play in fullscreen or inline
-            loop // control whether the video should loop when ended
-            onReady={null}
-            onChangeState={null}
-            onChangeQuality={null}
-            onError={null}
-            style={{ alignSelf: 'stretch', height: '90%', marginTop: 5 }}
+          <WebView
+            style={styles.video}
+            source={{ uri: `https://www.youtube.com/embed/${videoYoutubeId}?autoplay=0?controls=0?modestbranding=1` }}
+            mediaPlaybackRequiresUserAction
+            scalesPageToFit
+            domStorageEnabled
+            bounces={false}
+            scrollEnabled={false}
+            allowsFullscreenVideo
           />
+        </View>
+        <View>
+          <Text style={styles.info}>BlablaPharma</Text>
+          <Text style={styles.info}>{date}</Text>
         </View>
       </View>
     );
@@ -78,7 +82,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#707070',
-    fontSize: 14,
+    fontSize: 16,
     marginVertical: 5,
     textAlign: 'left',
     width: '80%',
@@ -86,5 +90,11 @@ const styles = StyleSheet.create({
   containerVideo: {
     flex: 1,
     width: '100%',
+    marginBottom: 5
+  },
+  info: {
+    textAlign: 'center',
+    color: '#707070',
+    fontSize: 12
   }
 });

@@ -38,19 +38,18 @@ const mockVideo = [{
   title: 'Comment bien se laver les dents ?',
   videoYoutubeId: 'u_caLAieMsE',
   content: 'content 1',
-  createdAt: 'eee',
-  updatedAt: 'dee',
+  createdAt: 1579702947000,
+  updatedAt: 1579702947000,
   likes: 'ee',
   views: 'e',
   userLike: true
-}
-/*, {
+}, {
   id: 2,
   title: 'Comment bien se laver les dents video 2 ?',
   videoYoutubeId: 'feyaEbdJgIU',
   content: 'content 2',
-  createdAt: 'eee',
-  updatedAt: 'dee',
+  createdAt: 1579702710000,
+  updatedAt: 1579702710000,
   likes: 'ee',
   views: 'e',
   userLike: false
@@ -59,9 +58,9 @@ const mockVideo = [{
   title: 'Comment bien se laver les dents video 3 ?',
   videoYoutubeId: 'fcSDJqpoHUU',
   content: 'content 3',
-  createdAt: 'eee',
-  updatedAt: 'dee',
+  createdAt: 1579702710000,
+  updatedAt: 1579702710000,
   likes: 'ee',
   views: 'e',
   userLike: false
-}*/];
+}];

@@ -42,11 +42,9 @@ export default class Conversation extends React.Component {
     }); */
   }
 
-  onSend(messages = []) {
-    console.log(`proops${JSON.stringify(this.state.messages)}`);
-    this.setState((previousState) => ({
-      messages: GiftedChat.append(previousState.messages, messages),
-    }));
+  onSend(message) {
+    console.log(`proodsqDQSps${JSON.stringify(message)}`);
+    this.props.onSendMessage(this.props.conversationId, 'text', message[0].text);
   }
 
   messageFormat = (messages) => messages.map((message) => ({
@@ -64,9 +62,9 @@ export default class Conversation extends React.Component {
     return (
       <GiftedChat
         messages={mess}
-        onSend={(messages) => this.onSend(messages)}
+        onSend={(messages,) => this.onSend(messages)}
         user={{
-          _id: 1,
+          _id: 11,
         }}
       />
     );

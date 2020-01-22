@@ -72,24 +72,8 @@ export async function getToken() {
     );
 }
 
-export const checkTokenGate = (callback) => {
-  checkToken()
-    .then(
-      () => new Promise((resolve, reject) => {
-        axios.request(config).then((response) => {
-          resolve(response);
-        }).catch((error) => {
-          reject(error);
-        });
-      }),
-      (err) => reject(err)
-    );
-};
-
 const checkToken = () => {
   const state = store.getState();
-  console.log(state);
-
   return new Promise((resolve, reject) => {
     if (!state.user.accessToken) {
       store.dispatch(userAuthFailure);
@@ -98,7 +82,7 @@ const checkToken = () => {
     // In case it is the connection and accessToken has not been added to the header
 
     // If there is no account it means that the user is not connected
-    console.log(`state: ${JSON.stringify(state)}`);
+    //console.log(`state: ${JSON.stringify(state)}`);
     // In case it is the connection and accessToken has not been added to the header
     state.user.accessToken
       ? (axios.defaults.headers.Authorization = `Bearer ${state.user.accessToken}`)

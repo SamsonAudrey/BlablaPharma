@@ -40,8 +40,8 @@ export const putRequest = (route, data = {}) => new Promise(((res, rej) => {
   });
 }));
 
-export const postRequest = (route, data = {}) => new Promise(((res, rej) => {
-  socket.request(configSocket('post', route, data), (resData, jwres) => {
+export const postRequest = (route, accessToken, data = {}) => new Promise(((res, rej) => {
+  socket.request(configSocket('post', route, accessToken, data), (resData, jwres) => {
     if (jwres.statusCode >= 400) rej(resData);
     else res(resData);
   });

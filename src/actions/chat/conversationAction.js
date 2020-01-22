@@ -14,9 +14,10 @@ import { getToken } from '../../utils/auth';
 import { getRequest, postRequest } from '../../utils/socket';
 
 export const createConversations = (memberId) => {
-  function thunk(dispatch) {
+  async function thunk(dispatch) {
+    const token = await getToken();
     dispatch({ type: CREATE_CONVERSATION_REQUEST });
-    return postRequest(`/conversations?memberId=${memberId}`)
+    return postRequest(`/conversations?memberId=${memberId}`, token)
       .then(
         (response) => {
           console.log(`cede${JSON.stringify(response)}`);

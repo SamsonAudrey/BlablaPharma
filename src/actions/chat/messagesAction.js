@@ -6,10 +6,13 @@ import {
   SEND_MESSAGE_SUCCESS,
   GET_MESSAGES_FAILURE,
   GET_MESSAGES_REQUEST,
-  GET_MESSAGES_SUCCESS
+  GET_MESSAGES_SUCCESS,
+  RECEIVE_MESSAGE_SUCCESS
 } from './chatActionTypes';
+import { getToken } from '../../utils/auth';
 import { store } from '../../../store';
 import { getRequest, postRequest, socket } from '../../utils/socket';
+
 
 // socket logic
 const typing = false;
@@ -30,22 +33,24 @@ socket.on('event:read', (data) => {
 
 socket.on('message', (data) => {
   console.log(`message: ${JSON.stringify(data)}`);
-  store.dispatch(getMessagesSuccess(data.conversation, data));
+  store.dispatch(receiveMessageSuccess(data.conversation, data));
 });
 
 
 export const sendMessage = (conversationId,
   type,
   content) => {
-  function thunk(dispatch) {
+  async function thunk(dispatch) {
+    console.log("kkkkkkkkkkkkkkkkkkkkkkkkk"+content)
+    const token = await getToken();
     dispatch({ type: SEND_MESSAGE_REQUEST });
-    return socket.post(`/conversations/${conversationId}/messages?type=${type}&content=${content}`)
+    return postRequest(`/conversations/${conversationId}/messages?type=${type}&content=${content}`, token)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
-        dispatch(sendMessageSuccess(response.data));
+        console.log(JSON.stringify("yesss"+JSON.stringify(response)));
+        dispatch(sendMessageSuccess(response.conversation, response));
       })
       .catch((error) => {
-        dispatch(sendMessageFailure(error));
+        dispatch("noooo"+sendMessageFailure(error));
       });
   }
   // thunk.interceptInOffline = true;
@@ -55,11 +60,11 @@ export const sendMessage = (conversationId,
   return thunk;
 };
 
-export const sendMessageSuccess = (message) => ({
+export const sendMessageSuccess = (conversationId, message) => ({
   type: SEND_MESSAGE_SUCCESS,
-  payload: {
-    message
-  }
+  conversationId,
+  message
+
 });
 
 export const sendMessageFailure = (error) => ({
@@ -71,16 +76,16 @@ export const sendMessageFailure = (error) => ({
 export const getMessages = (conversationId,
   limit = undefined,
   skip = undefined) => {
-  function thunk(dispatch) {
+  async function thunk(dispatch) {
+    const token = await getToken();
     dispatch({ type: GET_MESSAGES_REQUEST });
-    return axios
-      .get(`${API_URL}/conversations/${conversationId}/messages`, null, {
-        body: {
-          ...((limit !== undefined) ? { limit } : { limit: 20 }),
-          ...((skip !== undefined) ? { skip } : {}),
+    return getRequest(`${API_URL}/conversations/${conversationId}/messages`, token, {
+      body: {
+        ...((limit !== undefined) ? { limit } : { limit: 20 }),
+        ...((skip !== undefined) ? { skip } : {}),
 
-        }
-      })
+      }
+    })
       .then((response) => {
         dispatch(getMessagesSuccess(conversationId, response.data));
       })
@@ -99,6 +104,13 @@ export const getMessagesSuccess = (conversationId, messages) => ({
   type: GET_MESSAGES_SUCCESS,
   conversationId,
   messages
+
+});
+
+export const receiveMessageSuccess = (conversationId, message) => ({
+  type: RECEIVE_MESSAGE_SUCCESS,
+  conversationId,
+  message
 
 });
 

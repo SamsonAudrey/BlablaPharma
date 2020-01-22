@@ -5,7 +5,8 @@ import {
   GET_CONVERSATIONS_SUCCESS,
   GET_CONVERSATION_SUCCESS,
   SEND_MESSAGE_SUCCESS,
-  GET_MESSAGES_SUCCESS
+  GET_MESSAGES_SUCCESS,
+  RECEIVE_MESSAGE_SUCCESS
 } from '../actions/chat/chatActionTypes';
 
 
@@ -48,20 +49,26 @@ export default function conversation(state = {}, action) {
         }
         return {
           ...item,
-          messages: { // Ptet del à gérer genre qd tu recoi tu recois tout les msg donc sert a r laisser avant
-            ...item.messages, messages: action.payload.messages
-          }
+          messages:
+            [action.messages, ...item.messages]
+
         };
       });
     case SEND_MESSAGE_SUCCESS:
+      console.log(`iiii${JSON.stringify(action)}`);
       const conversationItem1 = state.filter((conv) => conv.id === action.conversationId);
-      return {
-        ...state,
-        [conversationItem1]: {
-          ...state[conversationItem1],
-          messages: { ...state[conversationItem1].messages, messages: action.payload.messages }
+      return state.map((item) => {
+        if (item !== conversationItem1[0]) {
+          // console.log(`hhhh${JSON.stringify(conversationItem2[0])}bbbbbbbb${JSON.stringify(item)}`);
+          return item;
         }
-      };
+        return {
+          ...item,
+          messages:
+            [action.message, ...item.messages]
+
+        };
+      });
     case GET_MESSAGES_SUCCESS:
       console.log(`iiii${JSON.stringify(action)}`);
       const conversationItem2 = state.filter((conv) => conv.id === action.conversationId);
@@ -73,7 +80,22 @@ export default function conversation(state = {}, action) {
         return {
           ...item,
           messages:
-            [action.messages, ...item.messages]
+            [action.messages]
+
+        };
+      });
+    case RECEIVE_MESSAGE_SUCCESS:
+      console.log(`iiii${JSON.stringify(action)}`);
+      const conversationReceivedItem = state.filter((conv) => conv.id === action.conversationId);
+      return state.map((item) => {
+        if (item !== conversationReceivedItem[0]) {
+          // console.log(`hhhh${JSON.stringify(conversationItem2[0])}bbbbbbbb${JSON.stringify(item)}`);
+          return item;
+        }
+        return {
+          ...item,
+          messages:
+            [action.message, ...item.messages]
 
         };
       });

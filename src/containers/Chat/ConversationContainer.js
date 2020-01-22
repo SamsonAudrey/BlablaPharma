@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Conversation from '../../components/chat/Conversation';
-import { getMessages, sendMessage } from '../../actions/chat/messagesAction';
+import { getMessages, sendMessage, onTyping } from '../../actions/chat/messagesAction';
 import { createConversations, getConversation } from '../../actions/chat/conversationAction';
 
 const mapStateToProps = (state, ownProps) => {
@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) => {
   // console.log("mmmm"+JSON.stringify(state.conversations));
   const { conversationId, memberId } = navigation.state.params;
   const conv = state.conversations.filter((convers) => convers.id === conversationId);
-  console.log(`convvv${JSON.stringify(conv)}`);
+  //console.log(`convvv${JSON.stringify(conv)}`);
   return {
     conversationId,
     memberId,
@@ -29,6 +29,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onGetConversation: (conversationId) => {
     return dispatch(getConversation(conversationId));
+  },
+  onTyping: (conversationId) => {
+    dispatch(onTyping(conversationId));
   }
 });
 

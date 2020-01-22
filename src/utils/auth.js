@@ -27,18 +27,13 @@ axios.interceptors.request.use(
 );
 
 axios.interceptors.response.use((response) => {
-  console.log(`Y aaaa paaasss pbbbb${JSON.stringify(response)}`);
-
   return response;
 },
 // Return a successful response back to the calling service
 
 (error) => {
-  console.log(`Y aaaa pbbbb${JSON.stringify(error)}`);
   // Return any error which is not due to authentication back to the calling service
   const originalRequest = error.config;
-
-
   if (error.response.status === 401 && originalRequest.url
         === `${API_URL}/auth/token`) {
     // It means the refreshToken is not valid and we must login again

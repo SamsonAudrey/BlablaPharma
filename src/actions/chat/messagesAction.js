@@ -7,7 +7,8 @@ import {
   GET_MESSAGES_FAILURE,
   GET_MESSAGES_REQUEST,
   GET_MESSAGES_SUCCESS,
-  RECEIVE_MESSAGE_SUCCESS
+  RECEIVE_MESSAGE_SUCCESS,
+  READ_SUCCESS
 } from './chatActionTypes';
 import { getToken } from '../../utils/auth';
 import { store } from '../../../store';
@@ -16,14 +17,11 @@ import { getRequest, postRequest, socket } from '../../utils/socket';
 
 // socket logic
 const typing = false;
-let debounce = null;
+const debounce = null;
 
 // socket events
 socket.on('event:typing', (data) => {
-  if (data.conversation === conversation) {
-    clearTimeout(debounce);
-    debounce = setTimeout(() => document.getElementById('events').innerHTML = '', 2500);
-  }
+
 });
 
 socket.on('event:read', (data) => {
@@ -41,16 +39,16 @@ export const sendMessage = (conversationId,
   type,
   content) => {
   async function thunk(dispatch) {
-    console.log("kkkkkkkkkkkkkkkkkkkkkkkkk"+content)
+    console.log(`kkkkkkkkkkkkkkkkkkkkkkkkk${content}`);
     const token = await getToken();
     dispatch({ type: SEND_MESSAGE_REQUEST });
     return postRequest(`/conversations/${conversationId}/messages?type=${type}&content=${content}`, token)
       .then((response) => {
-        console.log(JSON.stringify("yesss"+JSON.stringify(response)));
+        console.log(JSON.stringify(`yesss${JSON.stringify(response)}`));
         dispatch(sendMessageSuccess(response.conversation, response));
       })
       .catch((error) => {
-        dispatch("noooo"+sendMessageFailure(error));
+        dispatch(`noooo${sendMessageFailure(error)}`);
       });
   }
   // thunk.interceptInOffline = true;
@@ -121,9 +119,10 @@ export const getMessagesFailure = (error) => ({
 
 
 export const onTyping = (conversationId) => {
-  function thunk(dispatch) {
+  async function thunk(dispatch) {
+    const token = await getToken();
     dispatch({ type: SEND_MESSAGE_REQUEST });
-    return socket.post(`/conversations/${conversationId}/event/typing`)
+    return postRequest(`/conversations/${conversationId}/event/typing`, token)
       .then((response) => {
         console.log(JSON.stringify(response.data));
         dispatch(sendMessageSuccess(response.data));
@@ -139,17 +138,16 @@ export const onTyping = (conversationId) => {
   return thunk;
 };
 
-export const messageRead = (conversationId, messageId) => {
-  function thunk(dispatch) {
-    dispatch({ type: SEND_MESSAGE_REQUEST });
-    return socket.post(`/conversations/${conversationId}/event/read`, { messageId })
+export const onRead = (conversationId, messageId) => {
+  async function thunk(dispatch) {
+    console.log(`messsageg${JSON.stringify(messageId)}`);
+    const token = await getToken();
+    return postRequest(`/conversations/${conversationId}/event/read`, token, { messageId: messageId.id })
       .then((response) => {
-        console.log(JSON.stringify(response.data));
-        dispatch(sendMessageSuccess(response.data));
+        console.log(JSON.stringify(`respo on reaadd${response}`));
+        dispatch(onReadSuccess(conversationId));
       })
-      .catch((error) => {
-        dispatch(sendMessageFailure(error));
-      });
+      .catch((error) => console.log(JSON.stringify(error)));
   }
   // thunk.interceptInOffline = true;
   thunk.meta = {
@@ -157,3 +155,8 @@ export const messageRead = (conversationId, messageId) => {
   };
   return thunk;
 };
+
+export const onReadSuccess = (conversationId) => ({
+  type: READ_SUCCESS,
+  conversationId
+});

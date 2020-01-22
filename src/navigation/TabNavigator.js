@@ -17,7 +17,8 @@ import RegisterPharmacistContainer from '../containers/User/RegisterPharmacistCo
 import AuthPageContainer from '../containers/User/AuthPageContainer';
 import UserPersonnalInfoPageContainer from '../containers/User/UserPersonnalInfoPageContainer';
 import ModifUserPersonnalInfoPageContainer from '../containers/User/ModifUserPersonnalInfoContainer';
-import ConversationContainer from '../containers/Chat/ConversationContainer'
+import ConversationContainer from '../containers/Chat/ConversationContainer';
+import PharmacistsListContainer from '../containers/PharmacistsListContainer';
 
 class LogoTitle extends React.Component {
   render() {
@@ -34,7 +35,9 @@ class LogoTitle extends React.Component {
 const SearchPharmacistsNavigator = createStackNavigator(
   {
     SearchPharmacists: SearchPharmacistsPage,
-    ChatPage: ChatPageContainer
+    ChatPage: ChatPageContainer,
+    Conversation: ConversationContainer,
+    PharmacistList: PharmacistsListContainer
   },
   {
     initialRouteName: 'SearchPharmacists',
@@ -85,7 +88,8 @@ const UserInfoNavigator = createStackNavigator(
 const ChatNavigator = createStackNavigator(
   {
     ChatPage: ChatPageContainer,
-    Conversation: ConversationContainer
+    Conversation: ConversationContainer,
+    PharmacistList: PharmacistsListContainer
   },
   {
     initialRouteName: 'ChatPage',

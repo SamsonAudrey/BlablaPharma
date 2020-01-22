@@ -6,7 +6,8 @@ import {
   GET_CONVERSATION_SUCCESS,
   SEND_MESSAGE_SUCCESS,
   GET_MESSAGES_SUCCESS,
-  RECEIVE_MESSAGE_SUCCESS
+  RECEIVE_MESSAGE_SUCCESS,
+  READ_SUCCESS
 } from '../actions/chat/chatActionTypes';
 
 
@@ -15,7 +16,6 @@ import {
 } from '../actions/userActionTypes';
 
 export default function conversation(state = {}, action) {
-  console.log(`yugkukh${action.type}`);
   switch (action.type) {
     case UPDATE_CONVERSATION_SUCCESS:
       return {
@@ -24,7 +24,6 @@ export default function conversation(state = {}, action) {
     case GET_CONVERSATIONS_SUCCESS:
       return action.payload.conversations;
     case GET_CONVERSATION_SUCCESS:
-
       const conversationGetItem = state.filter((conv) => conv.id === action.conversationId);
       return state.map((item) => {
         if (item !== conversationGetItem[0]) {
@@ -38,24 +37,25 @@ export default function conversation(state = {}, action) {
         };
       });
     case CREATE_CONVERSATION_SUCCESS:
-      const conversationItem0 = state.filter((conv) => conv.id === action.conversationId);
-      if (!conversationItem0) {
-        return { ...state, conversation: action.payload.conversation };
-      }
-      return state.map((item) => {
-        if (item !== conversationItem2[0]) {
-          // console.log(`hhhh${JSON.stringify(conversationItem2[0])}bbbbbbbb${JSON.stringify(item)}`);
-          return item;
-        }
-        return {
-          ...item,
-          messages:
-            [action.messages, ...item.messages]
+      const conversationCreateItem = state.filter((conv) => conv.id === action.payload.conversation.id);
+      console.log("creaaatetetrerer"+JSON.stringify(conversationCreateItem))
+      if (conversationCreateItem) {
+        return state.map((item) => {
+          if (item !== conversationCreateItem[0]) {
+            console.log(`hhhh${JSON.stringify(conversationItem2[0])}bbbbbbbb${JSON.stringify(item)}`);
+            return item;
+          }
+          return {
+            ...item,
+            messages:
+            [action.payload.conversation.messages]
 
-        };
-      });
+          };
+        });
+      }
+      return state.concat(action.payload.conversation);
+
     case SEND_MESSAGE_SUCCESS:
-      console.log(`iiii${JSON.stringify(action)}`);
       const conversationItem1 = state.filter((conv) => conv.id === action.conversationId);
       return state.map((item) => {
         if (item !== conversationItem1[0]) {
@@ -70,7 +70,6 @@ export default function conversation(state = {}, action) {
         };
       });
     case GET_MESSAGES_SUCCESS:
-      console.log(`iiii${JSON.stringify(action)}`);
       const conversationItem2 = state.filter((conv) => conv.id === action.conversationId);
       return state.map((item) => {
         if (item !== conversationItem2[0]) {
@@ -85,7 +84,6 @@ export default function conversation(state = {}, action) {
         };
       });
     case RECEIVE_MESSAGE_SUCCESS:
-      console.log(`iiii${JSON.stringify(action)}`);
       const conversationReceivedItem = state.filter((conv) => conv.id === action.conversationId);
       return state.map((item) => {
         if (item !== conversationReceivedItem[0]) {
@@ -99,6 +97,25 @@ export default function conversation(state = {}, action) {
 
         };
       });
+    case READ_SUCCESS:
+      const conversationReadItem = state.filter((conv) => conv.id === action.conversationId);
+      return state.map((item) => {
+        if (item !== conversationReadItem[0]) {
+          // console.log(`hhhh${JSON.stringify(conversationItem2[0])}bbbbbbbb${JSON.stringify(item)}`);
+          return item;
+        }
+        // We modify the read element of the last message
+        const mess = item.messages[0];
+        mess.read = true;
+        return {
+          ...item,
+          messages: [
+            mess,
+            ...item.messages.split(0)[1]
+          ]
+        };
+      });
+
     case LOGOUT:
       return {};
     default:

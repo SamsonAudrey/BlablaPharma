@@ -3,19 +3,17 @@ import {
   FlatList, View, Text
 } from 'react-native';
 import ConversationListItems from './ConversationListItems';
-import ConversationContainer from '../../containers/Chat/ConversationContainer';
-
 
 export default class ConversationList extends Component {
   componentDidMount() {
     this.props.onGetConversations();
   }
 
-  handlPress = (conversationId, memberId) => {
+  handlPress = (conversationId, otherPerson) => {
     const { navigate } = this.props.navigation;
     navigate('Conversation', {
       conversationId,
-      memberId
+      otherPerson
     });
   }
 
@@ -23,8 +21,21 @@ export default class ConversationList extends Component {
     this.props.onGetConversations();
   }
 
+  getOtherPerson = (conversation) => {
+    const { user } = this.props;
+    console.log(JSON.stringify(conversation))
+    const onePers = conversation.members[0];
+    const secPers = conversation.members[1];
+    console.log(onePers.id +'rrr'+ user.account.id)
+    if (onePers.id === user.account.id) {
+      return secPers;
+    }
+    return onePers;
+  }
+
   render() {
     const isFetching = this.props.isFetching === true ? 'isFetching' : '';
+    console.log("ueueu"+this.props.user)
     return (
       <>
         <Text>{isFetching}</Text>
@@ -35,6 +46,7 @@ export default class ConversationList extends Component {
               <ConversationListItems
                 conversation={conversation}
                 handlPress={this.handlPress}
+                otherPerson={this.getOtherPerson(conversation.item)}
               />
             )}
             refreshing={this.props.isFetching}

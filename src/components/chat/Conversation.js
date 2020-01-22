@@ -4,27 +4,16 @@ import { GiftedChat } from 'react-native-gifted-chat';
 
 
 export default class Conversation extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      memberId: this.props.memberId,
-      conversationId: this.props.conversationId,
-      messages: this.props.messages,
-    };
-  }
-
   componentDidMount() {
     // We create a conversation each time we mount this page,
     // the API will give us information on the conversation
     // if it already exists.
     // We don't know if a conversation exists unless we create
-    //
-    console.log(`yyyyyyy${this.state.conversationId}`);
+    console.log("vvvvvvvvvvvvvvvvvvv"+this.props.conversationId)
     this.props.onGetConversation(this.props.conversationId)
-      .then((resp) => console.log(`trouuuuv${resp}`),
-        (err) => {
-          c;
-          this.props.onCreateConversation(this.props.memberId);
+      .then((resp) => console.log(`trouuuuv${this.props.otherPerson}`),
+        () => {
+          this.props.onCreateConversation(this.props.otherPerson.id);
         });
     /* this.setState({
       messages: [
@@ -56,16 +45,26 @@ export default class Conversation extends React.Component {
     }
   }))
 
+  _onRead() {
+    console.log('onree');
+    const message = this.props.messages ? this.props.messages[0] : undefined;
+    if (message && message.author !== this.props.user.account.id) {
+      this.props.onRead(this.props.conversationId, this.props.messages[0]);
+    }
+  }
+
   render() {
+    this._onRead();
     console.log(`proops${JSON.stringify(this.props.messages)}`);
-    const mess = this.messageFormat(this.props.messages);
+    const mess = this.props.messages ? this.messageFormat(this.props.messages) : null;
     return (
       <GiftedChat
         messages={mess}
-        onSend={(messages,) => this.onSend(messages)}
+        onSend={(messages) => this.onSend(messages)}
         user={{
-          _id: 11,
+          _id: this.props.user.account.id,
         }}
+        onInputTextChanged={this.props.onTyping(this.props.conversationId)}
       />
     );
   }

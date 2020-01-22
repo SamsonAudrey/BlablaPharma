@@ -24,6 +24,7 @@ export const createConversations = (memberId) => {
           dispatch(createConversationSuccess(response.data));
         },
         (error) => {
+          console.log(`errorr${JSON.stringify(error)}`)
           dispatch(createConversationFailure(error));
         }
       );

@@ -14,15 +14,26 @@ export default class PharmarmacistsList extends React.Component {
  renderScene = ({ route }) => {
    switch (route.key) {
      case 'first':
-       return <ScenePharmacists pharmacists={this.props.blablapharmacists} />;
+       return (
+         <ScenePharmacists
+           pharmacists={this.props.blablapharmacists}
+           navigation={this.props.navigation}
+         />
+       );
      case 'second':
-       return <ScenePharmacists pharmacists={this.props.pharmacists} />;
+       return (
+         <ScenePharmacists
+           pharmacists={this.props.pharmacists}
+           navigation={this.props.navigation}
+         />
+       );
      default:
        return null;
    }
  };
 
  render() {
+  console.log("navvv"+this.props.navigation)
    return (
      <>
        <CustomTabView

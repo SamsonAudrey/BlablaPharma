@@ -85,7 +85,7 @@ export const getMessages = (conversationId,
       }
     })
       .then((response) => {
-        dispatch(getMessagesSuccess(conversationId, response.data));
+        dispatch(getMessagesSuccess(conversationId, response));
       })
       .catch((error) => {
         dispatch(getMessagesFailure(error));
@@ -125,10 +125,10 @@ export const onTyping = (conversationId) => {
     return postRequest(`/conversations/${conversationId}/event/typing`, token)
       .then((response) => {
         console.log(JSON.stringify(response.data));
-        dispatch(sendMessageSuccess(response.data));
+        //dispatch(sendMessageSuccess(response));
       })
       .catch((error) => {
-        dispatch(sendMessageFailure(error));
+        //dispatch(sendMessageFailure(error));
       });
   }
   // thunk.interceptInOffline = true;
@@ -138,11 +138,11 @@ export const onTyping = (conversationId) => {
   return thunk;
 };
 
-export const onRead = (conversationId, messageId) => {
+export const onRead = (conversationId, message) => {
   async function thunk(dispatch) {
-    console.log(`messsageg${JSON.stringify(messageId)}`);
+    console.log(`messsageg${JSON.stringify(message)}`);
     const token = await getToken();
-    return postRequest(`/conversations/${conversationId}/event/read`, token, { messageId: messageId.id })
+    return postRequest(`/conversations/${conversationId}/event/read`, token, { messageId: message.id })
       .then((response) => {
         console.log(JSON.stringify(`respo on reaadd${response}`));
         dispatch(onReadSuccess(conversationId));

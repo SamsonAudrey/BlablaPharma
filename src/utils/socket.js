@@ -40,6 +40,13 @@ export const putRequest = (route, data = {}) => new Promise(((res, rej) => {
   });
 }));
 
+export const deleteRequest = (route, data = {}) => new Promise(((res, rej) => {
+  socket.request(configSocket('delete', route, data), (resData, jwres) => {
+    if (jwres.statusCode >= 400) rej(resData);
+    else res(resData);
+  });
+}));
+
 export const postRequest = (route, accessToken, data = {}) => new Promise(((res, rej) => {
   socket.request(configSocket('post', route, accessToken, data), (resData, jwres) => {
     if (jwres.statusCode >= 400) rej(resData);

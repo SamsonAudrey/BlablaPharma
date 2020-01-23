@@ -9,9 +9,12 @@ import {
   GET_CONVERSATION_FAILURE,
   GET_CONVERSATION_REQUEST,
   GET_CONVERSATION_SUCCESS,
+  DELETE_CONVERSATION_FAILURE,
+  DELETE_CONVERSATION_REQUEST,
+  DELETE_CONVERSATION_SUCCESS
 } from './chatActionTypes';
 import { getToken } from '../../utils/auth';
-import { getRequest, postRequest } from '../../utils/socket';
+import { getRequest, postRequest, deleteRequest } from '../../utils/socket';
 
 export const createConversations = (memberId) => {
   async function thunk(dispatch) {
@@ -21,10 +24,10 @@ export const createConversations = (memberId) => {
       .then(
         (response) => {
           console.log(`cede${JSON.stringify(response)}`);
-          dispatch(createConversationSuccess(response.data));
+          dispatch(createConversationSuccess(response));
         },
         (error) => {
-          console.log(`errorr${JSON.stringify(error)}`)
+          console.log(`errorr${JSON.stringify(error)}`);
           dispatch(createConversationFailure(error));
         }
       );
@@ -39,9 +42,8 @@ export const createConversations = (memberId) => {
 
 export const createConversationSuccess = (conversation) => ({
   type: CREATE_CONVERSATION_SUCCESS,
-  payload: {
-    conversation
-  }
+  conversation
+
 });
 
 export const createConversationFailure = (error) => ({
@@ -79,9 +81,8 @@ export const getConversations = () => {
 
 export const getConversationsSuccess = (conversations) => ({
   type: GET_CONVERSATIONS_SUCCESS,
-  payload: {
-    conversations
-  }
+  conversations
+
 });
 
 export const getConversationsFailure = (error) => ({
@@ -131,5 +132,48 @@ export const getConversationSuccess = (conversation) => ({
 
 export const getConversationFailure = (error) => ({
   type: GET_CONVERSATION_FAILURE,
+  error
+});
+
+
+export const deleteConversation = (conversationId) => {
+  async function thunk(dispatch) {
+    const token = await getToken();
+    dispatch({ type: DELETE_CONVERSATION_REQUEST });
+    // socket.headers = token;
+    return new Promise((resolve, reject) => {
+      deleteRequest(`/conversations/${conversationId}`, token)
+        .then((response) => {
+          if (response.message === 'Unauthorized access') {
+            console.log('tttt');
+          }
+          console.log(`deleteeee connnvvvv resssp${JSON.stringify(response)}`);
+          dispatch(deleteConversationSuccess(conversationId));
+          resolve(response);
+        },
+        (error) => {
+          console.log(`deleteeee connnvvvv errr${JSON.stringify(error)}`);
+          dispatch(deleteConversationFailure(error));
+          reject(error);
+        });
+    });
+  }
+  // thunk.interceptInOffline = true;
+  thunk.meta = {
+    retry: true
+  };
+
+  return thunk;
+};
+
+
+export const deleteConversationSuccess = (conversationId) => ({
+  type: DELETE_CONVERSATION_SUCCESS,
+  conversationId
+
+});
+
+export const deleteConversationFailure = (error) => ({
+  type: DELETE_CONVERSATION_FAILURE,
   error
 });

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ConversationList from '../../components/chat/ConversationList';
-import { getConversations } from '../../actions/chat/conversationAction'
+import { getConversations, deleteConversation } from '../../actions/chat/conversationAction'
 import { createLoadingSelector } from '../../utils/loadingSelector';
 
 const loadingSelector = createLoadingSelector(['GET_CONVERSATIONS']);
@@ -16,6 +16,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   onGetConversations: () => {
     dispatch(getConversations());
+  },
+  onDelete: (conversationId) => {
+    dispatch(deleteConversation(conversationId));
   }
 });
 

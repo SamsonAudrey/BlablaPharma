@@ -35,9 +35,9 @@ const mapDispatchToProps = (dispatch) => ({
   onTyping: (conversationId) => {
     dispatch(onTyping(conversationId));
   },
-  onRead: (conversationId, messageId) => {
-    dispatch(onRead(conversationId, messageId));
-  },
+  onRead: (conversationId, message) => {
+    dispatch(onRead(conversationId, message));
+  }
 });
 
 const conversationContainer = connect(

@@ -7,7 +7,8 @@ import {
   SEND_MESSAGE_SUCCESS,
   GET_MESSAGES_SUCCESS,
   RECEIVE_MESSAGE_SUCCESS,
-  READ_SUCCESS
+  READ_SUCCESS,
+  DELETE_CONVERSATION_SUCCESS
 } from '../actions/chat/chatActionTypes';
 
 
@@ -22,7 +23,7 @@ export default function conversation(state = {}, action) {
         state
       };
     case GET_CONVERSATIONS_SUCCESS:
-      return action.payload.conversations;
+      return action.conversations;
     case GET_CONVERSATION_SUCCESS:
       const conversationGetItem = state.filter((conv) => conv.id === action.conversationId);
       return state.map((item) => {
@@ -36,10 +37,10 @@ export default function conversation(state = {}, action) {
 
         };
       });
+    case DELETE_CONVERSATION_SUCCESS:
+      return state.filter((conv) => conv.id !== action.conversationId);
     case CREATE_CONVERSATION_SUCCESS:
-      const conversationCreateItem = state.filter((conv) => conv.id === action.payload.conversation.id);
-      console.log("creaaatetetrerer"+JSON.stringify(conversationCreateItem))
-      if (conversationCreateItem) {
+      /* if (conversationCreateItem) {
         return state.map((item) => {
           if (item !== conversationCreateItem[0]) {
             console.log(`hhhh${JSON.stringify(conversationItem2[0])}bbbbbbbb${JSON.stringify(item)}`);
@@ -48,12 +49,12 @@ export default function conversation(state = {}, action) {
           return {
             ...item,
             messages:
-            [action.payload.conversation.messages]
+            [action.conversation.messages]
 
           };
         });
-      }
-      return state.concat(action.payload.conversation);
+      } */
+      return [...state, action.conversation];
 
     case SEND_MESSAGE_SUCCESS:
       const conversationItem1 = state.filter((conv) => conv.id === action.conversationId);

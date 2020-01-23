@@ -1,6 +1,9 @@
 import React from 'react';
 import { API_URL } from 'react-native-dotenv';
 import { GiftedChat } from 'react-native-gifted-chat';
+import {
+  Text
+} from 'react-native';
 
 
 export default class Conversation extends React.Component {
@@ -9,7 +12,7 @@ export default class Conversation extends React.Component {
     // the API will give us information on the conversation
     // if it already exists.
     // We don't know if a conversation exists unless we create
-    console.log("vvvvvvvvvvvvvvvvvvv"+this.props.conversationId)
+    console.log(`vvvvvvvvvvvvvvvvvvv${this.props.conversationId}`);
     this.props.onGetConversation(this.props.conversationId)
       .then((resp) => console.log(`trouuuuv${this.props.otherPerson}`),
         () => {
@@ -29,6 +32,10 @@ export default class Conversation extends React.Component {
         },
       ],
     }); */
+  }
+
+  componentDidUpdate() {
+    this._onRead();
   }
 
   onSend(message) {
@@ -54,9 +61,9 @@ export default class Conversation extends React.Component {
   }
 
   render() {
-    this._onRead();
-    console.log(`proops${JSON.stringify(this.props.messages)}`);
+    console.log(`proops${JSON.stringify(this.props.conversationId)}`);
     const mess = this.props.messages ? this.messageFormat(this.props.messages) : null;
+    const conversation = this.props.conversationId ? <Text> Ouiiiii </Text> : <Text>Noooon</Text>
     return (
       <GiftedChat
         messages={mess}

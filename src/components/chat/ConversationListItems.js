@@ -4,9 +4,9 @@ import CButton from '../Button';
 
 export default class ConversationListItems extends Component {
   render() {
-    // console.log(`props de item${JSON.stringify(this.props)}`);
+    console.log(`props de item${JSON.stringify(this.props)}`);
     const conversation = this.props.conversation.item;
-    const { otherPerson } = this.props;
+    const { otherPerson, onDelete } = this.props;
     return (
       <>
         <View>
@@ -25,6 +25,10 @@ export default class ConversationListItems extends Component {
         <CButton
           onPress={() => this.props.handlPress(conversation.id, otherPerson)}
           title="Conv"
+        />
+        <CButton
+          onPress={() => onDelete(conversation.id)}
+          title="Delete"
         />
       </>
     );

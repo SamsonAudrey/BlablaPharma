@@ -23,10 +23,8 @@ export default class ConversationList extends Component {
 
   getOtherPerson = (conversation) => {
     const { user } = this.props;
-    console.log(JSON.stringify(conversation))
     const onePers = conversation.members[0];
     const secPers = conversation.members[1];
-    console.log(onePers.id +'rrr'+ user.account.id)
     if (onePers.id === user.account.id) {
       return secPers;
     }
@@ -35,7 +33,6 @@ export default class ConversationList extends Component {
 
   render() {
     const isFetching = this.props.isFetching === true ? 'isFetching' : '';
-    console.log("ueueu"+this.props.user)
     return (
       <>
         <Text>{isFetching}</Text>
@@ -46,6 +43,7 @@ export default class ConversationList extends Component {
               <ConversationListItems
                 conversation={conversation}
                 handlPress={this.handlPress}
+                onDelete={this.props.onDelete}
                 otherPerson={this.getOtherPerson(conversation.item)}
               />
             )}

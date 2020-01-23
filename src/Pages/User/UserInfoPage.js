@@ -3,7 +3,7 @@ import {
   Image, StyleSheet, View
 } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
-import CButton from '../../components/Button';
+import CButton from '../../components/Buttons/Button';
 
 export default class UserInfoPage extends React.Component {
   constructor(props) {

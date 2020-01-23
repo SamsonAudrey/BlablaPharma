@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import t from 'tcomb-form-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import CButton from './Button';
+import CButton from './Buttons/Button';
 
 const { Form } = t.form;
 

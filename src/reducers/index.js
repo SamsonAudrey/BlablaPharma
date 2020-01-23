@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { reducer as network } from 'react-native-offline'
+import { reducer as network } from 'react-native-offline';
 import user from './userReducer';
 import registerReducer from './registerReducer';
 import connection from './connectionReducer';
@@ -9,6 +9,8 @@ import pharmacists from './pharmacistsReducer';
 import searchPharmacists from './searchPharmacistsReducer';
 import loading from './loadingReducer';
 import success from './successReducer';
+import searchBlog from './searchBlogReducer';
+import blog from './blogReducer';
 
 export default combineReducers({
   user,
@@ -17,6 +19,8 @@ export default combineReducers({
   error,
   pharmacists,
   searchPharmacists,
+  blog,
+  searchBlog,
   loading,
   success,
   navigationInfo: navigationReducer,

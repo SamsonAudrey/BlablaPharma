@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {
   View, StyleSheet, Text, ImageBackground
 } from 'react-native';
-import FatButton from '../components/FatButton';
+import FatButton from '../components/Buttons/FatButton';
 import HyperLinkText from '../components/HyperLinkText';
 import { store } from '../../store';
 
@@ -15,7 +15,7 @@ class Home extends Component {
         <View style={styles.imageView}>
           <ImageBackground
             source={require('../assets/first-page.jpg')}
-            style={{ width: '110%', height: '100%', opacity: 1 }}
+            style={{ width: '100%', height: '100%', opacity: 1 }}
           >
             <View style={styles.sloganView}>
               <Text style={styles.slogan}>Votre pharmacien{'\n'}en ligne{'\n'}et à votre écoute</Text>

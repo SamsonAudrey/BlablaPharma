@@ -4,7 +4,7 @@ import {
   View, Text, StyleSheet, TouchableHighlight
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import CButton from './Button';
+import CButton from './Buttons/Button';
 
 class CModal extends Component {
   constructor(props) {
@@ -22,9 +22,11 @@ class CModal extends Component {
   /* <FatButton title1="Continuer sur" title2="l'application" onPress={this.props.nav} /> */
 
   render() {
+    console.log(` MODAL : ${this.state.isModalVisible}`);
+    const isVisible = this.state.isModalVisible;
     return (
       <>
-        <Modal isVisible={this.state.isModalVisible}>
+        <Modal isVisible={isVisible}>
           <View style={styles.modal}>
             <TouchableHighlight onPress={this.toggleModal} underlayColor="#fff">
               <Ionicons name="ios-close" size={40} color="#707070" style={styles.cross} />
@@ -33,12 +35,15 @@ class CModal extends Component {
               <Text style={styles.text}>{this.props.text}</Text>
             </View>
             <View style={styles.buttonView}>
-                {this.props.button}
-              <CButton
-                title="Annuler"
-                buttonStyle="green"
-                onPress={this.toggleModal}
-              />
+              {this.props.button}
+              {this.props.noCancelButton ? null
+                : (
+                  <CButton
+                    title="Annuler"
+                    buttonStyle="green"
+                    onPress={this.toggleModal}
+                  />
+                ) }
             </View>
           </View>
         </Modal>

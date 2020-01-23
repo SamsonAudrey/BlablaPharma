@@ -8,7 +8,7 @@ import moment from 'moment';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import CButton from './Button';
+import CButton from './Buttons/Button';
 
 const { Form } = t.form;
 const genderProps = [

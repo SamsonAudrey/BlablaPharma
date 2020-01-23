@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import {
-  ImageBackground, Platform, StyleSheet, View
+  ImageBackground, StyleSheet, Text, View
 } from 'react-native';
 import t from 'tcomb-form-native';
 import moment from 'moment';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SafeAreaView from 'react-native-safe-area-view';
-import CButton from '../../components/Button';
-import ButtonTitle from '../../components/ButtonTitle';
+import CButton from '../../components/Buttons/Button';
+import ButtonTitle from '../../components/Buttons/ButtonTitle';
 import { store } from '../../../store';
+import BackButton from '../../components/Buttons/BackButton';
+import CModal from '../../components/Modal';
 
 const { Form } = t.form;
 
@@ -43,6 +45,16 @@ class RegisterPharmacist extends Component {
     this.userGender = state.navigationInfo.userGender;
   }
 
+  componentDidMount() {
+    this.props.onErrorClear();
+    this.props.onSuccessClear();
+  }
+
+  componentWillUnmount() {
+    this.props.onErrorClear();
+    this.props.onSuccessClear();
+  }
+
   onChange(value) {
     this.state.user = value;
   }
@@ -61,7 +73,7 @@ class RegisterPharmacist extends Component {
             ? 'female'
             : 'another';
 
-        const { onRegisterPharmacist, navigation } = this.props;
+        const { onRegisterPharmacist } = this.props;
         onRegisterPharmacist(
           user.firstName,
           user.lastName,
@@ -76,9 +88,6 @@ class RegisterPharmacist extends Component {
           value.postalCode,
           value.city
         );
-        alert("Demande d'inscription faite");
-        const { navigate } = navigation;
-        navigate('Home');
       } catch (error) {
         alert(error.message);
       }
@@ -103,6 +112,27 @@ class RegisterPharmacist extends Component {
               </View>
             </ImageBackground>
           </View>
+          <BackButton
+            title="Retour"
+            onPress={() => this.props.navigation.goBack()}
+          />
+          {this.props.selector.successRegisterPharmacist
+            ? (
+              <CModal
+                isVisible
+                handler={<Text />}
+                text="Merci pour votre inscription sur BlablaPharma. Votre demande de création de compte est en cours de traitement."
+                button={(
+                  <CButton
+                    title="Accueil"
+                    buttonStyle="green"
+                    onPress={() => this.props.navigation.navigate('Home')}
+                  />
+                      )}
+                noCancelButton
+              />
+            )
+            : null}
           <View style={styles.container}>
             <Form
               ref={(c) => this._form = c}
@@ -169,7 +199,6 @@ const styles = StyleSheet.create({
 const options = {
   fields: {
     profession: {
-      // TODO format
       placeholder: 'Profession',
       factory: t.form.Select,
       options: [

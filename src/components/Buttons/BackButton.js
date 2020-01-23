@@ -8,6 +8,7 @@ class BackButton extends Component {
       <TouchableHighlight
         onPress={this.props.onPress}
         style={styles.button}
+        underlayColor="#fff"
       >
         <Ionicons name="ios-arrow-back" size={32} color="#707070" />
       </TouchableHighlight>

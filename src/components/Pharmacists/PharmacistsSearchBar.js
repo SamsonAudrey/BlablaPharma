@@ -131,8 +131,8 @@ let styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '3%',
-    height: 35,
+    marginTop: 15,
+    height: 40,
     marginBottom: 0
   },
   textInputSearch: {

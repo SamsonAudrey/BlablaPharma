@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import {
-  ImageBackground, StyleSheet, View,
+  ImageBackground, StyleSheet, Text, View,
 } from 'react-native';
 import t from 'tcomb-form-native';
 import moment from 'moment';
 import RadioForm from 'react-native-simple-radio-button';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SafeAreaView from 'react-native-safe-area-view';
-import ButtonTitle from '../../components/ButtonTitle';
-import CButton from '../../components/Button';
-import { store } from '../../../store';
 import ImageFactory from 'react-native-image-picker-form';
+import ButtonTitle from '../../components/Buttons/ButtonTitle';
+import CButton from '../../components/Buttons/Button';
+import { store } from '../../../store';
+import CModal from '../../components/Modal';
 
 const { Form } = t.form;
 const genderProps = [
@@ -53,86 +54,117 @@ class RegisterPatient extends Component {
     this.userKind = state.navigationInfo.userKind;
   }
 
+  componentDidMount() {
+    this.props.onErrorClear();
+    this.props.onSuccessClear();
+  }
+
+  componentWillUnmount() {
+    this.props.onErrorClear();
+    this.props.onSuccessClear();
+  }
+
   onChange(value) {
     this.state.user = value;
   }
 
-    handleSubmit = () => {
-      const value = this._form.getValue();
-      const { gender } = this.state;
-      const { onRegisterPatient, onRegisterInfo, navigation } = this.props;
-      if (this.userKind === 'pharmacist' && value !== null) {
-        onRegisterInfo(value, gender);
-        navigation.navigate('RegisterPharmacist', { infoUser: value, gender });
-      } else if (value !== null) {
-        // REGISTER PATIENT USER
-        try {
-          const genderLabel = gender === 0 ? 'male' : gender === 1 ? 'female' : 'another';
-          const birthday = moment(value.birth).format('YYYY-MM-DD');
-          onRegisterPatient(value.firstName, value.lastName, birthday,
-            genderLabel, value.email, value.password);
-          alert('Inscription faite');
-          navigation.navigate('Home');
-        } catch (error) { // TODO
-          alert(error.message);
-        }
+  handleSubmit = () => {
+    const value = this._form.getValue();
+    const { gender } = this.state;
+    const { onRegisterPatient, onRegisterInfo, navigation } = this.props;
+    if (this.userKind === 'pharmacist' && value !== null) {
+      // 1 STEP REGISTER PHARMACIST USER
+      onRegisterInfo(value, gender);
+      navigation.navigate('RegisterPharmacist', { infoUser: value, gender });
+    } else if (value !== null) {
+      // REGISTER PATIENT USER
+      try {
+        const genderLabel = gender === 0 ? 'male' : gender === 1 ? 'female' : 'another';
+        const birthday = moment(value.birth).format('YYYY-MM-DD');
+        onRegisterPatient(value.firstName, value.lastName, birthday,
+          genderLabel, value.email, value.password);
+      } catch (error) { // TODO
+        alert(error.message);
       }
-    };
+    }
+  };
 
 
-    render() {
-      return (
-        <SafeAreaView style={{ flex: 1 }}>
-          <KeyboardAwareScrollView
-            automaticallyAdjustContentInsets={false}
-            enableOnAndroid
-            style={{ flex: 1 }}
-          >
-            <View style={styles.imageView}>
-              <ImageBackground
-                source={this.userKind === 'patient' ? require('../../assets/sign-in_cut.jpg') : require('../../assets/sign-in-pharmacist_cut.png')}
-                style={{ width: '100%', height: '100%', opacity: 1 }}
-              >
-                <View style={styles.title}>
-                  <ButtonTitle
-                    title={this.userKind === 'patient' ? 'Je suis patient' : 'Je suis pharmacien'}
-                    role={this.userKind}
-                  />
-                </View>
-              </ImageBackground>
-            </View>
-
-            <View style={styles.form}>
-              <Form
-                ref={(c) => this._form = c}
-                type={this.User}
-                options={options}
-                onChange={(v) => this.onChange(v)}
-              />
-              <RadioForm
-                radio_props={genderProps}
-                initial={0}
-                onPress={(value) => { this.state.gender = value; }}
-                formHorizontal
-                buttonColor="#868788"
-                labelColor="#868788"
-                selectedButtonColor="#868788"
-                buttonSize={10}
-                buttonWrapStyle={{ marginLeft: 20 }}
-                style={{ marginTop: '5%' }}
-              />
-              <View style={styles.submitButton}>
-                <CButton
-                  title={this.userKind === 'patient' ? "S'inscrire" : 'Suivant'}
-                  buttonStyle={this.userKind === 'patient' ? 'green' : 'grey'}
-                  onPress={this.handleSubmit}
+  render() {
+    let error;
+    this.props.selector.error400Register
+      ? (error = <Text style={{ color: '#a94442' }}>Email déjà utilisé</Text>)
+      : (error = null);
+    return (
+      <SafeAreaView style={{ flex: 1 }}>
+        <KeyboardAwareScrollView
+          automaticallyAdjustContentInsets={false}
+          enableOnAndroid
+          style={{ flex: 1 }}
+        >
+          <View style={styles.imageView}>
+            <ImageBackground
+              source={this.userKind === 'patient' ? require('../../assets/sign-in_cut.jpg') : require('../../assets/sign-in-pharmacist_cut.png')}
+              style={{ width: '100%', height: '100%', opacity: 1 }}
+            >
+              <View style={styles.title}>
+                <ButtonTitle
+                  title={this.userKind === 'patient' ? 'Je suis patient' : 'Je suis pharmacien'}
+                  role={this.userKind}
                 />
               </View>
+            </ImageBackground>
+          </View>
+          {this.props.selector.successRegister
+            ? (
+              <CModal
+                isVisible
+                handler={<Text />}
+                text="Merci pour votre inscription sur BlablaPharma. Activez votre compte en clickant sur le lien reçu par mail."
+                button={(
+                  <CButton
+                    title="Accueil"
+                    buttonStyle="green"
+                    onPress={() => this.props.navigation.navigate('Home')}
+                  />
+                )}
+                noCancelButton
+              />
+            )
+            : null}
+          <View style={styles.form}>
+            {error}
+            <Form
+              ref={(c) => this._form = c}
+              type={this.User}
+              options={options}
+              onChange={(v) => this.onChange(v)}
+              value={store.getState().navigationInfo.userInfo}
+            />
+            <RadioForm
+              radio_props={genderProps}
+              initial={0}
+              onPress={(value) => { this.state.gender = value; }}
+              formHorizontal
+              buttonColor="#868788"
+              labelColor="#868788"
+              selectedButtonColor="#868788"
+              buttonSize={10}
+              buttonWrapStyle={{ marginLeft: 20 }}
+              style={{ marginTop: '5%' }}
+            />
+            <View style={styles.submitButton}>
+              <CButton
+                title={this.userKind === 'patient' ? "S'inscrire" : 'Suivant'}
+                buttonStyle={this.userKind === 'patient' ? 'green' : 'grey'}
+                onPress={this.handleSubmit}
+              />
             </View>
-          </KeyboardAwareScrollView>
-        </SafeAreaView>
-      );
-    }
+          </View>
+        </KeyboardAwareScrollView>
+      </SafeAreaView>
+    );
+  }
 }
 
 // Custom Stylesheet
@@ -155,7 +187,7 @@ s.dateValue.error.color = '#707070';
 s.dateValue.error.borderColor = '#a94442';
 s.dateValue.error.borderRadius = 5;
 s.errorBlock.fontSize = 15;
-s.controlLabel.normal.color = 'red'
+s.controlLabel.normal.color = 'red';
 
 const styles = StyleSheet.create({
   form: {
@@ -229,7 +261,8 @@ const options = {
         options: ['Ouvrir camera', 'Selection gallerie', 'Annuler'],
         // Used on Android to style BottomSheet
         style: {
-        }
+        },
+       // cropping: false
       },
       error: 'Aucune image',
       factory: ImageFactory

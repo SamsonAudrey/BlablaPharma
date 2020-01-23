@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { filter } from 'lodash';
-import PharmacistsList from '../components/PharmacistsList';
-import { createLoadingSelector } from '../utils/loadingSelector';
-import CustomTabView from '../components/CustomTabView';
+import PharmacistsList from '../../components/Pharmacists/PharmacistsList';
+import { createLoadingSelector } from '../../utils/loadingSelector';
+import CustomTabView from '../../components/CustomTabView';
 import {
   pharmacistsSearch
-} from '../actions/pharmacist/pharmacistsSearchAction';
+} from '../../actions/pharmacist/pharmacistsSearchAction';
 
 const loadingSelector = createLoadingSelector(['PHARMACISTS_SEARCH']);
 

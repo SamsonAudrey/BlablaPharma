@@ -1,9 +1,8 @@
 import { API_URL } from 'react-native-dotenv';
 import {
-  CONNECT_USER_SUCCESS,
   REGISTER_FAILURE,
   REGISTER_INFO,
-  REGISTER_KIND
+  REGISTER_KIND, REGISTER_SUCCESS
 } from '../actionTypes';
 
 export const registerPatient = (
@@ -31,9 +30,11 @@ export const registerPatient = (
   .then((response) => {
     if (response.ok) {
       console.log('REGISTERED');
+      dispatch(registerSuccess());
     } else {
       console.log('NOT REGISTERED');
       console.log('response ', response);
+      dispatch(registerFailureEmail(response));
     }
     // dispatch(registerSuccess(response));
   })
@@ -79,9 +80,11 @@ export const registerPharmacist = (
   .then((response) => {
     if (response.ok) {
       console.log('REGISTERED');
+      dispatch(registerSuccess());
     } else {
       console.log('NOT REGISTERED');
       console.log('response ', response);
+      dispatch(registerFailureEmail(response));
     }
   })
   .catch((error) => {
@@ -89,13 +92,19 @@ export const registerPharmacist = (
     dispatch(registerFailure(error));
   });
 
-export const registerFailure = (error) => ({
-  type: REGISTER_FAILURE,
-  payload: {
-    error
-  }
+export const registerSuccess = () => ({
+  type: REGISTER_SUCCESS,
 });
 
+export const registerFailure = (error) => ({
+  type: REGISTER_FAILURE,
+  error
+});
+
+export const registerFailureEmail = (response) => ({
+  type: REGISTER_FAILURE,
+  error: response
+});
 
 export const userRegisterKind = (userKind) => ({
   type: REGISTER_KIND,

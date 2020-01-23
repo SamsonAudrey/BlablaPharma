@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SearchBarPharmacists from '../containers/PharmacistsSearchBarContainer';
-import PharmacistsListContainer from '../containers/PharmacistsListContainer';
+import SearchBarPharmacists from '../containers/Pharmacists/PharmacistsSearchBarContainer';
+import PharmacistsListContainer from '../containers/Pharmacists/PharmacistsListContainer';
 
 
 class SearchPharmacistsPage extends Component {

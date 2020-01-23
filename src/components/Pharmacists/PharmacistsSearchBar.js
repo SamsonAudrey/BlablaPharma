@@ -45,10 +45,6 @@ export default class SearchBar extends Component {
     }
   };
 
-  handleChangeProfessionFilter = (profession) => {
-    this.props.onProfessionFilterUpdate(profession);
-  };
-
   render() {
     const genderProps = [
       { label: 'Tous   ', value: '' },

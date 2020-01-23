@@ -15,16 +15,17 @@ export const blogSearch = (
   console.log(`BLOG SEARCH : ${qValue
   }`);
   function thunk(dispatch) {
-    const TEMPO_URL = 'https://api.blablapharma.fr';
+    const TEMPO_URL = 'https://api.staging.blablapharma.fr';
     dispatch({ type: BLOG_SEARCH_REQUEST });
     return axios
-      .get(`${TEMPO_URL}/articles/search`, {
+      .get(`${TEMPO_URL}/articles`, {
         params: {
           ...((qValue !== undefined) ? { q: qValue } : { q: '' }),
           ...((limitValue !== undefined) ? { limit: limitValue } : {}),
         }
       })
       .then((response) => {
+        console.log(response);
         if (response.data.length !== 0) {
           dispatch(blogSearchSuccess(response.data));
           // console.log(`founnd${response.data}`);

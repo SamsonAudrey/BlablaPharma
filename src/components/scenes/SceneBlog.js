@@ -6,6 +6,7 @@ import BlogListItems from '../Blog/BlogListItems';
 
 export default class SceneBlog extends React.Component {
   render() {
+    console.log('SCENE BLOOOOOOG');
     return (
       <View style={styles.scene}>
         {this.props.videos.length > 0 ? (

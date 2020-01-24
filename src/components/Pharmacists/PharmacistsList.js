@@ -34,7 +34,7 @@ export default class PharmarmacistsList extends React.Component {
  };
 
  render() {
-  console.log("navvv"+this.props.navigation)
+  //console.log("navvv"+this.props.navigation)
    return (
      <>
        <View style={{ flex: 1, paddingHorizontal: '1%' }}>

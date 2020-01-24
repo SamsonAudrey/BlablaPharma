@@ -7,7 +7,7 @@ import {
 } from './userActionTypes';
 
 export const userUpdateRemoteAccount = (account) => {
-  console.log("accuuu"+ `${API_URL}/accounts/${JSON.stringify(account.newEmail)}`)
+  //console.log("accuuu"+ `${API_URL}/accounts/${JSON.stringify(account.newEmail)}`)
   function thunk(dispatch) {
     dispatch({ type: USER_PERSONNAL_INFO_UPDATE_REQUEST });
     return axios

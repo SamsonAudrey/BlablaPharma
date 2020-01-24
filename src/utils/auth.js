@@ -44,7 +44,7 @@ axios.interceptors.response.use((response) => {
   }
   if (error.response.status === 401 && !originalRequest._retry) {
     originalRequest._retry = true;
-    console.log('Y aaaa pbbbb 400000001111111111');
+    //console.log('Y aaaa pbbbb 400000001111111111');
     checkToken()
       .then(
         () => axios(originalRequest),
@@ -87,7 +87,7 @@ const checkToken = () => {
       ? axios
         .get(`${API_URL}/accounts/${state.user.account.id}`) // This line is meant to hit the API
         .then(() => {
-          console.log('bahhh ca marchcheh');
+          //console.log('bahhh ca marchcheh');
           resolve();
         })
         .catch(() => {
@@ -111,9 +111,9 @@ export function RefreshToken(state) {
         .then(
           () => {
             const newState = store.getState();
-            console.log(`newstate : ${JSON.stringify(newState)}`);
+            //console.log(`newstate : ${JSON.stringify(newState)}`);
             const newAccessTokenValue = newState.user.accessToken;
-            console.log(`new refresh token : ${newAccessTokenValue}`);
+            //console.log(`new refresh token : ${newAccessTokenValue}`);
             axios.defaults.headers.Authorization = `Bearer ${newAccessTokenValue}`;
             resolve({ success: true });
           },

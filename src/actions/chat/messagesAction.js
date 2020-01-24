@@ -25,12 +25,12 @@ socket.on('event:typing', (data) => {
 });
 
 socket.on('event:read', (data) => {
-  console.log('message read:');
-  console.log(data);
+  //console.log('message read:');
+  //console.log(data);
 });
 
 socket.on('message', (data) => {
-  console.log(`message: ${JSON.stringify(data)}`);
+  //console.log(`message: ${JSON.stringify(data)}`);
   store.dispatch(receiveMessageSuccess(data.conversation, data));
 });
 
@@ -39,16 +39,16 @@ export const sendMessage = (conversationId,
   type,
   content) => {
   async function thunk(dispatch) {
-    console.log(`kkkkkkkkkkkkkkkkkkkkkkkkk${content}`);
+    //console.log(`kkkkkkkkkkkkkkkkkkkkkkkkk${content}`);
     const token = await getToken();
     dispatch({ type: SEND_MESSAGE_REQUEST });
     return postRequest(`/conversations/${conversationId}/messages?type=${type}&content=${content}`, token)
       .then((response) => {
-        console.log(JSON.stringify(`yesss${JSON.stringify(response)}`));
+        //console.log(JSON.stringify(`yesss${JSON.stringify(response)}`));
         dispatch(sendMessageSuccess(response.conversation, response));
       })
       .catch((error) => {
-        dispatch(`noooo${sendMessageFailure(error)}`);
+        //dispatch(`noooo${sendMessageFailure(error)}`);
       });
   }
   // thunk.interceptInOffline = true;
@@ -124,7 +124,7 @@ export const onTyping = (conversationId) => {
     dispatch({ type: SEND_MESSAGE_REQUEST });
     return postRequest(`/conversations/${conversationId}/event/typing`, token)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
+        //console.log(JSON.stringify(response.data));
         //dispatch(sendMessageSuccess(response));
       })
       .catch((error) => {
@@ -144,7 +144,7 @@ export const onRead = (conversationId, message) => {
     const token = await getToken();
     return postRequest(`/conversations/${conversationId}/event/read`, token, { messageId: message.id })
       .then((response) => {
-        console.log(JSON.stringify(`respo on reaadd${response}`));
+        //console.log(JSON.stringify(`respo on reaadd${response}`));
         dispatch(onReadSuccess(conversationId));
       })
       .catch((error) => console.log(JSON.stringify(error)));

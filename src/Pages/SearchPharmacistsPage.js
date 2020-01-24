@@ -5,7 +5,7 @@ import PharmacistsListContainer from '../containers/Pharmacists/PharmacistsListC
 
 class SearchPharmacistsPage extends Component {
   render() {
-    console.log(this.props.navigation)
+    //console.log(this.props.navigation)
     return (
       <>
         <SearchBarPharmacists />

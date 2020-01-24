@@ -4,7 +4,6 @@ import CButton from '../Buttons/Button';
 
 export default class ConversationListItems extends Component {
   render() {
-    console.log(`props de item${JSON.stringify(this.props)}`);
     const conversation = this.props.conversation.item;
     const { otherPerson, onDelete } = this.props;
     return (

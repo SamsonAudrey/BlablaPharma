@@ -25,7 +25,7 @@ export const userAuth = (userEmail, userPassword) => {
         }
       })
       .then((response) => {
-        console.log(API_URL);
+        //console.log(API_URL);
         // console.log(JSON.stringify(response.data))
         dispatch(userAuthSuccess(response.data));
       })
@@ -132,11 +132,11 @@ export const userDelete = (accountId) => {
     return axios
       .delete(`${API_URL}/accounts/${accountId}`)
       .then((response) => {
-        console.log('ACCOUNT DELETED');
+        //console.log('ACCOUNT DELETED');
         dispatch(userDeleteSuccess(response.data));
       })
       .catch((error) => {
-        console.log('ACCOUNT NOT DELETED');
+        //console.log('ACCOUNT NOT DELETED');
         dispatch(userDeleteFailure(error));
       });
   }

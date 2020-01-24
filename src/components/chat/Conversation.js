@@ -12,9 +12,8 @@ export default class Conversation extends React.Component {
     // the API will give us information on the conversation
     // if it already exists.
     // We don't know if a conversation exists unless we create
-    console.log(`vvvvvvvvvvvvvvvvvvv${this.props.conversationId}`);
     this.props.onGetConversation(this.props.conversationId)
-      .then((resp) => console.log(`trouuuuv${this.props.otherPerson}`),
+      .then((resp) => resp,
         () => {
           this.props.onCreateConversation(this.props.otherPerson.id);
         });
@@ -39,7 +38,7 @@ export default class Conversation extends React.Component {
   }
 
   onSend(message) {
-    console.log(`proodsqDQSps${JSON.stringify(message)}`);
+    //console.log(`proodsqDQSps${JSON.stringify(message)}`);
     this.props.onSendMessage(this.props.conversationId, 'text', message[0].text);
   }
 
@@ -53,7 +52,7 @@ export default class Conversation extends React.Component {
   }))
 
   _onRead() {
-    console.log('onree');
+    //console.log('onree');
     const message = this.props.messages ? this.props.messages[0] : undefined;
     if (message && message.author !== this.props.user.account.id) {
       this.props.onRead(this.props.conversationId, this.props.messages[0]);
@@ -61,7 +60,7 @@ export default class Conversation extends React.Component {
   }
 
   render() {
-    console.log(`proops${JSON.stringify(this.props.conversationId)}`);
+    //console.log(`proops${JSON.stringify(this.props.conversationId)}`);
     const mess = this.props.messages ? this.messageFormat(this.props.messages) : null;
     const conversation = this.props.conversationId ? <Text> Ouiiiii </Text> : <Text>Noooon</Text>
     return (

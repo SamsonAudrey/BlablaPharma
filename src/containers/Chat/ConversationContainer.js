@@ -7,12 +7,9 @@ import { createConversations, getConversation } from '../../actions/chat/convers
 
 const mapStateToProps = (state, ownProps) => {
   const { navigation } = ownProps;
-  console.log(`mmmm${JSON.stringify(state.conversations)}`);
   const { otherPerson } = navigation.state.params;
   const { user } = state;
-  console.log(`mmmm${JSON.stringify(otherPerson)}`);
-  const conv = state.conversations.filter((convers) => convers.members[0].id === otherPerson.id || convers.members[1].id === otherPerson.id);
-  console.log(`convvv${JSON.stringify(conv)}`);
+  const conv = state.conversations ? state.conversations.filter((convers) => convers.members[0].id === otherPerson.id || convers.members[1].id === otherPerson.id) : undefined;
   return {
     conversationId: conv[0] ? conv[0].id : undefined,
     otherPerson,

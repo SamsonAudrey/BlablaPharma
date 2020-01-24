@@ -11,6 +11,7 @@ import loading from './loadingReducer';
 import success from './successReducer';
 import searchBlog from './searchBlogReducer';
 import blog from './blogReducer';
+import conversations from './conversationReducer';
 
 export default combineReducers({
   user,
@@ -23,6 +24,7 @@ export default combineReducers({
   searchBlog,
   loading,
   success,
+  conversations,
   navigationInfo: navigationReducer,
   network
 });

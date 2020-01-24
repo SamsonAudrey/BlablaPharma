@@ -15,11 +15,15 @@ import AuthPageContainer from '../containers/User/AuthPageContainer';
 import UserPersonnalInfoPageContainer from '../containers/User/UserPersonnalInfoPageContainer';
 import ModifUserPersonnalInfoPageContainer from '../containers/User/ModifUserPersonnalInfoContainer';
 import Blog from "../Pages/BlogPage";
+import ConversationContainer from '../containers/Chat/ConversationContainer';
+import PharmacistsListContainer from '../containers/PharmacistsListContainer';
 
 const SearchPharmacistsNavigator = createStackNavigator(
   {
     SearchPharmacists: SearchPharmacistsPage,
-    ChatPage: ChatPageContainer
+    ChatPage: ChatPageContainer,
+    Conversation: ConversationContainer,
+    PharmacistList: PharmacistsListContainer
   },
   {
     initialRouteName: 'SearchPharmacists',
@@ -68,7 +72,9 @@ const UserInfoNavigator = createStackNavigator(
 
 const ChatNavigator = createStackNavigator(
   {
-    ChatPage: ChatPageContainer
+    ChatPage: ChatPageContainer,
+    Conversation: ConversationContainer,
+    PharmacistList: PharmacistsListContainer
   },
   {
     initialRouteName: 'ChatPage',

@@ -6,11 +6,18 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import CButton from '../Buttons/Button';
 
 export default class PharmacistsListItems extends React.Component {
+  handlPress = (pharmacist) => {
+    const { navigate } = this.props.navigation;
+    navigate('Conversation', {
+      otherPerson: pharmacist
+    });
+  }
+
   render() {
     const {
       data: {
         item: {
-          firstName, lastName, gender, city, picture, institutionName, professionLabel
+          id, firstName, lastName, gender, city, picture, institutionName, professionLabel
         }
       },
     } = this.props;
@@ -53,7 +60,7 @@ export default class PharmacistsListItems extends React.Component {
           <CButton
             title="Contacter"
             buttonStyle="green"
-            onPress={() => { }}
+            onPress={() => { this.handlPress(this.props.data.item); }}
           />
         </View>
       </View>

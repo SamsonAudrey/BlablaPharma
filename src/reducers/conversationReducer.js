@@ -14,7 +14,7 @@ import {
 
 import {
   LOGOUT
-} from '../actions/userActionTypes';
+} from '../actions/user/userActionTypes';
 
 export default function conversation(state = {}, action) {
   switch (action.type) {

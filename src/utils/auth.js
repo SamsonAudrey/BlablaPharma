@@ -8,7 +8,7 @@ import axios from 'axios';
 import { API_URL } from 'react-native-dotenv';
 import {
   refreshToken, userAuthFailure
-} from '../actions/userAction';
+} from '../actions/user/userAction';
 import { store } from '../../store';
 
 

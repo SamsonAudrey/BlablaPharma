@@ -7,16 +7,15 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import SearchPharmacistsPage from '../Pages/SearchPharmacistsPage';
 import UserInfoContainer from '../containers/User/UserInfoContainer';
 import ChatPageContainer from '../containers/ChatPageContainer';
-import BlogPageContainer from '../containers/Blog/BlogListContainer';
 import RegisterPageContainer from '../containers/User/RegisterPageContainer';
 import RegisterPatientContainer from '../containers/User/RegisterPatientContainer';
 import RegisterPharmacistContainer from '../containers/User/RegisterPharmacistContainer';
 import AuthPageContainer from '../containers/User/AuthPageContainer';
 import UserPersonnalInfoPageContainer from '../containers/User/UserPersonnalInfoPageContainer';
 import ModifUserPersonnalInfoPageContainer from '../containers/User/ModifUserPersonnalInfoContainer';
-import Blog from "../Pages/BlogPage";
+import Blog from '../Pages/BlogPage';
 import ConversationContainer from '../containers/Chat/ConversationContainer';
-import PharmacistsListContainer from '../containers/PharmacistsListContainer';
+import PharmacistsListContainer from '../containers/Pharmacists/PharmacistsListContainer';
 
 const SearchPharmacistsNavigator = createStackNavigator(
   {

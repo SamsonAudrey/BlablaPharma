@@ -25,8 +25,9 @@ export default class GeneralModif extends Component {
       user: {
         firstName: account.firstName,
         lastName: account.lastName,
-        birth: new Date(account.birthDayDate)
+        birth: new Date(account.birthDayDate),
       },
+      picture: account.picture,
       gender: account.gender === 'male' ? 0 : account.gender === 'female' ? 1 : 2
     };
 
@@ -52,13 +53,15 @@ export default class GeneralModif extends Component {
     const { userUpdateRemoteAccount, account } = this.props;
     const value = this._form.getValue();
     if (value) {
-      const { gender } = this.state;
+      const { gender, picture } = this.state;
       const changes = {
         id: account.id,
         firstName: value.firstName,
         lastName: value.lastName,
         birthDayDate: value.birth,
-        gender: gender === 0 ? 'male' : gender === 1 ? 'female' : 'another'
+        gender: gender === 0 ? 'male' : gender === 1 ? 'female' : 'another',
+        picture: picture,
+
       };
       userUpdateRemoteAccount(changes);
     }
@@ -73,9 +76,9 @@ export default class GeneralModif extends Component {
         <View style={styles.container}>
           <View style={styles.image}>
             <Image
-              source={require('../assets/user-icon.png')}
+              source={this.state.picture ? { uri: this.state.picture } : require('../assets/logo-fav.png')}
               style={{
-                width: 80, height: 90, opacity: 0.5, marginRight: '5%'
+                width: 80, height: 90, opacity: 1, marginRight: '5%'
               }}
             />
             <MaterialIcons name="photo-camera" size={24} color="#707070" />

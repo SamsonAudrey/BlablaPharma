@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import PharmacistsSearchBar from '../../components/Pharmacists/PharmacistsSearchBar';
 import {
-  updateSearchText, pharmacistsSearch, updateSearchProfessionFilter, updateSearchGenderFilter
+  updateSearchText, pharmacistsSearch, updateSearchGenderFilter
 } from '../../actions/pharmacist/pharmacistsSearchAction';
 
 const mapStateToProps = (state) => ({
@@ -13,9 +13,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onGenderFilterUpdate: (gender) => {
     dispatch(updateSearchGenderFilter(gender));
-  },
-  onProfessionFilterUpdate: (profession) => {
-    dispatch(updateSearchProfessionFilter(profession));
   },
   onTextUpdate: (text) => {
     dispatch(updateSearchText(text));

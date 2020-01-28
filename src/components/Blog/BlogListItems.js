@@ -7,17 +7,11 @@ import { WebView } from 'react-native-webview';
 import moment from 'moment';
 
 export default class BlogListItems extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-
   render() {
     const {
       data: {
         item: {
-          title, videoYoutubeId, userLike, createdAt
+          title, youtubeVideoId, userLike, createdAt
         }
       },
     } = this.props;
@@ -25,7 +19,7 @@ export default class BlogListItems extends React.Component {
     userLike
       ? (icon = 'heart')
       : (icon = 'heart-o');
-    const date = moment(createdAt).format('DD/MM/YYYY');
+    const date = moment(Number(createdAt)).format('DD/MM/YYYY');
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -35,7 +29,7 @@ export default class BlogListItems extends React.Component {
         <View style={styles.containerVideo}>
           <WebView
             style={styles.video}
-            source={{ uri: `https://www.youtube.com/embed/${videoYoutubeId}?autoplay=0?controls=0?modestbranding=1` }}
+            source={{ uri: `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=0?controls=0?modestbranding=1` }}
             mediaPlaybackRequiresUserAction
             scalesPageToFit
             domStorageEnabled

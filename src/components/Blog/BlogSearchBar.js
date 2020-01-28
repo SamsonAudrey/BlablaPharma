@@ -8,40 +8,44 @@ import SafeAreaView from 'react-native-safe-area-view';
 
 export default class BlogSearchBar extends Component {
   componentDidMount() {
+    const { text } = this.props;
+    this.props.onSearch(text);
   }
 
   componentDidUpdate() {
+    const { text } = this.props;
+    this.props.onSearch(text);
   }
 
-    handleChangeSearch = (text) => {
-      this.props.onTextUpdate(text);
-    };
+  handleChangeSearch = (text) => {
+    this.props.onTextUpdate(text);
+  };
 
 
-    render() {
-      return (
-        <>
-          <SafeAreaView style={{ }}>
-            <LinearGradient
-              colors={['#BED469', '#BED469', '#BED469']}
-            >
-              <View style={styles.titleView}>
-                <Text style={styles.title}>Blog</Text>
-              </View>
-            </LinearGradient>
-            <View style={styles.searchBarContainer}>
-              <TextInput
-                placeholder="Recherche une vidéo"
-                style={styles.textInputSearch}
-                underlineColorAndroid="transparent"
-                onChangeText={(text) => this.handleChangeSearch(text)}
-                value={this.props.text}
-              />
+  render() {
+    return (
+      <>
+        <SafeAreaView style={{ }}>
+          <LinearGradient
+            colors={['#BED469', '#BED469', '#BED469']}
+          >
+            <View style={styles.titleView}>
+              <Text style={styles.title}>Blog</Text>
             </View>
-          </SafeAreaView>
-        </>
-      );
-    }
+          </LinearGradient>
+          <View style={styles.searchBarContainer}>
+            <TextInput
+              placeholder="Recherche une vidéo"
+              style={styles.textInputSearch}
+              underlineColorAndroid="transparent"
+              onChangeText={(text) => this.handleChangeSearch(text)}
+              value={this.props.text}
+            />
+          </View>
+        </SafeAreaView>
+      </>
+    );
+  }
 }
 
 let styles = StyleSheet.create({

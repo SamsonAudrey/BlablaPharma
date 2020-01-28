@@ -1,42 +1,44 @@
-
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import { filter } from 'lodash';
 import SceneBlog from '../scenes/SceneBlog';
 import CustomTabView from '../CustomTabView';
-import {filter} from "lodash";
 
 class BlogList extends Component {
-    state = {
-      index: 0,
-      routes: [
-        { key: 'first', title: 'Tout' },
-        { key: 'second', title: 'Favoris' },
-      ]
-    };
+  state = {
+    index: 0,
+    routes: [
+      { key: 'first', title: 'Tout' },
+      { key: 'second', title: 'Favoris' },
+    ]
+  };
 
-    renderScene = ({ route }) => {
-      switch (route.key) {
-        case 'first':
-          return <SceneBlog videos={mockVideo} />;
-        case 'second':
-          return <SceneBlog videos={filter(mockVideo, { userLike: true })} />;
-        default:
-          return null;
-      }
-    };
-
-    render() {
-      return (
-        <>
-          <View style={{ flex: 1, paddingHorizontal: '1%' }}>
-            <CustomTabView
-              renderScene={this.renderScene}
-              state={this.state}
-            />
-          </View>
-        </>
-      );
+  renderScene = ({ route }) => {
+    switch (route.key) {
+      case 'first':
+        return <SceneBlog videos={this.props.blog} />;
+      case 'second':
+        return <SceneBlog videos={filter(this.props.blog, { userLike: true })} />;
+      default:
+        return null;
     }
+  };
+
+
+  render() {
+    console.log('BLOOOOOOG');
+    console.log(this.props.blog);
+    return (
+      <>
+        <View style={{ flex: 1, paddingHorizontal: '1%' }}>
+          <CustomTabView
+            renderScene={this.renderScene}
+            state={this.state}
+          />
+        </View>
+      </>
+    );
+  }
 }
 
 

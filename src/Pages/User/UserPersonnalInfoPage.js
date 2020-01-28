@@ -60,8 +60,8 @@ class UserPersonnalInfoPage extends Component {
           />
           <View style={styles.container}>
             <Image
-              source={require('../../assets/user-icon.png')}
-              style={{ width: 100, height: 110, opacity: 0.5 }}
+              source={account.picture ? { uri: account.picture } : require('../../assets/logo-fav.png')}
+              style={{ width: 100, height: 110, opacity: 1 }}
             />
             <Text style={styles.title}>
               {account.firstName}

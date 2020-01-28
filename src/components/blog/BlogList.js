@@ -27,12 +27,14 @@ class BlogList extends Component {
           return (
             <SceneBlog
               videos={filter(this.props.blog, { userLike: true })}
+              isConnected={this.props.isConnected}
             />
           );
         }
         return (
           <SceneBlog
             videos={[]}
+            isConnected={this.props.isConnected}
           />
         );
       default:

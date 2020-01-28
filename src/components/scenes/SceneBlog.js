@@ -21,7 +21,13 @@ export default class SceneBlog extends React.Component {
             ListFooterComponent={() => (<View style={{ height: 20 }} />)}
             style={{ marginTop: 10 }}
           />
-        ) : <Text>Aucune vidéo trouvée</Text> }
+        ) : this.props.isConnected
+          ? (<Text>Aucune vidéo trouvée</Text>)
+          : (
+            <Text style={{ textAlign: 'center', marginHorizontal: 10 }}>
+              Vous n'êtes pas connecté. Connectez-vous pour pouvoir voir vos favoris !
+            </Text>
+          )}
       </View>
     );
   }

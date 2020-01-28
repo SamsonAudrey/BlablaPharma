@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
   const { navigation } = ownProps;
   const { otherPerson } = navigation.state.params;
   const { user } = state;
-  const conv = state.conversations ? state.conversations.filter((convers) => convers.members[0].id === otherPerson.id || convers.members[1].id === otherPerson.id) : undefined;
+  const conv = state.conversations[0] ? state.conversations.filter((convers) => convers.members[0].id === otherPerson.id || convers.members[1].id === otherPerson.id) : undefined;
   return {
     conversationId: conv[0] ? conv[0].id : undefined,
     otherPerson,

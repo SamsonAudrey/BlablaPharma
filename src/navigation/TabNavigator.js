@@ -144,10 +144,12 @@ export default createMaterialTopTabNavigator(
     tabBarOptions: {
       showLabel: true,
       showIcon: true,
+      keyboardHidesTabBar: true,
       style: {
         backgroundColor: '#fff',
         width: '100%'
       },
+      keyboardHidesTabBar: true,
       upperCaseLabel: false,
       indicatorStyle: { backgroundColor: '#BED469' },
       activeTintColor: '#BED469',

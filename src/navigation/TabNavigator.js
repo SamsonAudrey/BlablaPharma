@@ -4,18 +4,18 @@ import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import SearchPharmacistsPage from '../Pages/SearchPharmacistsPage';
-import UserInfoContainer from '../containers/User/UserInfoContainer';
-import ChatPageContainer from '../containers/ChatPageContainer';
-import RegisterPageContainer from '../containers/User/RegisterPageContainer';
-import RegisterPatientContainer from '../containers/User/RegisterPatientContainer';
-import RegisterPharmacistContainer from '../containers/User/RegisterPharmacistContainer';
-import AuthPageContainer from '../containers/User/AuthPageContainer';
-import UserPersonnalInfoPageContainer from '../containers/User/UserPersonnalInfoPageContainer';
-import ModifUserPersonnalInfoPageContainer from '../containers/User/ModifUserPersonnalInfoContainer';
-import Blog from '../Pages/BlogPage';
-import ConversationContainer from '../containers/Chat/ConversationContainer';
-import PharmacistsListContainer from '../containers/Pharmacists/PharmacistsListContainer';
+import SearchPharmacistsPage from '../pages/pharmacists/SearchPharmacistsPage';
+import UserInfoContainer from '../containers/user/UserInfoContainer';
+import ChatPageContainer from '../containers/chat/ChatPageContainer';
+import RegisterPageContainer from '../containers/user/RegisterPageContainer';
+import RegisterPatientContainer from '../containers/user/RegisterPatientContainer';
+import RegisterPharmacistContainer from '../containers/user/RegisterPharmacistContainer';
+import AuthPageContainer from '../containers/user/AuthPageContainer';
+import UserPersonnalInfoPageContainer from '../containers/user/UserPersonnalInfoPageContainer';
+import ModifUserPersonnalInfoPageContainer from '../containers/user/ModifUserPersonnalInfoContainer';
+import Blog from '../pages/blog/BlogPage';
+import ConversationContainer from '../containers/chat/ConversationContainer';
+import PharmacistsListContainer from '../containers/pharmacists/PharmacistsListContainer';
 
 const SearchPharmacistsNavigator = createStackNavigator(
   {

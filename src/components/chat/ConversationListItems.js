@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import CButton from '../Buttons/Button';
+import CButton from '../buttons/Button';
 
 export default class ConversationListItems extends Component {
   render() {

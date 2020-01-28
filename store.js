@@ -10,7 +10,7 @@ import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from '@react-native-community/async-storage';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
-import reducer from './src/reducers';
+import reducer from './src/reducers/utils';
 
 const persistConfig = {
   key: 'root',

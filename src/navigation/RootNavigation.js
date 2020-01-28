@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createSwitchNavigator } from 'react-navigation';
 import { Image, View } from 'react-native';
-import HomePage from '../Pages/HomePage';
+import HomePage from '../pages/home/HomePage';
 import TabNavigator from './TabNavigator';
 
 const AuthScreenStack = createStackNavigator({

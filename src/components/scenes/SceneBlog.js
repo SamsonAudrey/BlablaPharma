@@ -2,11 +2,10 @@ import React from 'react';
 import {
   FlatList, StyleSheet, Text, View
 } from 'react-native';
-import BlogListItems from '../Blog/BlogListItems';
+import BlogListItems from '../blog/BlogListItems';
 
 export default class SceneBlog extends React.Component {
   render() {
-    console.log('SCENE BLOOOOOOG');
     return (
       <View style={styles.scene}>
         {this.props.videos.length > 0 ? (

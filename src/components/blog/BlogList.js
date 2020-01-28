@@ -16,9 +16,25 @@ class BlogList extends Component {
   renderScene = ({ route }) => {
     switch (route.key) {
       case 'first':
-        return <SceneBlog videos={this.props.blog} />;
+        return (
+          <SceneBlog
+            videos={this.props.blog}
+            isConnected={this.props.isConnected}
+          />
+        );
       case 'second':
-        return <SceneBlog videos={filter(this.props.blog, { userLike: true })} />;
+        if (this.props.isConnected) {
+          return (
+            <SceneBlog
+              videos={filter(this.props.blog, { userLike: true })}
+            />
+          );
+        }
+        return (
+          <SceneBlog
+            videos={[]}
+          />
+        );
       default:
         return null;
     }
@@ -26,8 +42,6 @@ class BlogList extends Component {
 
 
   render() {
-    console.log('BLOOOOOOG');
-    console.log(this.props.blog);
     return (
       <>
         <View style={{ flex: 1, paddingHorizontal: '1%' }}>

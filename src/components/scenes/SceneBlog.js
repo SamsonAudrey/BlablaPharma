@@ -2,7 +2,7 @@ import React from 'react';
 import {
   FlatList, StyleSheet, Text, View
 } from 'react-native';
-import BlogListItems from '../blog/BlogListItems';
+import Article from '../../containers/blog/ArticleContainer';
 
 export default class SceneBlog extends React.Component {
   render() {
@@ -12,7 +12,7 @@ export default class SceneBlog extends React.Component {
           <FlatList
             data={this.props.videos}
             renderItem={(video) => (
-              <BlogListItems
+              <Article
                 data={video}
               />
             )}

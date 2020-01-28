@@ -12,8 +12,6 @@ export const blogSearch = (
   qValue,
   limitValue = 20,
 ) => {
-  console.log(`BLOG SEARCH : ${qValue
-  }`);
   function thunk(dispatch) {
     const TEMPO_URL = 'https://api.staging.blablapharma.fr';
     dispatch({ type: BLOG_SEARCH_REQUEST });

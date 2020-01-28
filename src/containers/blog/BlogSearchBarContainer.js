@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import BlogSearchBar from '../../components/Blog/BlogSearchBar';
+import BlogSearchBar from '../../components/blog/BlogSearchBar';
 import { blogSearch, updateSearchTextBlog } from '../../actions/blog/blogSearchAction';
 
 const mapStateToProps = (state) => ({

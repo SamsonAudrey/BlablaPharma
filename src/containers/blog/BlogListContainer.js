@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import BlogList from '../../components/Blog/BlogList';
+import BlogList from '../../components/blog/BlogList';
 import { createLoadingSelector } from '../../utils/loadingSelector';
 import { blogSearch } from '../../actions/blog/blogSearchAction';
-import CustomTabView from '../../components/CustomTabView';
+import CustomTabView from '../../components/utils/CustomTabView';
 
 const loadingSelector = createLoadingSelector(['BLOG_SEARCH']);
 

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ChatPage from '../Pages/ChatPage';
+import ChatPage from '../../pages/chat/ChatPage';
 
 const mapStateToProps = (state) => ({ test: 'tt' });
 

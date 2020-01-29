@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
     color: '#707070',
     fontSize: 16,
     marginVertical: 5,
+    marginBottom: 10,
     textAlign: 'left',
     width: '80%',
   },

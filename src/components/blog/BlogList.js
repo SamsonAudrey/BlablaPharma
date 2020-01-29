@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { filter } from 'lodash';
 import SceneBlog from '../scenes/SceneBlog';
 import CustomTabView from '../utils/CustomTabView';
+import NotConnectedPage from "./NotConnectedPage";
 
 class BlogList extends Component {
   state = {
@@ -32,10 +33,7 @@ class BlogList extends Component {
           );
         }
         return (
-          <SceneBlog
-            videos={[]}
-            isConnected={this.props.isConnected}
-          />
+          <NotConnectedPage />
         );
       default:
         return null;

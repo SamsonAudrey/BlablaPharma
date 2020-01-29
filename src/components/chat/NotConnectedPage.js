@@ -10,10 +10,12 @@ class NotConnectedPage extends Component {
         <View style={styles.container}>
           <Image
             source={require('../../assets/logo-fav.png')}
-            style={{ width: 100, height: 110, opacity: 1, marginTop: '10%' }}
+            style={{
+              width: 100, height: 110, opacity: 1, marginTop: '10%'
+            }}
           />
           <Text style={styles.text}>
-                Vous n'êtes pas connecté. Connectez-vous pour pouvoir voir vos favoris !
+            Vous n'êtes pas connecté. Connectez-vous pour pouvoir voir vos messages !
           </Text>
         </View>
       </>

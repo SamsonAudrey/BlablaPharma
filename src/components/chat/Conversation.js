@@ -1,9 +1,9 @@
 import React from 'react';
-import { API_URL } from 'react-native-dotenv';
 import { GiftedChat } from 'react-native-gifted-chat';
 import {
   Text
 } from 'react-native';
+import BackButton from '../buttons/BackButton';
 
 
 export default class Conversation extends React.Component {
@@ -38,7 +38,7 @@ export default class Conversation extends React.Component {
   }
 
   onSend(message) {
-    //console.log(`proodsqDQSps${JSON.stringify(message)}`);
+    // console.log(`proodsqDQSps${JSON.stringify(message)}`);
     this.props.onSendMessage(this.props.conversationId, 'text', message[0].text);
   }
 
@@ -52,7 +52,7 @@ export default class Conversation extends React.Component {
   }))
 
   _onRead() {
-    //console.log('onree');
+    // console.log('onree');
     const message = this.props.messages ? this.props.messages[0] : undefined;
     if (message && message.author !== this.props.user.account.id) {
       this.props.onRead(this.props.conversationId, this.props.messages[0]);
@@ -60,18 +60,24 @@ export default class Conversation extends React.Component {
   }
 
   render() {
-    //console.log(`proops${JSON.stringify(this.props.conversationId)}`);
+    // console.log(`proops${JSON.stringify(this.props.conversationId)}`);
     const mess = this.props.messages ? this.messageFormat(this.props.messages) : null;
-    const conversation = this.props.conversationId ? <Text> Ouiiiii </Text> : <Text>Noooon</Text>
+    const conversation = this.props.conversationId ? <Text> Ouiiiii </Text> : <Text>Noooon</Text>;
     return (
-      <GiftedChat
-        messages={mess}
-        onSend={(messages) => this.onSend(messages)}
-        user={{
-          _id: this.props.user.account.id,
-        }}
-        onInputTextChanged={this.props.onTyping(this.props.conversationId)}
-      />
+      <>
+        <BackButton
+          title="Retour"
+          onPress={() => this.props.navigation.goBack()}
+        />
+        <GiftedChat
+          messages={mess}
+          onSend={(messages) => this.onSend(messages)}
+          user={{
+            _id: this.props.user.account.id,
+          }}
+          onInputTextChanged={this.props.onTyping(this.props.conversationId)}
+        />
+      </>
     );
   }
 }

@@ -9,7 +9,7 @@ export default class ConversationList extends Component {
     this.props.onGetConversations();
   }
 
-  handlPress = (conversationId, otherPerson) => {
+  handlePress = (conversationId, otherPerson) => {
     const { navigate } = this.props.navigation;
     navigate('Conversation', {
       conversationId,
@@ -42,7 +42,7 @@ export default class ConversationList extends Component {
             renderItem={(conversation) => (
               <ConversationListItems
                 conversation={conversation}
-                handlPress={this.handlPress}
+                handlePress={this.handlePress}
                 onDelete={this.props.onDelete}
                 otherPerson={this.getOtherPerson(conversation.item)}
               />

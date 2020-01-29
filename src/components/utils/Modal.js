@@ -17,6 +17,7 @@ class CModal extends Component {
 
   toggleModal = () => {
     this.setState({ isModalVisible: !this.state.isModalVisible });
+    this.props.cancelPress ? this.props.cancelPress : null;
   };
 
   /* <FatButton title1="Continuer sur" title2="l'application" onPress={this.props.nav} /> */

@@ -7,10 +7,10 @@ import CButton from '../buttons/Button';
 
 export default class ConversationListItems extends Component {
 renderRightActions = () => (
-    <TouchableOpacity
-      onPress={() => this.props.onDelete(conversation.id)}
-      style={{ scaleY: 100, scaleX: 2, backgroundColor: '#cc0000' }}
-    />
+  <TouchableOpacity
+    onPress={() => this.props.onDelete(conversation.id)}
+    style={{ scaleY: 100, scaleX: 2, backgroundColor: '#cc0000' }}
+  />
 )
 
 render() {

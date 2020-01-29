@@ -77,6 +77,7 @@ class ModifUserPersonnalInfoPage extends Component {
          <CustomTabView
            renderScene={this.renderScene}
            state={this.stateTabView}
+           onSwipe={this.props.onClearError}
          />
        </SafeAreaView>
      </>

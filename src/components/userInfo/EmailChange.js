@@ -22,7 +22,7 @@ export default class EmailChange extends Component {
     });
 
     this.Email = t.struct({
-      email : this.Email
+      email: this.Email
     });
   }
 
@@ -43,6 +43,9 @@ export default class EmailChange extends Component {
   }
 
   render() {
+    const { account } = this.props;
+    console.log(JSON.stringify(account));
+    const emailWaiting = account.newEmail ? 'Email en attente de validation :\n' : '';
     const error403Update = this.props.error === true ? 'Email déjà utilisé' : '';
     return (
       <KeyboardAwareScrollView
@@ -50,7 +53,7 @@ export default class EmailChange extends Component {
         enableOnAndroid
       >
         <View style={styles.form}>
-          <Text>{error403Update}</Text>
+          <Text style={{ color: '#ccOOOO' }}>{error403Update}</Text>
           <Form
             ref={(c) => this._form = c}
             type={this.Email}
@@ -59,6 +62,8 @@ export default class EmailChange extends Component {
             value={this.state}
             onChange={(text) => this.onChange(text)}
           />
+          <Text style={{ color: '#707070' }}>{emailWaiting}</Text>
+          <Text style={{ color: '#cc0000' }}>{account.newEmail}</Text>
           <View style={styles.submitButton}>
             <CButton
               title="Mettre à jour"

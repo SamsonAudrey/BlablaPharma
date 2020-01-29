@@ -65,6 +65,8 @@ export default class CustomTabView extends React.Component {
 
   renderScene= this.props.renderScene;
 
+  onSwipe= this.props.onSwipe ? this.props.onSwipe : null;
+
   _handleIndexChange = (index) => this.setState({ index });
 
   _renderTabBar = (props) => {
@@ -135,6 +137,7 @@ export default class CustomTabView extends React.Component {
           navigationState={this.state}
           renderScene={this.renderScene}
           renderTabBar={this._renderTabBar}
+          onSwipeStart={this.onSwipe}
           onIndexChange={this._handleIndexChange}
         />
       </>

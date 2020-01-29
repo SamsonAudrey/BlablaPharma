@@ -77,6 +77,10 @@ const ChatNavigator = createStackNavigator(
   },
   {
     initialRouteName: 'ChatPage',
+    defaultNavigationOptions: {
+      title: '',
+      headerShown: false,
+    },
   }
 );
 

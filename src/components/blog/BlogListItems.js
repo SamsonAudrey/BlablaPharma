@@ -2,11 +2,27 @@ import * as React from 'react';
 import {
   View, Text, StyleSheet, Dimensions
 } from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { WebView } from 'react-native-webview';
 import moment from 'moment';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
 
 export default class BlogListItems extends React.Component {
+  state = {
+    userLike: this.props.data.item.userLike,
+  };
+
+  onChangeLike() {
+    this.state.userLike = !this.state.userLike;
+    if (this.state.userLike) {
+      this.props.onLike(this.props.data.item.id);
+      this.props.onSearch('');
+    } else {
+      this.props.onDislike(this.props.data.item.id);
+      this.props.onSearch('');
+    }
+  }
+
   render() {
     const {
       data: {
@@ -24,7 +40,21 @@ export default class BlogListItems extends React.Component {
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>{title}</Text>
-          <FontAwesome name={icon} size={20} style={{ margin: 5, marginBottom: 0 }} color="red" />
+          {
+            this.props.isConnected
+              ? (
+                <FontAwesome
+                  name={icon}
+                  size={20}
+                  color="red"
+                  onPress={() => {
+                    this.onChangeLike();
+                  }}
+                  style={{ margin: 5, marginBottom: 0 }}
+                />
+              )
+              : <Text />
+          }
         </View>
         <View style={styles.containerVideo}>
           <WebView
@@ -78,6 +108,7 @@ const styles = StyleSheet.create({
     color: '#707070',
     fontSize: 16,
     marginVertical: 5,
+    marginBottom: 10,
     textAlign: 'left',
     width: '80%',
   },

@@ -15,6 +15,7 @@ export default class ScenePharmacists extends React.Component {
               <PharmacistsListItems
                 data={pharmacist}
                 navigation={this.props.navigation}
+                isConnected={this.props.isConnected}
               />
             )}
             keyExtractor={(item) => item.id.toString()}

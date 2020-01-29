@@ -19,6 +19,8 @@ export default class PharmarmacistsList extends React.Component {
          <ScenePharmacists
            pharmacists={this.props.blablapharmacists}
            navigation={this.props.navigation}
+           isConnected={this.props.isConnected}
+
          />
        );
      case 'second':
@@ -26,6 +28,7 @@ export default class PharmarmacistsList extends React.Component {
          <ScenePharmacists
            pharmacists={this.props.pharmacists}
            navigation={this.props.navigation}
+           isConnected={this.props.isConnected}
          />
        );
      default:

@@ -15,11 +15,11 @@ export default class ConversationList extends Component {
       conversationId,
       otherPerson
     });
-  }
+  };
 
   handleRefresh = () => {
     this.props.onGetConversations();
-  }
+  };
 
   getOtherPerson = (conversation) => {
     const { user } = this.props;
@@ -29,7 +29,7 @@ export default class ConversationList extends Component {
       return secPers;
     }
     return onePers;
-  }
+  };
 
   render() {
     const isFetching = this.props.isFetching === true ? 'isFetching' : '';

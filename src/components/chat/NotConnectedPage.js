@@ -15,7 +15,7 @@ class NotConnectedPage extends Component {
             }}
           />
           <Text style={styles.text}>
-            Vous n'êtes pas connecté. Connectez-vous pour pouvoir voir vos messages !
+            Vous n'êtes pas connecté. Connectez-vous pour pouvoir envoyer des messages !
           </Text>
         </View>
       </>

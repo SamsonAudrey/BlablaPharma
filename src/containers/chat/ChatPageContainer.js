@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 import ChatPage from '../../pages/chat/ChatPage';
 
-const mapStateToProps = (state) => ({ test: 'tt' });
+const mapStateToProps = (state) => ({
+  isConnected: state.connection.isConnected
+});
 
 const mapDispatchToProps = (dispatch) => ({
   // dispatching plain actions

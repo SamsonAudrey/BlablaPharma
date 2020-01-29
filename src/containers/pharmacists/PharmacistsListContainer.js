@@ -15,7 +15,8 @@ const mapStateToProps = (state, ownProps) => {
     navigation,
     pharmacists: filter(state.pharmacists, { professionLabel: 'pharmacist' }),
     blablapharmacists: filter(state.pharmacists, { professionLabel: 'pharmacistBlablapharma' }),
-    isFetching: loadingSelector(state)
+    isFetching: loadingSelector(state),
+    isConnected: state.connection.isConnected
   };
 };
 

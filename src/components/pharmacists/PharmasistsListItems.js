@@ -4,14 +4,19 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CButton from '../buttons/Button';
+import ScenePharmacists from "../scenes/ScenePharmacists";
 
 export default class PharmacistsListItems extends React.Component {
   handlPress = (pharmacist) => {
     const { navigate } = this.props.navigation;
-    navigate('Conversation', {
-      otherPerson: pharmacist
-    });
-  }
+    if (this.props.isConnected) {
+      navigate('Conversation', {
+        otherPerson: pharmacist
+      });
+    } else {
+      navigate('Chat');
+    }
+  };
 
   render() {
     const {

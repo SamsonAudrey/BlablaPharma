@@ -8,13 +8,14 @@ const loadingSelector = createLoadingSelector(['BLOG_SEARCH']);
 
 const mapStateToProps = (state) => ({
   blog: state.blog,
-  isFetching: loadingSelector(state)
+  isFetching: loadingSelector(state),
+  isConnected: state.connection.isConnected
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onSearch: (text) => {
     dispatch(blogSearch(text));
-  }
+  },
 });
 
 const Blog = connect(

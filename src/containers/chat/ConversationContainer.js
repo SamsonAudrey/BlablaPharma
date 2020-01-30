@@ -6,6 +6,7 @@ import {
 import { createConversations, getConversation } from '../../actions/chat/conversationAction';
 
 const mapStateToProps = (state, ownProps) => {
+  console.log("convvv"+JSON.stringify(state.conversations))
   const { navigation } = ownProps;
   const { otherPerson } = navigation.state.params;
   const { user } = state;

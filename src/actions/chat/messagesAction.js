@@ -27,7 +27,7 @@ socket.on('event:typing', (data) => {
 socket.on('event:read', (data) => {
   console.log('message read:');
   console.log(data);
-  store.dispatch(onReadSuccess(data.conversation));
+  //store.dispatch(onReadSuccess(data.conversation));
 });
 
 socket.on('message', (data) => {
@@ -147,7 +147,7 @@ export const onRead = (conversationId, message) => {
     return postRequest(`/conversations/${conversationId}/event/read`, token, { messageId: message.id })
       .then((response) => {
         console.log(JSON.stringify(`respo on reaadd${response}`));
-        //dispatch(onReadSuccess(conversationId));
+        dispatch(onReadSuccess(conversationId));
       })
       .catch((error) => console.log(JSON.stringify(error)));
   }

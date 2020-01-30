@@ -103,9 +103,10 @@ export default function conversation(state = {}, action) {
       const conversationReadItem = state.filter((conv) => conv.id === action.conversationId);
       return state.map((item) => {
         if (item !== conversationReadItem[0]) {
-          // console.log(`hhhh${JSON.stringify(conversationItem2[0])}bbbbbbbb${JSON.stringify(item)}`);
+           console.log(`hhhfsefsqdh${JSON.stringify(conversationReadItem[0])}bbbbbbbb${JSON.stringify(item)}`);
           return item;
         }
+        console.log(`jjjj${JSON.stringify(conversationReadItem[0])}bbbbbbbb${JSON.stringify(item)}`);
         // We modify the read element of the last message
         const mess = item.messages[0];
         mess.read = true;

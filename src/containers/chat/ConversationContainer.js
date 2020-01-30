@@ -16,7 +16,8 @@ const mapStateToProps = (state, ownProps) => {
     conversationId: conv ? conv.length > 0 ? conv[0].id : undefined : undefined,
     otherPerson,
     messages: conv ? conv.length > 0 ? conv[0].messages : undefined : undefined,
-    user
+    user,
+    isConnected: state.connection
   };
 };
 

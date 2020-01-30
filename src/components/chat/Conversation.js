@@ -1,7 +1,7 @@
 import React from 'react';
 import { GiftedChat } from 'react-native-gifted-chat';
 import {
-  Text
+  Text, StyleSheet, View, Image
 } from 'react-native';
 import BackButton from '../buttons/BackButton';
 
@@ -60,24 +60,60 @@ export default class Conversation extends React.Component {
   }
 
   render() {
-    // console.log(`proops${JSON.stringify(this.props.conversationId)}`);
+    console.log(`proops${JSON.stringify(this.props)}`);
     const mess = this.props.messages ? this.messageFormat(this.props.messages) : null;
-    const conversation = this.props.conversationId ? <Text> Ouiiiii </Text> : <Text>Noooon</Text>;
+    if (this.props.isConnected) {
+      return (
+        <>
+          <BackButton
+            title="Retour"
+            onPress={() => this.props.navigation.goBack()}
+          />
+          <GiftedChat
+            messages={mess}
+            onSend={(messages) => this.onSend(messages)}
+            user={{
+              _id: this.props.user.account.id,
+            }}
+            onInputTextChanged={() => this.props.onTyping(this.props.conversationId)}
+          />
+        </>
+      );
+    }
+
     return (
       <>
-        <BackButton
-          title="Retour"
-          onPress={() => this.props.navigation.goBack()}
-        />
-        <GiftedChat
-          messages={mess}
-          onSend={(messages) => this.onSend(messages)}
-          user={{
-            _id: this.props.user.account.id,
-          }}
-          onInputTextChanged={() => this.props.onTyping(this.props.conversationId)}
-        />
+        <View style={styles.container}>
+          <Image
+            source={require('../../assets/logo-fav.png')}
+            style={{
+              width: 100, height: 110, opacity: 1, marginTop: '10%'
+            }}
+          />
+          <Text style={styles.text}>
+                Vous n'êtes pas connecté. Connectez-vous pour pouvoir envoyer des messages !
+          </Text>
+        </View>
       </>
     );
   }
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: '1%',
+    alignItems: 'center',
+    paddingVertical: '10%'
+  },
+  text: {
+    textAlign: 'center',
+    marginHorizontal: 10,
+    marginVertical: '10%',
+    fontSize: 22,
+    color: '#BED469',
+    fontWeight: 'bold'
+
+  }
+});

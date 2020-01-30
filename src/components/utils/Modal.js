@@ -17,13 +17,9 @@ class CModal extends Component {
 
   toggleModal = () => {
     this.setState({ isModalVisible: !this.state.isModalVisible });
-    this.props.cancelPress ? this.props.cancelPress : null;
   };
 
-  /* <FatButton title1="Continuer sur" title2="l'application" onPress={this.props.nav} /> */
-
   render() {
-    console.log(` MODAL : ${this.state.isModalVisible}`);
     const isVisible = this.state.isModalVisible;
     return (
       <>
@@ -64,7 +60,9 @@ class CModal extends Component {
 const styles = StyleSheet.create({
   modal: {
     backgroundColor: '#fff',
-    height: '40%'
+    height: '40%',
+    borderWidth: 1,
+    color: '#707070'
   },
   modalContent: {
     flex: 1,

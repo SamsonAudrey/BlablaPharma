@@ -111,9 +111,7 @@ export function RefreshToken(state) {
         .then(
           () => {
             const newState = store.getState();
-            //console.log(`newstate : ${JSON.stringify(newState)}`);
             const newAccessTokenValue = newState.user.accessToken;
-            //console.log(`new refresh token : ${newAccessTokenValue}`);
             axios.defaults.headers.Authorization = `Bearer ${newAccessTokenValue}`;
             resolve({ success: true });
           },

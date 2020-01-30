@@ -31,8 +31,11 @@ class ModifUserPersonnalInfoPage extends Component {
        return (
          <GeneralModifInfo
            userUpdateRemoteAccount={this.props.onUserUpdateRemoteAccount}
+           userUpdateRemotePharmaAccount={this.props.onUserUpdateRemotePharmaAccount}
            onUserSearch={this.props.onUserSearch}
+           onUserPharmaSearch={this.props.onUserPharmaSearch}
            account={this.props.account}
+           pharmacistAccount={this.props.pharmacistAccount}
            error={this.props.selector.error403Update}
          />
        );

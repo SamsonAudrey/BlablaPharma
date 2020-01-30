@@ -5,7 +5,6 @@ import {
 import t from 'tcomb-form-native';
 import RadioForm from 'react-native-simple-radio-button';
 import moment from 'moment';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import CButton from '../buttons/Button';
@@ -21,6 +20,7 @@ export default class GeneralModif extends Component {
   constructor(props) {
     super(props);
     const { account } = this.props;
+    const { pharmacistAccount } = this.props;
     this.state = {
       user: {
         firstName: account.firstName,
@@ -28,7 +28,7 @@ export default class GeneralModif extends Component {
         birth: new Date(account.birthDayDate),
       },
       picture: account.picture,
-      gender: account.gender === 'male' ? 0 : account.gender === 'female' ? 1 : 2
+      gender: account.gender === 'male' ? 0 : account.gender === 'female' ? 1 : 2,
     };
 
     this.Name = t.refinement(t.String, (name) => name.length >= 2);
@@ -38,11 +38,37 @@ export default class GeneralModif extends Component {
       lastName: this.Name,
       birth: t.Date
     });
+
+    if (pharmacistAccount) {
+      this.state.user = {
+        firstName: account.firstName,
+        lastName: account.lastName,
+        birth: new Date(account.birthDayDate),
+        professionalId: pharmacistAccount.professionalId,
+        professionLabel: pharmacistAccount.professionLabel,
+        institutionName: pharmacistAccount.institutionName,
+        address: pharmacistAccount.address,
+        postalCode: pharmacistAccount.postalCode,
+        city: pharmacistAccount.city,
+      };
+      this.General = t.struct({
+        firstName: this.Name,
+        lastName: this.Name,
+        birth: t.Date,
+        professionalId: this.Name,
+        professionLabel: this.Name,
+        institutionName: this.Name,
+        address: this.Name,
+        postalCode: this.Name,
+        city: this.Name,
+      });
+    }
   }
 
   componentWillUnmount() {
     const { account } = this.props;
     this.props.onUserSearch(account.id);
+    this.props.onUserPharmaSearch(account.id);
   }
 
   onChange(value) {
@@ -50,7 +76,7 @@ export default class GeneralModif extends Component {
   }
 
   handleSubmit = () => {
-    const { userUpdateRemoteAccount, account } = this.props;
+    const { userUpdateRemoteAccount, account, userUpdateRemotePharmaAccount } = this.props;
     const value = this._form.getValue();
     if (value) {
       const { gender, picture } = this.state;
@@ -60,12 +86,24 @@ export default class GeneralModif extends Component {
         lastName: value.lastName,
         birthDayDate: value.birth,
         gender: gender === 0 ? 'male' : gender === 1 ? 'female' : 'another',
-        picture: picture,
-
+        picture,
       };
       userUpdateRemoteAccount(changes);
+
+      if (this.props.pharmacistAccount) {
+        const changesPharma = {
+          id: account.id,
+          professionalId: value.professionalId,
+          professionLabel: value.professionLabel,
+          institutionName: value.institutionName,
+          address: value.address,
+          postalCode: value.postalCode,
+          city: value.city,
+        };
+        userUpdateRemotePharmaAccount(changesPharma);
+      }
     }
-  }
+  };
 
   render() {
     return (

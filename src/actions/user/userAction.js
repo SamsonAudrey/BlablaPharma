@@ -12,7 +12,7 @@ import {
   TOKEN_VERIFIED,
   USER_PERSONNAL_DELETE_ACCOUNT_REQUEST,
   USER_PERSONNAL_DELETE_ACCOUNT_SUCCESS,
-  USER_PERSONNAL_DELETE_ACCOUNT_FAILURE
+  USER_PERSONNAL_DELETE_ACCOUNT_FAILURE, USER_PERSONNAL_INFO_PHARMA_SEARCH_SUCCESS
 } from './userActionTypes';
 
 export const userAuth = (userEmail, userPassword) => {
@@ -25,8 +25,6 @@ export const userAuth = (userEmail, userPassword) => {
         }
       })
       .then((response) => {
-        //console.log(API_URL);
-        // console.log(JSON.stringify(response.data))
         dispatch(userAuthSuccess(response.data));
       })
       .catch((error) => {
@@ -45,7 +43,8 @@ export const userAuthSuccess = (auth) => ({
   payload: {
     accessToken: auth.token,
     refreshToken: auth.refreshToken,
-    account: auth.account
+    account: auth.account,
+    pharmacistAccount: auth.pharmacist
   }
 });
 
@@ -98,11 +97,9 @@ export const userSearch = (accountId) => {
     return axios
       .get(`${API_URL}/accounts/${accountId}`)
       .then((response) => {
-        // console.log("yessssssssssssssss")
         dispatch(userSearchSuccess(response.data));
       })
       .catch((error) => {
-        // console.log("errrrrrrrrr")
         dispatch(userSearchFailure(error));
       });
   }
@@ -126,17 +123,39 @@ export const userSearchFailure = (error) => ({
 });
 
 
+export const userPharmacistSearch = (accountId) => {
+  function thunk(dispatch) {
+    return axios
+      .get(`${API_URL}/pharmacists/${accountId}`)
+      .then((response) => {
+        dispatch(userPharmacistSearchSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(userSearchFailure(error));
+      });
+  }
+  thunk.meta = {
+    retry: true
+  };
+  return thunk;
+};
+
+export const userPharmacistSearchSuccess = (pharmacistAccount) => ({
+  type: USER_PERSONNAL_INFO_PHARMA_SEARCH_SUCCESS,
+  payload: {
+    pharmacistAccount
+  }
+});
+
 export const userDelete = (accountId) => {
   function thunk(dispatch) {
     dispatch({ type: USER_PERSONNAL_DELETE_ACCOUNT_REQUEST });
     return axios
       .delete(`${API_URL}/accounts/${accountId}`)
       .then((response) => {
-        //console.log('ACCOUNT DELETED');
         dispatch(userDeleteSuccess(response.data));
       })
       .catch((error) => {
-        //console.log('ACCOUNT NOT DELETED');
         dispatch(userDeleteFailure(error));
       });
   }

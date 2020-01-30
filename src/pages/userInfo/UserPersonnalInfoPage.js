@@ -1,7 +1,6 @@
-
 import React, { Component } from 'react';
 import {
-  View, Text, Image, StyleSheet
+  View, Text, Image, StyleSheet, ScrollView
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -12,9 +11,11 @@ import CModal from '../../components/utils/Modal';
 import CButton from '../../components/buttons/Button';
 
 class UserPersonnalInfoPage extends Component {
+
   componentDidMount() {
     const { account } = this.props;
     this.props.onUserSearch(account.id);
+    this.props.onUserPharmaSearch(account.id);
   }
 
   handleDeleteAccount = () => {
@@ -51,6 +52,8 @@ class UserPersonnalInfoPage extends Component {
     const birthDate = moment(account.birthDayDate).format('DD/MM/YYYY');
     const createdDate = new Date(account.createdAt).toISOString();
     const createdDateFormated = moment(createdDate).format('DD/MM/YYYY');
+    const { role } = account;
+    const { pharmacistAccount } = this.props;
     return (
       <>
         <SafeAreaView style={{ flex: 1 }}>
@@ -80,47 +83,82 @@ class UserPersonnalInfoPage extends Component {
             />
           </View>
           <View style={styles.info}>
-            <Text style={styles.text}>
-              <Entypo name="email" size={18} color="#707070" />
-              {' '}
-              {account.email}
-            </Text>
-            <Text style={styles.text}>
-              <Icon name="birthday-cake" size={18} color="#707070" />
-              {' '}
-              {birthDate}
-            </Text>
-            <Text style={styles.text}>
-              {account.gender === 'female' ? (
-                <>
-                  <Icon name="venus" size={18} color="#707070" />
-                  {' '}
-                Femme
-                </>
-              )
-                : account.gender === 'male' ? (
+            <ScrollView
+              style={{ height: '40%' }}
+            >
+              <Text style={styles.text}>
+                <Entypo name="email" size={18} color="#707070" />
+                {' '}
+                {account.email}
+              </Text>
+              <Text style={styles.text}>
+                <Icon name="birthday-cake" size={18} color="#707070" />
+                {' '}
+                {birthDate}
+              </Text>
+              <Text style={styles.text}>
+                {account.gender === 'female' ? (
                   <>
-                    <Icon name="mars" size={18} color="#707070" />
+                    <Icon name="venus" size={18} color="#707070" />
                     {' '}
-                  Homme
+                Femme
                   </>
                 )
-                  : (
+                  : account.gender === 'male' ? (
                     <>
-                      <Icon name="intersex" size={18} color="#707070" />
+                      <Icon name="mars" size={18} color="#707070" />
                       {' '}
-                    Autre
-                      {' '}
+                  Homme
                     </>
-                  )}
-            </Text>
-            <Text style={styles.text}>
-              <Icon name="calendar-plus-o" size={18} color="#707070" />
-              {' '}
+                  )
+                    : (
+                      <>
+                        <Icon name="intersex" size={18} color="#707070" />
+                        {' '}
+                    Autre
+                        {' '}
+                      </>
+                    )}
+              </Text>
+              <Text style={styles.text}>
+                <Icon name="calendar-plus-o" size={18} color="#707070" />
+                {' '}
             Compte créé le
-              {' '}
-              {createdDateFormated}
-            </Text>
+                {' '}
+                {createdDateFormated}
+              </Text>
+              { role === 'pharmacist' ? (
+                <>
+                  <Text style={styles.text}>
+                    <Icon name="user-md" size={18} color="#707070" />
+                    {' '}
+                    Profession :
+                    {' '}
+                    {pharmacistAccount.professionLabel === 'pharmacist' ? 'pharmacien'
+                      : pharmacistAccount.professionLabel === 'student' ? 'étudiant' : 'blablapharmacien'}
+                  </Text>
+                  <Text style={styles.text}>
+                    <Icon name="certificate" size={18} color="#707070" />
+                    {' '}
+                    {pharmacistAccount.professionalId}
+                  </Text>
+                  <Text style={styles.text}>
+                    <Icon name="home" size={18} color="#707070" />
+                    {' '}
+                    {pharmacistAccount.institutionName}
+                  </Text>
+                  <Text style={styles.text}>
+                    <Icon name="map-marker" size={18} color="#707070" />
+                    {' '}
+                    {' '}
+                    {pharmacistAccount.address}
+                    {', '}
+                    {pharmacistAccount.city}
+                  </Text>
+                </>
+              )
+                : null}
+            </ScrollView>
           </View>
           <View style={styles.footer}>
             <CModal
@@ -139,7 +177,7 @@ class UserPersonnalInfoPage extends Component {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    paddingVertical: '5%'
+    paddingVertical: '3%'
   },
   title: {
     fontSize: 24,
@@ -148,7 +186,7 @@ const styles = StyleSheet.create({
   },
   info: {
     alignItems: 'flex-start',
-    marginLeft: '15%'
+    marginLeft: '15%',
   },
   text: {
     color: '#707070',
@@ -159,11 +197,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
+    marginVertical: '3%'
   },
   deleteAccount: {
     color: 'red',
     fontSize: 16,
-    marginVertical: '6%'
   }
 });
 

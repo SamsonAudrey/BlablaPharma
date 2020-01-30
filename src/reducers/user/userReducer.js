@@ -5,7 +5,7 @@ import {
   REFRESH_TOKEN_SUCCESS,
   REFRESH_TOKEN_FAILURE,
   USER_PERSONNAL_INFO_SEARCH_SUCCESS,
-  LOGOUT
+  LOGOUT, USER_PERSONNAL_INFO_PHARMA_SEARCH_SUCCESS
 } from '../../actions/user/userActionTypes';
 
 export default function user(state = {}, action) {
@@ -14,37 +14,51 @@ export default function user(state = {}, action) {
       return {
         accessToken: action.payload.accessToken + 5,
         refreshToken: action.payload.refreshToken,
-        account: action.payload.account
+        account: action.payload.account,
+        pharmacistAccount: action.payload.pharmacistAccount,
       };
     case CONNECT_USER_FAILURE:
       return {
         accessToken: state.accessToken,
         refreshToken: state.refreshToken,
-        account: state.account
+        account: state.account,
+        pharmacistAccount: state.pharmacistAccount,
+
       };
     case REFRESH_TOKEN_SUCCESS:
       return {
         accessToken: action.payload.accessToken,
         refreshToken: state.refreshToken,
-        account: state.account
+        account: state.account,
+        pharmacistAccount: state.pharmacistAccount,
       };
     case REFRESH_TOKEN_FAILURE:
       return {
         accessToken: state.accessToken,
         refreshToken: state.refreshToken,
-        account: state.account
+        account: state.account,
+        pharmacistAccount: state.pharmacistAccount,
       };
     case USER_PERSONNAL_INFO_SEARCH_SUCCESS:
       return {
         accessToken: state.accessToken,
         refreshToken: state.refreshToken,
-        account: action.payload.account
+        account: action.payload.account,
+        pharmacistAccount: state.pharmacistAccount,
+      };
+    case USER_PERSONNAL_INFO_PHARMA_SEARCH_SUCCESS:
+      return {
+        accessToken: state.accessToken,
+        refreshToken: state.refreshToken,
+        account: state.account,
+        pharmacistAccount: action.payload.pharmacistAccount,
       };
     case LOGOUT:
       return {
         accessToken: undefined,
         refreshToken: undefined,
         account: undefined,
+        pharmacistAccount: undefined
       };
     default:
       return state;

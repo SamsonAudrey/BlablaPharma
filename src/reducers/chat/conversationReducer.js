@@ -99,6 +99,7 @@ export default function conversation(state = {}, action) {
         };
       });
     case READ_SUCCESS:
+      console.log(`hhhh${JSON.stringify(action)}`);
       const conversationReadItem = state.filter((conv) => conv.id === action.conversationId);
       return state.map((item) => {
         if (item !== conversationReadItem[0]) {

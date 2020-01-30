@@ -8,6 +8,8 @@ import GeneralModifInfo from '../../components/userInfo/GeneralModifInfo';
 import PasswordChange from '../../components/userInfo/PasswordChange';
 import EmailChange from '../../components/userInfo/EmailChange';
 import BackButton from '../../components/buttons/BackButton';
+import CModal from '../../components/utils/Modal';
+import CButton from '../../components/buttons/Button';
 
 class ModifUserPersonnalInfoPage extends Component {
   stateTabView = {
@@ -63,10 +65,6 @@ class ModifUserPersonnalInfoPage extends Component {
  };
 
  render() {
-   if (this.props.selector.successUpdate) {
-     alert('Données mises à jour !');
-     this.props.onClearSuccess();
-   }
    return (
      <>
        <SafeAreaView style={{ flex: 1 }}>
@@ -82,6 +80,22 @@ class ModifUserPersonnalInfoPage extends Component {
            state={this.stateTabView}
            onSwipe={this.props.onClearError}
          />
+         {this.props.selector.successUpdate
+           ? (
+             <CModal
+               isVisible
+               handler={<Text />}
+               text="Vos informations ont été mises à jour !"
+               button={(
+                 <CButton
+                   title="Continuer"
+                   buttonStyle="green"
+                   onPress={() => this.props.onClearSuccess()}
+                 />
+             )}
+               noCancelButton
+             />
+           ) : null}
        </SafeAreaView>
      </>
    );

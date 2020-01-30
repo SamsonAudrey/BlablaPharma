@@ -36,9 +36,7 @@ render() {
   const conversation = this.props.conversation.item;
   const { otherPerson } = this.props;
   const { picture } = otherPerson;
-  console.log(JSON.stringify(this.props));
-  const readBold = !conversation.messages[0].read && conversation.messages[0].author === otherPerson.id ? 'bold' : null;
-  const sourceSeen = conversation.messages[0].author !== otherPerson.id ? (conversation.messages[0].read ? '../../assets/seen.png' : '../../assets/not-seen.png') : null;
+  const readBold = conversation.messages[0] ? (!conversation.messages[0].read && conversation.messages[0].author === otherPerson.id ? 'bold' : null) : null;
   return (
     <>
 
@@ -80,7 +78,7 @@ render() {
             </View>
             <View style={{ width: '30%', height: '100%', marginTop: '3%' }}>
               <Image
-                source={conversation.messages[0].author !== otherPerson.id ? (conversation.messages[0].read ? require('../../assets/seen.png') : require('../../assets/not-seen.png')) : null}
+                source={conversation.messages[0] ? (conversation.messages[0].author !== otherPerson.id ? (conversation.messages[0].read ? require('../../assets/seen.png') : require('../../assets/not-seen.png')) : null) : null}
                 style={{
                   width: '19%', height: '24%', alignSelf: 'center', marginRight: '80%'
                 }}

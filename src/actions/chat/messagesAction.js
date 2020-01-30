@@ -25,8 +25,9 @@ socket.on('event:typing', (data) => {
 });
 
 socket.on('event:read', (data) => {
-  //console.log('message read:');
-  //console.log(data);
+  console.log('message read:');
+  console.log(data);
+  //store.dispatch(receiveMessageSuccess(data.conversation, data));
 });
 
 socket.on('message', (data) => {
@@ -124,10 +125,11 @@ export const onTyping = (conversationId) => {
     dispatch({ type: SEND_MESSAGE_REQUEST });
     return postRequest(`/conversations/${conversationId}/event/typing`, token)
       .then((response) => {
-        //console.log(JSON.stringify(response.data));
+        console.log("uuu"+JSON.stringify(response));
         //dispatch(sendMessageSuccess(response));
       })
       .catch((error) => {
+        console.log(JSON.stringify(error));
         //dispatch(sendMessageFailure(error));
       });
   }

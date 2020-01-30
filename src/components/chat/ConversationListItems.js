@@ -37,6 +37,8 @@ render() {
   const { otherPerson } = this.props;
   const { picture } = otherPerson;
   console.log(JSON.stringify(this.props));
+  const readBold = !conversation.messages[0].read && conversation.messages[0].author === otherPerson.id ? 'bold' : null;
+  const sourceSeen = conversation.messages[0].author !== otherPerson.id ? (conversation.messages[0].read ? '../../assets/seen.png' : '../../assets/not-seen.png') : null;
   return (
     <>
 
@@ -45,31 +47,44 @@ render() {
       >
         <TouchableOpacity
           onPress={() => this.props.handlePress(conversation.id, otherPerson)}
+          style={{
+            padding: '0%',
+            marginVertical: '6%',
+            marginHorizontal: '3%'
+          }}
         >
-          <View style={styles.container}>
-            <View style={{}}>
+          <View style={{ flex: 1, flexDirection: 'row' }}>
+            <View style={{ width: '22%', height: '82%', justifyContent: 'center' }}>
               <Image
                 source={picture ? { uri: picture } : require('../../assets/logo-fav.png')}
                 style={{
-                  width: '12%', height: '100%'
+                  width: '70%', height: '100%', justifyContent: 'center'
                 }}
+
               />
             </View>
 
-            <View>
-              <Text>
+            <View style={{ width: '60%' }}>
+              <Text numberOfLines={1} style={{ width: '100%', fontWeight: readBold }}>
                 {otherPerson.firstName}
                 {' '}
                 {otherPerson.lastName}
               </Text>
               {conversation.messages.length > 0 ? (
-                <Text>
-                  {conversation.messages[0].read ? 'true' : 'false'}
+                <Text numberOfLines={1} style={{ marginRight: '15%', color: '#707070', fontWeight: readBold }}>
                   {conversation.messages[0].content}
                 </Text>
               ) : <Text>Pas de message pour l instant</Text>}
 
 
+            </View>
+            <View style={{ width: '30%', height: '100%', marginTop: '3%' }}>
+              <Image
+                source={conversation.messages[0].author !== otherPerson.id ? (conversation.messages[0].read ? require('../../assets/seen.png') : require('../../assets/not-seen.png')) : null}
+                style={{
+                  width: '19%', height: '24%', alignSelf: 'center', marginRight: '80%'
+                }}
+              />
             </View>
           </View>
         </TouchableOpacity>
@@ -107,43 +122,3 @@ render() {
   );
 }
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    borderColor: '#707070',
-    borderWidth: 1,
-    borderRadius: 5,
-    width: Dimensions.get('window').width * 0.8,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 3,
-    padding: 10,
-    paddingBottom: 0,
-    backgroundColor: 'white',
-    height: 40,
-    alignItems: 'center'
-  },
-  buttonContainer: {
-    alignItems: 'center',
-    marginTop: 7
-  },
-  text: {
-    color: '#707070',
-    fontSize: 12,
-  },
-  title: {
-    color: '#707070',
-    fontWeight: 'bold',
-    fontSize: 16,
-    marginVertical: 5,
-    textAlign: 'center',
-    // flex: 1,
-  }
-});

@@ -32,10 +32,8 @@ export default class ConversationList extends Component {
   };
 
   render() {
-    const isFetching = this.props.isFetching === true ? 'isFetching' : '';
     return (
       <>
-        <Text>{isFetching}</Text>
         {this.props.conversations.length > 0 ? (
           <FlatList
             data={this.props.conversations}

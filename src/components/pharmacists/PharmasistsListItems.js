@@ -4,7 +4,6 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CButton from '../buttons/Button';
-import ScenePharmacists from "../scenes/ScenePharmacists";
 
 export default class PharmacistsListItems extends React.Component {
   handlPress = (pharmacist) => {
@@ -22,7 +21,7 @@ export default class PharmacistsListItems extends React.Component {
     const {
       data: {
         item: {
-          id, firstName, lastName, gender, city, picture, institutionName, professionLabel
+          firstName, lastName, gender, city, picture, institutionName, professionLabel
         }
       },
     } = this.props;

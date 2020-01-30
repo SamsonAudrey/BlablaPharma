@@ -75,7 +75,7 @@ export default class Conversation extends React.Component {
           user={{
             _id: this.props.user.account.id,
           }}
-          onInputTextChanged={this.props.onTyping(this.props.conversationId)}
+          onInputTextChanged={() => this.props.onTyping(this.props.conversationId)}
         />
       </>
     );

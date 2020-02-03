@@ -103,19 +103,19 @@ export default function conversation(state = {}, action) {
       const conversationReadItem = state.filter((conv) => conv.id === action.conversationId);
       return state.map((item) => {
         if (item !== conversationReadItem[0]) {
-           console.log(`hhhfsefsqdh${JSON.stringify(conversationReadItem[0])}bbbbbbbb${JSON.stringify(item)}`);
+          console.log(`ooooooooo${JSON.stringify(conversationReadItem[0])}`);
           return item;
         }
-        console.log(`jjjj${JSON.stringify(conversationReadItem[0])}bbbbbbbb${JSON.stringify(item)}`);
+        console.log("hlkhjl")
+        console.log(`jjjj${JSON.stringify(item.messages)}bbbbbbbb${JSON.stringify(item.messages[1])}`);
         // We modify the read element of the last message
         const mess = item.messages[0];
         mess.read = true;
         return {
           ...item,
-          messages: [
-            mess,
-            ...item.messages.split(0)[1]
-          ]
+          messages: item.messages.map(
+            (message, i) => (i === 0 ? { ...message, read: true } : message)
+          )
         };
       });
 

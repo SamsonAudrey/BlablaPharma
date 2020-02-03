@@ -3,6 +3,7 @@ import {
   FlatList, View, Text
 } from 'react-native';
 import ConversationListItems from './ConversationListItems';
+import NoConversations from './NoConversations';
 
 export default class ConversationList extends Component {
   componentDidMount() {
@@ -53,12 +54,14 @@ export default class ConversationList extends Component {
             )}
           />
         ) : (
-          <Text
-            onPress={this.handleRefresh}
-          >
-            {' '}
-Vous n avez pas de conversation pour le moment
-          </Text>
+          <>
+            <Text
+              onPress={this.handleRefresh}
+            >
+              Refresh
+            </Text>
+            <NoConversations />
+          </>
         )}
       </>
     );

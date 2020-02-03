@@ -27,7 +27,7 @@ socket.on('event:typing', (data) => {
 socket.on('event:read', (data) => {
   console.log('message read:');
   console.log(data);
-  //store.dispatch(onReadSuccess(data.conversation));
+  store.dispatch(onReadSuccess(data.conversation));
 });
 
 socket.on('message', (data) => {

@@ -16,10 +16,8 @@ export default class BlogListItems extends React.Component {
     this.state.userLike = !this.state.userLike;
     if (this.state.userLike) {
       this.props.onLike(this.props.data.item.id);
-      this.props.onSearch('');
     } else {
       this.props.onDislike(this.props.data.item.id);
-      this.props.onSearch('');
     }
   }
 

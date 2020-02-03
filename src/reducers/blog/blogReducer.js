@@ -1,5 +1,5 @@
 import {
-  BLOG_SEARCH_SUCCESS,
+  BLOG_SEARCH_SUCCESS
 } from '../../actions/actionTypes';
 
 export default function blog(state = {}, action) {

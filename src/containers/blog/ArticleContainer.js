@@ -2,10 +2,13 @@ import { connect } from 'react-redux';
 import { blogDislike, blogLike } from '../../actions/blog/blogLikeAction';
 import BlogListItems from '../../components/blog/BlogListItems';
 import { blogSearch } from '../../actions/blog/blogSearchAction';
+import { createLoadingSelector } from '../../utils/loadingSelector';
 
+const loadingSelector = createLoadingSelector(['BLOG_SEARCH']);
 
 const mapStateToProps = (state) => ({
-  isConnected: state.connection.isConnected
+  isConnected: state.connection.isConnected,
+  isFetching: loadingSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

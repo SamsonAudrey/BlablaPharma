@@ -3,6 +3,7 @@ import axios from 'axios';
 import {
   BLOG_SEARCH_FAILURE
 } from '../actionTypes';
+import { blogSearch } from './blogSearchAction';
 
 export const blogLike = (
   id
@@ -12,10 +13,8 @@ export const blogLike = (
     return axios
       .post(`${TEMPO_URL}/articles/${id}/likes`)
       .then((response) => {
-        console.log(response);
         if (response.data.length !== 0) {
-          console.log('LIKE :');
-          console.log(response.data);
+          dispatch(blogSearch(''));
         } else {
           console.log('NOT LIKED');
         }
@@ -41,10 +40,8 @@ export const blogDislike = (
     return axios
       .delete(`${TEMPO_URL}/articles/${id}/likes`)
       .then((response) => {
-        console.log(response);
         if (response.data.length !== 0) {
-          console.log('DISLIKE :');
-          console.log(response.data);
+          dispatch(blogSearch(''));
         } else {
           console.log('NOT DISLIKED');
         }
@@ -65,4 +62,3 @@ export const blogSearchFailure = (error) => ({
   type: BLOG_SEARCH_FAILURE,
   error
 });
-

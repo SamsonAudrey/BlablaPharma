@@ -72,7 +72,7 @@ render() {
                 <Text numberOfLines={1} style={{ marginRight: '15%', color: '#707070', fontWeight: readBold }}>
                   {conversation.messages[0].content}
                 </Text>
-              ) : <Text>Pas de message pour l instant</Text>}
+              ) : <Text>Pas de message pour l'instant</Text>}
 
 
             </View>

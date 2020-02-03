@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import CButton from '../buttons/Button';
 
 export default class PharmacistsListItems extends React.Component {
-  handlPress = (pharmacist) => {
+  handlePress = (pharmacist) => {
     const { navigate } = this.props.navigation;
     if (this.props.isConnected) {
       navigate('Conversation', {
@@ -64,7 +64,7 @@ export default class PharmacistsListItems extends React.Component {
           <CButton
             title="Contacter"
             buttonStyle="green"
-            onPress={() => { this.handlPress(this.props.data.item); }}
+            onPress={() => { this.handlePress(this.props.data.item); }}
           />
         </View>
       </View>

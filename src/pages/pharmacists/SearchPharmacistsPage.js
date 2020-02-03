@@ -5,11 +5,10 @@ import PharmacistsListContainer from '../../containers/pharmacists/PharmacistsLi
 
 class SearchPharmacistsPage extends Component {
   render() {
-    //console.log(this.props.navigation)
     return (
       <>
         <SearchBarPharmacists />
-        <PharmacistsListContainer navigation={this.props.navigation}/>
+        <PharmacistsListContainer navigation={this.props.navigation} />
       </>
     );
   }

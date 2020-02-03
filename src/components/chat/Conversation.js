@@ -49,7 +49,7 @@ export default class Conversation extends React.Component {
     user: {
       _id: message.author
     }
-  }))
+  }));
 
   _onRead() {
     // console.log('onree');
@@ -60,7 +60,7 @@ export default class Conversation extends React.Component {
   }
 
   render() {
-    console.log(`proops${JSON.stringify(this.props)}`);
+    // console.log(`proops${JSON.stringify(this.props)}`);
     const mess = this.props.messages ? this.messageFormat(this.props.messages) : null;
     if (this.props.isConnected) {
       return (
@@ -76,6 +76,7 @@ export default class Conversation extends React.Component {
               _id: this.props.user.account.id,
             }}
             onInputTextChanged={() => this.props.onTyping(this.props.conversationId)}
+            placeholder="Ecrivez un message..."
           />
         </>
       );
@@ -114,6 +115,5 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: '#BED469',
     fontWeight: 'bold'
-
   }
 });

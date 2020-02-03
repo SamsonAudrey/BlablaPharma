@@ -2,7 +2,6 @@ import React from 'react';
 import { View } from 'react-native';
 import CustomTabView from '../utils/CustomTabView';
 import ScenePharmacists from '../scenes/ScenePharmacists';
-import SceneBlog from "../scenes/SceneBlog";
 
 export default class PharmarmacistsList extends React.Component {
   state = {

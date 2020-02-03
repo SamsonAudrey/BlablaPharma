@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  FlatList, StyleSheet, Text, View
+  FlatList, StyleSheet, View
 } from 'react-native';
 import PharmacistsListItems from '../pharmacists/PharmasistsListItems';
 import Loading from '../utils/Loading';
-import NoPharmacistFound from "../pharmacists/NoPharmacistFound";
+import NoPharmacistFound from '../pharmacists/NoPharmacistFound';
 
 export default class ScenePharmacists extends React.Component {
   render() {
@@ -26,7 +26,12 @@ export default class ScenePharmacists extends React.Component {
             style={{ marginTop: 10 }}
           />
         ) : this.props.isFetching ? <Loading />
-          : <NoPharmacistFound />}
+          : (
+            <NoPharmacistFound
+              text={this.props.title === 1 ? 'Aucun Blabla Pharmacien trouvé, nous sommes désolés'
+                : 'Aucun Pharmacien trouvé, nous sommes désolés'}
+            />
+          )}
       </View>
     );
   }

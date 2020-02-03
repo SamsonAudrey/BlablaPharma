@@ -22,6 +22,7 @@ class BlogList extends Component {
             videos={this.props.blog}
             isConnected={this.props.isConnected}
             isFetching={this.props.isFetching}
+            title={1}
           />
         );
       case 'second':
@@ -31,6 +32,7 @@ class BlogList extends Component {
               videos={filter(this.props.blog, { userLike: true })}
               isConnected={this.props.isConnected}
               isFetching={this.props.isFetching}
+              title={2}
             />
           );
         }

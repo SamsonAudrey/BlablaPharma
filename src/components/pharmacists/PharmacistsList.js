@@ -22,6 +22,7 @@ export default class PharmarmacistsList extends React.Component {
            navigation={this.props.navigation}
            isConnected={this.props.isConnected}
            isFetching={this.props.isFetching}
+           title={1}
          />
        );
      case 'second':
@@ -31,6 +32,7 @@ export default class PharmarmacistsList extends React.Component {
            navigation={this.props.navigation}
            isConnected={this.props.isConnected}
            isFetching={this.props.isFetching}
+           title={2}
          />
        );
      default:

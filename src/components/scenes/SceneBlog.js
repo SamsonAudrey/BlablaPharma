@@ -24,7 +24,7 @@ export default class SceneBlog extends React.Component {
             style={{ marginTop: 10 }}
           />
         ) : this.props.isFetching ? <Loading />
-          : <NoArticleFound text="Aucun article trouvé" />}
+          : <NoArticleFound text={this.props.title === 1 ? 'Aucun article publié pour le moment' : 'Vous n\'avez aucun favoris'} />}
       </View>
     );
   }

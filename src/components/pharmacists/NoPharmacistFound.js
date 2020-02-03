@@ -15,7 +15,7 @@ class NoPharmacistFound extends Component {
             }}
           />
           <Text style={styles.text}>
-              Aucun Pharmacien trouvé, nous sommes désolés
+            {this.props.text}
           </Text>
         </View>
       </>

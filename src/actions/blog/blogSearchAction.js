@@ -11,6 +11,7 @@ import {
 export const blogSearch = (
   qValue,
   limitValue = 20,
+  sortValue = 'createdAt'
 ) => {
   function thunk(dispatch) {
     const TEMPO_URL = 'https://api.staging.blablapharma.fr';
@@ -20,13 +21,13 @@ export const blogSearch = (
         params: {
           ...((qValue !== undefined) ? { q: qValue } : { q: '' }),
           ...((limitValue !== undefined) ? { limit: limitValue } : {}),
+          ...((sortValue !== undefined) ? { sort: sortValue } : { sort: 'createdAt' }),
         }
       })
       .then((response) => {
         console.log(response);
         if (response.data.length !== 0) {
           dispatch(blogSearchSuccess(response.data));
-          // console.log(`founnd${response.data}`);
         } else {
           console.log('NOT FOUND');
           dispatch(blogSearchNotFound());

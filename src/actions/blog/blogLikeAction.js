@@ -3,6 +3,7 @@ import axios from 'axios';
 import {
   BLOG_SEARCH_FAILURE
 } from '../actionTypes';
+import { blogSearch } from './blogSearchAction';
 
 export const blogLike = (
   id
@@ -10,12 +11,10 @@ export const blogLike = (
   function thunk(dispatch) {
     const TEMPO_URL = 'https://api.staging.blablapharma.fr';
     return axios
-      .post(`${TEMPO_URL}/articles/${id}/like`)
+      .post(`${TEMPO_URL}/articles/${id}/likes`)
       .then((response) => {
-        console.log(response);
         if (response.data.length !== 0) {
-          console.log('LIKE :');
-          console.log(response.data);
+          dispatch(blogSearch(''));
         } else {
           console.log('NOT LIKED');
         }
@@ -39,12 +38,10 @@ export const blogDislike = (
   function thunk(dispatch) {
     const TEMPO_URL = 'https://api.staging.blablapharma.fr';
     return axios
-      .delete(`${TEMPO_URL}/articles/${id}/like`)
+      .delete(`${TEMPO_URL}/articles/${id}/likes`)
       .then((response) => {
-        console.log(response);
         if (response.data.length !== 0) {
-          console.log('DISLIKE :');
-          console.log(response.data);
+          dispatch(blogSearch(''));
         } else {
           console.log('NOT DISLIKED');
         }
@@ -65,4 +62,3 @@ export const blogSearchFailure = (error) => ({
   type: BLOG_SEARCH_FAILURE,
   error
 });
-

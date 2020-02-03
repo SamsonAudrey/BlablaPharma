@@ -1,11 +1,10 @@
 import * as React from 'react';
 import {
-  View, Text, StyleSheet, Dimensions
+  View, Text, StyleSheet, Dimensions, ScrollView
 } from 'react-native';
 import { WebView } from 'react-native-webview';
 import moment from 'moment';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
 
 export default class BlogListItems extends React.Component {
   state = {
@@ -16,10 +15,8 @@ export default class BlogListItems extends React.Component {
     this.state.userLike = !this.state.userLike;
     if (this.state.userLike) {
       this.props.onLike(this.props.data.item.id);
-      this.props.onSearch('');
     } else {
       this.props.onDislike(this.props.data.item.id);
-      this.props.onSearch('');
     }
   }
 
@@ -27,7 +24,7 @@ export default class BlogListItems extends React.Component {
     const {
       data: {
         item: {
-          title, youtubeVideoId, userLike, createdAt
+          id, title, youtubeVideoId, userLike, createdAt, content
         }
       },
     } = this.props;
@@ -56,18 +53,37 @@ export default class BlogListItems extends React.Component {
               : <Text />
           }
         </View>
-        <View style={styles.containerVideo}>
-          <WebView
-            style={styles.video}
-            source={{ uri: `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=0?controls=0?modestbranding=1` }}
-            mediaPlaybackRequiresUserAction
-            scalesPageToFit
-            domStorageEnabled
-            bounces={false}
-            scrollEnabled={false}
-            allowsFullscreenVideo
-          />
-        </View>
+        { youtubeVideoId
+          ? (
+            <>
+              <ScrollView nestedScrollEnabled style={{width: '100%'}}>
+                <View style={styles.containerVideo}>
+                  <WebView
+                    style={styles.video}
+                    source={{ uri: `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=0?controls=0?modestbranding=1` }}
+                    mediaPlaybackRequiresUserAction
+                    scalesPageToFit
+                    domStorageEnabled
+                    bounces={false}
+                    scrollEnabled={false}
+                    allowsFullscreenVideo
+                  />
+                </View>
+                <Text style={styles.content}>
+                  {content || null}
+                </Text>
+              </ScrollView>
+            </>
+          )
+          : (
+            <View style={{ flex: 1, marginVertical: '1%' }}>
+              <ScrollView nestedScrollEnabled>
+                <Text style={styles.content}>
+                  {content || ' '}
+                </Text>
+              </ScrollView>
+            </View>
+          ) }
         <View>
           <Text style={styles.info}>BlablaPharma</Text>
           <Text style={styles.info}>{date}</Text>
@@ -113,13 +129,23 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   containerVideo: {
-    flex: 1,
+    // flex: 1,
     width: '100%',
+    height: 160,
     marginBottom: 5
+  },
+  video: {
+    width: '100%',
+    height: '100%'
   },
   info: {
     textAlign: 'center',
     color: '#707070',
     fontSize: 12
+  },
+  content: {
+    color: '#3f3f3f',
+    textAlign: 'justify',
+    width: '100%'
   }
 });

@@ -3,6 +3,8 @@ import {
   FlatList, StyleSheet, Text, View
 } from 'react-native';
 import PharmacistsListItems from '../pharmacists/PharmasistsListItems';
+import Loading from '../utils/Loading';
+import NoPharmacistFound from "../pharmacists/NoPharmacistFound";
 
 export default class ScenePharmacists extends React.Component {
   render() {
@@ -23,9 +25,8 @@ export default class ScenePharmacists extends React.Component {
             ListFooterComponent={() => (<View style={{ height: 20 }} />)}
             style={{ marginTop: 10 }}
           />
-        ) : (
-          <Text> Aucun pharmacien trouvé </Text>
-        )}
+        ) : this.props.isFetching ? <Loading />
+          : <NoPharmacistFound />}
       </View>
     );
   }

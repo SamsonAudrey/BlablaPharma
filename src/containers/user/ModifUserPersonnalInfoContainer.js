@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
-import {userPharmacistSearch, userSearch} from '../../actions/user/userAction';
-import {userUpdateRemoteAccount, userUpdateRemotePharmaAccount} from '../../actions/user/userModifInfoAction';
+import { userPharmacistSearch, userSearch } from '../../actions/user/userAction';
+import { userUpdateRemoteAccount, userUpdateRemotePharmaAccount } from '../../actions/user/userModifInfoAction';
 import { createLoadingSelector } from '../../utils/loadingSelector';
 import { createErrorSelector } from '../../utils/errorSelector';
 import { createSuccessSelector } from '../../utils/successSelector';
 import ModifUserPersonnalInfo from '../../pages/userInfo/ModifUserPersonnalInfo';
-import { clearSuccess, clearError } from '../../actions/selectorAction'
+import { clearSuccess, clearError } from '../../actions/selectorAction';
 
 const error403UpdateSelector = createErrorSelector(['USER_PERSONNAL_INFO_UPDATE_403']);
 const successUpdateSelector = createSuccessSelector(['USER_PERSONNAL_INFO_UPDATE']);

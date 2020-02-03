@@ -10,7 +10,7 @@ export const blogLike = (
   function thunk(dispatch) {
     const TEMPO_URL = 'https://api.staging.blablapharma.fr';
     return axios
-      .post(`${TEMPO_URL}/articles/${id}/like`)
+      .post(`${TEMPO_URL}/articles/${id}/likes`)
       .then((response) => {
         console.log(response);
         if (response.data.length !== 0) {
@@ -39,7 +39,7 @@ export const blogDislike = (
   function thunk(dispatch) {
     const TEMPO_URL = 'https://api.staging.blablapharma.fr';
     return axios
-      .delete(`${TEMPO_URL}/articles/${id}/like`)
+      .delete(`${TEMPO_URL}/articles/${id}/likes`)
       .then((response) => {
         console.log(response);
         if (response.data.length !== 0) {

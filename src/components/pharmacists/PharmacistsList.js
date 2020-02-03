@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import CustomTabView from '../utils/CustomTabView';
 import ScenePharmacists from '../scenes/ScenePharmacists';
+import SceneBlog from "../scenes/SceneBlog";
 
 export default class PharmarmacistsList extends React.Component {
   state = {
@@ -20,7 +21,7 @@ export default class PharmarmacistsList extends React.Component {
            pharmacists={this.props.blablapharmacists}
            navigation={this.props.navigation}
            isConnected={this.props.isConnected}
-
+           isFetching={this.props.isFetching}
          />
        );
      case 'second':
@@ -29,6 +30,7 @@ export default class PharmarmacistsList extends React.Component {
            pharmacists={this.props.pharmacists}
            navigation={this.props.navigation}
            isConnected={this.props.isConnected}
+           isFetching={this.props.isFetching}
          />
        );
      default:
@@ -37,7 +39,6 @@ export default class PharmarmacistsList extends React.Component {
  };
 
  render() {
-  //console.log("navvv"+this.props.navigation)
    return (
      <>
        <View style={{ flex: 1, paddingHorizontal: '1%' }}>

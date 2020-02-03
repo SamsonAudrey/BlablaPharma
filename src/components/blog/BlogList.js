@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import {Text, View} from 'react-native';
 import { filter } from 'lodash';
 import SceneBlog from '../scenes/SceneBlog';
 import CustomTabView from '../utils/CustomTabView';
@@ -21,6 +21,7 @@ class BlogList extends Component {
           <SceneBlog
             videos={this.props.blog}
             isConnected={this.props.isConnected}
+            isFetching={this.props.isFetching}
           />
         );
       case 'second':
@@ -29,6 +30,7 @@ class BlogList extends Component {
             <SceneBlog
               videos={filter(this.props.blog, { userLike: true })}
               isConnected={this.props.isConnected}
+              isFetching={this.props.isFetching}
             />
           );
         }

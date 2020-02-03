@@ -1,12 +1,10 @@
 import * as React from 'react';
 import {
-  View, Text, StyleSheet, Dimensions, ScrollView, FlatList
+  View, Text, StyleSheet, Dimensions, ScrollView
 } from 'react-native';
 import { WebView } from 'react-native-webview';
 import moment from 'moment';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Article from '../../containers/blog/ArticleContainer';
-
 
 export default class BlogListItems extends React.Component {
   state = {

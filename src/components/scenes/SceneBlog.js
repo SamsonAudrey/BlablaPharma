@@ -1,8 +1,10 @@
 import React from 'react';
 import {
-  FlatList, StyleSheet, Text, View
+  FlatList, StyleSheet, View
 } from 'react-native';
 import Article from '../../containers/blog/ArticleContainer';
+import Loading from '../utils/Loading';
+import NoArticleFound from '../blog/NoArticleFound';
 
 export default class SceneBlog extends React.Component {
   render() {
@@ -21,7 +23,8 @@ export default class SceneBlog extends React.Component {
             ListFooterComponent={() => (<View style={{ height: 20 }} />)}
             style={{ marginTop: 10 }}
           />
-        ) : (<Text>Aucune vidéo trouvée</Text>)}
+        ) : this.props.isFetching ? <Loading />
+          : <NoArticleFound text="Aucun article trouvé" />}
       </View>
     );
   }

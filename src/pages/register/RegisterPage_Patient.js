@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import {
-  ImageBackground, StyleSheet, Text, View,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  View,
+  DeviceEventEmitter,
 } from 'react-native';
 import t from 'tcomb-form-native';
 import moment from 'moment';
@@ -19,6 +23,8 @@ const genderProps = [
   { label: 'Femme   ', value: 1 },
   { label: 'Autre', value: 2 },
 ];
+
+var RNUploader = require('react-native-uploader');
 
 class RegisterPatient extends Component {
   constructor(props) {
@@ -81,8 +87,10 @@ class RegisterPatient extends Component {
       try {
         const genderLabel = gender === 0 ? 'male' : gender === 1 ? 'female' : 'another';
         const birthday = moment(value.birth).format('YYYY-MM-DD');
-        onRegisterPatient(value.firstName, value.lastName, birthday,
-          genderLabel, value.email, value.password);
+        console.log('----------------');
+        console.log(value.image);
+        // onRegisterPatient(value.firstName, value.lastName, birthday,
+          // genderLabel, value.email, value.password);
       } catch (error) { // TODO
         alert(error.message);
       }

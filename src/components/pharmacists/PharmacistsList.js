@@ -40,6 +40,7 @@ export default class PharmarmacistsList extends React.Component {
  };
 
  render() {
+     console.log(this.props.pharmacists);
    return (
      <>
        <View style={{ flex: 1, paddingHorizontal: '1%' }}>

@@ -1,6 +1,5 @@
 
 import {
-  UPDATE_CONVERSATION_SUCCESS,
   CREATE_CONVERSATION_SUCCESS,
   GET_CONVERSATIONS_SUCCESS,
   GET_CONVERSATION_SUCCESS,
@@ -8,7 +7,8 @@ import {
   GET_MESSAGES_SUCCESS,
   RECEIVE_MESSAGE_SUCCESS,
   READ_SUCCESS,
-  DELETE_CONVERSATION_SUCCESS
+  DELETE_CONVERSATION_SUCCESS,
+  ON_TYPING
 } from '../../actions/chat/chatActionTypes';
 
 
@@ -18,10 +18,6 @@ import {
 
 export default function conversation(state = {}, action) {
   switch (action.type) {
-    case UPDATE_CONVERSATION_SUCCESS:
-      return {
-        state
-      };
     case GET_CONVERSATIONS_SUCCESS:
       return action.conversations;
     case GET_CONVERSATION_SUCCESS:
@@ -99,15 +95,11 @@ export default function conversation(state = {}, action) {
         };
       });
     case READ_SUCCESS:
-      console.log(`hhhh${JSON.stringify(action)}`);
       const conversationReadItem = state.filter((conv) => conv.id === action.conversationId);
       return state.map((item) => {
         if (item !== conversationReadItem[0]) {
-          console.log(`ooooooooo${JSON.stringify(conversationReadItem[0])}`);
           return item;
         }
-        console.log("hlkhjl")
-        console.log(`jjjj${JSON.stringify(item.messages)}bbbbbbbb${JSON.stringify(item.messages[1])}`);
         // We modify the read element of the last message
         const mess = item.messages[0];
         mess.read = true;
@@ -118,7 +110,19 @@ export default function conversation(state = {}, action) {
           )
         };
       });
-
+    case ON_TYPING:
+      console.log("bhbkuhb"+JSON.stringify(action));
+      const conversationOnTypingItem = state.filter((conv) => conv.id === action.conversationId);
+      return state.map((item) => {
+        if (item !== conversationOnTypingItem[0]) {
+          return item;
+        }
+        // We modify the read element of the last message
+        return {
+          ...item,
+          isTyping: action.value
+        };
+      });
     case LOGOUT:
       return {};
     default:

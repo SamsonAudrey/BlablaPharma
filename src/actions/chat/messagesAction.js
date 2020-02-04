@@ -8,7 +8,8 @@ import {
   GET_MESSAGES_REQUEST,
   GET_MESSAGES_SUCCESS,
   RECEIVE_MESSAGE_SUCCESS,
-  READ_SUCCESS
+  READ_SUCCESS,
+  ON_TYPING
 } from './chatActionTypes';
 import { getToken } from '../../utils/auth';
 import { store } from '../../../store';
@@ -21,7 +22,15 @@ const debounce = null;
 
 // socket events
 socket.on('event:typing', (data) => {
+  console.log('typing message :');
+  console.log(data);
+  store.dispatch(onTypingChange(data.conversation));
+});
 
+export const onTypingChange = (conversationId, value = true) => ({
+  type: ON_TYPING,
+  conversationId,
+  value
 });
 
 socket.on('event:read', (data) => {

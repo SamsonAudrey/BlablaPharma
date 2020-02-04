@@ -1,24 +1,25 @@
 import { connect } from 'react-redux';
 import Conversation from '../../components/chat/Conversation';
 import {
-  getMessages, sendMessage, onTyping, onRead
+  getMessages, sendMessage, onTyping, onRead, onTypingChange
 } from '../../actions/chat/messagesAction';
 import { createConversations, getConversation } from '../../actions/chat/conversationAction';
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("convvv"+JSON.stringify(state.conversations))
   const { navigation } = ownProps;
   const { otherPerson } = navigation.state.params;
   const { user } = state;
   const conv = state.conversations.length > 0
     ? state.conversations.filter((convers) => convers.members[0].id === otherPerson.id || convers.members[1].id === otherPerson.id)
     : undefined;
+    console.log("convvv"+JSON.stringify(conv))
   return {
     conversationId: conv ? conv.length > 0 ? conv[0].id : undefined : undefined,
     otherPerson,
     messages: conv ? conv.length > 0 ? conv[0].messages : undefined : undefined,
     user,
-    isConnected: state.connection
+    isConnected: state.connection,
+    isTyping: conv ? conv.length > 0 ? conv[0].isTyping : false : false,
   };
 };
 
@@ -38,6 +39,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onRead: (conversationId, message) => {
     dispatch(onRead(conversationId, message));
+  },
+  onClearIsTyping: (conversationId) => {
+    dispatch(onTypingChange(conversationId, false));
   }
 });
 

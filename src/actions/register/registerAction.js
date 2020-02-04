@@ -29,7 +29,7 @@ export const registerPatient = (
       gender: userGender,
       email: userEmail,
       password: userPassword,
-      picture: imageUri.toString()
+      picture: imageUri
     })
   })
     .then((response) => {

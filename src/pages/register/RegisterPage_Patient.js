@@ -71,7 +71,7 @@ class RegisterPatient extends Component {
   handleSubmit = () => {
     const value = this._form.getValue();
     const { gender } = this.state;
-    const { onRegisterPatient, onRegisterInfo, navigation } = this.props;
+    const { onRegisterPatient, onRegisterInfo, onUploadImage, navigation } = this.props;
     if (this.userKind === 'pharmacist' && value !== null) {
       // 1 STEP REGISTER PHARMACIST USER
       onRegisterInfo(value, gender);
@@ -81,9 +81,12 @@ class RegisterPatient extends Component {
       try {
         const genderLabel = gender === 0 ? 'male' : gender === 1 ? 'female' : 'another';
         const birthday = moment(value.birth).format('YYYY-MM-DD');
+        console.log('TEST UPLOAD -----------');
         onRegisterPatient(value.firstName, value.lastName, birthday,
-          genderLabel, value.email, value.password);
-      } catch (error) { // TODO
+          genderLabel, value.email, value.password, value.image);
+        // console.log(value.image);
+        // onUploadImage(value.image);
+      } catch (error) {
         alert(error.message);
       }
     }

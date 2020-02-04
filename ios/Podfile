@@ -49,6 +49,8 @@ target 'BlablaPharmaApp' do
 
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
+  pod 'react-native-image-base64', :path => '../node_modules/react-native-image-base64'
+
   target 'BlablaPharmaAppTests' do
     inherit! :search_paths
     # Pods for testing

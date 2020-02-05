@@ -14,8 +14,11 @@ class UserPersonnalInfoPage extends Component {
 
   componentDidMount() {
     const { account } = this.props;
-    this.props.onUserSearch(account.id);
-    this.props.onUserPharmaSearch(account.id);
+    if (account.role === 'pharmacist') {
+      this.props.onUserPharmaSearch(account.id);
+    } else {
+      this.props.onUserSearch(account.id);
+    }
   }
 
   handleDeleteAccount = () => {

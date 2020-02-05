@@ -16,6 +16,7 @@ import {
 } from './userActionTypes';
 
 export const userAuth = (userEmail, userPassword) => {
+  console.log(userEmail + '  ' +userPassword )
   function thunk(dispatch) {
     return axios
       .post(`${API_URL}/login`, null, {
@@ -25,9 +26,11 @@ export const userAuth = (userEmail, userPassword) => {
         }
       })
       .then((response) => {
+        console.log("resssp"+JSON.stringify(response))
         dispatch(userAuthSuccess(response.data));
       })
       .catch((error) => {
+        console.log("errrr"+JSON.stringify(error))
         dispatch(userAuthFailure(error));
       });
   }
@@ -124,6 +127,7 @@ export const userSearchFailure = (error) => ({
 
 
 export const userPharmacistSearch = (accountId) => {
+  console.log("search pharma")
   function thunk(dispatch) {
     return axios
       .get(`${API_URL}/pharmacists/${accountId}`)

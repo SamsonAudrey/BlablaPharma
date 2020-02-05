@@ -39,12 +39,10 @@ axios.interceptors.response.use((response) => {
     // It means the refreshToken is not valid and we must login again
     // So we must navigate to login
     // router.push('/login');
-    console.log('il y a pb de refresh');
     return Promise.reject(error);
   }
   if (error.response.status === 401 && !originalRequest._retry) {
     originalRequest._retry = true;
-    //console.log('Y aaaa pbbbb 400000001111111111');
     checkToken()
       .then(
         () => axios(originalRequest),
@@ -77,7 +75,7 @@ const checkToken = () => {
     // In case it is the connection and accessToken has not been added to the header
 
     // If there is no account it means that the user is not connected
-    //console.log(`state: ${JSON.stringify(state)}`);
+    // console.log(`state: ${JSON.stringify(state)}`);
     // In case it is the connection and accessToken has not been added to the header
     state.user.accessToken
       ? (axios.defaults.headers.Authorization = `Bearer ${state.user.accessToken}`)
@@ -87,7 +85,7 @@ const checkToken = () => {
       ? axios
         .get(`${API_URL}/accounts/${state.user.account.id}`) // This line is meant to hit the API
         .then(() => {
-          //console.log('bahhh ca marchcheh');
+          // console.log('bahhh ca marchcheh');
           resolve();
         })
         .catch(() => {

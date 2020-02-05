@@ -7,8 +7,9 @@ import RadioForm from 'react-native-simple-radio-button';
 import moment from 'moment';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import ImageFactory from 'react-native-image-picker-form';
 import CButton from '../buttons/Button';
-import ImageFactory from "react-native-image-picker-form";
+import ImagePicker from 'react-native-image-picker';
 
 const { Form } = t.form;
 const genderProps = [
@@ -29,13 +30,14 @@ export default class GeneralModif extends Component {
         birth: new Date(account.birthDayDate),
       },
       picture: account.picture,
+      pictureObject: null,
       gender: account.gender === 'male' ? 0 : account.gender === 'female' ? 1 : 2,
     };
 
     this.Name = t.refinement(t.String, (name) => name.length >= 2);
 
     this.General = t.struct({
-      image: t.maybe(t.String),
+      image: t.maybe(t.Object),
       firstName: this.Name,
       lastName: this.Name,
       birth: t.Date
@@ -80,6 +82,34 @@ export default class GeneralModif extends Component {
     this.state.user = value;
   }
 
+  chooseFile = () => {
+    const options = {
+      title: 'Photo de profil',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+      takePhotoButtonTitle: 'Prendre une photo',
+      chooseFromLibraryButtonTitle: 'Ouvrir la galerie',
+      cancelButtonTitle: 'Annuler'
+    };
+    ImagePicker.showImagePicker(options, (response) => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        this.state.picture = response.uri;
+        this.state.pictureObject = response;
+        // You can also display the image using data:
+        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+      }
+    });
+  };
+
+
   handleSubmit = () => {
     const { userUpdateRemoteAccount, account, userUpdateRemotePharmaAccount } = this.props;
     const value = this._form.getValue();
@@ -91,7 +121,7 @@ export default class GeneralModif extends Component {
         lastName: value.lastName,
         birthDayDate: value.birth,
         gender: gender === 0 ? 'male' : gender === 1 ? 'female' : 'another',
-        picture: value.image
+        picture: this.state.pictureObject
       };
       console.log('------------ GO -------');
       console.log(value.image);
@@ -114,6 +144,7 @@ export default class GeneralModif extends Component {
   };
 
   render() {
+    const image = this.state.picture;
     return (
       <KeyboardAwareScrollView
         automaticallyAdjustContentInsets={false}
@@ -122,12 +153,13 @@ export default class GeneralModif extends Component {
         <View style={styles.container}>
           <View style={styles.image}>
             <Image
-              source={this.state.picture ? { uri: this.state.picture } : require('../../assets/logo-fav.png')}
+              source={image ? { uri: image } : require('../../assets/logo-fav.png')}
               style={{
                 width: 80, height: 90, opacity: 1, marginRight: '5%'
               }}
             />
             <MaterialIcons name="photo-camera" size={24} color="#707070" />
+            <CButton title="photo" onPress={this.chooseFile.bind(this)} />
           </View>
           <View style={styles.form}>
             <Form

@@ -189,6 +189,8 @@ PODS:
     - React-Core
   - react-native-image-base64 (0.1.4):
     - React
+  - react-native-image-picker (2.2.1):
+    - React
   - react-native-netinfo (5.3.1):
     - React
   - react-native-safe-area-context (0.6.2):
@@ -275,6 +277,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-fetch-blob (from `../node_modules/react-native-fetch-blob`)
   - react-native-image-base64 (from `../node_modules/react-native-image-base64`)
+  - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-video (from `../node_modules/react-native-video`)
@@ -340,6 +343,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-fetch-blob"
   react-native-image-base64:
     :path: "../node_modules/react-native-image-base64"
+  react-native-image-picker:
+    :path: "../node_modules/react-native-image-picker"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-safe-area-context:
@@ -405,6 +410,7 @@ SPEC CHECKSUMS:
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
   react-native-fetch-blob: 0cbdf9764c75d9438c162427395f4bc35a857d5a
   react-native-image-base64: acfe962aa79535d826a2668e66474e85a9ee468d
+  react-native-image-picker: 7e19aefccd42aad840a758181e16ce05d4e95578
   react-native-netinfo: 6b536ece82317b0313cbee732f2f9950fc0e9c4c
   react-native-safe-area-context: a1d322930b8c5d04ebeb77cc47cc97575ad27203
   react-native-video: 961749da457e73bf0b5565edfbaffc25abfb8974

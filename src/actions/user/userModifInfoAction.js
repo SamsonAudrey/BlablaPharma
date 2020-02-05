@@ -1,7 +1,5 @@
 import { API_URL } from 'react-native-dotenv';
 import axios from 'axios';
-import RNFetchBlob from 'react-native-fetch-blob';
-import ImgToBase64 from 'react-native-image-base64';
 import {
   USER_PERSONNAL_INFO_PHARMA_UPDATE_SUCCESS,
   USER_PERSONNAL_INFO_UPDATE_REQUEST,
@@ -11,16 +9,16 @@ import {
 export const userUpdateRemoteAccount = (account) => {
   console.log('TEST UPDATE PICTURE');
   console.log(account.picture);
-  const uri = account.picture.substring(5);
-
+  const photo = account.picture;
 
   function thunk(dispatch) {
     console.log('OUAISOUAISOUAIS ----- ');
     const formData = new FormData();
     formData.append('picture', {
-      uri,
-      name: 'test',
-      type: 'image/jpg',
+      uri: photo.uri,
+      name: photo.name,
+      type: photo.type,
+      data: photo.data,
     });
 
     dispatch({ type: USER_PERSONNAL_INFO_UPDATE_REQUEST });
@@ -34,9 +32,10 @@ export const userUpdateRemoteAccount = (account) => {
         oldPassword: account.oldPassword,
         newPassword: account.newPassword,
         picture: {
-          uri,
-          name: 'test',
-          type: 'image/jpg'
+          uri: photo.uri,
+          name: photo.name,
+          type: photo.type,
+          data: photo.data,
         }
       })
       .then((response) => {

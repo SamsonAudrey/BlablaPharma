@@ -170,7 +170,7 @@ export const userDelete = (accountId) => {
   return thunk;
 };
 
-export const userDeleteSuccess = (account) => ({
+export const userDeleteSuccess = () => ({
   type: USER_PERSONNAL_DELETE_ACCOUNT_SUCCESS,
   payload: {
   }

@@ -1,6 +1,7 @@
 import { API_URL } from 'react-native-dotenv';
 import axios from 'axios';
 import RNFetchBlob from 'react-native-fetch-blob';
+import ImgToBase64 from 'react-native-image-base64';
 import {
   USER_PERSONNAL_INFO_PHARMA_UPDATE_SUCCESS,
   USER_PERSONNAL_INFO_UPDATE_REQUEST,
@@ -12,46 +13,47 @@ import { getToken } from '../../utils/auth';
 export const userUpdateRemoteAccount = (account) => {
   console.log('TEST UPDATE PICTURE');
   console.log(account.picture);
-  console.log(RNFetchBlob.wrap(account.picture));
-  async function thunk(dispatch) {
+  const { Blob } = RNFetchBlob.polyfill;
+  const { fs } = RNFetchBlob;
+  window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest;
+  window.Blob = Blob;
+
+  let photoBlob = null;
+  const imageFile = RNFetchBlob.wrap(account.picture);
+
+
+  function thunk(dispatch) {
     console.log('OUAISOUAISOUAIS');
 
-    const token = await getToken();
     dispatch({ type: USER_PERSONNAL_INFO_UPDATE_REQUEST });
-    return axios
-      .put(`${API_URL}/accounts/${account.id}`, {
-        firstName: account.firstName,
-        lastName: account.lastName,
-        birthDayDate: account.birthDayDate,
-        newEmail: account.newEmail,
-        gender: account.gender,
-        oldPassword: account.oldPassword,
-        newPassword: account.newPassword
-      })
-      .then((response) => {
-        console.log('TESSSST');
-        console.log('OKOKOK');
-        console.log(token);
-        RNFetchBlob.fetch('PUT', `${API_URL}/accounts/${account.id}`, {
-          Authorization: token,
-          'Content-Type': 'application/octet-stream',
-          body: JSON.stringify({
-            picture: RNFetchBlob.wrap(account.picture)
+    Blob.build(imageFile, { type: 'image/jpg' })
+      .then((blob) => {
+        photoBlob = blob;
+        return axios
+          .put(`${API_URL}/accounts/${account.id}`, {
+            firstName: account.firstName,
+            lastName: account.lastName,
+            birthDayDate: account.birthDayDate,
+            newEmail: account.newEmail,
+            gender: account.gender,
+            oldPassword: account.oldPassword,
+            newPassword: account.newPassword,
+            picture: null
           })
-        })
-          .then((resp) => {
-            console.log('OK ', resp);
-          })
-          .catch((err) => {
-            console.log('EROOR', err);
-          });
+          .then((response) => {
+            console.log('TESSSST');
 
-        console.log(`REPONSE ${JSON.stringify(response.data)}`);
-        dispatch(userUpdateSuccess(response.data));
-      })
-      .catch((error) => {
+            photoBlob.close();
+
+            console.log(`REPONSE ${JSON.stringify(response.data)}`);
+            dispatch(userUpdateSuccess(response.data));
+          })
+          .catch((error) => {
+            console.log(`ERROOOOOOR ${JSON.stringify(error)}`);
+            dispatch(userUpdateFailure(error));
+          });
+      }).catch((error) => {
         console.log(`ERROR ${JSON.stringify(error)}`);
-        dispatch(userUpdateFailure(error));
       });
   }
   // thunk.interceptInOffline = true;

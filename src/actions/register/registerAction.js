@@ -5,6 +5,7 @@ import {
   REGISTER_KIND,
   REGISTER_SUCCESS
 } from '../actionTypes';
+import RNFetchBlob from 'react-native-fetch-blob';
 
 export const registerPatient = (
   firstName,
@@ -29,7 +30,7 @@ export const registerPatient = (
       gender: userGender,
       email: userEmail,
       password: userPassword,
-      picture: imageUri
+      picture: RNFetchBlob.wrap(imageUri)
     })
   })
     .then((response) => {

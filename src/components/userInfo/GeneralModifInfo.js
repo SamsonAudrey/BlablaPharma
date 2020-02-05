@@ -8,6 +8,7 @@ import moment from 'moment';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import CButton from '../buttons/Button';
+import ImageFactory from "react-native-image-picker-form";
 
 const { Form } = t.form;
 const genderProps = [
@@ -34,6 +35,7 @@ export default class GeneralModif extends Component {
     this.Name = t.refinement(t.String, (name) => name.length >= 2);
 
     this.General = t.struct({
+      image: t.maybe(t.String),
       firstName: this.Name,
       lastName: this.Name,
       birth: t.Date
@@ -82,15 +84,18 @@ export default class GeneralModif extends Component {
     const { userUpdateRemoteAccount, account, userUpdateRemotePharmaAccount } = this.props;
     const value = this._form.getValue();
     if (value) {
-      const { gender, picture } = this.state;
+      const { gender } = this.state;
       const changes = {
         id: account.id,
         firstName: value.firstName,
         lastName: value.lastName,
         birthDayDate: value.birth,
         gender: gender === 0 ? 'male' : gender === 1 ? 'female' : 'another',
-        picture,
+        picture: value.image
       };
+      console.log('------------ GO -------');
+      console.log(value.image);
+
       userUpdateRemoteAccount(changes);
 
       if (this.props.pharmacistAccount) {
@@ -235,6 +240,18 @@ const options = {
         defaultValueText: 'Date de naissance',
       },
     },
+    image: {
+      config: {
+        title: 'Choisir une photo de profil',
+        options: ['Ouvrir camera', 'Selection gallerie', 'Annuler'],
+        // Used on Android to style BottomSheet
+        style: {
+        },
+        // cropping: false
+      },
+      error: 'Aucune image',
+      factory: ImageFactory
+    }
   },
   auto: 'placeholders',
   stylesheet: s

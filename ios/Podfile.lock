@@ -185,6 +185,10 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
   - React-jsinspector (0.61.5)
+  - react-native-fetch-blob (0.10.6):
+    - React-Core
+  - react-native-image-base64 (0.1.4):
+    - React
   - react-native-netinfo (5.3.1):
     - React
   - react-native-safe-area-context (0.6.2):
@@ -269,6 +273,8 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
+  - react-native-fetch-blob (from `../node_modules/react-native-fetch-blob`)
+  - react-native-image-base64 (from `../node_modules/react-native-image-base64`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-video (from `../node_modules/react-native-video`)
@@ -330,6 +336,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
+  react-native-fetch-blob:
+    :path: "../node_modules/react-native-fetch-blob"
+  react-native-image-base64:
+    :path: "../node_modules/react-native-image-base64"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-safe-area-context:
@@ -393,6 +403,8 @@ SPEC CHECKSUMS:
   React-jsi: cb2cd74d7ccf4cffb071a46833613edc79cdf8f7
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
+  react-native-fetch-blob: 0cbdf9764c75d9438c162427395f4bc35a857d5a
+  react-native-image-base64: acfe962aa79535d826a2668e66474e85a9ee468d
   react-native-netinfo: 6b536ece82317b0313cbee732f2f9950fc0e9c4c
   react-native-safe-area-context: a1d322930b8c5d04ebeb77cc47cc97575ad27203
   react-native-video: 961749da457e73bf0b5565edfbaffc25abfb8974
@@ -417,6 +429,6 @@ SPEC CHECKSUMS:
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: fcff58b93aab5e838cd50621808b57fb59adaf4a
+PODFILE CHECKSUM: 3ac0a2cdc01c209c6d4de6fa96f8dd083bf4212a
 
 COCOAPODS: 1.8.4

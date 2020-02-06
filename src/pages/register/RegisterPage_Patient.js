@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Image,
   ImageBackground, StyleSheet, Text, View,
 } from 'react-native';
 import t from 'tcomb-form-native';
@@ -8,6 +9,8 @@ import RadioForm from 'react-native-simple-radio-button';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SafeAreaView from 'react-native-safe-area-view';
 import ImageFactory from 'react-native-image-picker-form';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import ImagePicker from 'react-native-image-picker';
 import ButtonTitle from '../../components/buttons/ButtonTitle';
 import CButton from '../../components/buttons/Button';
 import { store } from '../../../store';
@@ -25,7 +28,8 @@ class RegisterPatient extends Component {
     super(props);
     this.state = {
       user: {},
-      gender: 0
+      gender: 0,
+      image: this.props.image
     };
     this.Email = t.refinement(t.String, (email) => {
       const reg = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
@@ -47,8 +51,7 @@ class RegisterPatient extends Component {
       lastName: t.String,
       password: this.Password,
       confirmPassword: this.EqualPassword,
-      birth: t.Date,
-      image: t.maybe(t.String)
+      birth: t.Date
     });
     const state = store.getState();
     this.userKind = state.navigationInfo.userKind;
@@ -71,7 +74,9 @@ class RegisterPatient extends Component {
   handleSubmit = () => {
     const value = this._form.getValue();
     const { gender } = this.state;
-    const { onRegisterPatient, onRegisterInfo, onUploadImage, navigation } = this.props;
+    const {
+      onRegisterPatient, onRegisterInfo, onUploadImage, navigation
+    } = this.props;
     if (this.userKind === 'pharmacist' && value !== null) {
       // 1 STEP REGISTER PHARMACIST USER
       onRegisterInfo(value, gender);
@@ -83,7 +88,7 @@ class RegisterPatient extends Component {
         const birthday = moment(value.birth).format('YYYY-MM-DD');
         console.log('TEST UPLOAD -----------');
         onRegisterPatient(value.firstName, value.lastName, birthday,
-          genderLabel, value.email, value.password, value.image);
+          genderLabel, value.email, value.password, this.state.image);
         // console.log(value.image);
         // onUploadImage(value.image);
       } catch (error) {
@@ -92,12 +97,40 @@ class RegisterPatient extends Component {
     }
   };
 
+  chooseFile = () => {
+    const options = {
+      title: 'Photo de profil',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+      takePhotoButtonTitle: 'Prendre une photo',
+      chooseFromLibraryButtonTitle: 'Ouvrir la galerie',
+      cancelButtonTitle: 'Annuler'
+    };
+    ImagePicker.showImagePicker(options, (response) => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        this.state.image = response.uri;
+        // this.state.pictureObject = response;
+        // You can also display the image using data:
+        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+      }
+    });
+  };
+
 
   render() {
     let error;
     this.props.selector.error400Register
       ? (error = <Text style={{ color: '#a94442' }}>Email déjà utilisé</Text>)
       : (error = null);
+    const { image } = this.state;
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <KeyboardAwareScrollView
@@ -156,6 +189,15 @@ class RegisterPatient extends Component {
               buttonWrapStyle={{ marginLeft: 20 }}
               style={{ marginTop: '5%' }}
             />
+            <View style={styles.image}>
+              <Image
+                source={image ? { uri: image } : require('../../assets/logo-fav.png')}
+                style={{
+                  width: 80, height: 90, opacity: 1, marginRight: '5%'
+                }}
+              />
+              <MaterialIcons name="photo-camera" size={24} color="#707070" onPress={this.chooseFile.bind(this)} />
+            </View>
             <View style={styles.submitButton}>
               <CButton
                 title={this.userKind === 'patient' ? "S'inscrire" : 'Suivant'}
@@ -211,6 +253,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(255,255,255,0.4)'
+  },
+  image: {
+    marginTop: '3%',
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    justifyContent: 'center',
   },
 });
 

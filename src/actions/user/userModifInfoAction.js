@@ -7,20 +7,9 @@ import {
 } from './userActionTypes';
 
 export const userUpdateRemoteAccount = (account) => {
-  console.log('TEST UPDATE PICTURE');
-  console.log(account.picture);
   const photo = account.picture;
 
-  function thunk(dispatch) {
-    console.log('OUAISOUAISOUAIS ----- ');
-    const formData = new FormData();
-    formData.append('picture', {
-      uri: photo.uri,
-      name: photo.name,
-      type: photo.type,
-      data: photo.data,
-    });
-
+  async function thunk(dispatch) {
     dispatch({ type: USER_PERSONNAL_INFO_UPDATE_REQUEST });
     return axios
       .put(`${API_URL}/accounts/${account.id}`, {
@@ -31,16 +20,9 @@ export const userUpdateRemoteAccount = (account) => {
         gender: account.gender,
         oldPassword: account.oldPassword,
         newPassword: account.newPassword,
-        picture: {
-          uri: photo.uri,
-          name: photo.name,
-          type: photo.type,
-          data: photo.data,
-        }
+        picture: null
       })
       .then((response) => {
-        console.log('TESSSST');
-
         console.log(`REPONSE ${JSON.stringify(response.data)}`);
         dispatch(userUpdateSuccess(response.data));
       })

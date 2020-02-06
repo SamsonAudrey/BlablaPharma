@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import {
-  View, StyleSheet, Image
+  View, StyleSheet, Image, Button
 } from 'react-native';
 import t from 'tcomb-form-native';
 import RadioForm from 'react-native-simple-radio-button';
 import moment from 'moment';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import ImageFactory from 'react-native-image-picker-form';
-import CButton from '../buttons/Button';
 import ImagePicker from 'react-native-image-picker';
+import CButton from '../buttons/Button';
 
 const { Form } = t.form;
 const genderProps = [
@@ -37,7 +36,6 @@ export default class GeneralModif extends Component {
     this.Name = t.refinement(t.String, (name) => name.length >= 2);
 
     this.General = t.struct({
-      image: t.maybe(t.Object),
       firstName: this.Name,
       lastName: this.Name,
       birth: t.Date
@@ -124,8 +122,6 @@ export default class GeneralModif extends Component {
         picture: this.state.pictureObject
       };
       console.log('------------ GO -------');
-      console.log(value.image);
-
       userUpdateRemoteAccount(changes);
 
       if (this.props.pharmacistAccount) {
@@ -158,8 +154,7 @@ export default class GeneralModif extends Component {
                 width: 80, height: 90, opacity: 1, marginRight: '5%'
               }}
             />
-            <MaterialIcons name="photo-camera" size={24} color="#707070" />
-            <CButton title="photo" onPress={this.chooseFile.bind(this)} />
+            <MaterialIcons name="photo-camera" size={24} color="#707070" onPress={this.chooseFile.bind(this)} />
           </View>
           <View style={styles.form}>
             <Form
@@ -271,18 +266,6 @@ const options = {
         },
         defaultValueText: 'Date de naissance',
       },
-    },
-    image: {
-      config: {
-        title: 'Choisir une photo de profil',
-        options: ['Ouvrir camera', 'Selection gallerie', 'Annuler'],
-        // Used on Android to style BottomSheet
-        style: {
-        },
-        // cropping: false
-      },
-      error: 'Aucune image',
-      factory: ImageFactory
     }
   },
   auto: 'placeholders',

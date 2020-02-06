@@ -19,7 +19,8 @@ const mapStateToProps = (state) => ({
     error400Register: errorRegisterSelector(state),
     successRegister: successRegisterSelector(state)
   },
-  user: {}
+  user: {},
+  image: null
 });
 
 const mapDispatchToProps = (dispatch) => ({

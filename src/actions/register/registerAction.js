@@ -2,8 +2,10 @@ import { API_URL } from 'react-native-dotenv';
 import {
   REGISTER_FAILURE,
   REGISTER_INFO,
-  REGISTER_KIND, REGISTER_SUCCESS
+  REGISTER_KIND,
+  REGISTER_SUCCESS
 } from '../actionTypes';
+import RNFetchBlob from 'react-native-fetch-blob';
 
 export const registerPatient = (
   firstName,
@@ -11,37 +13,44 @@ export const registerPatient = (
   userBirthDate,
   userGender,
   userEmail,
-  userPassword
-) => (dispatch) => fetch(`${API_URL}/register/basic`, {
-  method: 'POST',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    firstName,
-    lastName,
-    birthDayDate: userBirthDate,
-    gender: userGender,
-    email: userEmail,
-    password: userPassword
+  userPassword,
+  imageUri
+) => (dispatch) => {
+  console.log(imageUri);
+  fetch(`${API_URL}/register/basic`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      firstName,
+      lastName,
+      birthDayDate: userBirthDate,
+      gender: userGender,
+      email: userEmail,
+      password: userPassword,
+      picture: RNFetchBlob.wrap(imageUri)
+    })
   })
-})
-  .then((response) => {
-    if (response.ok) {
-      console.log('REGISTERED');
-      dispatch(registerSuccess());
-    } else {
-      console.log('NOT REGISTERED');
-      console.log('response ', response);
-      dispatch(registerFailureEmail(response));
-    }
-    // dispatch(registerSuccess(response));
-  })
-  .catch((error) => {
-    console.log(`error ${error}`);
-    dispatch(registerFailure(error));
-  });
+    .then((response) => {
+      if (response.ok) {
+        console.log('REGISTERED');
+        console.log(response);
+        dispatch(registerSuccess());
+      } else {
+        console.log('NOT REGISTERED');
+        console.log('response ', response);
+        dispatch(registerFailureEmail(response));
+      }
+      // dispatch(registerSuccess(response));
+    })
+    .catch((error) => {
+      console.log(`error ${error}`);
+      dispatch(registerFailure(error));
+    });
+};
+
 
 export const registerPharmacist = (
   firstName,
@@ -82,8 +91,7 @@ export const registerPharmacist = (
       console.log('REGISTERED');
       dispatch(registerSuccess());
     } else {
-      console.log('NOT REGISTERED');
-      console.log('response ', response);
+      console.log('NOT REGISTERED ERROR : ', response);
       dispatch(registerFailureEmail(response));
     }
   })

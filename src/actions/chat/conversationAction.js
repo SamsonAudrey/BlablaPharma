@@ -23,11 +23,11 @@ export const createConversations = (memberId) => {
     return postRequest(`/conversations?memberId=${memberId}`, token)
       .then(
         (response) => {
-          //console.log(`cede${JSON.stringify(response)}`);
+          // console.log(`cede${JSON.stringify(response)}`);
           dispatch(createConversationSuccess(response));
         },
         (error) => {
-          //console.log(`errorr${JSON.stringify(error)}`);
+          // console.log(`errorr${JSON.stringify(error)}`);
           dispatch(createConversationFailure(error));
         }
       );
@@ -63,11 +63,11 @@ export const getConversations = () => {
         if (response.message === 'Unauthorized access') {
           console.log('tttt');
         }
-        //console.log(`refdsfdfdsfss${JSON.stringify(response)}`);
+        // console.log(`refdsfdfdsfss${JSON.stringify(response)}`);
         dispatch(getConversationsSuccess(response));
       },
       (error) => {
-        //console.log(`ehgiukgh${JSON.stringify(error)}`);
+        // console.log(`ehgiukgh${JSON.stringify(error)}`);
         dispatch(getConversationsFailure(error));
       });
   }
@@ -96,19 +96,19 @@ export const getConversation = (conversationId) => {
     const token = await getToken();
     dispatch({ type: GET_CONVERSATION_REQUEST });
     // socket.headers = token;
-    //console.log(`dsqdssssssssssssssssssssss${conversationId}`);
+    // console.log(`dsqdssssssssssssssssssssss${conversationId}`);
     return new Promise((resolve, reject) => {
       getRequest(`/conversations/${conversationId}`, token)
         .then((response) => {
           if (response.message === 'Unauthorized access') {
             console.log('tttt');
           }
-          //console.log(`gettt connnvvvv resssp${JSON.stringify(response)}`);
+          // console.log(`gettt connnvvvv resssp${JSON.stringify(response)}`);
           dispatch(getConversationSuccess(response));
           resolve(response);
         },
         (error) => {
-          //console.log(`gettt connnvvvv errr${JSON.stringify(error)}`);
+          // console.log(`gettt connnvvvv errr${JSON.stringify(error)}`);
           dispatch(getConversationFailure(error));
           reject(error);
         });
@@ -147,12 +147,12 @@ export const deleteConversation = (conversationId) => {
           if (response.message === 'Unauthorized access') {
             console.log('tttt');
           }
-          //console.log(`deleteeee connnvvvv resssp${JSON.stringify(response)}`);
+          // console.log(`deleteeee connnvvvv resssp${JSON.stringify(response)}`);
           dispatch(deleteConversationSuccess(conversationId));
           resolve(response);
         },
         (error) => {
-          //console.log(`deleteeee connnvvvv errr${JSON.stringify(error)}`);
+          // console.log(`deleteeee connnvvvv errr${JSON.stringify(error)}`);
           dispatch(deleteConversationFailure(error));
           reject(error);
         });

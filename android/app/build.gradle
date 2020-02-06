@@ -180,6 +180,8 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-image-picker')
+    implementation project(':react-native-image-base64')
     implementation project(':react-native-webview')
     implementation project(':react-native-video')
     implementation project(':react-native-vector-icons')

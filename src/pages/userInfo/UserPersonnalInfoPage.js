@@ -56,6 +56,7 @@ class UserPersonnalInfoPage extends Component {
     const createdDateFormated = moment(createdDate).format('DD/MM/YYYY');
     const { role } = account;
     const { pharmacistAccount } = this.props;
+    console.log(account);
     return (
       <>
         <SafeAreaView style={{ flex: 1 }}>

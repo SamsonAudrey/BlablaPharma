@@ -1,8 +1,9 @@
 import React from 'react';
 import { GiftedChat, Send, Bubble } from 'react-native-gifted-chat';
 import {
-  Text, StyleSheet, View, Image
+  Text, StyleSheet, View, Image, KeyboardAvoidingView
 } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import BackButton from '../buttons/BackButton';
 
 
@@ -155,7 +156,7 @@ export default class Conversation extends React.Component {
   }
 
   render() {
-    console.log(`tttttttttttt${JSON.stringify(this.props)}`);
+    // console.log(`tttttttttttt${JSON.stringify(this.props)}`);
     if (this.props.isTyping) {
       // this.setState({ isTyping: true });
       clearTimeout;
@@ -170,20 +171,23 @@ export default class Conversation extends React.Component {
             title="Retour"
             onPress={() => this.props.navigation.goBack()}
           />
-          <GiftedChat
-            messages={mess}
-            onSend={(messages) => this.onSend(messages)}
-            user={{
-              _id: this.props.user.account.id,
-            }}
-            onInputTextChanged={() => this.props.onTyping(this.props.conversationId)}
-            placeholder="Ecrivez un message..."
-            renderFooter={this.props.isTyping ? this._renderFooter : null}
-            renderAvatar={() => this._renderAvatar()}
-            renderSend={(props) => this._renderSendButton(props)}
-            renderActions={() => this._renderActions()}
-            renderBubble={ (props) => this._renderBubble(props)}
-          />
+          <View style={{ flex: 1 }}>
+            <GiftedChat
+              messages={mess}
+              onSend={(messages) => this.onSend(messages)}
+              user={{
+                _id: this.props.user.account.id,
+              }}
+              onInputTextChanged={() => this.props.onTyping(this.props.conversationId)}
+              placeholder="Ecrivez un message..."
+              renderFooter={this.props.isTyping ? this._renderFooter : null}
+              renderAvatar={() => this._renderAvatar()}
+              renderSend={(props) => this._renderSendButton(props)}
+              renderActions={() => this._renderActions()}
+              renderBubble={(props) => this._renderBubble(props)}
+            />
+            <KeyboardAvoidingView behavior={ Platform.OS === 'android' ? 'padding' : null} keyboardVerticalOffset={80} />
+          </View>
         </>
       );
     }

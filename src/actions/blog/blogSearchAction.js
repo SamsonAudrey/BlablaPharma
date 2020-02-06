@@ -25,7 +25,6 @@ export const blogSearch = (
         }
       })
       .then((response) => {
-        console.log(response);
         if (response.data.length !== 0) {
           dispatch(blogSearchSuccess(response.data));
         } else {

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import {
-  View, StyleSheet, Image
+  View, StyleSheet, Image, Button
 } from 'react-native';
 import t from 'tcomb-form-native';
 import RadioForm from 'react-native-simple-radio-button';
 import moment from 'moment';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import ImagePicker from 'react-native-image-picker';
 import CButton from '../buttons/Button';
 
 const { Form } = t.form;
@@ -28,6 +29,7 @@ export default class GeneralModif extends Component {
         birth: new Date(account.birthDayDate),
       },
       picture: account.picture,
+      pictureObject: null,
       gender: account.gender === 'male' ? 0 : account.gender === 'female' ? 1 : 2,
     };
 
@@ -77,19 +79,48 @@ export default class GeneralModif extends Component {
     this.state.user = value;
   }
 
+  chooseFile = () => {
+    const options = {
+      title: 'Photo de profil',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+      takePhotoButtonTitle: 'Prendre une photo',
+      chooseFromLibraryButtonTitle: 'Ouvrir la galerie',
+      cancelButtonTitle: 'Annuler'
+    };
+    ImagePicker.showImagePicker(options, (response) => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        this.state.picture = response.uri;
+        this.state.pictureObject = response;
+        // You can also display the image using data:
+        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+      }
+    });
+  };
+
+
   handleSubmit = () => {
     const { userUpdateRemoteAccount, account, userUpdateRemotePharmaAccount } = this.props;
     const value = this._form.getValue();
     if (value) {
-      const { gender, picture } = this.state;
+      const { gender } = this.state;
       const changes = {
         id: account.id,
         firstName: value.firstName,
         lastName: value.lastName,
         birthDayDate: value.birth,
         gender: gender === 0 ? 'male' : gender === 1 ? 'female' : 'another',
-        picture,
+        picture: this.state.pictureObject
       };
+      console.log('------------ GO -------');
       userUpdateRemoteAccount(changes);
 
       if (this.props.pharmacistAccount) {
@@ -108,6 +139,7 @@ export default class GeneralModif extends Component {
   };
 
   render() {
+    const image = this.state.picture;
     return (
       <KeyboardAwareScrollView
         automaticallyAdjustContentInsets={false}
@@ -116,12 +148,12 @@ export default class GeneralModif extends Component {
         <View style={styles.container}>
           <View style={styles.image}>
             <Image
-              source={this.state.picture ? { uri: this.state.picture } : require('../../assets/logo-fav.png')}
+              source={image ? { uri: image } : require('../../assets/logo-fav.png')}
               style={{
                 width: 80, height: 90, opacity: 1, marginRight: '5%'
               }}
             />
-            <MaterialIcons name="photo-camera" size={24} color="#707070" />
+            <MaterialIcons name="photo-camera" size={24} color="#707070" onPress={this.chooseFile.bind(this)} />
           </View>
           <View style={styles.form}>
             <Form
@@ -233,7 +265,7 @@ const options = {
         },
         defaultValueText: 'Date de naissance',
       },
-    },
+    }
   },
   auto: 'placeholders',
   stylesheet: s

@@ -15,7 +15,7 @@ export default class SearchBar extends Component {
   componentDidMount() {
     const { gender } = this.props;
     const { text } = this.props;
-    this.props.onSearch(text, gender, '');
+    this.props.onSearch('', '', '');
   }
 
   componentDidUpdate() {

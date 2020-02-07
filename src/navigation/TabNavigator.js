@@ -16,6 +16,7 @@ import ModifUserPersonnalInfoPageContainer from '../containers/user/ModifUserPer
 import Blog from '../pages/blog/BlogPage';
 import ConversationContainer from '../containers/chat/ConversationContainer';
 import PharmacistsListContainer from '../containers/pharmacists/PharmacistsListContainer';
+import NotifCustom from '../utils/notifCustom';
 
 const SearchPharmacistsNavigator = createStackNavigator(
   {
@@ -73,7 +74,8 @@ const ChatNavigator = createStackNavigator(
   {
     ChatPage: ChatPageContainer,
     Conversation: ConversationContainer,
-    PharmacistList: PharmacistsListContainer
+    PharmacistList: PharmacistsListContainer,
+    NotifCustom
   },
   {
     initialRouteName: 'ChatPage',

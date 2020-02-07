@@ -26,33 +26,31 @@ axios.interceptors.request.use(
   }
 );
 
-axios.interceptors.response.use((response) => {
-  return response;
-},
+axios.interceptors.response.use((response) => response,
 // Return a successful response back to the calling service
 
-(error) => {
+  (error) => {
   // Return any error which is not due to authentication back to the calling service
-  const originalRequest = error.config;
-  if (error.response.status === 401 && originalRequest.url
+    const originalRequest = error.config;
+    if (error.response.status === 401 && originalRequest.url
         === `${API_URL}/auth/token`) {
     // It means the refreshToken is not valid and we must login again
     // So we must navigate to login
     // router.push('/login');
+      return Promise.reject(error);
+    }
+    if (error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      checkToken()
+        .then(
+          () => axios(originalRequest),
+          (err) => {
+            Promise.reject(err);
+          }
+        );
+    }
     return Promise.reject(error);
-  }
-  if (error.response.status === 401 && !originalRequest._retry) {
-    originalRequest._retry = true;
-    checkToken()
-      .then(
-        () => axios(originalRequest),
-        (err) => {
-          Promise.reject(err);
-        }
-      );
-  }
-  return Promise.reject(error);
-});
+  });
 
 export async function getToken() {
   return checkToken()

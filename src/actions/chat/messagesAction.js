@@ -14,7 +14,9 @@ import {
 import { getToken } from '../../utils/auth';
 import { store } from '../../../store';
 import { getRequest, postRequest, socket } from '../../utils/socket';
+import NotifCustom from '../../utils/notifCustom';
 
+const notifCustomInstant = new NotifCustom();
 
 // socket logic
 const typing = false;
@@ -41,6 +43,7 @@ socket.on('event:read', (data) => {
 
 socket.on('message', (data) => {
   //console.log(`message: ${JSON.stringify(data)}`);
+  notifCustomInstant.notifyMessage(data.conversation, data);
   store.dispatch(receiveMessageSuccess(data.conversation, data));
 });
 

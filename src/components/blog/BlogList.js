@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import {Text, View} from 'react-native';
+import { View } from 'react-native';
 import { filter } from 'lodash';
 import SceneBlog from '../scenes/SceneBlog';
 import CustomTabView from '../utils/CustomTabView';
-import NotConnectedPage from "./NotConnectedPage";
+import NotConnectedPage from './NotConnectedPage';
 
 class BlogList extends Component {
   state = {

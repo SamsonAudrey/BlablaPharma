@@ -53,6 +53,8 @@ target 'BlablaPharmaApp' do
 
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
+  pod 'RNCPushNotificationIOS', :path => '../node_modules/@react-native-community/push-notification-ios/RNCPushNotificationIOS.podspec'
+
   target 'BlablaPharmaAppTests' do
     inherit! :search_paths
     # Pods for testing

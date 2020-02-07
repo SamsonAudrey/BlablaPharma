@@ -5,36 +5,21 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* BlablaPharmaAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BlablaPharmaAppTests.m */; };
-		10918D8757024C59999EC615 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB4C074B1EA44E808251BA45 /* Zocial.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		238D5A9B87CC4073B7CCDAFA /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8DD28B0CD7A94D51AA15E258 /* Ionicons.ttf */; };
-		263FA1D25EC0402FB07AA444 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A39953B11284903AFC0C425 /* Foundation.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* BlablaPharmaAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BlablaPharmaAppTests.m */; };
-		34E5355586E34D5F90F0F774 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0000B8D3138469095948CB1 /* EvilIcons.ttf */; };
-		35B9CACB8E66423AB018D0CB /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F447356CA2EB49A3AD3F8F2A /* Fontisto.ttf */; };
 		3B66E44972DAA4CB82CFBCD8 /* libPods-BlablaPharmaAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 284C90686121BAC30A813A20 /* libPods-BlablaPharmaAppTests.a */; };
 		4B9DCE5E98EC84E7D72DE6E4 /* libPods-BlablaPharmaApp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0CE271BE285B9F643FBD8B /* libPods-BlablaPharmaApp-tvOS.a */; };
-		51AC2D3EDF634422B05611D9 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F629894167A451D974566ED /* SimpleLineIcons.ttf */; };
-		54BB76006A5743089C24A494 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E992C5224C7C45368B09ED8F /* FontAwesome5_Brands.ttf */; };
-		7B88BE96238C40E5AC6BFEA0 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 140580A2DC4A44309F7258DD /* Octicons.ttf */; };
-		7F686B9C21074E8A9A92A3D7 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 38C572A7AC5F490DA6080ED5 /* Entypo.ttf */; };
-		89C64822E7574D6294CA5D14 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3F512FF49B647918781A621 /* MaterialIcons.ttf */; };
-		94C2BF943681424B99AFFEC4 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5FE87D3BFDD9471CAF02537E /* FontAwesome5_Regular.ttf */; };
-		AE8A7F974E244FC89AF743B5 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2A0D59F58214735BA1B4939 /* MaterialCommunityIcons.ttf */; };
-		B44F9A0378424225AE085E34 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D529E48A5374C4EB721D0F4 /* AntDesign.ttf */; };
-		C157A39071B44842B45677FF /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE581801F7D242E38625E521 /* FontAwesome.ttf */; };
 		CEFD63FCE631DB2B97E4F18C /* libPods-BlablaPharmaApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 349F165B7E3AE86984B727C4 /* libPods-BlablaPharmaApp-tvOSTests.a */; };
-		E50822DC9249411586586519 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 72CBA2AAC7D3412F91F08751 /* Feather.ttf */; };
 		E72D79B4B16DCB642D534BBC /* libPods-BlablaPharmaApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB8B3C8CB773AF92162E95CC /* libPods-BlablaPharmaApp.a */; };
-		FB920CA472B649CBB2261F56 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE98101A0B244B23B10482BC /* FontAwesome5_Solid.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -340,12 +325,15 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 940;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = FU48QDXVF9;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -360,7 +348,7 @@
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "BlablaPharmaApp" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -393,22 +381,6 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				B44F9A0378424225AE085E34 /* AntDesign.ttf in Resources */,
-				7F686B9C21074E8A9A92A3D7 /* Entypo.ttf in Resources */,
-				34E5355586E34D5F90F0F774 /* EvilIcons.ttf in Resources */,
-				E50822DC9249411586586519 /* Feather.ttf in Resources */,
-				C157A39071B44842B45677FF /* FontAwesome.ttf in Resources */,
-				54BB76006A5743089C24A494 /* FontAwesome5_Brands.ttf in Resources */,
-				94C2BF943681424B99AFFEC4 /* FontAwesome5_Regular.ttf in Resources */,
-				FB920CA472B649CBB2261F56 /* FontAwesome5_Solid.ttf in Resources */,
-				35B9CACB8E66423AB018D0CB /* Fontisto.ttf in Resources */,
-				263FA1D25EC0402FB07AA444 /* Foundation.ttf in Resources */,
-				238D5A9B87CC4073B7CCDAFA /* Ionicons.ttf in Resources */,
-				AE8A7F974E244FC89AF743B5 /* MaterialCommunityIcons.ttf in Resources */,
-				89C64822E7574D6294CA5D14 /* MaterialIcons.ttf in Resources */,
-				7B88BE96238C40E5AC6BFEA0 /* Octicons.ttf in Resources */,
-				51AC2D3EDF634422B05611D9 /* SimpleLineIcons.ttf in Resources */,
-				10918D8757024C59999EC615 /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,6 +723,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = FU48QDXVF9;
 				INFOPLIST_FILE = BlablaPharmaApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -770,6 +743,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FU48QDXVF9;
 				INFOPLIST_FILE = BlablaPharmaApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -897,6 +871,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -950,6 +925,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

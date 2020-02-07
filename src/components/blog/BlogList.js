@@ -48,7 +48,7 @@ class BlogList extends Component {
   render() {
     return (
       <>
-        <View style={{ flex: 1, paddingHorizontal: '1%' }}>
+        <View style={{ flex: 1, paddingHorizontal: '7%' }}>
           <CustomTabView
             renderScene={this.renderScene}
             state={this.state}

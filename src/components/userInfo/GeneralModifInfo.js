@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View, StyleSheet, Image, Button
+  View, StyleSheet, Image
 } from 'react-native';
 import t from 'tcomb-form-native';
 import RadioForm from 'react-native-simple-radio-button';

@@ -34,9 +34,6 @@ axios.interceptors.response.use((response) => response,
     const originalRequest = error.config;
     if (error.response.status === 401 && originalRequest.url
         === `${API_URL}/auth/token`) {
-    // It means the refreshToken is not valid and we must login again
-    // So we must navigate to login
-    // router.push('/login');
       return Promise.reject(error);
     }
     if (error.response.status === 401 && !originalRequest._retry) {

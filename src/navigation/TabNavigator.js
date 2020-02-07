@@ -86,6 +86,20 @@ const ChatNavigator = createStackNavigator(
   }
 );
 
+const NotifNavigator = createStackNavigator(
+  {
+    Conversation: ConversationContainer,
+    NotifCustom
+  },
+  {
+    initialRouteName: 'NotifCustom',
+    defaultNavigationOptions: {
+      title: '',
+      headerShown: false,
+    },
+  }
+);
+
 const BlogNavigator = createStackNavigator(
   {
     BlogPage: Blog

@@ -8,6 +8,10 @@ import HyperLinkText from '../../components/utils/HyperLinkText';
 import { store } from '../../../store';
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     const state = store.getState();
     return (
@@ -18,13 +22,21 @@ class Home extends Component {
             style={{ width: '100%', height: '100%', opacity: 1 }}
           >
             <View style={styles.sloganView}>
-              <Text style={styles.slogan}>Votre pharmacien{'\n'}en ligne{'\n'}et à votre écoute</Text>
+              <Text style={styles.slogan}>
+Votre pharmacien
+                {'\n'}
+en ligne
+                {'\n'}
+et à votre écoute
+              </Text>
             </View>
             <View style={styles.buttonView}>
               <FatButton
                 title1="Contacter un"
                 title2="pharmacien"
-                onPress={() => this.props.navigation.navigate('SearchPharmacists')}
+                onPress={() => {
+                  this.props.navigation.navigate('SearchPharmacists');
+                }}
               />
             </View>
           </ImageBackground>

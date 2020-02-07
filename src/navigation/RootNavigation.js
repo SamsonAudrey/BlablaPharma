@@ -10,12 +10,12 @@ const AuthScreenStack = createStackNavigator({
     screen: HomePage,
     navigationOptions: ({ navigation, screenProps }) => ({
       headerTitle:
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <Image
-              source={require('../assets/logo-navbar.png')}
-              style={{ width: '75%', height: 40 }}
-            />
-          </View>
+  <View style={{ flex: 1, alignItems: 'center' }}>
+    <Image
+      source={require('../assets/logo-navbar.png')}
+      style={{ width: '75%', height: 40 }}
+    />
+  </View>
     })
   }
 });

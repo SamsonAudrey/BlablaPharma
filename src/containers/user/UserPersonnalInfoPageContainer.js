@@ -9,14 +9,12 @@ import UserPersonnalInfoPage from '../../pages/userInfo/UserPersonnalInfoPage';
 const loadingSelector = createLoadingSelector(['USER_PERSONNAL_INFO_SEARCH']);
 const loadingPharmaSelector = createLoadingSelector(['USER_PERSONNAL_INFO_PHARMA_SEARCH']);
 
-const mapStateToProps = (state) => {
-  return {
-    account: state.user.account,
-    pharmacistAccount: state.user.pharmacistAccount,
-    isFetching: loadingSelector(state),
-    isFetchingPharma: loadingPharmaSelector(state)
-  };
-};
+const mapStateToProps = (state) => ({
+  account: state.user.account,
+  pharmacistAccount: state.user.pharmacistAccount,
+  isFetching: loadingSelector(state),
+  isFetchingPharma: loadingPharmaSelector(state)
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onUserSearch: (userid) => {

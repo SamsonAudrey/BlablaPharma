@@ -5,11 +5,6 @@ import { store } from '../../store';
 export default class NotifCustom extends React.Component {
   onNotifMessage = (conversationId, otherPerson) => {
     console.log("pppppp"+JSON.stringify(this.props))
-    const { navigate } = this.props.navigation;
-    navigate('Conversation', {
-      conversationId,
-      otherPerson
-    });
   }
 
     getOtherPerson = (conversation, user) => {
@@ -28,7 +23,7 @@ export default class NotifCustom extends React.Component {
       console.log(`tytyu${JSON.stringify(conversation)}`);
       if (conversation) {
         const otherPerson = this.getOtherPerson(conversation, state.user);
-        this.notifMessage = new NotifService(this.onNotifMessage(conversationId, otherPerson).bind(this));
+        this.notifMessage = new NotifService(this.onNotifMessage(conversationId, otherPerson));
         this.notifMessage.localNotif(`${otherPerson.firstName} ${otherPerson.lastName}`, message.content, '', 'Nouveau message');
       }
     }

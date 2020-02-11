@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import {
-  View, Text, TouchableOpacity, Image, StyleSheet, Dimensions
+  View, Text, TouchableOpacity, Image
 } from 'react-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-import { TouchableHighlight } from 'react-native-gesture-handler';
 import CButton from '../buttons/Button';
 import CModal from '../utils/Modal';
 

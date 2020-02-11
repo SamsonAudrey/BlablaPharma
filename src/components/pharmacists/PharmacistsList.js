@@ -42,7 +42,7 @@ export default class PharmarmacistsList extends React.Component {
  render() {
    return (
      <>
-       <View style={{ flex: 1, paddingHorizontal: '1%' }}>
+       <View style={{ flex: 1, marginHorizontal: '7%' }}>
          <CustomTabView
            pharmacists={this.props.pharmacists}
            blablapharmacists={this.props.blablapharmacists}

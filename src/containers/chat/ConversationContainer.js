@@ -13,6 +13,11 @@ const mapStateToProps = (state, ownProps) => {
     ? state.conversations.filter((convers) => convers.members[0].id === otherPerson.id || convers.members[1].id === otherPerson.id)
     : undefined;
     console.log("convvv"+JSON.stringify(conv))
+
+  if(conv && conv.length > 0){
+    const sorted = conv.slice().sort((a,b) => { return a.updatedAt > b.updatedAt})
+  }
+ 
   return {
     conversationId: conv ? conv.length > 0 ? conv[0].id : undefined : undefined,
     otherPerson,

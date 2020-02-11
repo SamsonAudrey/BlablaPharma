@@ -37,7 +37,7 @@ export default class ConversationList extends Component {
       <>
         {this.props.conversations.length > 0 ? (
           <FlatList
-            data={this.props.conversations}
+            data={this.props.conversations.reverse()}
             renderItem={(conversation) => (
               <ConversationListItems
                 conversation={conversation}

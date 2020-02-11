@@ -169,7 +169,6 @@ export default createMaterialTopTabNavigator(
         backgroundColor: '#fff',
         width: '100%'
       },
-      keyboardHidesTabBar: true,
       upperCaseLabel: false,
       indicatorStyle: { backgroundColor: '#BED469' },
       activeTintColor: '#BED469',
@@ -178,7 +177,7 @@ export default createMaterialTopTabNavigator(
         fontSize: 10,
       },
       tabStyle: {
-        height: 60
+        height: Platform.OS === 'ios' ? 90 : 60
       },
       iconStyle: {
         width: '100%',

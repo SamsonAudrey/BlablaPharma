@@ -17,6 +17,9 @@ import Blog from '../pages/blog/BlogPage';
 import ConversationContainer from '../containers/chat/ConversationContainer';
 import PharmacistsListContainer from '../containers/pharmacists/PharmacistsListContainer';
 import NotifCustom from '../utils/notifCustom';
+import DataProtect from '../pages/userInfo/DataProtectionInfos';
+import GeneralConditions from '../pages/userInfo/GeneralConditions';
+import CookieManage from '../pages/userInfo/CookieManage';
 
 const SearchPharmacistsNavigator = createStackNavigator(
   {
@@ -62,7 +65,10 @@ const UserInfoNavigator = createStackNavigator(
     RegisterPharmacist: RegisterPharmacistContainer,
     Connection: AuthPageContainer,
     UserPersonnalInfo: UserPersonnalInfoPageContainer,
-    ModifUserPersonnalInfo: ModifUserPersonnalInfoPageContainer
+    ModifUserPersonnalInfo: ModifUserPersonnalInfoPageContainer,
+    DataProtect,
+    GeneralConditions,
+    CookieManage
   },
   {
     initialRouteName: 'UserInfo',
@@ -79,20 +85,6 @@ const ChatNavigator = createStackNavigator(
   },
   {
     initialRouteName: 'ChatPage',
-    defaultNavigationOptions: {
-      title: '',
-      headerShown: false,
-    },
-  }
-);
-
-const NotifNavigator = createStackNavigator(
-  {
-    Conversation: ConversationContainer,
-    NotifCustom
-  },
-  {
-    initialRouteName: 'NotifCustom',
     defaultNavigationOptions: {
       title: '',
       headerShown: false,

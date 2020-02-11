@@ -8,7 +8,6 @@ import CButton from '../../components/buttons/Button';
 export default class UserInfoPage extends React.Component {
   constructor(props) {
     super(props);
-    this._renderOnline = this._renderOnline.bind(this);
   }
 
   componentDidMount() {
@@ -23,51 +22,6 @@ export default class UserInfoPage extends React.Component {
     }
   };
 
-  _renderOnline = (navigate) => (
-    <>
-      <CButton
-        title="Déconnexion"
-        onPress={() => {
-          /* Navigate to the authentication page */
-          this.handleSubmitLogout();
-        }}
-        long
-      />
-      <CButton
-        title="Informations personnelles"
-        onPress={() => {
-          /* Navigate to the authentication page */
-          navigate('UserPersonnalInfo');
-        }}
-        long
-        buttonStyle="white"
-      />
-    </>
-  );
-
-  _renderOffline = (navigate) => (
-    <>
-      <CButton
-        title="Connexion"
-        onPress={() => {
-          /* Navigate to the authentication page */
-          // navigate("AuthPage");
-          this.props.navigation.navigate('Connection');
-        }}
-        long
-        buttonStyle="green"
-      />
-      <CButton
-        title="Inscription"
-        onPress={() => {
-          /* Navigate to the register page */
-          this.props.navigation.navigate('Register');
-        }}
-        long
-        buttonStyle="green"
-      />
-    </>
-  );
 
   checkConnexion = () => {
     if (this.props.isConnected) {
@@ -154,7 +108,8 @@ export default class UserInfoPage extends React.Component {
                 title="Protection des données"
                 onPress={() => {
                   /* Navigate to the authentication page */
-                  navigate('');
+                  //this.props.navigation.navigate('DataProtect');
+                  navigate('DataProtect');
                 }}
                 long
                 buttonStyle="white"
@@ -163,7 +118,7 @@ export default class UserInfoPage extends React.Component {
                 title="Conditions générales"
                 onPress={() => {
                   /* Navigate to the authentication page */
-                  navigate('');
+                  navigate('GeneralConditions');
                 }}
                 long
                 buttonStyle="white"
@@ -172,7 +127,7 @@ export default class UserInfoPage extends React.Component {
                 title="Gestion des cookies "
                 onPress={() => {
                   /* Navigate to the authentication page */
-                  navigate('');
+                  navigate('CookieManage');
                 }}
                 long
                 buttonStyle="white"

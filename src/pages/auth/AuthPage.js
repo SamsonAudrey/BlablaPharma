@@ -3,9 +3,11 @@ import {
   ImageBackground, StyleSheet, Text, View
 } from 'react-native';
 import t from 'tcomb-form-native';
+import DialogInput from 'react-native-dialog-input';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SafeAreaView from 'react-native-safe-area-view';
 import { store } from '../../../store';
+import CModal from '../../components/utils/Modal';
 
 import CButton from '../../components/buttons/Button';
 import HyperLinkText from '../../components/utils/HyperLinkText';
@@ -26,6 +28,10 @@ export default class Auth extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      isDialogVisible: false,
+      email: null
+    };
     // this.checkConnexion = this.checkConnexion.bind(this);
   }
 
@@ -64,13 +70,77 @@ export default class Auth extends Component {
     }
   };
 
-  render() {
-    let error;
-    this.props.error_401
-      ? (error = <Text style={{ color: 'red' }}>Les identifiants donnés sont invalides</Text>)
-      : (error = <Text />);
-    return (
-      <SafeAreaView style={{ flex: 1}}>
+
+dialogForgotPasswordState = (bool) => {
+  this.setState({ isDialogVisible: bool });
+  /* const value = this._form.getValue();
+  if (value.email) {
+    this.setState({ email: value.email });
+  } */
+}
+
+
+render() {
+  let error;
+  this.props.error_401
+    ? (error = <Text style={{ color: 'red' }}>Les identifiants donnés sont invalides</Text>)
+    : (error = <Text />);
+  const forgotPasswordSuccess = this.props.successForgotPassword ? (
+    <CModal
+      isVisible
+      handler={<Text />}
+      text={'Email envoyé à l\'adresse donnée.'}
+      button={(
+        <>
+          <CButton
+            title="Continuer"
+            buttonStyle="green"
+            onPress={() => {
+              this.dialogForgotPasswordState(false);
+              this.props.onSuccessClear();
+            }}
+          />
+        </>
+    )}
+      noCancelButton
+    />
+  ) : null;
+
+  const forgotPasswordError = this.props.error404ForgotPassword ? (
+    <CModal
+      isVisible
+      handler={<Text />}
+      text={"L'adresse mail donnée ne correspond pas à une adresse connue. \n Veuillez vérifier que vous êtes bien inscrit."}
+      button={(
+        <>
+          <CButton
+            title="Continuer"
+            buttonStyle="Grey"
+            onPress={() => {
+              this.props.onErrorClear();
+            }}
+          />
+        </>
+    )}
+      noCancelButton
+    />
+  ) : null;
+  return (
+    <>
+      {forgotPasswordSuccess}
+      {forgotPasswordError}
+      <DialogInput
+        isDialogVisible={this.state.isDialogVisible}
+        title="Mot de passe oublié"
+        message="Un email vous sera envoyé afin de récupérer votre mot de passe."
+        hintInput="Votre email"
+        initValueTextInput={this.state.email}
+        cancelText="Annuler"
+        submitText="Envoyer un email"
+        submitInput={(inputText) => { this.props.onForgotPassword(inputText); }}
+        closeDialog={() => { this.dialogForgotPasswordState(false); }}
+      />
+      <SafeAreaView style={{ flex: 1 }}>
         <KeyboardAwareScrollView
           automaticallyAdjustContentInsets={false}
           enableOnAndroid
@@ -105,7 +175,7 @@ export default class Auth extends Component {
           <View style={styles.linkText1}>
             <HyperLinkText
               text="Mot de passe oublié ?"
-              onPress={() => null}
+              onPress={() => this.dialogForgotPasswordState(true)}
               style={{
                 color: '#BED469', marginLeft: 20, fontSize: 16, marginTop: '5%'
               }}
@@ -122,8 +192,9 @@ export default class Auth extends Component {
           </View>
         </KeyboardAwareScrollView>
       </SafeAreaView>
-    );
-  }
+    </>
+  );
+}
 }
 
 

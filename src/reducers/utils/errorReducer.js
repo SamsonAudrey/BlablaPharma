@@ -11,9 +11,8 @@ const errorReducer = (state = {}, action) => {
   if (!matches) return state;
 
   const [, requestName, requestState] = matches;
-  if (requestState === 'FAILURE') {
-    // console.log("ERROR    :" + requestName + ' ' + requestState + ' ' + JSON.stringify(error.status));
-  }
+  //console.log(`ERROR    :${requestState === 'FAILURE' && error.message === 'Request failed with status code 404'} ${requestState} ${JSON.stringify(error.message)}`);
+
   return {
     ...state,
     // This will add different error status with the type of their action
@@ -23,7 +22,8 @@ const errorReducer = (state = {}, action) => {
     [`${requestName}_400`]: requestState === 'FAILURE' && error.status === 400,
     [`${requestName}_401`]: requestState === 'FAILURE' && error.message === 'Request failed with status code 401',
     [`${requestName}_403`]: requestState === 'FAILURE' && error.message === 'Request failed with status code 403',
-    [`${requestName}_404`]: requestState === 'NOT_FOUND'
+    [`${requestName}_404`]: requestState === 'NOT_FOUND',
+    [`${requestName}_404`]: requestState === 'FAILURE' && error.message === 'Request failed with status code 404',
   };
 };
 

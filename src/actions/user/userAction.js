@@ -12,11 +12,14 @@ import {
   TOKEN_VERIFIED,
   USER_PERSONNAL_DELETE_ACCOUNT_REQUEST,
   USER_PERSONNAL_DELETE_ACCOUNT_SUCCESS,
-  USER_PERSONNAL_DELETE_ACCOUNT_FAILURE, USER_PERSONNAL_INFO_PHARMA_SEARCH_SUCCESS
+  USER_PERSONNAL_DELETE_ACCOUNT_FAILURE,
+  USER_PERSONNAL_INFO_PHARMA_SEARCH_SUCCESS,
+  USER_FORGOT_PASSWORD_SUCCESS,
+  USER_FORGOT_PASSWORD_FAILURE
 } from './userActionTypes';
 
 export const userAuth = (userEmail, userPassword) => {
-  console.log(userEmail + '  ' +userPassword )
+  console.log(`${userEmail}  ${userPassword}`);
   function thunk(dispatch) {
     return axios
       .post(`${API_URL}/login`, null, {
@@ -26,11 +29,11 @@ export const userAuth = (userEmail, userPassword) => {
         }
       })
       .then((response) => {
-        console.log("resssp"+JSON.stringify(response))
+        console.log(`resssp${JSON.stringify(response)}`);
         dispatch(userAuthSuccess(response.data));
       })
       .catch((error) => {
-        console.log("errrr"+JSON.stringify(error))
+        console.log(`errrr${JSON.stringify(error)}`);
         dispatch(userAuthFailure(error));
       });
   }
@@ -127,7 +130,7 @@ export const userSearchFailure = (error) => ({
 
 
 export const userPharmacistSearch = (accountId) => {
-  console.log("search pharma")
+  console.log('search pharma');
   function thunk(dispatch) {
     return axios
       .get(`${API_URL}/pharmacists/${accountId}`)
@@ -183,4 +186,36 @@ export const userDeleteFailure = (error) => ({
 
 export const tokenVerified = () => ({
   type: TOKEN_VERIFIED
+});
+
+
+export const forgotPassword = (emailValue) => {
+  function thunk(dispatch) {
+    console.log(emailValue);
+    return axios
+      .post(`${API_URL}/forgot-password/send-mail?email=nathan.traineau@wanadoo.fr`
+      )
+      .then((response) => {
+        console.log(JSON.stringify(response));
+        dispatch(forgotPasswordSuccess(response.data));
+      })
+      .catch((error) => {
+        console.log('errrrooo'+JSON.stringify(error));
+        dispatch(forgotPasswordFailure(error));
+      });
+  }
+  // thunk.interceptInOffline = true;
+  thunk.meta = {
+    retry: true
+  };
+  return thunk;
+};
+
+export const forgotPasswordSuccess = () => ({
+  type: USER_FORGOT_PASSWORD_SUCCESS
+});
+
+export const forgotPasswordFailure = (error) => ({
+  type: USER_FORGOT_PASSWORD_FAILURE,
+  error
 });

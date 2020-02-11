@@ -29,7 +29,7 @@ export default class PharmacistsListItems extends React.Component {
       <View style={styles.container}>
         <Image
           source={picture ? { uri: picture } : require('../../assets/logo-fav.png')}
-          style={{ width: '28%', height: '33%', alignSelf: 'center' }}
+          style={{ width: '30%', height: '37%', alignSelf: 'center' }}
         />
         <Text style={styles.title} numberOfLines={1}>
           {firstName}
@@ -46,7 +46,8 @@ export default class PharmacistsListItems extends React.Component {
             <Text style={styles.text}>
               <Icon name="user-md" size={18} color="#BED469" />
               {'  '}
-              {professionLabel}
+              {professionLabel === 'pharmacist' ? 'Pharmacien'
+                : professionLabel === 'student' ? 'Etudiant' : 'BlablaPharmacien'}
             </Text>
           )
           : null}

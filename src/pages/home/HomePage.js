@@ -23,9 +23,7 @@ class Home extends Component {
           >
             <View style={styles.sloganView}>
               <Text style={styles.slogan}>
-Votre pharmacien
-                {'\n'}
-en ligne
+Votre pharmacien en ligne
                 {'\n'}
 et à votre écoute
               </Text>
@@ -76,12 +74,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.5)',
   },
   slogan: {
-    fontSize: 30,
-    padding: 1,
+    fontSize: 26,
+    padding: 3,
     textAlign: 'center',
     color: '#707070',
     fontWeight: 'bold',
-    marginTop: '5%'
+    marginTop: '5%',
+    backgroundColor: 'white',
+      width: '100%'
   },
   imageView: {
     height: '88%',

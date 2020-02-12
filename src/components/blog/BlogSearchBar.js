@@ -35,7 +35,7 @@ export default class BlogSearchBar extends Component {
           </LinearGradient>
           <View style={styles.searchBarContainer}>
             <TextInput
-              placeholder="Recherche une vidéo"
+              placeholder="Rechercher une vidéo"
               style={styles.textInputSearch}
               underlineColorAndroid="transparent"
               onChangeText={(text) => this.handleChangeSearch(text)}

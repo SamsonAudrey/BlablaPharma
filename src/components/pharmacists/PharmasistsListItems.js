@@ -29,7 +29,7 @@ export default class PharmacistsListItems extends React.Component {
       <View style={styles.container}>
         <Image
           source={picture ? { uri: picture } : require('../../assets/logo-fav.png')}
-          style={{ width: '30%', height: '37%', alignSelf: 'center' }}
+          style={{ width: 68, height: 75, alignSelf: 'center' }}
         />
         <Text style={styles.title} numberOfLines={1}>
           {firstName}

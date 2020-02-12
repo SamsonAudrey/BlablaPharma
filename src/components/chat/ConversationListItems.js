@@ -55,7 +55,7 @@ render() {
               <Image
                 source={picture ? { uri: picture } : require('../../assets/logo-fav.png')}
                 style={{
-                  width: '70%', height: '100%', justifyContent: 'center'
+                  width: '60%', height: '100%', justifyContent: 'center'
                 }}
 
               />

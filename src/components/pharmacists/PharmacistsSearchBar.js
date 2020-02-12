@@ -65,7 +65,7 @@ export default class SearchBar extends Component {
           </LinearGradient>
           <View style={styles.searchBarContainer}>
             <TextInput
-              placeholder="Recherche pharmaciens proches"
+              placeholder="Rechercher des pharmaciens"
               style={styles.textInputSearch}
               underlineColorAndroid="transparent"
               onChangeText={(text) => this.handleChangeSearch(text)}

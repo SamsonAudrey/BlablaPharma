@@ -8,7 +8,8 @@ import {
   RECEIVE_MESSAGE_SUCCESS,
   READ_SUCCESS,
   DELETE_CONVERSATION_SUCCESS,
-  ON_TYPING
+  ON_TYPING,
+  CLEAR_CONVERSATION
 } from '../../actions/chat/chatActionTypes';
 
 
@@ -17,6 +18,7 @@ import {
 } from '../../actions/user/userActionTypes';
 
 export default function conversation(state = {}, action) {
+  console.log("state conv"+action.type+'  '+JSON.stringify(state))
   switch (action.type) {
     case GET_CONVERSATIONS_SUCCESS:
       return action.conversations;
@@ -111,7 +113,6 @@ export default function conversation(state = {}, action) {
         };
       });
     case ON_TYPING:
-      console.log("bhbkuhb"+JSON.stringify(action));
       const conversationOnTypingItem = state.filter((conv) => conv.id === action.conversationId);
       return state.map((item) => {
         if (item !== conversationOnTypingItem[0]) {
@@ -123,6 +124,8 @@ export default function conversation(state = {}, action) {
           isTyping: action.value
         };
       });
+    case CLEAR_CONVERSATION:
+      return {};
     case LOGOUT:
       return {};
     default:

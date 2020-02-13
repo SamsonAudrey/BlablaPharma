@@ -20,6 +20,7 @@ import NotifCustom from '../utils/notifCustom';
 import DataProtect from '../pages/userInfo/DataProtectionInfos';
 import GeneralConditions from '../pages/userInfo/GeneralConditions';
 import CookieManage from '../pages/userInfo/CookieManage';
+import AboutPage from '../pages/userInfo/AboutPage';
 
 const SearchPharmacistsNavigator = createStackNavigator(
   {
@@ -68,7 +69,8 @@ const UserInfoNavigator = createStackNavigator(
     ModifUserPersonnalInfo: ModifUserPersonnalInfoPageContainer,
     DataProtect,
     GeneralConditions,
-    CookieManage
+    CookieManage,
+    AboutPage
   },
   {
     initialRouteName: 'UserInfo',

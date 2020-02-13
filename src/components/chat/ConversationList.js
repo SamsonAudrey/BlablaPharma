@@ -4,10 +4,12 @@ import {
 } from 'react-native';
 import ConversationListItems from './ConversationListItems';
 import NoConversations from './NoConversations';
+import { clearConversations } from '../../actions/chat/conversationAction';
 
 export default class ConversationList extends Component {
   componentDidMount() {
     this.props.onGetConversations();
+    clearConversations();
   }
 
   handlePress = (conversationId, otherPerson) => {

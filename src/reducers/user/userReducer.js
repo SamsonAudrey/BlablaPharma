@@ -12,7 +12,7 @@ export default function user(state = {}, action) {
   switch (action.type) {
     case CONNECT_USER_SUCCESS:
       return {
-        accessToken: action.payload.accessToken + 5,
+        accessToken: action.payload.accessToken,
         refreshToken: action.payload.refreshToken,
         account: action.payload.account,
         pharmacistAccount: action.payload.pharmacistAccount,

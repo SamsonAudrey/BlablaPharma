@@ -34,6 +34,10 @@ export default class Conversation extends React.Component {
     }); */
   }
 
+  componentWillUnmount() {
+    this.setCurrentConversation('');
+  }
+
   componentDidUpdate() {
     this._onRead();
   }
@@ -155,8 +159,13 @@ export default class Conversation extends React.Component {
     );
   }
 
+  setCurrentConversation(conversationId) {
+    this.props.onSetCurrentConversation(conversationId);
+  }
+
   render() {
-      console.log(this.props.otherPerson)
+    console.log(this.props.otherPerson);
+    this.setCurrentConversation(this.props.conversationId);
     if (this.props.isTyping) {
       // this.setState({ isTyping: true });
       clearTimeout;
@@ -173,11 +182,11 @@ export default class Conversation extends React.Component {
                 title="Retour"
                 onPress={() => this.props.navigation.goBack()}
               />
-              <Text style={{ marginHorizontal: '10%', color:'#707070', fontSize: 20 }}>
+              <Text style={{ marginHorizontal: '10%', color: '#707070', fontSize: 20 }}>
                 {this.props.otherPerson.firstName}
                 {' '}
                 {this.props.otherPerson.lastName}
-                  {this.props.otherPerson.gender}
+                {this.props.otherPerson.gender}
               </Text>
             </View>
             <View style={{ flex: 1 }}>

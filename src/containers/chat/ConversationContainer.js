@@ -3,7 +3,7 @@ import Conversation from '../../components/chat/Conversation';
 import {
   getMessages, sendMessage, onTyping, onRead, onTypingChange
 } from '../../actions/chat/messagesAction';
-import { createConversations, getConversation } from '../../actions/chat/conversationAction';
+import { createConversations, getConversation, setCurrentConversation } from '../../actions/chat/conversationAction';
 
 const mapStateToProps = (state, ownProps) => {
   const { navigation } = ownProps;
@@ -42,6 +42,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onClearIsTyping: (conversationId) => {
     dispatch(onTypingChange(conversationId, false));
+  },
+  onSetCurrentConversation: (conversationId) => {
+    dispatch(setCurrentConversation(conversationId));
   }
 });
 

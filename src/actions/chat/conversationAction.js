@@ -12,7 +12,8 @@ import {
   DELETE_CONVERSATION_FAILURE,
   DELETE_CONVERSATION_REQUEST,
   DELETE_CONVERSATION_SUCCESS,
-  CLEAR_CONVERSATION
+  CLEAR_CONVERSATION,
+  SET_CURRENT_CONVERSATION
 } from './chatActionTypes';
 import { getToken } from '../../utils/auth';
 import { getRequest, postRequest, deleteRequest } from '../../utils/socket';
@@ -182,4 +183,10 @@ export const deleteConversationFailure = (error) => ({
 
 export const clearConversations = () => ({
   type: CLEAR_CONVERSATION,
+});
+
+
+export const setCurrentConversation = (conversationId) => ({
+  type: SET_CURRENT_CONVERSATION,
+  conversationId
 });

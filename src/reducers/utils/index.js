@@ -12,6 +12,7 @@ import success from './successReducer';
 import searchBlog from '../blog/searchBlogReducer';
 import blog from '../blog/blogReducer';
 import conversations from '../chat/conversationReducer';
+import tracker from '../tracker';
 
 export default combineReducers({
   user,
@@ -26,5 +27,6 @@ export default combineReducers({
   success,
   conversations,
   navigationInfo: navigationReducer,
-  network
+  network,
+  tracker
 });

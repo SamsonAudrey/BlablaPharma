@@ -42,7 +42,10 @@ socket.on('event:read', (data) => {
 });
 
 socket.on('message', (data) => {
-  notifCustomInstant.notifyMessage(data.conversation, data);
+  const state = store.getState();
+  if (state.tracker.conversation !== data.conversation) {
+    notifCustomInstant.notifyMessage(data.conversation, data);
+  }
   store.dispatch(receiveMessageSuccess(data.conversation, data));
 });
 

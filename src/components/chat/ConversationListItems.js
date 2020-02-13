@@ -51,11 +51,11 @@ render() {
           }}
         >
           <View style={{ flex: 1, flexDirection: 'row' }}>
-            <View style={{ width: '22%', height: '82%', justifyContent: 'center' }}>
+            <View style={{ width: '22%', height: '82%', justifyContent: 'flex-start', marginTop: 4 }}>
               <Image
                 source={picture ? { uri: picture } : require('../../assets/logo-fav.png')}
                 style={{
-                  width: '60%', height: '100%', justifyContent: 'center'
+                  width: 30, height: 32, alignSelf: 'center'
                 }}
 
               />
@@ -79,7 +79,7 @@ render() {
               <Image
                 source={conversation.messages[0] ? (conversation.messages[0].author !== otherPerson.id ? (conversation.messages[0].read ? require('../../assets/seen.png') : require('../../assets/not-seen.png')) : null) : null}
                 style={{
-                  width: '19%', height: '24%', alignSelf: 'center', marginRight: '80%'
+                  width: 18, height: 18, alignSelf: 'center', marginRight: '55%'
                 }}
               />
             </View>

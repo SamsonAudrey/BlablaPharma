@@ -3,7 +3,7 @@ import { GiftedChat, Send, Bubble } from 'react-native-gifted-chat';
 import {
   Text, StyleSheet, View, Image, KeyboardAvoidingView
 } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import SafeAreaView from 'react-native-safe-area-view';
 import BackButton from '../buttons/BackButton';
 
 
@@ -156,7 +156,7 @@ export default class Conversation extends React.Component {
   }
 
   render() {
-    // console.log(`tttttttttttt${JSON.stringify(this.props)}`);
+      console.log(this.props.otherPerson)
     if (this.props.isTyping) {
       // this.setState({ isTyping: true });
       clearTimeout;
@@ -167,27 +167,37 @@ export default class Conversation extends React.Component {
     if (this.props.isConnected) {
       return (
         <>
-          <BackButton
-            title="Retour"
-            onPress={() => this.props.navigation.goBack()}
-          />
-          <View style={{ flex: 1 }}>
-            <GiftedChat
-              messages={mess}
-              onSend={(messages) => this.onSend(messages)}
-              user={{
-                _id: this.props.user.account.id,
-              }}
-              onInputTextChanged={() => this.props.onTyping(this.props.conversationId)}
-              placeholder="Ecrivez un message..."
-              renderFooter={this.props.isTyping ? this._renderFooter : null}
-              renderAvatar={() => this._renderAvatar()}
-              renderSend={(props) => this._renderSendButton(props)}
-              renderActions={() => this._renderActions()}
-              renderBubble={(props) => this._renderBubble(props)}
-            />
-            <KeyboardAvoidingView behavior={ Platform.OS === 'android' ? 'padding' : null} keyboardVerticalOffset={80} />
-          </View>
+          <SafeAreaView style={{ flex: 1 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+              <BackButton
+                title="Retour"
+                onPress={() => this.props.navigation.goBack()}
+              />
+              <Text style={{ marginHorizontal: '10%', color:'#707070', fontSize: 20 }}>
+                {this.props.otherPerson.firstName}
+                {' '}
+                {this.props.otherPerson.lastName}
+                  {this.props.otherPerson.gender}
+              </Text>
+            </View>
+            <View style={{ flex: 1 }}>
+              <GiftedChat
+                messages={mess}
+                onSend={(messages) => this.onSend(messages)}
+                user={{
+                  _id: this.props.user.account.id,
+                }}
+                onInputTextChanged={() => this.props.onTyping(this.props.conversationId)}
+                placeholder="Ecrivez un message..."
+                renderFooter={this.props.isTyping ? this._renderFooter : null}
+                renderAvatar={() => this._renderAvatar()}
+                renderSend={(props) => this._renderSendButton(props)}
+                renderActions={() => this._renderActions()}
+                renderBubble={(props) => this._renderBubble(props)}
+              />
+              <KeyboardAvoidingView behavior={Platform.OS === 'android' ? 'padding' : null} keyboardVerticalOffset={80} />
+            </View>
+          </SafeAreaView>
         </>
       );
     }

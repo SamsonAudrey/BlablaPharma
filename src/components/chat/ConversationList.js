@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import ConversationListItems from './ConversationListItems';
 import NoConversations from './NoConversations';
-import { clearConversations } from '../../actions/chat/conversationAction';
+import {userPharmacistSearchReturn} from "../../actions/user/userAction";
 
 export default class ConversationList extends Component {
   componentDidMount() {

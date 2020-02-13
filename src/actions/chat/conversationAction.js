@@ -64,7 +64,7 @@ export const getConversations = () => {
         if (response.message === 'Unauthorized access') {
           console.log('tttt');
         }
-        // console.log(`refdsfdfdsfss${JSON.stringify(response)}`);
+        // console.log(`CONV${JSON.stringify(response)}`);
         dispatch(getConversationsSuccess(response));
       },
       (error) => {

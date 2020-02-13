@@ -109,7 +109,7 @@ let styles = StyleSheet.create({
     marginTop: 20,
   },
   title: {
-    color: '#707070',
+    color: '#fff',
     fontSize: 24
   },
   titleFilter: {

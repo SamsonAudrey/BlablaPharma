@@ -10,6 +10,7 @@ const mapStateToProps = (state, ownProps) => {
   const { otherPerson } = navigation.state.params;
   const { user } = state;
   const conv = state.conversations.length > 0
+    // eslint-disable-next-line max-len
     ? state.conversations.filter((convers) => convers.members[0].id === otherPerson.id || convers.members[1].id === otherPerson.id)
     : undefined;
   return {

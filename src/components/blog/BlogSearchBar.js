@@ -25,7 +25,7 @@ export default class BlogSearchBar extends Component {
   render() {
     return (
       <>
-        <SafeAreaView style={{ }}>
+        <SafeAreaView>
           <LinearGradient
             colors={['#BED469', '#BED469', '#BED469']}
           >

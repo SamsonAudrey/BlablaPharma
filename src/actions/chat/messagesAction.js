@@ -42,7 +42,6 @@ socket.on('event:read', (data) => {
 });
 
 socket.on('message', (data) => {
-  //console.log(`message: ${JSON.stringify(data)}`);
   notifCustomInstant.notifyMessage(data.conversation, data);
   store.dispatch(receiveMessageSuccess(data.conversation, data));
 });
@@ -52,16 +51,14 @@ export const sendMessage = (conversationId,
   type,
   content) => {
   async function thunk(dispatch) {
-    //console.log(`kkkkkkkkkkkkkkkkkkkkkkkkk${content}`);
     const token = await getToken();
     dispatch({ type: SEND_MESSAGE_REQUEST });
     return postRequest(`/conversations/${conversationId}/messages?type=${type}&content=${content}`, token)
       .then((response) => {
-        //console.log(JSON.stringify(`yesss${JSON.stringify(response)}`));
         dispatch(sendMessageSuccess(response.conversation, response));
       })
       .catch((error) => {
-        //dispatch(`noooo${sendMessageFailure(error)}`);
+        // dispatch(`ERROR ${sendMessageFailure(error)}`);
       });
   }
   // thunk.interceptInOffline = true;
@@ -137,12 +134,12 @@ export const onTyping = (conversationId) => {
     dispatch({ type: SEND_MESSAGE_REQUEST });
     return postRequest(`/conversations/${conversationId}/event/typing`, token)
       .then((response) => {
-        console.log("uuu"+JSON.stringify(response));
-        //dispatch(sendMessageSuccess(response));
+        // console.log("uuu"+JSON.stringify(response));
+        // dispatch(sendMessageSuccess(response));
       })
       .catch((error) => {
-        console.log(JSON.stringify(error));
-        //dispatch(sendMessageFailure(error));
+        // console.log(JSON.stringify(error));
+        // dispatch(sendMessageFailure(error));
       });
   }
   // thunk.interceptInOffline = true;
@@ -154,11 +151,11 @@ export const onTyping = (conversationId) => {
 
 export const onRead = (conversationId, message) => {
   async function thunk(dispatch) {
-    console.log(`messsageg${JSON.stringify(message)}`);
+    // console.log(`messsageg${JSON.stringify(message)}`);
     const token = await getToken();
     return postRequest(`/conversations/${conversationId}/event/read`, token, { messageId: message.id })
       .then((response) => {
-        console.log(JSON.stringify(`respo on reaadd${response}`));
+        // console.log(JSON.stringify(`respo on reaadd${response}`));
         dispatch(onReadSuccess(conversationId));
       })
       .catch((error) => console.log(JSON.stringify(error)));

@@ -130,7 +130,6 @@ export const userSearchFailure = (error) => ({
 
 
 export const userPharmacistSearch = (accountId) => {
-  console.log('search pharma');
   function thunk(dispatch) {
     return axios
       .get(`${API_URL}/pharmacists/${accountId}`)
@@ -191,16 +190,15 @@ export const tokenVerified = () => ({
 
 export const forgotPassword = (emailValue) => {
   function thunk(dispatch) {
-    console.log(emailValue);
+    // console.log(emailValue);
     return axios
-      .post(`${API_URL}/forgot-password/send-mail?email=nathan.traineau@wanadoo.fr`
-      )
+      .post(`${API_URL}/forgot-password/send-mail?email=nathan.traineau@wanadoo.fr`)
       .then((response) => {
         console.log(JSON.stringify(response));
         dispatch(forgotPasswordSuccess(response.data));
       })
       .catch((error) => {
-        console.log('errrrooo'+JSON.stringify(error));
+        console.log(`ERROR ${JSON.stringify(error)}`);
         dispatch(forgotPasswordFailure(error));
       });
   }

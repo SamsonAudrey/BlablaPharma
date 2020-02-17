@@ -16,7 +16,6 @@ export const registerPatient = (
   userPassword,
   imageUri
 ) => (dispatch) => {
-  console.log(imageUri);
   fetch(`${API_URL}/register/basic`, {
     method: 'POST',
     headers: {
@@ -35,18 +34,13 @@ export const registerPatient = (
   })
     .then((response) => {
       if (response.ok) {
-        console.log('REGISTERED');
-        console.log(response);
         dispatch(registerSuccess());
       } else {
-        console.log('NOT REGISTERED');
-        console.log('response ', response);
         dispatch(registerFailureEmail(response));
       }
       // dispatch(registerSuccess(response));
     })
     .catch((error) => {
-      console.log(`error ${error}`);
       dispatch(registerFailure(error));
     });
 };
@@ -88,15 +82,12 @@ export const registerPharmacist = (
 })
   .then((response) => {
     if (response.ok) {
-      console.log('REGISTERED');
       dispatch(registerSuccess());
     } else {
-      console.log('NOT REGISTERED ERROR : ', response);
       dispatch(registerFailureEmail(response));
     }
   })
   .catch((error) => {
-    console.log(`error ${error}`);
     dispatch(registerFailure(error));
   });
 

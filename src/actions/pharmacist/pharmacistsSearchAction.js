@@ -16,10 +16,6 @@ export const pharmacistsSearch = (
   professionLabelValue,
   limitValue = 20,
 ) => {
-  console.log(`PARAMS SEARCH PHARMACIST : ${qValue
-  }${genderValue
-  }${professionLabelValue
-  }${limitValue}`);
   function thunk(dispatch) {
     const TEMPO_URL = 'https://api.blablapharma.fr';
     dispatch({ type: PHARMACISTS_SEARCH_REQUEST });
@@ -37,13 +33,11 @@ export const pharmacistsSearch = (
           dispatch(pharmacistsSearchSuccess(response.data));
           // console.log(`founnd${response.data}`);
         } else {
-          console.log('not founnnnd');
           dispatch(pharmacistsSearchNotFound());
         }
       })
       .catch((error) => {
         dispatch(pharmacistsSearchFailure(error));
-        console.log(`ERROR : ${error}`);
       });
   }
   // thunk.interceptInOffline = true;

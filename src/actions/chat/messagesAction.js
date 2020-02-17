@@ -18,14 +18,8 @@ import NotifCustom from '../../utils/notifCustom';
 
 const notifCustomInstant = new NotifCustom();
 
-// socket logic
-const typing = false;
-const debounce = null;
-
 // socket events
 socket.on('event:typing', (data) => {
-  console.log('typing message :');
-  console.log(data);
   store.dispatch(onTypingChange(data.conversation));
 });
 
@@ -36,8 +30,6 @@ export const onTypingChange = (conversationId, value = true) => ({
 });
 
 socket.on('event:read', (data) => {
-  console.log('message read:');
-  console.log(data);
   store.dispatch(onReadSuccess(data.conversation));
 });
 
@@ -161,7 +153,7 @@ export const onRead = (conversationId, message) => {
         // console.log(JSON.stringify(`respo on reaadd${response}`));
         dispatch(onReadSuccess(conversationId));
       })
-      .catch((error) => console.log(JSON.stringify(error)));
+      .catch((error) => error);
   }
   // thunk.interceptInOffline = true;
   thunk.meta = {

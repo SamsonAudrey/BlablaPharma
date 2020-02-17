@@ -28,13 +28,13 @@ export const blogSearch = (
         if (response.data.length !== 0) {
           dispatch(blogSearchSuccess(response.data));
         } else {
-          console.log('NOT FOUND');
+          //console.log('NOT FOUND');
           dispatch(blogSearchNotFound());
         }
       })
       .catch((error) => {
         dispatch(blogSearchFailure(error));
-        console.log(`ERROR : ${error}`);
+        //console.log(`ERROR : ${error}`);
       });
   }
   // thunk.interceptInOffline = true;

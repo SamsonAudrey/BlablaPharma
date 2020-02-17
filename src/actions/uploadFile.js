@@ -22,7 +22,7 @@ export const uploadImage = (
         file: `data:image/jpg;base64,${base64String}`
       })
       .then((response) => {
-        console.log('PHOTO RESPONSE OK ');
+        //console.log('PHOTO RESPONSE OK ');
         // console.log(response);
         // console.log(response.data); //secure_url
         const profileImageUrl = response.data.secure_url;
@@ -32,7 +32,7 @@ export const uploadImage = (
         );
       })
       .catch((error) => {
-        console.log(`PHOTO ERROR ${error}`);
+        //console.log(`PHOTO ERROR ${error}`);
       }))
     .catch((err) => console.log(err));
 };

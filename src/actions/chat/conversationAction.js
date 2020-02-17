@@ -102,9 +102,6 @@ export const getConversation = (conversationId) => {
     return new Promise((resolve, reject) => {
       getRequest(`/conversations/${conversationId}`, token)
         .then((response) => {
-          if (response.message === 'Unauthorized access') {
-            console.log('tttt');
-          }
           // console.log(`gettt connnvvvv resssp${JSON.stringify(response)}`);
           dispatch(getConversationSuccess(response));
           resolve(response);
@@ -147,7 +144,6 @@ export const deleteConversation = (conversationId) => {
       deleteRequest(`/conversations/${conversationId}`, token)
         .then((response) => {
           if (response.message === 'Unauthorized access') {
-            console.log('tttt');
           }
           // console.log(`deleteeee connnvvvv resssp${JSON.stringify(response)}`);
           dispatch(deleteConversationSuccess(conversationId));

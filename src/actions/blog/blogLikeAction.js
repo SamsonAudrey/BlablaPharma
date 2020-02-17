@@ -16,12 +16,12 @@ export const blogLike = (
         if (response.data.length !== 0) {
           dispatch(blogSearch(''));
         } else {
-          console.log('NOT LIKED');
+          //console.log('NOT LIKED');
         }
       })
       .catch((error) => {
         dispatch(blogSearchFailure(error));
-        console.log(`ERROR : ${error}`);
+        //console.log(`ERROR : ${error}`);
       });
   }
   // thunk.interceptInOffline = true;
@@ -43,12 +43,12 @@ export const blogDislike = (
         if (response.data.length !== 0) {
           dispatch(blogSearch(''));
         } else {
-          console.log('NOT DISLIKED');
+          //console.log('NOT DISLIKED');
         }
       })
       .catch((error) => {
         dispatch(blogSearchFailure(error));
-        console.log(`ERROR : ${error}`);
+        //console.log(`ERROR : ${error}`);
       });
   }
   // thunk.interceptInOffline = true;

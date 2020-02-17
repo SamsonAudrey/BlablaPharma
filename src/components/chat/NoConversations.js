@@ -5,6 +5,7 @@ import {
 
 class NoConversations extends Component {
   render() {
+   // this.props.onGetConversations();
     return (
       <>
         <View style={styles.container}>

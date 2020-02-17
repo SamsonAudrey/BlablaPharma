@@ -153,7 +153,6 @@ export default class GeneralModif extends Component {
                 width: 80, height: 90, opacity: 1, marginRight: '5%'
               }}
             />
-            <MaterialIcons name="photo-camera" size={24} color="#707070" onPress={this.chooseFile.bind(this)} />
           </View>
           <View style={styles.form}>
             <Form

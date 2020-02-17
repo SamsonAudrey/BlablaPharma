@@ -84,15 +84,6 @@ export default class Conversation extends React.Component {
     );
   }
 
-  /*
-<Image
-          source={ require('../../assets/logo-fav.png')}
-          style={{
-            width: '50%', height: '40%', justifyContent: 'center'
-          }}
-        />
-
-*/
   _renderAvatar() {
     return (
       <View style={{ width: 35, heigth: 10 }}>
@@ -121,17 +112,6 @@ export default class Conversation extends React.Component {
     );
   }
 
-  /*
-<View style={{ width: '10%', heigth: '10%' }}>
-        <Image
-          source={ require('../../assets/send_button.png')}
-          style={{
-            width: '70%', height: '55%', marginBottom: '25%'
-          }}
-        />
-      </View>
-
-*/
   _renderSendButton(props) {
     return (
       <Send {...props}>
@@ -164,7 +144,6 @@ export default class Conversation extends React.Component {
   }
 
   render() {
-    console.log(this.props.otherPerson);
     this.setCurrentConversation(this.props.conversationId);
     if (this.props.isTyping) {
       // this.setState({ isTyping: true });
@@ -182,11 +161,10 @@ export default class Conversation extends React.Component {
                 title="Retour"
                 onPress={() => this.props.navigation.goBack()}
               />
-              <Text style={{ marginHorizontal: '10%', color: '#707070', fontSize: 20 }}>
+              <Text style={{ color: '#707070', fontSize: 20 , textAlign: 'right', marginRight: '5%' }}>
                 {this.props.otherPerson.firstName}
                 {' '}
                 {this.props.otherPerson.lastName}
-                {this.props.otherPerson.gender}
               </Text>
             </View>
             <View style={{ flex: 1 }}>

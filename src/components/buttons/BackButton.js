@@ -18,12 +18,11 @@ class BackButton extends Component {
 
 const styles = StyleSheet.create({
   button: {
-    width: 150,
+    width: 50,
     margin: 5,
     marginLeft: 10,
     padding: 5,
     justifyContent: 'center',
-
   }
 });
 

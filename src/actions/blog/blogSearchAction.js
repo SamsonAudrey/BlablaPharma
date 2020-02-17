@@ -17,7 +17,7 @@ export const blogSearch = (
     const TEMPO_URL = 'https://api.staging.blablapharma.fr';
     dispatch({ type: BLOG_SEARCH_REQUEST });
     return axios
-      .get(`${TEMPO_URL}/articles`, {
+      .get(`${API_URL}/articles`, {
         params: {
           ...((qValue !== undefined) ? { q: qValue } : { q: '' }),
           ...((limitValue !== undefined) ? { limit: limitValue } : {}),

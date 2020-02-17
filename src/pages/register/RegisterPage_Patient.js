@@ -156,7 +156,7 @@ class RegisterPatient extends Component {
               <CModal
                 isVisible
                 handler={<Text />}
-                text="Merci pour votre inscription sur BlablaPharma. Activez votre compte en clickant sur le lien reçu par mail."
+                text="Merci pour votre inscription sur BlablaPharma. Activez votre compte en cliquant sur le lien reçu par mail."
                 button={(
                   <CButton
                     title="Accueil"

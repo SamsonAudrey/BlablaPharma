@@ -17,10 +17,10 @@ export const pharmacistsSearch = (
   limitValue = 20,
 ) => {
   function thunk(dispatch) {
-    const TEMPO_URL = 'https://api.blablapharma.fr';
+    const TEMPO_URL = 'https://api.staging.blablapharma.fr';
     dispatch({ type: PHARMACISTS_SEARCH_REQUEST });
     return axios
-      .get(`${TEMPO_URL}/pharmacists/search`, {
+      .get(`${API_URL}/pharmacists/search`, {
         params: {
           ...((qValue !== undefined) ? { q: qValue } : { q: '' }),
           ...((genderValue !== undefined && genderValue !== '') ? { gender: genderValue } : {}),

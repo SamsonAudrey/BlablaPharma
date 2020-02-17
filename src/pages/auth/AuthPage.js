@@ -36,7 +36,6 @@ export default class Auth extends Component {
   }
 
   componentDidMount() {
-    console.log('component did mount');
     this.unsubscribe = store.subscribe(this.checkConnexion, this.render);
     this.checkConnexion();
   }

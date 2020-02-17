@@ -11,7 +11,7 @@ export const blogLike = (
   function thunk(dispatch) {
     const TEMPO_URL = 'https://api.staging.blablapharma.fr';
     return axios
-      .post(`${TEMPO_URL}/articles/${id}/likes`)
+      .post(`${API_URL}/articles/${id}/likes`)
       .then((response) => {
         if (response.data.length !== 0) {
           dispatch(blogSearch(''));

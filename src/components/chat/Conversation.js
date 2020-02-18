@@ -190,7 +190,7 @@ export default class Conversation extends React.Component {
                 onPress={() => this.props.navigation.goBack()}
               />
               <Text style={{
-                color: '#707070', fontSize: 20, textAlign: 'right', marginRight: '5%'
+                color: '#707070', fontSize: 18, textAlign: 'right', marginRight: '5%', flexWrap: 'wrap', width: '80%'
               }}
               >
                 {this.props.otherPerson.firstName}

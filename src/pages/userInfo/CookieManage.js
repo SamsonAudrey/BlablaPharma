@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet, ScrollView } from 'react-native';
 import BackButton from '../../components/buttons/BackButton';
+import SafeAreaView from "react-native-safe-area-view";
 
 
 export default class CookieManagePage extends Component {
   render() {
     return (
       <>
+          <SafeAreaView style={{ flex: 1 }}>
         <BackButton
           title="Retour"
           onPress={() => this.props.navigation.goBack()}
@@ -103,6 +105,7 @@ certaines parties et options pourraient ne pas fonctionner correctement.
 
           </Text>
         </ScrollView>
+          </SafeAreaView>
       </>
     );
   }

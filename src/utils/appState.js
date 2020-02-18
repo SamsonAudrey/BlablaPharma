@@ -28,7 +28,6 @@ export default class AppStateExample extends Component {
   };
 
   render() {
-    console.log(this.state.appState);
     return (
       <Text />
     );

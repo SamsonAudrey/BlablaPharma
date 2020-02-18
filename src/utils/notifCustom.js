@@ -19,7 +19,7 @@ export default class NotifCustom extends React.Component {
       const state = store.getState();
       const conversationResponse = state.conversations.filter((conv) => conv.id === conversationId);
       const conversation = conversationResponse[0];
-      console.log(`tytyu${JSON.stringify(conversation)}`);
+      // console.log(`tytyu${JSON.stringify(conversation)}`);
       if (conversation) {
         const otherPerson = this.getOtherPerson(conversation, state.user);
         this.notifMessage = new NotifService(this.onNotifMessage(conversationId, otherPerson));

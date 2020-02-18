@@ -58,13 +58,10 @@ export const getConversations = () => {
   async function thunk(dispatch) {
     const token = await getToken();
     dispatch({ type: GET_CONVERSATIONS_REQUEST });
-    // socket.headers = token;
-    // console.log(`dsqdssssssssssssssssssssss${JSON.stringify(socket)}`);
     return getRequest('/conversations', token)
       .then((response) => {
         if (response.message === 'Unauthorized access') {
         }
-        // console.log(`CONV${JSON.stringify(response)}`);
         dispatch(getConversationsSuccess(response));
       },
       (error) => {
@@ -96,8 +93,6 @@ export const getConversation = (conversationId) => {
   async function thunk(dispatch) {
     const token = await getToken();
     dispatch({ type: GET_CONVERSATION_REQUEST });
-    // socket.headers = token;
-    // console.log(`dsqdssssssssssssssssssssss${conversationId}`);
     return new Promise((resolve, reject) => {
       getRequest(`/conversations/${conversationId}`, token)
         .then((response) => {
@@ -106,7 +101,6 @@ export const getConversation = (conversationId) => {
           resolve(response);
         },
         (error) => {
-          // console.log(`gettt connnvvvv errr${JSON.stringify(error)}`);
           dispatch(getConversationFailure(error));
           reject(error);
         });

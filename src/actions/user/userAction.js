@@ -18,8 +18,10 @@ import {
   USER_FORGOT_PASSWORD_FAILURE
 } from './userActionTypes';
 
+console.log(`${API_URL}`);
+
 export const userAuth = (userEmail, userPassword) => {
-  console.log(`${userEmail}`);
+  console.log(`${API_URL}`);
   function thunk(dispatch) {
     return axios
       .post(`${API_URL}/login`, null, {

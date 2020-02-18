@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  FlatList, View, Text
+  FlatList, View
 } from 'react-native';
 import ConversationListItems from './ConversationListItems';
 import NoConversations from './NoConversations';

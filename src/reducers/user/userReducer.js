@@ -9,6 +9,7 @@ import {
 } from '../../actions/user/userActionTypes';
 
 export default function user(state = {}, action) {
+  console.log("action type" + action.type + JSON.stringify(state))
   switch (action.type) {
     case CONNECT_USER_SUCCESS:
       return {

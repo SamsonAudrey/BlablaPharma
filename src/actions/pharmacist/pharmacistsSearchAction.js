@@ -10,14 +10,16 @@ import {
   PHARMACISTS_SEARCH_REQUEST
 } from '../actionTypes';
 
+console.log(API_URL)
+
 export const pharmacistsSearch = (
   qValue,
   genderValue,
   professionLabelValue,
   limitValue = 20,
 ) => {
-  function thunk(dispatch) {
-    const TEMPO_URL = 'https://api.staging.blablapharma.fr';
+  function thunk(dispatch) { 
+    const TEMPO_URL = 'https://api.blablapharma.fr';
     dispatch({ type: PHARMACISTS_SEARCH_REQUEST });
     return axios
       .get(`${TEMPO_URL}/pharmacists/search`, {

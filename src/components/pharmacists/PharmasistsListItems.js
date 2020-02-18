@@ -9,6 +9,7 @@ export default class PharmacistsListItems extends React.Component {
   handlePress = (pharmacist) => {
     const { navigate } = this.props.navigation;
     if (this.props.isConnected) {
+      navigate('Chat');
       navigate('Conversation', {
         otherPerson: pharmacist
       });

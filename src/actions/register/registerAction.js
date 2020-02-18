@@ -5,7 +5,6 @@ import {
   REGISTER_KIND,
   REGISTER_SUCCESS
 } from '../actionTypes';
-import RNFetchBlob from 'react-native-fetch-blob';
 
 export const registerPatient = (
   firstName,

@@ -49,13 +49,14 @@ export const sendMessage = (conversationId,
     const token = await getToken();
     dispatch({ type: SEND_MESSAGE_REQUEST });
     console.log('SENDEDDDD');
-    return postRequest(`/conversations/${conversationId}/messages?type=${type}&content=${content}`, token)
+    return postRequest(`/conversations/${conversationId}/messages`, token, { type, content })
       .then((response) => {
         dispatch(sendMessageSuccess(response.conversation, response));
         console.log(`RESPONSE${response}`);
       })
       .catch((error) => {
-        console.log(`ERROR${error}`);
+        console.log('ERROR');
+        console.log(error);
         dispatch(`ERROR ${sendMessageFailure(error)}`);
       });
   }

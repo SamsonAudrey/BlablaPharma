@@ -5,6 +5,8 @@ import {
 } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import ImagePicker from 'react-native-image-picker';
+import ImgToBase64 from 'react-native-image-base64';
+import ImageResizer from 'react-native-image-resizer/index.android';
 import BackButton from '../buttons/BackButton';
 
 
@@ -66,7 +68,7 @@ export default class Conversation extends React.Component {
       },
       takePhotoButtonTitle: 'Prendre une photo',
       chooseFromLibraryButtonTitle: 'Ouvrir la galerie',
-      cancelButtonTitle: 'Annuler'
+      cancelButtonTitle: 'Annuler',
     };
     ImagePicker.showImagePicker(options, (response) => {
       if (response.didCancel) {
@@ -76,11 +78,17 @@ export default class Conversation extends React.Component {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
-        // console.log(response);
-        this.props.onSendMessage(this.props.conversationId, 'image', response.data);
-        // this.state.pictureObject = response;
-        // You can also display the image using data:
-        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+        ImageResizer.createResizedImage(response.uri, 500, 500, 'PNG', 100).then((res) => {
+          // console.log(res);
+          ImgToBase64.getBase64String(res.uri)
+            .then((base64String) => {
+              const finalString = base64String.replace(/(?:\r\n|\r|\n)/g, '').split('\n');
+              this.props.onSendMessage(this.props.conversationId, 'image', `data:image/png;base64,${finalString}`);
+            })
+            .catch((err) => console.log(err));
+        }).catch((err) => {
+          console.log(err);
+        });
       }
     });
   };

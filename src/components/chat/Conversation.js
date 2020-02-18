@@ -6,10 +6,8 @@ import {
 import SafeAreaView from 'react-native-safe-area-view';
 import ImagePicker from 'react-native-image-picker';
 import ImgToBase64 from 'react-native-image-base64';
-import axios from 'axios';
+import ImageResizer from 'react-native-image-resizer/index.android';
 import BackButton from '../buttons/BackButton';
-import { getToken } from '../../utils/auth';
-
 
 
 export default class Conversation extends React.Component {
@@ -62,7 +60,6 @@ export default class Conversation extends React.Component {
   }));
 
   chooseFile = () => {
-    console.log(this.props.conversationId);
     const options = {
       title: 'Envoyer une photo',
       storageOptions: {
@@ -71,7 +68,7 @@ export default class Conversation extends React.Component {
       },
       takePhotoButtonTitle: 'Prendre une photo',
       chooseFromLibraryButtonTitle: 'Ouvrir la galerie',
-      cancelButtonTitle: 'Annuler'
+      cancelButtonTitle: 'Annuler',
     };
     ImagePicker.showImagePicker(options, (response) => {
       if (response.didCancel) {
@@ -81,10 +78,17 @@ export default class Conversation extends React.Component {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
-        // console.log(response);
-        ImgToBase64.getBase64String(response.uri)
-          .then((base64String) => this.props.onSendMessage(this.props.conversationId, 'image', `data:image/png;base64,${base64String}`))
-          .catch((err) => console.log(err));
+        ImageResizer.createResizedImage(response.uri, 500, 500, 'PNG', 100).then((res) => {
+          // console.log(res);
+          ImgToBase64.getBase64String(res.uri)
+            .then((base64String) => {
+              const finalString = base64String.replace(/(?:\r\n|\r|\n)/g, '').split('\n');
+              this.props.onSendMessage(this.props.conversationId, 'image', `data:image/png;base64,${finalString}`);
+            })
+            .catch((err) => console.log(err));
+        }).catch((err) => {
+          console.log(err);
+        });
       }
     });
   };

@@ -200,10 +200,11 @@ dependencies {
     implementation project(':react-native-image-crop-picker')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation project(':react-native-image-resizer')
 
     implementation 'com.facebook.fresco:animated-gif:1.12.0' //instead of
 
-    implementation 'com.facebook.fresco:animated-gif:2.0.0'   //use 
+    implementation 'com.facebook.fresco:animated-gif:2.0.0'   //use
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";

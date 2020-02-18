@@ -55,7 +55,7 @@ export const sendMessage = (conversationId,
         console.log(`RESPONSE${response}`);
       })
       .catch((error) => {
-        console.log(`ERROR`);
+        console.log('ERROR');
         console.log(error);
         dispatch(`ERROR ${sendMessageFailure(error)}`);
       });

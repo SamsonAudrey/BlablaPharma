@@ -21,7 +21,6 @@ import {
 console.log(`${API_URL}`);
 
 export const userAuth = (userEmail, userPassword) => {
-  console.log(`${API_URL}`);
   function thunk(dispatch) {
     return axios
       .post(`${API_URL}/login`, null, {
@@ -31,7 +30,6 @@ export const userAuth = (userEmail, userPassword) => {
         }
       })
       .then((response) => {
-        console.log(`resssp${JSON.stringify(response)}`);
         dispatch(userAuthSuccess(response.data));
       })
       .catch((error) => {

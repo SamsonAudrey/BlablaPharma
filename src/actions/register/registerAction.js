@@ -29,7 +29,6 @@ export const registerPatient = (
       gender: userGender,
       email: userEmail,
       password: userPassword,
-      picture: RNFetchBlob.wrap(imageUri)
     })
   })
     .then((response) => {

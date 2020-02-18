@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  Image,
   ImageBackground, StyleSheet, Text, View,
 } from 'react-native';
 import t from 'tcomb-form-native';
@@ -8,8 +7,6 @@ import moment from 'moment';
 import RadioForm from 'react-native-simple-radio-button';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SafeAreaView from 'react-native-safe-area-view';
-import ImageFactory from 'react-native-image-picker-form';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import ImagePicker from 'react-native-image-picker';
 import ButtonTitle from '../../components/buttons/ButtonTitle';
 import CButton from '../../components/buttons/Button';
@@ -29,7 +26,6 @@ class RegisterPatient extends Component {
     this.state = {
       user: {},
       gender: 0,
-      image: this.props.image
     };
     this.Email = t.refinement(t.String, (email) => {
       const reg = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
@@ -86,11 +82,8 @@ class RegisterPatient extends Component {
       try {
         const genderLabel = gender === 0 ? 'male' : gender === 1 ? 'female' : 'another';
         const birthday = moment(value.birth).format('YYYY-MM-DD');
-        //console.log('TEST UPLOAD -----------');
         onRegisterPatient(value.firstName, value.lastName, birthday,
-          genderLabel, value.email, value.password, this.state.image);
-        // console.log(value.image);
-        // onUploadImage(value.image);
+          genderLabel, value.email, value.password, null);
       } catch (error) {
         alert(error.message);
       }
@@ -130,7 +123,6 @@ class RegisterPatient extends Component {
     this.props.selector.error400Register
       ? (error = <Text style={{ color: '#a94442' }}>Email déjà utilisé</Text>)
       : (error = null);
-    const { image } = this.state;
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <KeyboardAwareScrollView
@@ -189,15 +181,6 @@ class RegisterPatient extends Component {
               buttonWrapStyle={{ marginLeft: 20 }}
               style={{ marginTop: '5%' }}
             />
-            <View style={styles.image}>
-              <Image
-                source={image ? { uri: image } : require('../../assets/logo-fav.png')}
-                style={{
-                  width: 80, height: 90, opacity: 1, marginRight: '5%'
-                }}
-              />
-              <MaterialIcons name="photo-camera" size={24} color="#707070" onPress={this.chooseFile.bind(this)} />
-            </View>
             <View style={styles.submitButton}>
               <CButton
                 title={this.userKind === 'patient' ? "S'inscrire" : 'Suivant'}
@@ -305,18 +288,6 @@ const options = {
         defaultValueText: 'Date de naissance',
       },
 
-    },
-    image: {
-      config: {
-        title: 'Choisir une photo de profil',
-        options: ['Ouvrir camera', 'Selection gallerie', 'Annuler'],
-        // Used on Android to style BottomSheet
-        style: {
-        },
-        // cropping: false
-      },
-      error: 'Aucune image',
-      factory: ImageFactory
     }
   },
   auto: 'placeholders',

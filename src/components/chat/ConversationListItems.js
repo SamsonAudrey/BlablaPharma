@@ -34,88 +34,95 @@ renderRightActions = () => (
 render() {
   const conversation = this.props.conversation.item;
   const { otherPerson } = this.props;
-  const { picture } = otherPerson;
-  const readBold = conversation.messages[0] ? (!conversation.messages[0].read && conversation.messages[0].author === otherPerson.id ? 'bold' : null) : null;
-  return (
-    <>
-
-      <Swipeable
-        renderRightActions={this.renderRightActions}
-      >
-        <TouchableOpacity
-          onPress={() => this.props.handlePress(conversation.id, otherPerson)}
-          style={{
-            padding: '0%',
-            marginVertical: '6%',
-            marginHorizontal: '3%'
-          }}
+  if (otherPerson) {
+    const { picture } = otherPerson;
+    const readBold = conversation.messages[0] ? (!conversation.messages[0].read && conversation.messages[0].author === otherPerson.id ? 'bold' : null) : null;
+    return (
+      <>
+        <Swipeable
+          renderRightActions={this.renderRightActions}
         >
-          <View style={{ flex: 1, flexDirection: 'row' }}>
-            <View style={{ width: '22%', height: '82%', justifyContent: 'flex-start', marginTop: 4 }}>
-              <Image
-                source={picture ? { uri: picture } : require('../../assets/logo-fav.png')}
-                style={{
-                  width: 30, height: 32, alignSelf: 'center'
-                }}
+          <TouchableOpacity
+            onPress={() => this.props.handlePress(conversation.id, otherPerson)}
+            style={{
+              padding: '0%',
+              marginVertical: '6%',
+              marginHorizontal: '3%'
+            }}
+          >
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+              <View style={{
+                width: '22%', height: '82%', justifyContent: 'flex-start', marginTop: 4
+              }}
+              >
+                <Image
+                  source={picture ? { uri: picture } : require('../../assets/logo-fav.png')}
+                  style={{
+                    width: 30, height: 32, alignSelf: 'center'
+                  }}
+                />
+              </View>
 
-              />
-            </View>
-
-            <View style={{ width: '60%' }}>
-              <Text numberOfLines={1} style={{ width: '100%', fontWeight: readBold }}>
-                {otherPerson.firstName}
-                {' '}
-                {otherPerson.lastName}
-              </Text>
-              {conversation.messages.length > 0 ? (
-                <Text numberOfLines={1} style={{ marginRight: '15%', color: '#707070', fontWeight: readBold }}>
-                  {conversation.messages[0].content}
+              <View style={{ width: '60%' }}>
+                <Text numberOfLines={1} style={{ width: '100%', fontWeight: readBold }}>
+                  {otherPerson.firstName}
+                  {' '}
+                  {otherPerson.lastName}
                 </Text>
-              ) : <Text>Pas de message pour l'instant</Text>}
+                {conversation.messages.length > 0 ? (
+                  <Text
+                    numberOfLines={1}
+                    style={{ marginRight: '15%', color: '#707070', fontWeight: readBold }}
+                  >
+                    {conversation.messages[0].content}
+                  </Text>
+                ) : <Text>Pas de message pour l'instant</Text>}
 
 
-            </View>
-            <View style={{ width: '30%', height: '100%', marginTop: '3%' }}>
-              <Image
-                source={conversation.messages[0] ? (conversation.messages[0].author !== otherPerson.id ? (conversation.messages[0].read ? require('../../assets/seen.png') : require('../../assets/not-seen.png')) : null) : null}
-                style={{
-                  width: 18, height: 18, alignSelf: 'center', marginRight: '55%'
-                }}
-              />
-            </View>
-          </View>
-        </TouchableOpacity>
-      </Swipeable>
-      {this.state.askConfirm
-        ? (
-          <CModal
-            isVisible
-            handler={<Text />}
-            text={`Vous êtes sur le point de supprimer la conversation avec ${this.props.otherPerson.firstName} ${this.props.otherPerson.lastName} êtes vous sûr ?`}
-            button={(
-              <>
-                <CButton
-                  title="Supprimer"
-                  buttonStyle="danger"
-                  onPress={() => {
-                    this.setState({ askConfirm: false });
-                    this.props.onDelete(this.props.conversation.item.id);
+              </View>
+              <View style={{ width: '30%', height: '100%', marginTop: '3%' }}>
+                <Image
+                  source={conversation.messages[0] ? (conversation.messages[0].author !== otherPerson.id ? (conversation.messages[0].read ? require('../../assets/seen.png') : require('../../assets/not-seen.png')) : null) : null}
+                  style={{
+                    width: 18, height: 18, alignSelf: 'center', marginRight: '55%'
                   }}
                 />
-                <CButton
-                  title="Annuler"
-                  buttonStyle="grey"
-                  onPress={() => {
-                    this.setState({ askConfirm: false });
-                  }}
-                />
-              </>
-            )}
-            noCancelButton
-          />
-        )
-        : null}
-    </>
-  );
+              </View>
+            </View>
+          </TouchableOpacity>
+        </Swipeable>
+        {this.state.askConfirm
+          ? (
+            <CModal
+              isVisible
+              handler={<Text />}
+              text={`Vous êtes sur le point de supprimer la conversation avec ${this.props.otherPerson.firstName} ${this.props.otherPerson.lastName} êtes vous sûr ?`}
+              button={(
+                <>
+                  <CButton
+                    title="Supprimer"
+                    buttonStyle="danger"
+                    onPress={() => {
+                      this.setState({ askConfirm: false });
+                      this.props.onDelete(this.props.conversation.item.id);
+                    }}
+                  />
+                  <CButton
+                    title="Annuler"
+                    buttonStyle="grey"
+                    onPress={() => {
+                      this.setState({ askConfirm: false });
+                    }}
+                  />
+                </>
+                          )}
+              noCancelButton
+            />
+          )
+          : null}
+      </>
+    );
+  }
+  return (null);
 }
 }

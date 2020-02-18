@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
   const { user } = state;
   const conv = state.conversations.length > 0
     // eslint-disable-next-line max-len
-    ? state.conversations.filter((convers) => convers.members[0].id === otherPerson.id || convers.members[1].id === otherPerson.id)
+    ? state.conversations.filter((convers) => convers.members[0] && convers.members[1] && (convers.members[0].id === otherPerson.id || convers.members[1].id === otherPerson.id))
     : undefined;
   return {
     conversationId: conv ? conv.length > 0 ? conv[0].id : undefined : undefined,

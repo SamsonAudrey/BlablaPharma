@@ -48,12 +48,15 @@ export const sendMessage = (conversationId,
   async function thunk(dispatch) {
     const token = await getToken();
     dispatch({ type: SEND_MESSAGE_REQUEST });
+    console.log('SENDEDDDD');
     return postRequest(`/conversations/${conversationId}/messages?type=${type}&content=${content}`, token)
       .then((response) => {
         dispatch(sendMessageSuccess(response.conversation, response));
+        console.log(`RESPONSE${response}`);
       })
       .catch((error) => {
-        // dispatch(`ERROR ${sendMessageFailure(error)}`);
+        console.log(`ERROR${error}`);
+        dispatch(`ERROR ${sendMessageFailure(error)}`);
       });
   }
   // thunk.interceptInOffline = true;

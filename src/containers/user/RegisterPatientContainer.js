@@ -26,8 +26,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   // eslint-disable-next-line no-unused-vars
   onRegisterPatient: (firstName, lastName, birthDate, gender, email, password, imageUri) => {
-    dispatch(uploadImage(imageUri, firstName, lastName, birthDate, gender, email, password));
-    // dispatch(registerPatient(firstName, lastName, birthDate, gender, email, password, imageUri));
+    dispatch(registerPatient(firstName, lastName, birthDate, gender, email, password, imageUri));
   },
   onRegisterInfo: (userInfo, userGender) => {
     dispatch(userRegisterInfo(userInfo, userGender));

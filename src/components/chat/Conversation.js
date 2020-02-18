@@ -1,9 +1,10 @@
 import React from 'react';
 import { GiftedChat, Send, Bubble } from 'react-native-gifted-chat';
 import {
-  Text, StyleSheet, View, Image, KeyboardAvoidingView
+  Text, StyleSheet, View, Image, KeyboardAvoidingView, TouchableOpacity
 } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
+import ImagePicker from 'react-native-image-picker';
 import BackButton from '../buttons/BackButton';
 
 
@@ -56,6 +57,34 @@ export default class Conversation extends React.Component {
     },
   }));
 
+  chooseFile = () => {
+    const options = {
+      title: 'Envoyer une photo',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+      takePhotoButtonTitle: 'Prendre une photo',
+      chooseFromLibraryButtonTitle: 'Ouvrir la galerie',
+      cancelButtonTitle: 'Annuler'
+    };
+    ImagePicker.showImagePicker(options, (response) => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        // console.log(response);
+        this.props.onSendMessage(this.props.conversationId, 'image', response.data);
+        // this.state.pictureObject = response;
+        // You can also display the image using data:
+        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+      }
+    });
+  };
+
   _onRead() {
     // console.log('onree');
     const message = this.props.messages ? this.props.messages[0] : undefined;
@@ -100,15 +129,14 @@ export default class Conversation extends React.Component {
 
   _renderActions(props) {
     return (
-        <View style={{ width: '10%', heigth: '10%' }}>
-          <Image
-            source={require('../../assets/photo_icon.png')}
-            style={{
-              width: '70%', height: 25, marginBottom: '25%', marginLeft: '15%'
-            }}
-          />
-        </View>
-
+      <TouchableOpacity onPress={this.chooseFile.bind(this)}>
+        <Image
+          source={require('../../assets/photo_icon.png')}
+          style={{
+            width: 30, height: 30, marginLeft: '15%', marginBottom: '10%'
+          }}
+        />
+      </TouchableOpacity>
     );
   }
 
@@ -161,7 +189,10 @@ export default class Conversation extends React.Component {
                 title="Retour"
                 onPress={() => this.props.navigation.goBack()}
               />
-              <Text style={{ color: '#707070', fontSize: 20 , textAlign: 'right', marginRight: '5%' }}>
+              <Text style={{
+                color: '#707070', fontSize: 20, textAlign: 'right', marginRight: '5%'
+              }}
+              >
                 {this.props.otherPerson.firstName}
                 {' '}
                 {this.props.otherPerson.lastName}
@@ -181,7 +212,6 @@ export default class Conversation extends React.Component {
                 renderSend={(props) => this._renderSendButton(props)}
                 renderActions={(props) => this._renderActions(props)}
                 renderBubble={(props) => this._renderBubble(props)}
-                onPressActionButton={console.log('rerere')}
               />
               <KeyboardAvoidingView behavior={Platform.OS === 'android' ? 'padding' : null} keyboardVerticalOffset={80} />
             </View>

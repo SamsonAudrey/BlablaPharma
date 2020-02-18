@@ -55,7 +55,6 @@ export default class ConversationList extends Component {
           />
         ) : (
           <>
-          {console.log("refreshhh")}
             {this.props.onGetConversations()}
             <NoConversations />
           </>

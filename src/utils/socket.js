@@ -6,6 +6,8 @@ import sailsIOClient from 'sails.io.js';
 const io = sailsIOClient(socketIOClient);
 io.sails.autoConnect = false;
 
+const TEMPO_URL = 'https://api.staging.blablapharma.fr';
+
 export const socket = io.sails.connect(API_URL, {
   reconnection: true,
   transports: ['polling']

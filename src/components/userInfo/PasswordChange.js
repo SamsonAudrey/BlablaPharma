@@ -24,7 +24,7 @@ export default class PasswordChange extends Component {
     this.EqualPassword = t.refinement(t.String, (s) => {
       const { passwords } = this.state;
       const { newPassword } = passwords;
-      console.log(`${JSON.stringify(passwords)}  ${s}`);
+      //console.log(`${JSON.stringify(passwords)}  ${s}`);
       return newPassword === s;
     });
 

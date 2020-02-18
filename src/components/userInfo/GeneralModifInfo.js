@@ -92,11 +92,11 @@ export default class GeneralModif extends Component {
     };
     ImagePicker.showImagePicker(options, (response) => {
       if (response.didCancel) {
-        console.log('User cancelled image picker');
+        //console.log('User cancelled image picker');
       } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
+        //console.log('ImagePicker Error: ', response.error);
       } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
+        //console.log('User tapped custom button: ', response.customButton);
       } else {
         this.state.picture = response.uri;
         this.state.pictureObject = response;
@@ -120,7 +120,6 @@ export default class GeneralModif extends Component {
         gender: gender === 0 ? 'male' : gender === 1 ? 'female' : 'another',
         picture: this.state.pictureObject
       };
-      console.log('------------ GO -------');
       userUpdateRemoteAccount(changes);
 
       if (this.props.pharmacistAccount) {

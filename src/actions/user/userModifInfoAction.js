@@ -23,11 +23,11 @@ export const userUpdateRemoteAccount = (account) => {
         picture: null
       })
       .then((response) => {
-        console.log(`REPONSE ${JSON.stringify(response.data)}`);
+        //console.log(`REPONSE ${JSON.stringify(response.data)}`);
         dispatch(userUpdateSuccess(response.data));
       })
       .catch((error) => {
-        console.log(`ERROOOOOOR ${JSON.stringify(error)}`);
+        //console.log(`ERROOOOOOR ${JSON.stringify(error)}`);
         dispatch(userUpdateFailure(error));
       });
   }
@@ -54,7 +54,6 @@ export const userUpdateRemotePharmaAccount = (account) => {
         dispatch(userPharmaUpdateSuccess(response.data));
       })
       .catch((error) => {
-        console.log(`ERROR : ${error}`);
         dispatch(userUpdateFailure(error));
       });
   }

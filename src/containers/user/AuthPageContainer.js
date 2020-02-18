@@ -10,7 +10,6 @@ const error404ForgotPasswordSelector = createErrorSelector(['USER_FORGOT_PASSWOR
 const successForgotPassword = createSuccessSelector(['USER_FORGOT_PASSWORD']);
 
 const mapStateToProps = (state) => {
-  console.log(`yooo${JSON.stringify(state)}`);
   return {
     error_401: error401Selector(state),
     isConnected: state.connection.isConnected,

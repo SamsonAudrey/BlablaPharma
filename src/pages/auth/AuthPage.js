@@ -36,7 +36,7 @@ export default class Auth extends Component {
   }
 
   componentDidMount() {
-    console.log('component did mount');
+    //console.log('component did mount');
     this.unsubscribe = store.subscribe(this.checkConnexion, this.render);
     this.checkConnexion();
   }
@@ -52,11 +52,11 @@ export default class Auth extends Component {
         const { navigate } = this.props.navigation;
         navigate('SearchPharmacists');
       } catch (e) {
-        console.log('error : ', e);
+        //console.log('error : ', e);
       }
       this.unsubscribe();
     } else {
-      console.log(`${isConnected}T'es pas connecté Auth Page`);
+      //console.log(`${isConnected}T'es pas connecté Auth Page`);
     }
   };
 
@@ -66,7 +66,7 @@ export default class Auth extends Component {
       const { onUserAuth } = this.props;
       onUserAuth(value.email, value.password);
     } catch (error) {
-      console.log(error.message);
+      //console.log(error.message);
     }
   };
 

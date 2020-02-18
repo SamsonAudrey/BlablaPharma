@@ -4,7 +4,6 @@ import { store } from '../../store';
 
 export default class NotifCustom extends React.Component {
   onNotifMessage = (conversationId, otherPerson) => {
-    console.log("pppppp"+JSON.stringify(this.props))
   }
 
     getOtherPerson = (conversation, user) => {

@@ -86,7 +86,7 @@ class RegisterPatient extends Component {
       try {
         const genderLabel = gender === 0 ? 'male' : gender === 1 ? 'female' : 'another';
         const birthday = moment(value.birth).format('YYYY-MM-DD');
-        console.log('TEST UPLOAD -----------');
+        //console.log('TEST UPLOAD -----------');
         onRegisterPatient(value.firstName, value.lastName, birthday,
           genderLabel, value.email, value.password, this.state.image);
         // console.log(value.image);
@@ -110,11 +110,11 @@ class RegisterPatient extends Component {
     };
     ImagePicker.showImagePicker(options, (response) => {
       if (response.didCancel) {
-        console.log('User cancelled image picker');
+        //console.log('User cancelled image picker');
       } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
+        //console.log('ImagePicker Error: ', response.error);
       } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
+        //console.log('User tapped custom button: ', response.customButton);
       } else {
         this.state.image = response.uri;
         // this.state.pictureObject = response;

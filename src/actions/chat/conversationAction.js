@@ -63,7 +63,6 @@ export const getConversations = () => {
     return getRequest('/conversations', token)
       .then((response) => {
         if (response.message === 'Unauthorized access') {
-          console.log('tttt');
         }
         // console.log(`CONV${JSON.stringify(response)}`);
         dispatch(getConversationsSuccess(response));

@@ -107,16 +107,16 @@ export default class Conversation extends React.Component {
     );
   }
 
-  _renderActions() {
+  _renderActions(props) {
     return (
-      <View style={{ width: '10%', heigth: '10%' }}>
-        <Image
-          source={require('../../assets/photo_icon.png')}
-          style={{
-            width: '70%', height: 25, marginBottom: '25%', marginLeft: '15%'
-          }}
-        />
-      </View>
+        <View style={{ width: '10%', heigth: '10%' }}>
+          <Image
+            source={require('../../assets/photo_icon.png')}
+            style={{
+              width: '70%', height: 25, marginBottom: '25%', marginLeft: '15%'
+            }}
+          />
+        </View>
 
     );
   }
@@ -164,7 +164,7 @@ export default class Conversation extends React.Component {
   }
 
   render() {
-    console.log(this.props.otherPerson);
+    // console.log(this.props.otherPerson);
     this.setCurrentConversation(this.props.conversationId);
     if (this.props.isTyping) {
       // this.setState({ isTyping: true });
@@ -201,8 +201,9 @@ export default class Conversation extends React.Component {
                 renderFooter={this.props.isTyping ? this._renderFooter : null}
                 renderAvatar={() => this._renderAvatar()}
                 renderSend={(props) => this._renderSendButton(props)}
-                renderActions={() => this._renderActions()}
+                renderActions={(props) => this._renderActions(props)}
                 renderBubble={(props) => this._renderBubble(props)}
+                onPressActionButton={console.log('rerere')}
               />
               <KeyboardAvoidingView behavior={Platform.OS === 'android' ? 'padding' : null} keyboardVerticalOffset={80} />
             </View>

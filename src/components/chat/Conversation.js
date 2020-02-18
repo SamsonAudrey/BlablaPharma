@@ -5,7 +5,11 @@ import {
 } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import ImagePicker from 'react-native-image-picker';
+import ImgToBase64 from 'react-native-image-base64';
+import axios from 'axios';
 import BackButton from '../buttons/BackButton';
+import { getToken } from '../../utils/auth';
+
 
 
 export default class Conversation extends React.Component {
@@ -58,6 +62,7 @@ export default class Conversation extends React.Component {
   }));
 
   chooseFile = () => {
+    console.log(this.props.conversationId);
     const options = {
       title: 'Envoyer une photo',
       storageOptions: {
@@ -77,10 +82,9 @@ export default class Conversation extends React.Component {
         console.log('User tapped custom button: ', response.customButton);
       } else {
         // console.log(response);
-        this.props.onSendMessage(this.props.conversationId, 'image', response.data);
-        // this.state.pictureObject = response;
-        // You can also display the image using data:
-        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+        ImgToBase64.getBase64String(response.uri)
+          .then((base64String) => this.props.onSendMessage(this.props.conversationId, 'image', `data:image/png;base64,${base64String}`))
+          .catch((err) => console.log(err));
       }
     });
   };

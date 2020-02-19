@@ -49,6 +49,7 @@ export default class Auth extends Component {
     if (isConnected) {
       try {
         const { navigate } = this.props.navigation;
+        navigate('UserInfo');
         navigate('SearchPharmacists');
       } catch (e) {
         // console.log('error : ', e);

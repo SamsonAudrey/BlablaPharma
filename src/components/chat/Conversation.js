@@ -46,7 +46,7 @@ export default class Conversation extends React.Component {
   }
 
   onSend(message) {
-    // console.log(`proodsqDQSps${JSON.stringify(message)}`);
+    // console.log(`MESSAGE : ${JSON.stringify(message)}`);
     this.props.onSendMessage(this.props.conversationId, 'text', message[0].text);
   }
 
@@ -57,6 +57,7 @@ export default class Conversation extends React.Component {
     user: {
       _id: message.author
     },
+    image: message.content.includes('https://res.cloudinary') ? message.content : null
   }));
 
   chooseFile = () => {
@@ -94,7 +95,6 @@ export default class Conversation extends React.Component {
   };
 
   _onRead() {
-    // console.log('onree');
     const message = this.props.messages ? this.props.messages[0] : undefined;
     if (message && message.author !== this.props.user.account.id && !message.read) {
       this.props.onRead(this.props.conversationId, this.props.messages[0]);

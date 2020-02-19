@@ -96,7 +96,7 @@ export default class Conversation extends React.Component {
 
   _onRead() {
     const message = this.props.messages ? this.props.messages[0] : undefined;
-    if (message && message.author !== this.props.user.account.id && !message.read) {
+    if (message && this.props.user && message.author !== this.props.user.account.id && !message.read) {
       this.props.onRead(this.props.conversationId, this.props.messages[0]);
     }
   }

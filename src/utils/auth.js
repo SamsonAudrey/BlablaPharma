@@ -32,11 +32,11 @@ axios.interceptors.response.use((response) => response,
   (error) => {
   // Return any error which is not due to authentication back to the calling service
     const originalRequest = error.config;
-    if (error.response.status === 401 && originalRequest.url
+    if (error.response.message === 'Request failed with status code 401' && originalRequest.url
         === `${API_URL}/auth/token`) {
       return Promise.reject(error);
     }
-    if (error.response.status === 401 && !originalRequest._retry) {
+    if (error.response.message === 'Request failed with status code 401' && !originalRequest._retry) {
       originalRequest._retry = true;
       checkToken()
         .then(
@@ -76,6 +76,7 @@ const checkToken = () => {
       ? (axios.defaults.headers.Authorization = `Bearer ${state.user.accessToken}`)
       : reject();
     // If there is no account it means that the user is not connected
+    console.log("apiurl"+API_URL);
     state.user.account.id
       ? axios
         .get(`${API_URL}/accounts/${state.user.account.id}`) // This line is meant to hit the API

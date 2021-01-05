@@ -20,7 +20,7 @@
     "@react-native-community/async-storage": "^1.7.0",
     "@react-native-community/netinfo": "^5.3.1",
     "accordion-collapse-react-native": "^0.2.6",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "font-awesome": "^4.7.0",
     "json-circular-stringify": "0.0.1",
